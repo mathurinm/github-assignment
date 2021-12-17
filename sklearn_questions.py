@@ -30,7 +30,8 @@ from sklearn.metrics import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -50,7 +51,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self : KNeighborsClassifier
             The fitted k-nearest neighbors classifier.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -61,7 +61,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict the label of X
+        """Predict the label of X,
 
         Parameters
         ----------
