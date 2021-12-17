@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # B.M ignores
-darft_notebook
+draft_notebooks
