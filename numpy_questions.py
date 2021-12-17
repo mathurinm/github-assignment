@@ -37,10 +37,9 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
 
-    # TODO
+    i = np.argmax(X, axis=0)
+    j = np.argmax(X, axis=1)
 
     return i, j
 
