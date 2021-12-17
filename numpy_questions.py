@@ -67,7 +67,7 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     pi = 2
 
-    for n in range(n_terms):
+    for n in range(1, n_terms + 1):
         left = (2 * n) / (2 * n - 1)
         right = (2 * n) / (2 * n + 1)
         pi *= left * right
