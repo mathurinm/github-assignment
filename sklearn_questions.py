@@ -1,5 +1,5 @@
 """Assignment - making a sklearn estimator.
-
+questions
 The goal of this assignment is to implement by yourself a scikit-learn
 estimator for the OneNearestNeighbor and check that it is working properly.
 

@@ -1,5 +1,5 @@
 """Assignment - using numpy and making a PR.
-
+questions
 The goals of this assignment are:
     * Use numpy in practice with two easy exercises.
     * Use automated tools to validate the code (`pytest` and `flake8`)
