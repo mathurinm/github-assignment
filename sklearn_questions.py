@@ -26,11 +26,16 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import pairwise_distances
+from scipy import stats
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
-    def __init__(self):  # noqa: D107
+
+    def __init__(self, n_neighbors=1):  # noqa: D107
+        self.n_neighbors = n_neighbors
+
         pass
 
     def fit(self, X, y):
@@ -41,7 +46,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y = check_classification_targets(y)
         self.classes_ = np.unique(y)
-
+        self.X_ = X
+        self.y_ = y
         # XXX fix
         return self
 
@@ -52,13 +58,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
-        return y_pred
+        d = pairwise_distances(X, self.X_)
+
+        sorted_indices = np.argsort(d)
+        d = np.take_along_axis(d, sorted_indices, axis=1)[:, :self.n_neighbors]
+        neighbors_indices = sorted_indices[:, :self.n_neighbors]
+
+        if self.y_:
+            Y_neighbors = self.y_[neighbors_indices]
+
+            y_pred, _ = stats.mode(Y_neighbors, axis=1)
+            return y_pred.ravel()
+        else:
+            raise ValueError
 
     def score(self, X, y):
         """Write docstring.
