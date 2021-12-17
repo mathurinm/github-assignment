@@ -33,7 +33,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier"""
 
     def __init__(self):  # noqa: D107
-        self.model = KNeighborsClassifier(n_neighbors=1)
         pass
 
     def fit(self, X: np.ndarray, y: np.ndarray):
@@ -48,11 +47,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         """
         X, y = check_X_y(X, y)
-        y = check_classification_targets(y)
+        check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # fit model
-        self.model.fit(X, y)
+        # init fit model
+        self._model = KNeighborsClassifier(n_neighbors=1)
+        self._model.fit(X, y)
 
         return self
 
@@ -77,8 +77,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
+        model = self._model
         # predict
-        y_pred = self.model.predict(X)
+        y_pred = model.predict(X)
 
         return y_pred
 
@@ -100,5 +101,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
 
-        score = self.model.score(X, y)
+        model = self._model
+
+        score = model.score(X, y)
         return score

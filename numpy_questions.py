@@ -38,14 +38,16 @@ def max_index(X):
         if the shape is not 2D.
     """
     # handle case of None
-    # if X is None:
-    #     return None
+    if X is None:
+        raise ValueError
 
-    i = 0
-    j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError
 
-    # TODO
-    # X = np.array(X)
+    shape_X = X.shape
+    if len(shape_X) < 2:
+        raise ValueError
+
     i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
 
     return i, j
