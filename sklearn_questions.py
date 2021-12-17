@@ -28,6 +28,7 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics import pairwise_distances
 from scipy import stats
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -44,7 +45,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        y = check_classification_targets(y)
+        check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
@@ -58,14 +59,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
+        if isinstance(self.y_  ,np.ndarray):
 
-        d = pairwise_distances(X, self.X_)
+            d = pairwise_distances(X, self.X_)
 
-        sorted_indices = np.argsort(d)
-        d = np.take_along_axis(d, sorted_indices, axis=1)[:, :self.n_neighbors]
-        neighbors_indices = sorted_indices[:, :self.n_neighbors]
+            sorted_indices = np.argsort(d)
+            d = np.take_along_axis(d, sorted_indices, axis=1)[:, :self.n_neighbors]
+            neighbors_indices = sorted_indices[:, :self.n_neighbors]
 
-        if self.y_:
+        
             Y_neighbors = self.y_[neighbors_indices]
 
             y_pred, _ = stats.mode(Y_neighbors, axis=1)
@@ -75,11 +77,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Write docstring.
-
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y, self.predict(X))
+        
+        
