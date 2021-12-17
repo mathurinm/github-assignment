@@ -12,7 +12,7 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
 
 ## How?
 
-  - For the repository by clicking on the `Fork` button on the upper right corner
+  - Fork the repository by clicking on the `Fork` button on the upper right corner
   - Clone the repository of your fork with: `git clone https://github.com/MYLOGIN/github-assignment` (replace MYLOGIN with your GitHub login)
   - Create a branch called `myassignment` using `git checkout -b myassignment`
   - Make the changes to complete the assignment. You have to modify the files that contain `questions` in their name. Do not modify the files that start with `test_`.
