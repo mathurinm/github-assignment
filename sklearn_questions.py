@@ -50,6 +50,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self : KNeighborsClassifier
             The fitted k-nearest neighbors classifier.
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -76,7 +77,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
 
         closest = np.argmin(euclidean_distances(X, self.X_), axis=1)
-        # XXX fix
+
         return self.y_[closest]
 
     def score(self, X, y):
@@ -98,5 +99,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         score = (y == y_pred).sum() / len(y)
-        # XXX fix
+
         return score
