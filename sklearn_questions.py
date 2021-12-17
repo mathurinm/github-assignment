@@ -30,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier"""
 
     def __init__(self):  # noqa: D107
         self.model = KNeighborsClassifier(n_neighbors=1)
@@ -45,6 +45,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             feature matrix
         y : np.ndarray
             array of labels
+
         """
         X, y = check_X_y(X, y)
         y = check_classification_targets(y)
@@ -56,7 +57,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """method to make prediction
+        """Method to make prediction
 
         Parameters
         ----------
@@ -67,6 +68,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         np.ndarray
             returns an array of predictions
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -81,7 +83,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X: np.array, y: np.array) -> float:
-        """method to assess model
+        """Method to assess model
 
         Parameters
         ----------
@@ -94,6 +96,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         float
             returns the score of the model
+
         """
         X, y = check_X_y(X, y)
 
