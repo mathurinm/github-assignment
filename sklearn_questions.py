@@ -42,7 +42,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y = check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        # XXX fixee
         return self
 
     def predict(self, X):
