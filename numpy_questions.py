@@ -38,7 +38,7 @@ def max_index(X):
         if the shape is not 2D.
     """
     i = 0
-    j = 2
+    j = 3
 
     # TODO
 
