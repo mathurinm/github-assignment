@@ -82,7 +82,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             matrix of features
         y : np.array
             array of true labels
-        Returns
+        Return
         -------
         float
             returns the score of the model
