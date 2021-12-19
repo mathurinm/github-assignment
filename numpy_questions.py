@@ -76,7 +76,7 @@ def wallis_product(n_terms):
     
     # edge case 
     if n_terms==0 :  
-        return 1
+        return 2
 
     def wallis_term(k):
         term = 4 * k ** 2
@@ -86,3 +86,5 @@ def wallis_product(n_terms):
     prod = np.prod(wallis_term(range_))
 
     return 2 * prod
+
+print(wallis_product(0))
