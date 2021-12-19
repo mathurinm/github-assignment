@@ -75,16 +75,14 @@ def wallis_product(n_terms):
     """
     
     # edge case 
-    if n_terms == 0 : 
+    if n_terms==0 :  
         return 1
-
 
     def wallis_term(k):
         term = 4 * k ** 2
-        return term / (term - 1)
-
+        return term / ( term - 1 )
     # vectorise using numpy 
     range_ = np.arange(1, n_terms + 1)
     prod = np.prod(wallis_term(range_))
-    
+
     return 2 * prod
