@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """Assignment - using numpy and making a PR.
 
 The goals of this assignment are:
@@ -15,6 +17,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -37,23 +40,28 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
+
     i = 0
     j = 0
 
-    # None case 
+    # None case
+
     if X is None:
         raise ValueError
+
     # numpy error
+
     if not isinstance(X, np.ndarray):
         raise ValueError
-    
-    # dim err 
+
+    # dim err
+
     if len(X.shape) < 2:
         raise ValueError
 
-    i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
-    
-    return i, j
+    (i, j) = np.unravel_index(np.argmax(X, axis=None), X.shape)
+
+    return (i, j)
 
 
 def wallis_product(n_terms):
@@ -73,18 +81,19 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    
-    # edge case 
-    if n_terms==0 :  
+
+    # edge case
+
+    if n_terms == 0:
         return 2
 
     def wallis_term(k):
         term = 4 * k ** 2
-        return term / ( term - 1 )
-    # vectorise using numpy 
+        return term / (term - 1)
+
+    # vectorise using numpy
+
     range_ = np.arange(1, n_terms + 1)
     prod = np.prod(wallis_term(range_))
 
     return 2 * prod
-
-print(wallis_product(0))
