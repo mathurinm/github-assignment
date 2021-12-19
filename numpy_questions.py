@@ -40,7 +40,6 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-
     i = 0
     j = 0
 
@@ -81,7 +80,6 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-
     # edge case
 
     if n_terms == 0:
