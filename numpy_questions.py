@@ -29,7 +29,7 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
