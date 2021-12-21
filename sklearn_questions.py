@@ -61,7 +61,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict the label of X,
+        """Predict the label of X.
 
         Parameters
         ----------
@@ -98,6 +98,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        score = (y == y_pred).sum() / len(y)
+        score = np.mean(y == y_pred)
 
         return score
