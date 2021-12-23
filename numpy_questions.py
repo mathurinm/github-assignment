@@ -41,8 +41,12 @@ def max_index(X):
     j = 0
 
     # TODO
-
-    return i, j
+    m = X.max()
+    # Two loops for rows and columns
+    for i in range(len(A)):
+	    for j in range(len(A[0])):
+	        if A[i,j] == m:
+				return i, j
 
 
 def wallis_product(n_terms):
