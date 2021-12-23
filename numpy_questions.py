@@ -41,6 +41,11 @@ def max_index(X):
     j = 0
 
     # TODO
+    
+    if type(X) != np.ndarray or X.ndim != 2:
+        raise ValueError('the input is not a numpy array or the shape is not 2D.')
+    else:
+        i, j = np.where(X == np.amax(X))[0][0],np.where(X == np.amax(X))[1][0]
 
     return i, j
 
@@ -64,4 +69,10 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    
+    pi_prox = 1 # initiate pi approximation with 1
+    
+    for p in range(1, n_terms+1):
+        pi_prox *= 4 * p ** 2 / (4 * p ** 2 - 1)
+    pi_prox *= 2
+    return pi_prox
