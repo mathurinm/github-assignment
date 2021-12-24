@@ -26,17 +26,18 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
+from sklearn import neighbors
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
     def __init__(self):  # noqa: D107
+        self.model = neighbors.KNeighborsClassifier(n_neighbors=1)
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """method to fit the model to the data.
 
-        And describe parameters
+        And de
         """
         X, y = check_X_y(X, y)
         y = check_classification_targets(y)
