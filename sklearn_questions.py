@@ -20,6 +20,7 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
+from sklearn import metrics
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
@@ -30,6 +31,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -40,33 +42,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y = check_classification_targets(y)
+        # Storing data :
         self.classes_ = np.unique(y)
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
 
-        And describe parameters
-        """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        # Compute all pairwise distances between X and self.X_
+        M = metrics.pairwise.pairwise_distances(
+            X, Y=self.X_, metric='euclidean', n_jobs=1)
 
-        # XXX fix
+        # Get indices to sort them by distance
+        indices = np.argsort(M, axis=1)
+
+        # Get the indexs of the nearest neighbours for each sample.
+        neighbors = indices[:, 0]
+
+        # Get labels of each nearest neighbour, which is y_pred
+        y_pred = self.y_[neighbors]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
-        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return y_pred.mean()
