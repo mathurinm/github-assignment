@@ -19,11 +19,16 @@ import numpy as np
 
 
 def max_index(X):
-    index = np.argmax(X)
-    j = index % X.shape[1]
-    i = int(np.floor(index/X.shape[0]))
-    return i, j
-
+    if type(X).__name__ == 'ndarray' :
+        if len(X.shape) == 2 :
+            index = np.argmax(X)
+            j = index % X.shape[1]
+            i = int(np.floor(index/X.shape[0]))
+            return i, j
+        else : 
+            raise ValueError
+    else : 
+        raise ValueError
 
 def wallis_product(n_terms):
     value = 0
@@ -34,5 +39,5 @@ def wallis_product(n_terms):
         for i in range(1, n_terms+1):
             q = 4 * i**2
             value *= q/(q-1)
-    pi = value/2
+    pi = 2*value
     return pi

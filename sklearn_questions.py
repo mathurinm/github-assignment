@@ -36,22 +36,24 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """X and y are the training data 
+        that are going to be used as a reference
+        to assign values in prediction
         """
         X, y = check_X_y(X, y)
-        y = check_classification_targets(y)
-        # Storing data :
         check_classification_targets(y)
+        # Storing data :
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
-
+        
         return self
 
     def predict(self, X):
-
+        """we compute pariwise distances between the stored reference 
+        samples and the test samples before assigning as prediction the
+        value of the nearest neighbour
+        """
         check_is_fitted(self)
         X = check_array(X)
         # Compute all pairwise distances between X and self.X_
@@ -70,8 +72,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
+        """We predict samples and score the prediction using
+        the testing target values
+        """
 
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        return y_pred.mean()
+        return (y_pred==y).mean()
