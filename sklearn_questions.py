@@ -63,6 +63,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        y_pred = self.model.predict(X)
         return y_pred
 
     def score(self, X, y):
