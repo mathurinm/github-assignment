@@ -28,45 +28,51 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
+# define distance
+def euc_dist(x, y):
+    return np.sqrt(np.sum((x-y)**2))
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
     def __init__(self):  # noqa: D107
         pass
-
+    
     def fit(self, X, y):
         """Write docstring.
 
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        y = check_classification_targets(y)
+        check_classification_targets(y)
+        
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
-        """
+        
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        
+        y_pred = []  # create an empty list to store all our predictions.
+        
+        for i in range(len(X)): 
+        
+            # TODO : Compute all pairwise distances between X and self.X_
+            dist = np.array([euc_dist(X[i], point) for point in self.X_])
 
-        # XXX fix
+            # TODO : Get indices to sort them and indices of neighbors
+            closest_neighbor = dist.argsort()[0]
+            y_pred.append(self.y_[closest_neighbor])
+            
+        y_pred = np.array(y_pred)
+            
         return y_pred
-
+    
     def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
-        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        
+        return (y_pred==y).mean()
