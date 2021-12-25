@@ -48,12 +48,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.model.fit(X, y)
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict X instance.
 
-        And describe parameters
+        Parameters:
+        X -- Features array
+        Output:
+        Prediction array
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -67,12 +71,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Evaluate the performance of the model.
 
-        And describe parameters
+        Parameters:
+        X -- Features array
+        y -- Label array
+        Output:
+        Score -- Score of the model
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        #y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        score = self.model.score(X, y)
+        return score
