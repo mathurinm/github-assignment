@@ -19,6 +19,7 @@ import numpy as np
 
 
 def max_index(X):
+    """We determine of the indexes of the maximum value in a numpy array."""
     if type(X).__name__ == 'ndarray':
         if len(X.shape) == 2:
             index = np.argmax(X)
@@ -32,6 +33,7 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
+    """We implementate of an approximation of pi by Wallis Product."""
     value = 0
     if n_terms == 0:
         return 2

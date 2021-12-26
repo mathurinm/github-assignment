@@ -30,16 +30,13 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """X and y are the training data 
-        that are going to be used as a reference
-        to assign values in prediction
-        """
+        """X and y are the training data used as reference."""
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         # Storing data :
@@ -50,10 +47,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """we compute pariwise distances between the stored reference 
-        samples and the test samples before assigning as prediction the
-        value of the nearest neighbour
-        """
+        """We use training data as base for prediction."""
         check_is_fitted(self)
         X = check_array(X)
         # Compute all pairwise distances between X and self.X_
@@ -72,10 +66,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """We predict samples and score the prediction using
-        the testing target values
-        """
-
+        """We predict samples and score the prediction."""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
