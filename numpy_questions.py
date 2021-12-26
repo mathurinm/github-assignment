@@ -45,7 +45,8 @@ def max_index(X):
         for i in range(len(A)):
     	    for j in range(len(A[0])):
     	        if A[i,j] == m:
-    				return (i, j)
+    	        	break
+        return (i, j)
     else:
         raise ValueError
 

@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import pairwise_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,21 +36,25 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """X is our features array
+        and y is our label vector.
+        X and y form a training set.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """This function predicts our label 
+        vector y by computing the distances 
+        pairwise and determinig nearest 
+        neighbors based on these distances.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +64,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        # Compute the distance matrix from the vector array X and self.X_
+        dist = pairwise.pairwise_distances(
+            X, Y=self.X_, metric='euclidean', n_jobs=1)
+        # Get the nearest neighbors by sorting distances 
+        nearest_neighbors = np.argsort(dist, axis=1)[:,0]
+
+        y_pred = self.y_[nearest_neighbors]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """This function computes the score
+        of our predictions by indentifying
+        the number of right predictions over
+        the total number of elements. 
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return (y_pred==y).mean()
