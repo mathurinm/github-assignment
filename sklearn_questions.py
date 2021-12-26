@@ -35,21 +35,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Fit the model on the data.
+        Parameters
+        ----------
+        X : np.ndarray
+            matrix of the features
+        y : np.ndarray
+            array of the labels
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict on data.
+        Parameters
+        ----------
+        X : np.ndarray
+            matrix of the features
+        Returns
+        -------
+        np.ndarray
+            returns an array of predictions
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +71,39 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
-        return y_pred
+        # TODO : Compute all pairwise distances between X and self.X_
+        paire_dist = pairwise_distances(X, self.X_, metric='euclidean')
+
+        # TODO : Get indices to sort them
+        indexes = np.argsort(paire_dist, axis=1)
+    
+        # TODO Get indices of neighbors
+        index_neighbors = indexes[:, :1]
+
+        # TODO: Get labels of neighbors
+        Y_neighbor =  self.y_[index_neighbors]  # TODO 
+
+        # TODO : Find the predicted labels y for each entry in X
+        # You can use the scipy.stats.mode function
+        y_pred, _ = stats.mode(Y_neighbor, axis=1) # TODO
+        return y_pred.ravel()
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Evaluate the model.
+        Parameters
+        ----------
+        X : np.array
+            matrix of the features
+        y : np.array
+            array of the true labels
+        Returns
+        -------
+        float
+            returns the score of the model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        score = np.sum(y_pred == self.y_)/len(self.y_)
+        return score
