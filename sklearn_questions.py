@@ -35,9 +35,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Fit the model on the data.
+        Parameters
+        ----------
+        X : np.ndarray
+            matrix of the features
+        y : np.ndarray
+            array of the labels
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -49,9 +53,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict on data.
+        Parameters
+        ----------
+        X : np.ndarray
+            matrix of the features
+        Returns
+        -------
+        np.ndarray
+            returns an array of predictions
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -79,9 +89,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred.ravel()
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Evaluate the model.
+        Parameters
+        ----------
+        X : np.array
+            matrix of the features
+        y : np.array
+            array of the true labels
+        Returns
+        -------
+        float
+            returns the score of the model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
