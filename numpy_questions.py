@@ -42,9 +42,9 @@ def max_index(X):
     if isinstance(X, np.ndarray) and len(X.shape) == 2:
         m = X.max()
         # Two loops for rows and columns
-        for i in range(len(A)):
-            for j in range(len(A[0])):
-                if A[i, j] == m:
+        for i in range(len(X)):
+            for j in range(len(X[0])):
+                if X[i, j] == m:
                     break
         return (i, j)
     else:
@@ -70,7 +70,7 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    if isinstance(n_terms, int) and n_terms > 1:
+    if isinstance(n_terms, int) and n_terms != 0:
         pi = 2
         for i in range(1, n_terms+1):
             pi *= 4*(i**2)/(4*(i**2)-1)

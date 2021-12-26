@@ -65,7 +65,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         # Compute the distance matrix from the vector array X and self.X_
-        dist = pairwise.pairwise_distances(
+        dist = pairwise_distances(
             X, Y=self.X_, metric='euclidean', n_jobs=1)
         # Get the nearest neighbors by sorting distances
         nearest_neighbors = np.argsort(dist, axis=1)[:, 0]
