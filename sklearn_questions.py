@@ -36,11 +36,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     
     
     "OneNearestNeighbor classifier."
-<<<<<<< HEAD
     
-=======
-
->>>>>>> cd66da4def6b72324d1d1175d0e88afcc0df8c78
     def __init__(self):  # noqa: D107
         pass
     
