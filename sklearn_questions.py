@@ -49,7 +49,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
 
         # XXX fix
-        self.model = KNeighborsClassifier(n_neighbors=1)
+        self.model = KNeighborsClassifier(n_neighbors = 1)
         self.model.fit(X, y)
         return self
 
