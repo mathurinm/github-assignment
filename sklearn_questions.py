@@ -27,13 +27,11 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn import neighbors
 from sklearn.neighbors import KNeighborsClassifier
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-
     """OneNearestNeighbor classifier."""
-
     def __init__(self):  # noqa: D107
         pass
 
@@ -49,8 +47,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
 
         # XXX fix
-        self.model = KNeighborsClassifier(n_neighbors = 1)
-        self.model.fit(X, y)
+        self._model = KNeighborsClassifier(n_neighbors=1)
+        self._model.fit(X, y)
         return self
 
     def predict(self, X):
@@ -69,7 +67,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
-        y_pred = self.model.predict(X)
+        model = self._model
+        y_pred = model.predict(X)
         return y_pred
 
     def score(self, X, y):
@@ -84,5 +83,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
 
         # XXX fix
-        score = self.model.score(X, y)
+        model = self._model
+        score = model.score(X, y)
         return score
