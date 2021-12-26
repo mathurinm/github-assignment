@@ -42,7 +42,7 @@ def max_index(X):
 
     # TODO
     i , j = np.where(X == np.max(X))
-    
+
     return i, j
 
 
@@ -65,4 +65,7 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
+    for i in range(1, n_terms):
+        a = 4 * i**2 - 1
+        pi_approximation * = 4 * i**2  / a
     return 0.
