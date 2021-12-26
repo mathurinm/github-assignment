@@ -32,6 +32,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
+
     def __init__(self):  # noqa: D107
         pass
 
