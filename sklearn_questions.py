@@ -82,7 +82,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Score -- Score of the model
         """
         X, y = check_X_y(X, y)
-        #y_pred = self.predict(X)
 
         # XXX fix
         score = self.model.score(X, y)
