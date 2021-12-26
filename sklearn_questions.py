@@ -46,7 +46,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
-        
+
         return self
 
     def predict(self, X):
@@ -79,4 +79,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        return (y_pred==y).mean()
+        return (y_pred == y).mean()

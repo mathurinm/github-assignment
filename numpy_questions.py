@@ -19,16 +19,17 @@ import numpy as np
 
 
 def max_index(X):
-    if type(X).__name__ == 'ndarray' :
-        if len(X.shape) == 2 :
+    if type(X).__name__ == 'ndarray':
+        if len(X.shape) == 2:
             index = np.argmax(X)
             j = index % X.shape[1]
             i = int(np.floor(index/X.shape[0]))
             return i, j
-        else : 
+        else:
             raise ValueError
-    else : 
+    else:
         raise ValueError
+
 
 def wallis_product(n_terms):
     value = 0
