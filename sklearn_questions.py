@@ -33,14 +33,21 @@ def euc_dist(x, y):
     return np.sqrt(np.sum((x-y)**2))
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+    
+    
     "OneNearestNeighbor classifier."
+    
     def __init__(self):  # noqa: D107
         pass
     
     def fit(self, X, y):
-        """Write docstring.
+        """fit the model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : training set of shape (n_samples, n_features)
+        The input training set.
+        y: the target.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -51,28 +58,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        
         check_is_fitted(self)
         X = check_array(X)
-        
         y_pred = []  # create an empty list to store all our predictions.
-        
         for i in range(len(X)): 
-        
             # TODO : Compute all pairwise distances between X and self.X_
             dist = np.array([euc_dist(X[i], point) for point in self.X_])
-
             # TODO : Get indices to sort them and indices of neighbors
             closest_neighbor = dist.argsort()[0]
             y_pred.append(self.y_[closest_neighbor])
-            
-        y_pred = np.array(y_pred)
-            
+        y_pred = np.array(y_pred)  
         return y_pred
     
     def score(self, X, y):
-
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        
         return (y_pred==y).mean()
