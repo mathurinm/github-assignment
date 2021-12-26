@@ -45,8 +45,7 @@ def max_index(X):
         for i in range(len(X)):
             for j in range(len(X[0])):
                 if X[i, j] == m:
-                    break
-        return (i, j)
+                    return (i, j)
     else:
         raise ValueError
 
@@ -76,6 +75,6 @@ def wallis_product(n_terms):
             pi *= 4*(i**2)/(4*(i**2)-1)
         return pi
     elif n_terms == 0:
-        return 1
+        return 2
     else:
         raise ValueError
