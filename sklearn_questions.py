@@ -39,9 +39,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_ = X
+        self.y_ = y
 
         # XXX fix
         return self
@@ -51,12 +54,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        # Compute all pairwise distances between X and self.X_
+        distances = sklearn.metrics.pairwise.pairwise_distances(X, Y=self.X_, metric='euclidean' )
+        # Get indices to sort them
+        indices_sorted = np.argsort(distances, axis=1)
+        #  Get indices of neighbors
+        indices_neighbors = indices_sorted[:, :1]
+        # Get labels of neighbors
+        Y_neighbors = self.y_[indices_neighbors]
+        #  Find the predicted labels y for each entry in X
+        mode , k = stats.mode(Y_neighbors, axis=1)
+        y_pred = np.array(mode.T, dtype=int)
 
         # XXX fix
         return y_pred
@@ -68,6 +76,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
+        l = len(y)
+        sum = 0
+        for i in range(l):
+            if y[i] == y_pred[0,i]:
+                sum = sum + 1
+        score = sum / l
         # XXX fix
-        return y_pred.sum()
+        return score
