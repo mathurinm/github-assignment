@@ -38,7 +38,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Description of parameters.
-        
+
         X is our features array
         and y is our label vector.
         X and y form a training set.
