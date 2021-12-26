@@ -51,9 +51,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """This function predicts our label 
-        vector y by computing the distances 
-        pairwise and determinig nearest 
+        """This function predicts our label
+        vector y by computing the distances
+        pairwise and determinig nearest
         neighbors based on these distances.
         """
         check_is_fitted(self)
@@ -67,8 +67,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # Compute the distance matrix from the vector array X and self.X_
         dist = pairwise.pairwise_distances(
             X, Y=self.X_, metric='euclidean', n_jobs=1)
-        # Get the nearest neighbors by sorting distances 
-        nearest_neighbors = np.argsort(dist, axis=1)[:,0]
+        # Get the nearest neighbors by sorting distances
+        nearest_neighbors = np.argsort(dist, axis=1)[:, 0]
 
         y_pred = self.y_[nearest_neighbors]
         return y_pred
@@ -77,10 +77,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """This function computes the score
         of our predictions by indentifying
         the number of right predictions over
-        the total number of elements. 
+        the total number of elements.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return (y_pred==y).mean()
+        return (y_pred == y).mean()

@@ -43,9 +43,9 @@ def max_index(X):
         m = X.max()
         # Two loops for rows and columns
         for i in range(len(A)):
-    	    for j in range(len(A[0])):
-    	        if A[i,j] == m:
-    	        	break
+            for j in range(len(A[0])):
+                if A[i, j] == m:
+                    break
         return (i, j)
     else:
         raise ValueError
@@ -79,4 +79,3 @@ def wallis_product(n_terms):
         return 1
     else:
         raise ValueError
-
