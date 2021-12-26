@@ -34,6 +34,7 @@ def euc_dist(x, y):
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
+
     def __init__(self):  # noqa: D107
         pass
     
@@ -44,7 +45,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
