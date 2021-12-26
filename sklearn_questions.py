@@ -31,7 +31,9 @@ from sklearn import neighbors
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+
     """OneNearestNeighbor classifier."""
+
     def __init__(self):  # noqa: D107
         self.model = neighbors.KNeighborsClassifier(n_neighbors=1)
         pass
@@ -44,7 +46,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y -- Label array
         """
         X, y = check_X_y(X, y)
-        y = check_classification_targets(y)
+        check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
