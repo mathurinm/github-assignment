@@ -28,14 +28,13 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn import neighbors
-
+from sklearn.neighbors import KNeighborsClassifier
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
-        self.model = neighbors.KNeighborsClassifier(n_neighbors=1)
         pass
 
     def fit(self, X, y):
@@ -50,6 +49,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.model = KNeighborsClassifier(n_neighbors=1)
         self.model.fit(X, y)
         return self
 
