@@ -30,14 +30,13 @@ from sklearn.metrics import pairwise_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """OneNearestNeighbor classifier.
-    """
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Description of parameters.
+        """Describe parameters.
 
         X is our features array
         and y is our label vector.
@@ -54,7 +53,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Description of the function.
+        """Describe the function.
 
         This function predicts our label
         vector y by computing the distances
@@ -79,7 +78,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Description of the function.
+        """Describe the function.
 
         This function computes the score
         of our predictions by indentifying
