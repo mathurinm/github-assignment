@@ -16,6 +16,7 @@ def test_one_nearest_neighbor_check_estimator():
     check_estimator(OneNearestNeighbor())
 
 
+
 def test_one_nearest_neighbor_match_sklearn():
     X, y = make_classification(n_samples=200, n_features=20,
                                random_state=42)
@@ -24,7 +25,7 @@ def test_one_nearest_neighbor_match_sklearn():
     knn = KNeighborsClassifier(n_neighbors=1)
     y_pred_sk = knn.fit(X_train, y_train).predict(X_test)
 
-    onn = OneNearestNeighbor()
+    onn = OneNearestNeighbor(n_neighbors=1)
     y_pred_me = onn.fit(X_train, y_train).predict(X_test)
     assert_array_equal(y_pred_me, y_pred_sk)
 
