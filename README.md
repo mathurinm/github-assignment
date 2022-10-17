@@ -17,5 +17,9 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
   - Create a branch called `myassignment` using `git checkout -b myassignment`
   - Make the changes to complete the assignment. You have to modify the files that contain `questions` in their name. Do not modify the files that start with `test_`.
   - Open the pull request on GitHub
-  - Keep pushing to your branch until the continuous integration (CI) system is green.
+  - Keep pushing to your branch until the continuous integration (CI) system is green. Alternatively, you can run the tests locally with the following command:
+  ```
+    flake8 .
+    pydocstyle
+  ```
   - When it is green notify the professors that your done.
