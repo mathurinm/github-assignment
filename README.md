@@ -22,4 +22,4 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
     flake8 .
     pydocstyle
   ```
-  - When it is green notify the professors that your done.
+  - When it is green notify the professors that you are done.
