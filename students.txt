@@ -57,7 +57,7 @@ Quentin,Stroobants
 Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu X
-Danli,Liu
+Danli,Liu X
 Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
