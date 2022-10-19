@@ -14,7 +14,7 @@ Mathurin,Massias
 Joseph,Moussa
 Arianna,More
 João,Melo
-Madhura Prashant,Nirale
+Madhura Prashant,Nirale X
 Maria Susanne,Stoelben
 Xinyu,Lai
 Thomas Philipp,Schneider
@@ -65,4 +65,3 @@ Kaan,Çaylan
 Hadrien,Strichard
 Sylvain,Combettes
 Harshit,Shangari
-Madhura, Nirale
