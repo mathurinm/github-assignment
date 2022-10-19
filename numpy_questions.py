@@ -18,9 +18,10 @@ errors by calling `flake8` at the root of the repo.
 import numpy as np
 
 
-def max_index(X):
-    """Return the index of the maximum in a numpy array.
 
+ 
+    """Return the index of the maximum in a numpy array.
+    
     Parameters
     ----------
     X : ndarray of shape (n_samples, n_features)
@@ -37,15 +38,15 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
 
-    # TODO
+def max_index(X):
+i = 0
+j = 0
+i, j = np.unravel_index(np.argmax(X), np.shape(X))
+return i, j
 
-    return i, j
 
 
-def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
@@ -64,4 +65,28 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+     """Implement the Wallis product to compute an approximation of pi.
+
+    See:
+    https://en.wikipedia.org/wiki/Wallis_product
+
+    Parameters
+    ----------
+    n_terms : int
+        Number of steps in the Wallis product. Note that `n_terms=0` will
+        consider the product to be `1`.
+
+    Returns
+    -------
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
+    """
+    # XXX : The n_terms is an int that corresponds to the number of
+    # terms in the product. For example 10000.
+   
+def wallis_product(n_terms):
+approx_pi = 2 * np.product((4 * np.arange(1, n_terms+1)**2) 
+/ (4 * np.arange(1, n_terms+1)**2 - 1))
+return approx_pi
+
