@@ -3,7 +3,7 @@ Camille,ObeidX
 Nazila,Sharifi Amina
 Ajouad,Akjouj
 Baptiste,BoutX
-Etienne,Du Fayet De La Tour
+Etienne,Du Fayet De La Tour, X
 François,Moreau
 Gaspard,Pasqueron De Fommervault X
 Michael,Ein-Dor X
