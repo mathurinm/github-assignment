@@ -28,8 +28,8 @@ Steve,MosesX
 Zofia,Smolen
 Elie,Cochard--Marchewka X 
 Guillaume,Plassais
+Anastasia,Nesterova X
 Mathieu,Péharpré X 
-Anastasia,Nesterova
 Cedomir,Ljubic
 Constance,Guelluy X
 Dikens,CelajX
