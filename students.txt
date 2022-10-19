@@ -24,7 +24,7 @@ Alvaro,Calafell
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
 Matthieu,Haguenauer
-Steve,Moses
+Steve,MosesX
 Zofia,Smolen
 Elie,Cochard--Marchewka
 Guillaume,Plassais
