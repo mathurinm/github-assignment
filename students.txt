@@ -9,7 +9,7 @@ Gaspard,Pasqueron De Fommervault
 Michael,Ein-Dor X
 Pierre,Collin De La Belliere
 Samuel,Berrebi
-Tiphaine,Boutin
+Tiphaine,Boutin X
 Mathurin,Massias
 Joseph,Moussa
 Arianna,More
