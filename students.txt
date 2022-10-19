@@ -29,7 +29,7 @@ Zofia,Smolen
 Elie,Cochard--Marchewka X 
 Guillaume,Plassais
 Mathieu,Péharpré
-Anastasia,Nesterova
+Anastasia,Nesterova X
 Cedomir,Ljubic
 Constance,Guelluy
 Dikens,CelajX
