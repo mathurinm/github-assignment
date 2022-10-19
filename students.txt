@@ -61,7 +61,7 @@ Danli,Liu
 Théophile,Lepic
 Hicham,Janati
 Sophie,Marchal
-Kaan,Çaylan
+Kaan,Çaylan X 
 Hadrien,Strichard
 Sylvain,Combettes
 Harshit,Shangari
