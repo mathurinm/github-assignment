@@ -54,7 +54,7 @@ Alexis,Constensoux
 Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines
 Quentin,Stroobants
-Arthur,Perrigot
+Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu
 Danli,Liu
