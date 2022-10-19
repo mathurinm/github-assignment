@@ -41,10 +41,10 @@ def max_index(X):
     j = 0
 
     if isinstance(X, np.ndarray):
-        raise Exception("the input is not a numpy array")
+        raise ValueError
 
     if X.ndim != 2:
-        raise Exception("the number of dimension is not 2")
+        raise ValueError
 
     i = np.argmax(X)[0]
     j = np.argmax(X)[1]
@@ -77,3 +77,6 @@ def wallis_product(n_terms):
     # : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
     return approx
+
+
+max_index(np.arange((1,10)))
