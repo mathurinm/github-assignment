@@ -15,6 +15,9 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
+from typing import Tuple
+
 import numpy as np
 
 
@@ -35,7 +38,7 @@ def check_input_format(X) -> None:
         raise ValueError
 
 
-def max_index(X: np.ndarray):
+def max_index(X: np.ndarray) -> Tuple[int, int]:
     """Return the index of the maximum in a numpy array.
 
     Parameters
@@ -68,7 +71,7 @@ def max_index(X: np.ndarray):
     return i, j
 
 
-def wallis_product(n_terms):
+def wallis_product(n_terms: int) -> float:
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
