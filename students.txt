@@ -15,7 +15,7 @@ Joseph,Moussa
 Arianna,More
 João,Melo
 Madhura Prashant,Nirale
-Maria Susanne,Stoelben
+Maria Susanne,Stoelben X
 Xinyu,Lai
 Thomas Philipp,Schneider
 Mathieu,Nordin
