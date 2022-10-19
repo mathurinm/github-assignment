@@ -64,4 +64,4 @@ Sophie,Marchal
 Kaan,Çaylan X 
 Hadrien,Strichard
 Sylvain,Combettes
-Harshit,Shangari
+Harshit,Shangari X
