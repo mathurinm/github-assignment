@@ -18,7 +18,7 @@ Madhura Prashant,Nirale
 Maria Susanne,Stoelben X
 Xinyu,Lai
 Thomas Philipp,Schneider
-Mathieu,Nordin
+Mathieu,Nordin X
 Alicia,González X
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
