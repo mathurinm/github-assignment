@@ -17,7 +17,7 @@ João,Melo
 Madhura Prashant,Nirale
 Maria Susanne,Stoelben
 Xinyu,Lai
-Thomas Philipp,Schneider
+Thomas Philipp,SchneiderXXX
 Mathieu,Nordin
 Alicia,González
 Alvaro,Calafell
