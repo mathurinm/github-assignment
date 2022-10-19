@@ -16,22 +16,22 @@ Arianna,More
 João,Melo x
 Madhura Prashant,Nirale
 Maria Susanne,Stoelben X
-Xinyu,Lai
+Xinyu,Lai X
 Thomas Philipp,Schneider
-Mathieu,Nordin
+Mathieu,Nordin X
 Alicia,González
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
 Matthieu,Haguenauer
-Steve,Moses
+Steve,MosesX
 Zofia,Smolen
 Elie,Cochard--Marchewka X 
 Guillaume,Plassais
-Mathieu,Péharpré
+Mathieu,Péharpré X 
 Anastasia,Nesterova
 Cedomir,Ljubic
-Constance,Guelluy
+Constance,Guelluy X
 Dikens,CelajX
 Elizaveta,Barysheva
 Guillaume,D'Herouville X
@@ -41,7 +41,8 @@ Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
 Nathan,Rozot
-Alix,Laurent X
+Vincenzo,Albano X
+Alix,Laurent X 
 Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
@@ -51,16 +52,17 @@ Shihan,Ye
 Timothé,Gypteau
 Alexis,Constensoux
 Aristide,Gasquet
-Octave,Cheval De Baynast De Septfontaines
+Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
 Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu X
-Danli,Liu
-Théophile,Lepic
+Danli,Liu X
+Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
 Kaan,Çaylan X 
 Hadrien,Strichard
 Sylvain,Combettes
-Harshit,Shangari
+Harshit,Shangari X
+Mykyta,Alekseiev X
