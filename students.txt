@@ -31,7 +31,7 @@ Guillaume,Plassais
 Mathieu,Péharpré
 Anastasia,Nesterova
 Cedomir,Ljubic
-Constance,Guelluy
+Constance,Guelluy X
 Dikens,Celaj
 Elizaveta,Barysheva
 Guillaume,D'Herouville
