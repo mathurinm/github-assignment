@@ -55,7 +55,7 @@ Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
 Arthur,Perrigot X
-Lauren,Segalla
+Lauren,Segalla X
 Tobias,Tolciu X
 Danli,Liu X
 Théophile,Lepic X
