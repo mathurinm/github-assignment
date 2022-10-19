@@ -43,7 +43,7 @@ Matthieu,Marquis--Lorber
 Nathan,Rozot
 Vincenzo,Albano X
 Alix,Laurent X 
-Diane,Paul
+Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
 Lola,Vitrac X
