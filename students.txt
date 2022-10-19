@@ -52,7 +52,7 @@ Shihan,Ye
 Timothé,Gypteau
 Alexis,Constensoux
 Aristide,Gasquet
-Octave,Cheval De Baynast De Septfontaines
+Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
 Arthur,Perrigot X
 Lauren,Segalla
