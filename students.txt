@@ -16,7 +16,7 @@ Arianna,More
 João,Melo x
 Madhura Prashant,Nirale
 Maria Susanne,Stoelben X
-Xinyu,Lai
+Xinyu,Lai X
 Thomas Philipp,Schneider
 Mathieu,Nordin
 Alicia,González X
@@ -31,7 +31,7 @@ Guillaume,Plassais
 Mathieu,Péharpré X 
 Anastasia,Nesterova
 Cedomir,Ljubic
-Constance,Guelluy
+Constance,Guelluy X
 Dikens,CelajX
 Elizaveta,Barysheva
 Guillaume,D'Herouville X
@@ -41,7 +41,7 @@ Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
 Nathan,Rozot
-Vincenzo,Albano
+Vincenzo,Albano X
 Alix,Laurent X 
 Diane,Paul
 Elie,Douenias
@@ -57,7 +57,7 @@ Quentin,Stroobants
 Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu X
-Danli,Liu
+Danli,Liu X
 Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
@@ -65,3 +65,4 @@ Kaan,Çaylan X
 Hadrien,Strichard
 Sylvain,Combettes
 Harshit,Shangari X
+Mykyta,Alekseiev X
