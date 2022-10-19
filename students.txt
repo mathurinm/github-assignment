@@ -35,7 +35,7 @@ Constance,Guelluy X
 Dikens,CelajX
 Elizaveta,Barysheva
 Guillaume,D'Herouville X
-Idriss,Bennis
+Idriss,Bennis X
 Kenzo,Bounegta
 Marie-Sophie,RichardX
 Marine,Chouraqui
