@@ -20,7 +20,7 @@ Xinyu,Lai
 Thomas Philipp,Schneider
 Mathieu,Nordin
 Alicia,González
-Alvaro,Calafell
+Alvaro,Calafell X
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
 Matthieu,Haguenauer
