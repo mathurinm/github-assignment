@@ -6,7 +6,7 @@ Baptiste,BoutX
 Etienne,Du Fayet De La Tour
 François,Moreau
 Gaspard,Pasqueron De Fommervault
-Michael,Ein-Dor
+Michael,Ein-Dor X
 Pierre,Collin De La Belliere
 Samuel,Berrebi
 Tiphaine,Boutin
