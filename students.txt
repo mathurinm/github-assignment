@@ -18,7 +18,7 @@ Madhura Prashant,Nirale X
 Maria Susanne,Stoelben X
 Xinyu,Lai
 Thomas Philipp,Schneider
-Mathieu,Nordin
+Mathieu,Nordin X
 Alicia,González
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
@@ -57,7 +57,7 @@ Quentin,Stroobants
 Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu X
-Danli,Liu
+Danli,Liu X
 Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
@@ -65,3 +65,4 @@ Kaan,Çaylan X
 Hadrien,Strichard
 Sylvain,Combettes
 Harshit,Shangari X
+Mykyta,Alekseiev X
