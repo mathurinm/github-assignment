@@ -19,7 +19,7 @@ Maria Susanne,Stoelben X
 Xinyu,Lai
 Thomas Philipp,Schneider
 Mathieu,Nordin
-Alicia,González
+Alicia,González X
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
