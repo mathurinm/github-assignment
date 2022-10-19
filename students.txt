@@ -16,7 +16,7 @@ Arianna,More
 João,Melo
 Madhura Prashant,Nirale
 Maria Susanne,Stoelben
-X Xinyu,Lai
+Xinyu,LaiX
 Thomas Philipp,Schneider
 Mathieu,Nordin
 Alicia,González
