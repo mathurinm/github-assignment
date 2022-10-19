@@ -37,7 +37,7 @@ Elizaveta,Barysheva
 Guillaume,D'Herouville
 Idriss,Bennis
 Kenzo,Bounegta
-Marie-Sophie,Richard
+Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
 Nathan,Rozot
