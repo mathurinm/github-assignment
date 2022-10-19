@@ -1,6 +1,6 @@
 First name,Surname
 Camille,ObeidX
-Nazila,Sharifi Amina
+Nazila,Sharifi Amina X
 Ajouad,Akjouj
 Baptiste,BoutX
 Etienne,Du Fayet De La Tour, X
@@ -14,7 +14,7 @@ Mathurin,Massias
 Joseph,Moussa
 Arianna,More
 João,Melo x
-Madhura Prashant,Nirale
+Madhura Prashant,Nirale X
 Maria Susanne,Stoelben X
 Xinyu,Lai X
 Thomas Philipp,Schneider
