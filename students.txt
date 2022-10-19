@@ -46,7 +46,7 @@ Alix,Laurent
 Diane,Paul
 Elie,Douenias
 Guillaume,De Surville
-Lola,Vitrac
+Lola,Vitrac X
 Maxime,Gasc
 Shihan,Ye
 Timothé,Gypteau
