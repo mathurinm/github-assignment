@@ -41,9 +41,7 @@ def max_index(X):
     j = 0
 
     # TODO
-    idoododo = 1
-    idodoo  =2
-    bla = 3
+    
     return i, j
 
 
