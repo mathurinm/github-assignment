@@ -58,7 +58,7 @@ Arthur,Perrigot
 Lauren,Segalla
 Tobias,Tolciu
 Danli,Liu
-Théophile,Lepic
+Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
 Kaan,Çaylan
