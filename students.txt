@@ -58,7 +58,7 @@ Arthur,Perrigot X
 Lauren,Segalla
 Tobias,Tolciu X
 Danli,Liu
-Théophile,Lepic
+Théophile,Lepic X
 Hicham,Janati
 Sophie,Marchal
 Kaan,Çaylan X 
