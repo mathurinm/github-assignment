@@ -34,7 +34,7 @@ Cedomir,Ljubic
 Constance,Guelluy
 Dikens,CelajX
 Elizaveta,Barysheva
-Guillaume,D'Herouville
+Guillaume,D'Herouville X
 Idriss,Bennis
 Kenzo,Bounegta
 Marie-Sophie,RichardX
