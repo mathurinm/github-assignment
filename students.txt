@@ -45,7 +45,7 @@ Vincenzo,Albano
 Alix,Laurent
 Diane,Paul
 Elie,Douenias
-Guillaume,De Surville
+Guillaume,De Surville X
 Lola,Vitrac
 Maxime,Gasc
 Shihan,Ye
