@@ -3,9 +3,9 @@ Camille,ObeidX
 Nazila,Sharifi Amina
 Ajouad,Akjouj
 Baptiste,BoutX
-Etienne,Du Fayet De La Tour
+Etienne,Du Fayet De La Tour, X
 François,Moreau X
-Gaspard,Pasqueron De Fommervault
+Gaspard,Pasqueron De Fommervault X
 Michael,Ein-Dor X
 Pierre,Collin De La Belliere
 Samuel,Berrebi
@@ -19,7 +19,7 @@ Maria Susanne,Stoelben X
 Xinyu,Lai X
 Thomas Philipp,Schneider
 Mathieu,Nordin X
-Alicia,González
+Alicia,González X
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
@@ -28,8 +28,8 @@ Steve,MosesX
 Zofia,Smolen
 Elie,Cochard--Marchewka X 
 Guillaume,Plassais
+Anastasia,Nesterova X
 Mathieu,Péharpré X 
-Anastasia,Nesterova
 Cedomir,Ljubic
 Constance,Guelluy X
 Dikens,CelajX
@@ -55,7 +55,7 @@ Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
 Arthur,Perrigot X
-Lauren,Segalla
+Lauren,Segalla X
 Tobias,Tolciu X
 Danli,Liu X
 Théophile,Lepic X
