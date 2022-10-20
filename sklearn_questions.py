@@ -35,39 +35,95 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the training data to the model
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.ndarray 
+            The training independent variables of the model
+        
+        y : 1d numpy.ndarray
+            The training target vector of the model. 
+            (i.e. the classification of the features)
+
+        Returns
+        -------
+            None
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X = X
+        self.y = y
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
+        Predicts the target variable vector Y for the testing variable
+        vector X        
+        
+        Parameters
+        ----------
+        X : numpy.ndarray
+            The independent variables from the testing set
+
+        Returns
+        -------
+        y_pred : 1d numpy.ndarray
+            The predicted values from the model
+
+        """
+        from scipy.stats import mode
+        import pandas as pd
+        
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
+        
         # XXX fix
+        predictions = []
+        
+        for i,x_test in enumerate(X):
+            distances = pd.DataFrame(columns=["distance","y"])
+             
+            for j, x_train, y_train in zip(range(len(self.X)), self.X, self.y):
+                dist = np.linalg.norm(x_test - x_train)
+                distances.loc[j] = pd.Series([dist, y_train], index=distances.columns) 
+                
+            k_nearest = distances.nsmallest(1, "distance")
+            pred, _ = mode(k_nearest.y)
+            predictions.append(pred)
+        
+        y_pred = np.array(predictions).flatten()
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Outputs the loss score of the model. Calculated using the 
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.ndarray
+            The matrix containing the independent variables
+        y : numpy.ndarray
+            The vector containing the target variables
+
+        Returns
+        -------
+        x : float
+            The proportion of correct predictions as a decimal
+            
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        
+        return len(y[y == y_pred]) / len(y)
