@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,39 +36,54 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model for the dataset X with labels y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D array
+            A data set with vectors.
+        y : 1D array
+            Labels of the elements of X.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_ = X
+        self.Y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the output of X with the fitted model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array
+            Elements of which we do not know the output.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        # y_pred = np.full(
+        #    shape=len(X), fill_value=self.classes_[0],
+        #    dtype=self.classes_.dtype
+        # )
+        closest = np.argmin(euclidean_distances(X, self.X_), axis=1)
+        y_pred = self.Y_[closest]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Score the prediction of X by the model by comparing the results
+        of the prediction to the true labels y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D array
+            Elements we want to predict.
+        y : 1D array
+            True labels for the elements of X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        test = sum(x == y for x, y in zip(y_pred, y))
+        # return y_pred.sum()
+        return test/len(y)
