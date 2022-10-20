@@ -22,7 +22,7 @@ import numpy as np
 
 
 def check_input_format(X) -> None:
-    """Function to check the correctness of the input array.
+    """Check the correctness of the input array.
 
     Parameters
     ----------
@@ -33,7 +33,6 @@ def check_input_format(X) -> None:
     -------
     None.
     """
-
     if type(X) != np.ndarray or len(X.shape) != 2:
         raise ValueError
 
@@ -57,7 +56,6 @@ def max_index(X: np.ndarray) -> Tuple[int, int]:
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-
     # Check input correctness.
     check_input_format(X)
 
@@ -88,8 +86,7 @@ def wallis_product(n_terms: int) -> float:
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-
-    # Starting from 2 as Wallis product gives approximation of pi / 2.
+    # Start from 2 as Wallis product gives approximation of pi / 2.
     pi_approx = 2.
 
     if n_terms == 0:
