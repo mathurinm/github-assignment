@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -30,7 +31,14 @@ from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    Functions
+    ----------
+    fit : Fit the data.
+    predict : Predict labels.
+    score : Score.
+    """
 
     def __init__(self):  # noqa: D107
         pass
@@ -44,13 +52,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             A data set with vectors.
         y : 1D array
             Labels of the elements of X.
-
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.X_ = X
         self.Y_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
@@ -72,8 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Score the prediction of X by the model by comparing the results
-        of the prediction to the true labels y.
+        """Compare predictions of X with true labels y.
 
         Parameters
         ----------
