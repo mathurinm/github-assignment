@@ -79,4 +79,3 @@ def wallis_product(n_terms):
     return approx
 
 
-max_index(np.arange((1,10)))
