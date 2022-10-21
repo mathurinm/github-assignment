@@ -50,7 +50,7 @@ Lola,Vitrac X
 Maxime,Gasc
 Shihan,Ye
 Timothé,Gypteau
-Alexis,Constensoux
+Alexis,Constensoux, X
 Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
