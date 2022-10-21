@@ -34,7 +34,7 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy error or 
+        If the input is not a numpy error or
         if the shape is not 2D.
     """
     if not isinstance(X, np.ndarray):
@@ -66,5 +66,4 @@ def wallis_product(n_terms):
     pi = 1
     for i in range(1, n_terms+1):
         pi *= (4.*i**2) / (4.*i**2-1)
-
     return pi*2
