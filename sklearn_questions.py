@@ -36,9 +36,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the one-nearest neighbors classifier from the training dataset.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            Training data.
+
+        y : {array-like, sparse matrix} of shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted one-nearest neighbors classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -49,9 +60,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_queries, n_features)
+            Test samples.
+
+        Returns
+        -------
+        y : ndarray of shape (n_queries,)
+            Class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,9 +78,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self.y_[closest]
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy (average number of samples corectly \
+        classified) on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels for `X`.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of ``self.predict(X)`` wrt. `y`.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
