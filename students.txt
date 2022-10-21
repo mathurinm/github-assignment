@@ -60,7 +60,7 @@ Tobias,Tolciu X
 Danli,Liu X
 Théophile,Lepic X
 Hicham,Janati
-Sophie,Marchal
+Sophie,Marchal X
 Kaan,Çaylan X 
 Hadrien,Strichard
 Sylvain,Combettes
