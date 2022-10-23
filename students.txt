@@ -40,7 +40,7 @@ Kenzo,Bounegta
 Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
-Nathan,Rozot
+Nathan,Rozot X
 Vincenzo,Albano X
 Alix,Laurent X 
 Diane,Paul X
