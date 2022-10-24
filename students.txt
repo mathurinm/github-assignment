@@ -48,7 +48,7 @@ Elie,Douenias
 Guillaume,De Surville
 Lola,Vitrac X
 Maxime,Gasc
-Shihan,Ye
+Shihan,Ye X
 Timothé,Gypteau
 Alexis,Constensoux, X
 Aristide,Gasquet
