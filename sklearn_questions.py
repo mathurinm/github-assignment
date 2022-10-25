@@ -35,39 +35,65 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model using the training data (X,y).
 
-        And describe parameters
+        Args:
+            X (array): ndarray of shape (n_samples, n_features).
+            The input array.
+            y (array): ndarray of shape(n_samples). Target array.
+
+        Returns:
+            _type_: _description_
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.Xtrain_ = X
+        self.ytrain_ = y
+        self.n_features_in_ = X.shape[1
+                                      ]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict y given new input array X.
 
-        And describe parameters
+        Args:
+            X (array): ndarray of shape (n_samples, n_features)
+
+        Returns:
+            array: array of predictions of shape (n_samples)
         """
         check_is_fitted(self)
         X = check_array(X)
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for i in range(X.shape[0]):
+            distance = np.linalg.norm(X[i] - self.Xtrain_, axis=1)
+            distance_index = np.argmin(distance)
+            y_pred[i] = self.ytrain_[distance_index]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the score of the prediction of X.
 
-        And describe parameters
+        Args:
+            X (array): narray of shape (n_samples, n_features).
+            y (array): narray of shape (n_samples)
+
+        Returns:
+          (float): score
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        score = 0
 
-        # XXX fix
-        return y_pred.sum()
+        for i in range(y_pred.shape[0]):
+            if y_pred[i] == y[i]:
+                score += 1
+
+        return score/y_pred.shape[0]
