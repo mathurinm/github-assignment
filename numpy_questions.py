@@ -38,9 +38,9 @@ def max_index(X):
         if the shape is not 2D.
     """
 
-    if not  isinstance(x, np.ndarray):
+    if not  isinstance(X, np.ndarray):
         raise ValueError('not numpy array.')
-    if x.ndim != 2:
+    if X.ndim != 2:
         raise ValueError('not two dimensional array.')
 
     
