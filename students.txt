@@ -21,7 +21,7 @@ Thomas Philipp,Schneider
 Mathieu,Nordin
 Alicia,González
 Alvaro,Calafell
-Amjad Rehan,Ibrahim
+Amjad Rehan,Ibrahim X
 Christophe,Thomassin
 Matthieu,Haguenauer
 Steve,Moses
