@@ -22,7 +22,7 @@ Alvaro,Calafell X
 Mathieu,Nordin X
 Alicia,González X
 Amjad Rehan,Ibrahim
-Christophe,Thomassin
+Christophe,Thomassin X
 Matthieu,Haguenauer
 Steve,MosesX
 Zofia,Smolen
