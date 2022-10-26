@@ -17,7 +17,7 @@ João,Melo x
 Madhura Prashant,Nirale X
 Maria Susanne,Stoelben X
 Xinyu,Lai X
-Thomas Philipp,Schneider
+Thomas Philipp,Schneider X
 Alvaro,Calafell X
 Mathieu,Nordin X
 Alicia,González X
