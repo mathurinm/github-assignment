@@ -70,7 +70,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            The input array with data which we will try to make predictions out of.
+            The input array on which we will make predictions.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -81,18 +81,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         indexes = np.array([])
         for i in X:
             dists = np.array([])
-            for j in self.x: 
+            for j in self.x:
                 np.append(dists, np.linalg.norm(i - j))
             min_arg = np.argmin(dists)
             np.append(indexes, min_arg)
         for i in range(len(y_pred)):
             y_pred[i] = self.y[dists[i]]
-            
-
-
 
         # XXX fix
-
 
         return y_pred
 
@@ -104,10 +100,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
          Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            The input array with data which we will predict. 
+            The input array with data which we will predict.
 
         Y : ndarray of shape (n_samples):
-            The input array with the target values of input array X. 
+            The input array with the target values of input array X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
@@ -120,6 +116,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
                 y_pred[i] = 1 / n
             else:
                 y_pred = 0
-
-
         return y_pred.sum()
