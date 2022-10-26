@@ -70,13 +70,13 @@ def wallis_product(n_terms):
     j = 1
 
     if n_terms == 0:
-        return j
+        return 2 * j
 
     else:
         for i in range(1, n_terms):
             term = 4 * i ** 2
             j = j * term / (term - 1)
-        return j
+        return 2 * j
 
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
