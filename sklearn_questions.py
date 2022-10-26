@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+from tkinter import Y
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -38,18 +39,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Write docstring.
 
         And describe parameters
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array with features.
+
+        Y : ndarray of shape (n_samples):
+            The input array with targets
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+
+        self.x = X
+        self.y = y
+        self.classes_ = set(y)
+        self.n_features_in_ = X.shape[1]
+        self.n_samples_fit_ = X.shape[0]
         return self
 
     def predict(self, X):
         """Write docstring.
 
         And describe parameters
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array with data which we will try to make predictions out of.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +78,48 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        indexes = np.array([])
+        for i in X:
+            dists = np.array([])
+            for j in self.x: 
+                np.append(dists, np.linalg.norm(i - j))
+            min_arg = np.argmin(dists)
+            np.append(indexes, min_arg)
+        for i in range(len(y_pred)):
+            y_pred[i] = self.y[dists[i]]
+            
+
+
 
         # XXX fix
+
+
         return y_pred
 
     def score(self, X, y):
         """Write docstring.
 
         And describe parameters
+
+         Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array with data which we will predict. 
+
+        Y : ndarray of shape (n_samples):
+            The input array with the target values of input array X. 
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
+
+        n = len(self.y)
+        for i in range(n):
+            if y_pred[i] == y[i]:
+                y_pred[i] = 1 / n
+            else:
+                y_pred = 0
+
+
         return y_pred.sum()
