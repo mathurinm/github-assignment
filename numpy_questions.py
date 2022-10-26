@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+from multiprocessing.sharedctypes import Value
 import numpy as np
 
 
@@ -37,9 +38,17 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i, j = np.unravel_index(X.argmax(), X.shape)
 
-    return i, j
+    try:
+        if(type(X) == type(None)):
+            raise ValueError
+        if(X.ndim != 2):
+            raise ValueError
+    except:
+        raise ValueError
+    else:
+        i, j = np.unravel_index(X.argmax(), X.shape)
+        return i, j
 
 
 def wallis_product(n_terms):
@@ -59,12 +68,11 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    pi = 1
+    pi = 2
     if(n_terms == 0):
-        return 1
+        return 2.0
     else:
         for i in range(1, n_terms + 1, 1):
-            willis = (4 * n_terms**2) / (4 * n_terms**2 - 1)
+            willis = (4 * i**2) / (4 * i**2 - 1)
             pi = pi * willis
-    pi = 2 * pi
-    return pi
+        return pi
