@@ -111,9 +111,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # XXX fix
 
         n = len(self.y)
-        for i in range(n):
-            if y_pred[i] == y[i]:
-                y_pred[i] = 1 / n
-            else:
-                y_pred = 0
-        return y_pred.sum()
+        acc = (y == y_pred).sum() / n
+        return acc
