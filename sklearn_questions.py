@@ -105,7 +105,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
 
-        n = len(self.y)
+        n = len(y)
         acc = 0
         for i in range(len(y)):
             if y[i] == y_pred[i]:
