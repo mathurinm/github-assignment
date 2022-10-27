@@ -40,9 +40,9 @@ def max_index(X):
     """
 
     try:
-        if(type(X) == type(None)):
+        if (type(X) == type(None)):
             raise ValueError
-        if(X.ndim != 2):
+        if (X.ndim != 2):
             raise ValueError
     except:
         raise ValueError
@@ -69,7 +69,7 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     pi = 2
-    if(n_terms == 0):
+    if (n_terms == 0):
         return 2.0
     else:
         for i in range(1, n_terms + 1, 1):

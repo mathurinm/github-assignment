@@ -27,9 +27,11 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+
 def most_common(lst):
     '''Returns most common element in list'''
     return max(set(lst), key=lst.count)
+
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -38,9 +40,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        This functions fits the model
 
-        And describe parameters
+        Parameters
+        self - instance of One neirest neighbor
+        X - Features of the training set
+        y - Labels of the training set
+
+        Returns
+        self - updated instance of One neirest neighbor
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -52,9 +61,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        This functions predicts labels for new features
 
-        And describe parameters
+        Parameters
+        self - instance of One neirest neighbor
+        X - Features of the test set
+
+        Returns
+        np.array(y_pred) - numpy array with estimated labels
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -72,13 +87,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        This functions evaluates the model
 
-        And describe parameters
+        Parameters
+        self - instance of One neirest neighbor
+        X - Features of the test set
+        y - Labels of the test set
+
+        Returns
+        accuracy - score to evaluate error of the model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         accuracy = sum(y_pred == y) / len(y)
-        
+
         return accuracy
