@@ -82,15 +82,5 @@ def wallis_product(n_terms):
         
     return prod*2
 
-import math as m
 
-
-pi_approx = wallis_product(0)
-print(pi_approx == 2.)
-
-pi_approx = wallis_product(1)
-print(pi_approx == 8 / 3)
-
-pi_approx = wallis_product(100000)
-print(abs(pi_approx - m.pi) < 1e-4)
 
