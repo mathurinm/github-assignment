@@ -82,7 +82,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i in X:
             dists = np.array([])
             for j in self.x:
-                np.append(dists, np.linalg.norm(i - j))
+                dists = np.append(dists, np.linalg.norm(i-j))
             min_arg = np.argmin(dists)
             np.append(indexes, min_arg)
         for i in range(len(y_pred)):
