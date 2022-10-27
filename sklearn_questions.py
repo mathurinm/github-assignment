@@ -33,32 +33,32 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
-        """Create the __init__ function with no specific argument 
-    to declare."""
+        """Create the __init__ function with no specific argument \
+        to declare."""
         pass
 
     def fit(self, X, y):
-          """Create the fit function returning self as the ONN model
-    does not make a proper fit on training data.
+        """Fit the one nearest neighbor classifier.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_points, 1)
-        The input vector
-    y : ndarray of shape (n_points, 1)
-        The target vector
+        Parameters
+        ----------
+        X : ndarray of shape (n_points, 1)
+            The input vector.
+        y : ndarray of shape (n_points, 1)
+            The target vector.
 
-    Raises
-    ------
-    ValueError
-        If X and y don't have consistent lengths
-        If y is not of a non-regression type
+        Returns
+        ------
+        self : the ONN model does not make a proper fit on training data.
 
-    """
-
+        Raises
+        ------
+        ValueError : If X and y don't have consistent lengths,
+        if y is not of a non-regression type.
+        """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -70,25 +70,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """Return the prediction of the target vector.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_points, 1)
-        The input vector
-    y : ndarray of shape (n_points, 1)
-        The target vector
+        Parameters
+        ----------
+        X : ndarray of shape (n_points, 1)
+            The input vector.
+        y : ndarray of shape (n_points, 1)
+            The target vector.
 
-    Returns
-    -------
-    y_pred : ndarray of shape (n_points, 1)
-        The predicted target vector
-    
-    Raises
-    ------
-    ValueError
-        If the input is not a numpy array
+        Returns
+        -------
+        y_pred : ndarray of shape (n_points, 1)
+                 The predicted target vector.
 
-    """
 
+        Raises
+        ------
+        ValueError : If the input is not a numpy array.
+        """
         check_is_fitted(self)
         X = check_array(X)
         euclidian_dist = euclidean_distances(X, self.X_)
@@ -96,25 +94,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self.y_[closest]
 
     def score(self, X, y):
-        """Return the accuracy score for a set
-     of predicted y_k against the true ones.
+        """Return the accuracy score for a set, \
+        of predicted y_k against the true ones.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        The input array.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
 
-    Returns
-    -------
-    accuracy_score(y_pred, y) : int
+        Returns
+        -------
+        accuracy_score(y_pred, y) : int.
 
-    Raises
-    ------
-    ValueError
-        If X and y don't have consistent lengths
-
-    """
-
+        Raises
+        ------
+        ValueError : If X and y don't have consistent lengths.
+        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return accuracy_score(y_pred, y)
