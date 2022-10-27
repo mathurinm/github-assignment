@@ -81,7 +81,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
         dists = pairwise_distances(self.x, X)
         indexes = np.argmin(dists, axis=0)
-        y_pred = self.y_[indexes]
+        y_pred = self.y[indexes]
 
         # XXX fix
 
