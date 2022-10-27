@@ -19,6 +19,8 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -26,48 +28,93 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
+           """Create the __init__ function with no specific argument
+           to declare."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+          """Create the fit function returning self as the ONN model
+          does not make a proper fit on training data.
 
-        And describe parameters
-        """
+    Parameters
+    ----------
+    X : ndarray of shape (n_points, 1)
+        The input vector
+    y : ndarray of shape (n_points, 1)
+        The target vector
+
+    Raises
+    ------
+    ValueError
+        If X and y don't have consistent lengths
+        If y is not of a non-regression type
+
+    """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.y_ = y
+        self.X_ = X
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Return the prediction of the target vector.
 
-        And describe parameters
-        """
+    Parameters
+    ----------
+    X : ndarray of shape (n_points, 1)
+        The input vector
+    y : ndarray of shape (n_points, 1)
+        The target vector
+
+    Returns
+    -------
+    y_pred : ndarray of shape (n_points, 1)
+        The predicted target vector
+    
+    Raises
+    ------
+    ValueError
+        If the input is not a numpy array
+
+    """
+
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
-        return y_pred
+        euclidian_dist = euclidean_distances(X, self.X_)
+        closest = np.argmin(euclidian_dist, axis=1)
+        return self.y_[closest]
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy score for a set
+        of predicted y_k against the true ones.
 
-        And describe parameters
-        """
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array.
+
+    Returns
+    -------
+    accuracy_score(y_pred, y) : int
+
+    Raises
+    ------
+    ValueError
+        If X and y don't have consistent lengths
+
+    """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y_pred, y)
