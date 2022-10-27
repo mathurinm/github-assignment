@@ -27,6 +27,9 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+def most_common(lst):
+    '''Returns most common element in list'''
+    return max(set(lst), key=lst.count)
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -43,7 +46,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
@@ -58,8 +63,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-        return y_pred
+        neighbors = []
+        for x in X:
+            distances = np.sqrt(np.sum((x - self.X_train_)**2, axis=1))
+            y_sorted = [y for _, y in sorted(zip(distances, self.y_train_))]
+            neighbors.append(y_sorted[:1])
+        y_pred = list(map(most_common, neighbors))
+        return np.array(y_pred)
 
     def score(self, X, y):
         """Write docstring.
@@ -69,5 +79,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = sum(y_pred == y) / len(y)
+        
+        return accuracy
