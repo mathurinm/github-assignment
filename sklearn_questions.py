@@ -19,7 +19,6 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
-from tkinter import Y
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -57,7 +56,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         self.x = X
         self.y = y
-        self.classes_ = set(y)
+        self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
         self.n_samples_fit_ = X.shape[0]
         return self
