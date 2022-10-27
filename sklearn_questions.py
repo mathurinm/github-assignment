@@ -79,8 +79,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        dists = pairwise_distances(self.X_, X)
-        indexes = np.argmin(dist_matrix, axis=0)
+        dists = pairwise_distances(self.x, X)
+        indexes = np.argmin(dists, axis=0)
         y_pred = self.y_[indexes]
 
         # XXX fix
