@@ -107,8 +107,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         n = len(self.y)
         acc = 0
-        for i in range(len(self.y)):
-            if self.y[i] == y[i]:
+        for i in range(len(y)):
+            if y[i] == y_pred[i]:
                 acc = acc + 1
         acc = acc / n
         return acc
