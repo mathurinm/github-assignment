@@ -36,13 +36,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
-           """Create the __init__ function with no specific argument
-           to declare."""
+        """Create the __init__ function with no specific argument 
+    to declare."""
         pass
 
     def fit(self, X, y):
           """Create the fit function returning self as the ONN model
-          does not make a proper fit on training data.
+    does not make a proper fit on training data.
 
     Parameters
     ----------
@@ -97,7 +97,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Return the accuracy score for a set
-        of predicted y_k against the true ones.
+     of predicted y_k against the true ones.
 
     Parameters
     ----------
