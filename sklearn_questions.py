@@ -26,30 +26,58 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import euclidean_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """Write docstring.
+        
+        Fit the one-nearest neighbor classifier.
+        Parameters
+        ----------
+        X : array like, of shape n_samples and n_features
+            Training data (X_train).
+        y : array like, of shape n_samples and 1
+            target values (y_train).
 
-        And describe parameters
+        Returns
+        -------
+        self : the classifier itself once fitted.
+
+        Errors
+        -------
+        ValueError : if X and y don't match size-wise, \
+        if y is not of a good format.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
         """Write docstring.
 
-        And describe parameters
+        Predict the y for the provided data.
+        Parameters
+        ----------
+        X : array like, of shape n_samples and n_features
+            Testing data (X_test).
+
+        Returns
+        -------
+        y : array like, of shape n_samples and 1
+            predicted values for each test data (y_pred).
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,10 +87,29 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
-        return y_pred
+        distance = euclidean_distances(X, self.X_train_)
+        shorter_distance = np.argmin(distance, axis=1)
+        return self.y_train_[shorter_distance]
 
     def score(self, X, y):
         """Write docstring.
+
+        Returns the score of a predicted y compared to the real values.
+
+        Parameters
+        ----------
+        X : array like, of shape n_samples and n_features
+            Imput data (X_test).
+        y : array like, of shape n_samples and 1
+            True values for the imput data (y_test).
+
+        Returns
+        -------
+        Result: the accuracy score of the y_pred against the true y.
+
+        Errors
+        -------
+        ValueError : if X and y don't match size-wise.
 
         And describe parameters
         """
@@ -70,4 +117,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        result = accuracy_score(y_pred, y)
+        return result
