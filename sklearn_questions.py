@@ -35,21 +35,48 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the training data to the model
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.ndarray 
+            The training independent variables of the model
+        
+        y : 1d numpy.ndarray
+            The training target vector of the model. 
+            (i.e. the classification of the features)
+
+        Returns
+        -------
+            None
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predicts the target variable vector Y for the testing variable
+        vector X        
+        
+        Parameters
+        ----------
+        X : numpy.ndarray
+            The independent variables from the testing set
 
-        And describe parameters
+        Returns
+        -------
+        y_pred : 1d numpy.ndarray
+            The predicted values from the model
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +84,51 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
+        
         # XXX fix
+        predictions = []
+        
+        for i,x_test in enumerate(X):
+             min_dist = np.inf
+
+            
+             for j, x_train, y_tr in zip(range(len(self.X_)), self.X_, self.y_):
+                dist = np.linalg.norm(x_test - x_train)
+                 
+                if dist < min_dist:
+                    min_dist = dist
+                    pred = y_tr
+                
+             predictions.append(pred)
+        
+        y_pred = np.array(predictions).flatten()
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Outputs the loss score of the model. Calculated using the 
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.ndarray
+            The matrix containing the independent variables
+        y : numpy.ndarray
+            The vector containing the target variables
+
+        Returns
+        -------
+        x : float
+            sum of correct predictions
+            
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        
+        return (y_pred==y).sum() / y.shape[0]
+
+from sklearn.utils.estimator_checks import check_estimator
+
+check_estimator(OneNearestNeighbor())
+
