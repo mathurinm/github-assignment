@@ -37,7 +37,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Write docstring.
-        
+
         Fit the one-nearest neighbor classifier.
         Parameters
         ----------
@@ -81,10 +81,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
         # XXX fix
         distance = euclidean_distances(X, self.X_train_)
