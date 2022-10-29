@@ -16,6 +16,7 @@ This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
+import math
 
 
 def max_index(X):
@@ -46,14 +47,11 @@ def max_index(X):
 
     if X.ndim != 2:
         raise ValueError('This array does not have 2 dimensions')
-
-    if X.shape.axis > 2:
-        raise ValueError('This array does not have 2 dimensions')
-    # TODO
+    
     for row in range(X.shape[0]):
         for col in range(X.shape[1]):
-            if X[i][j] > max:
-                max = X[i][j]
+            if X[row][col] >= max:
+                max = X[row][col]
                 i = row
                 j = col
 
@@ -84,5 +82,16 @@ def wallis_product(n_terms):
         raise ValueError('The input is not an integer')
     half_pi = 1
     for i in range(n_terms):
-        half_pi = half_pi * (4*i**2)/(4*i**2 - 1)
+        half_pi = half_pi * float((4*(i+1)**2))/(4*(i+1)**2 - 1)
     return 2 * half_pi
+
+
+def main():
+    print(wallis_product(100000))
+    print(math.pi)
+    print(abs(wallis_product(100000) - math.pi) < 1e-4)
+    print(wallis_product(1))
+
+
+if __name__ == "__main__":
+    main()
