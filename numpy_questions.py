@@ -16,7 +16,6 @@ This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
-import math
 
 
 def max_index(X):
@@ -43,7 +42,7 @@ def max_index(X):
 
     if X.ndim != 2:
         raise ValueError('This array does not have 2 dimensions')
-    
+
     return np.unravel_index(X.argmax(), X.shape)
 
 
