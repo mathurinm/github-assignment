@@ -46,12 +46,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns:
             self : OneNearestNeighbor
                 The fitted OneNearestNeighbor classifier.
+
+        Errors:
+            ValueError : if sizes of X and y don't match.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.X_train_ = X
         self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
@@ -79,6 +83,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns:
             score (_type_): average number of samples corectly classified
+
+        Errors:
+            ValueError : if sizes of X and y don't match.
         """
         X, y = check_X_y(X, y)
         return accuracy_score(y, self.predict(X))
