@@ -26,49 +26,55 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import euclidean_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
-
-    def __init__(self):  # noqa: D107
-        pass
+    """OneNearestNeighbor classifier."""
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier from the training dataset.
 
-        And describe parameters
+        Args:
+            X (np array of shape (n_samples, n_features)): Training data.
+            y (np array of shape (n_samples, 1)): Target values.
+
+        Returns:
+            self : OneNearestNeighbor
+                The fitted OneNearestNeighbor classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.X_train = X
-        self.y_train = y
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided data.
 
-        And describe parameters
+        Args:
+            X (np array of shape (n_samples, n_features)): Test samples.
+
+        Returns:
+            index_closest (ndarray of shape (n_queries,)): Class labels for
+                each sample.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        distance = np.sqrt(np.sum((X - self.X_train)**2, axis = 1))
-        shorter_distance = np.argmin(distance, axis=1)
-        return y_pred
+        distance = euclidean_distances(X, self.X_train_)
+        index_closest = np.argmin(distance, axis=1)
+        return self.y_train_[index_closest]
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the average number of samples corectly classified.
 
-        And describe parameters
+        Args:
+            X (np array of shape (n_samples, n_features)): Test samples.
+            y (np array of shape (n_queries,)): Class for each test sample.
+
+        Returns:
+            score (_type_): average number of samples corectly classified
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y, self.predict(X))
