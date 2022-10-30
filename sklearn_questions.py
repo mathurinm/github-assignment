@@ -32,6 +32,10 @@ from sklearn.metrics import euclidean_distances, accuracy_score
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
+    def __init__(self):
+        """Initialize class."""
+        pass
+
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier from the training dataset.
 
