@@ -35,39 +35,59 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Fit the one-nearest neighbors classifier from the training dataset.
+        Parameters
+        ----------
+        X : Training data.
+        y : Target values.
+        Returns
+        -------
+        self : KNeighborsClassifier
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict the class labels for the provided data.
+        Parameters
+        ----------
+        X : Test samples.
+        Returns
+        -------
+        y_pred : Class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = []
 
-        # XXX fix
-        return y_pred
+        iteration = 0
+        for i in X:
+            X_difference = self.X_train_ - i
+            X_norm = np.linalg.norm(X_difference, axis=1)
+            X_norm_sorted = np.sort(X_norm)[:1]
+            y_pred.append(self.y_train_[np.where(X_norm == X_norm_sorted)][0])
+            iteration += 1
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Gives a score to predicted data.
+        Parameters
+        ----------
+        X : Test samples.
+        y : True target values
+        Returns
+        -------
+        accuracy : Percentage of right predicted values.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        correct = sum(y_pred == y)
 
-        # XXX fix
-        return y_pred.sum()
+        return correct/(len(y))
