@@ -29,27 +29,52 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fitting the data.
 
-        And describe parameters
+        Check that X and y have the correct shape
+        Store the classes seen during the fit
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        y : an array-like object of length n containing classes
+
+        Returns
+        -------
+        The classifier
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        # MY CODE
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict for a point the target of the training sample which is the closest.
 
-        And describe parameters
+        Check if fit has been called
+        Check if the input is correct
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Returns
+        -------
+        y_pred: an array of length n containing real-valued classes predictions
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +82,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        # MY CODE
+        for i in range(len(X)):
+            closest = np.argmin(np.sqrt(np.sum((X[i] - self.X_)**2, axis=1)))
+            y_pred[i] = self.y_[closest]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Evaluate the model with the average number of samples correctly classified.
 
-        And describe parameters
+        Check that X and y have the correct shape
+        Predict the classes
+
+        Parameters
+        ----------
+        X : array-like, shape = (n_samples, n_features)
+            Test samples.
+
+        y : array-like, shape = (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        The average number of samples correctly classified
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # MY CODE
+        accuracy = sum(y_pred == y) / len(y)
+
+        return accuracy
