@@ -62,7 +62,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict for a point the target of the training sample which is the closest.
+        """Predict the classes of the provided data.
 
         Check if fit has been called
         Check if the input is correct
@@ -90,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Evaluate the model with the average number of samples correctly classified.
+        """Evaluate the model.
 
         Check that X and y have the correct shape
         Predict the classes
