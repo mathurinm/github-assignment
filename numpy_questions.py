@@ -82,12 +82,12 @@ def wallis_product(n_terms):
     for _ in range(n_terms):
         temp = b
         b = temp + 2
-        denom = temp*b
+        denom = temp * b
 
         a += 2
-        num = a*a
+        num = a * a
 
         halfpi *= (num / denom)
         count += count
 
-    return(halfpi*2)
+    return(halfpi * 2)
