@@ -90,4 +90,4 @@ def wallis_product(n_terms):
         halfpi *= (num / denom)
         count += count
 
-    return(halfpi * 2)
+    return halfpi * 2
