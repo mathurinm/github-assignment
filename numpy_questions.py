@@ -73,7 +73,8 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     pi = 1
 
-    if n_terms == 0: # as in the parameters definition, if n_terms=0 we consider the product to be 1
+    # parameters definition, if n_terms=0 we consider the product to be 1
+    if n_terms == 0:
         pi = 1
     else:
         for i in range(1, n_terms + 1):
