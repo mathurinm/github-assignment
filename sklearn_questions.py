@@ -29,14 +29,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
-        Fit the training data to the model
+        Fit the training data to the model.
 
         Parameters
         ----------
@@ -64,8 +64,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """
-        Predicts the target variable vector Y for the testing variable
-        vector X
+        Predicts target variable vector Y for vector X.
 
         Parameters
         ----------
@@ -105,8 +104,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Outputs the loss score of the model which is 1 if prediction is true
-        and zero if the prediction is false.
+        Outputs the loss score of the model.
+
+        1 if prediction is true and 0 if prediction is false.
 
         Parameters
         ----------
