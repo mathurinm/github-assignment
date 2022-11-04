@@ -27,12 +27,12 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
+
 
     def fit(self, X, y):
         """
@@ -61,6 +61,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.y_ = y
         self.n_features_in_ = X.shape[1]
         return self
+
 
     def predict(self, X):
         """
@@ -104,6 +105,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = np.array(predictions).flatten()
         return y_pred
 
+
     def score(self, X, y):
         """
         Outputs the loss score of the model. Calculated using the 
@@ -128,7 +130,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         
         return (y_pred==y).sum() / y.shape[0]
 
-from sklearn.utils.estimator_checks import check_estimator
 
-check_estimator(OneNearestNeighbor())
 
