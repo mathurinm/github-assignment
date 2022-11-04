@@ -128,7 +128,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         
         return (y_pred==y).sum() / y.shape[0]
 
-from sklearn.utils.estimator_checks import check_estimator
-
-check_estimator(OneNearestNeighbor())
 
