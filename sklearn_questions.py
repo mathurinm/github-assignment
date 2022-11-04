@@ -105,7 +105,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Outputs the loss score of the model which is 1 if prediction is true 
+        Outputs the loss score of the model which is 1 if prediction is true
         and zero if the prediction is false.
 
         Parameters
