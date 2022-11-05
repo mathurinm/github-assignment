@@ -56,7 +56,6 @@ def max_index(X):
                 i, j = row_count, col_count
             col_count += 1
         row_count += 1
-
     return i, j
 
 
@@ -82,4 +81,4 @@ def wallis_product(n_terms):
     for i in range(1, n_terms+1):
         prod *= (4 * i**2) / (4 * i ** 2 - 1)
 
-    return prod * 2
+    return prod*2
