@@ -80,6 +80,6 @@ def wallis_product(n_terms):
     prod = 1
 
     for i in range(1, n_terms+1):
-        prod *= (4 * i**2) / (4 * i * * 2 - 1)
+        prod *= (4 * i**2) / (4 * i ** 2 - 1)
 
     return prod * 2
