@@ -1,4 +1,3 @@
-First name,Surname
 Camille,ObeidX
 Nazila,Sharifi Amina X
 Ajouad,Akjouj
@@ -10,7 +9,6 @@ Michael,Ein-Dor X
 Pierre,Collin De La Belliere
 Samuel,Berrebi
 Tiphaine,Boutin X
-Mathurin,Massias
 Joseph,Moussa
 Arianna,More X
 João,Melo x
@@ -25,24 +23,24 @@ Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
 Matthieu,Haguenauer
 Steve,MosesX
-Zofia,Smolen
-Elie,Cochard--Marchewka X 
+Zofia,Smolen X
+Elie,Cochard--Marchewka X
 Guillaume,Plassais
 Anastasia,Nesterova X
-Mathieu,Péharpré X 
+Mathieu,Péharpré X
 Cedomir,Ljubic
 Constance,Guelluy X
 Dikens,CelajX
 Elizaveta,Barysheva X
 Guillaume,D'Herouville X
 Idriss,Bennis X
-Kenzo,Bounegta
+Kenzo,Bounegta X
 Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
 Nathan,Rozot X
 Vincenzo,Albano X
-Alix,Laurent X 
+Alix,Laurent X
 Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
@@ -59,11 +57,9 @@ Lauren,Segalla X
 Tobias,Tolciu X
 Danli,Liu X
 Théophile,Lepic X
-Hicham,Janati
 Sophie,Marchal X
-Kaan,Çaylan X 
+Kaan,Çaylan X
 Hadrien,Strichard
-Sylvain,Combettes
 Aristide, Gasquet X
 Harshit,Shangari X
 Mykyta,Alekseiev X
