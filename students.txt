@@ -25,7 +25,7 @@ Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
 Matthieu,Haguenauer
 Steve,MosesX
-Zofia,Smolen
+Zofia,Smolen X
 Elie,Cochard--Marchewka X 
 Guillaume,Plassais
 Anastasia,Nesterova X
