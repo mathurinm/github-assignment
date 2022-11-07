@@ -35,9 +35,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Return the model with classes
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        The input 2d array.
+
+        y : ndarray of shape (n_samples, ) 
+        It has consistent length with X.
+        The input Labels.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -47,9 +55,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Return the predicted classes of X
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        The input 2d array.
+
+        
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -62,9 +75,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the score of prediction
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        The input 2d array.
+
+        y : ndarray of shape (n_samples, ) 
+        It has consistent length with X.
+        The input Labels.
+        
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
