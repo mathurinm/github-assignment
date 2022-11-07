@@ -25,7 +25,7 @@ Amjad Rehan,Ibrahim
 Christophe,Thomassin
 Matthieu,Haguenauer
 Steve,Moses
-Zofia,Smolen
+Zofia,Smolen X
 Elie,Cochard--Marchewka
 Guillaume,Plassais
 Mathieu,Péharpré
