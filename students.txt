@@ -36,7 +36,7 @@ Dikens,CelajX
 Elizaveta,Barysheva X
 Guillaume,D'Herouville X
 Idriss,Bennis X
-Kenzo,Bounegta
+Kenzo,Bounegta X
 Marie-Sophie,RichardX
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
