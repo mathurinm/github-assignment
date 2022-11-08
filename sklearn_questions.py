@@ -52,6 +52,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
+        self.n_features_in = X.shape[1]
         return self
 
     def predict(self, X):
@@ -106,4 +107,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score = (y == y_pred)
         score = score.sum() / N
         return score
-        
