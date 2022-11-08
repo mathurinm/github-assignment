@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -39,16 +40,23 @@ def max_index(X):
     """
     i = 0
     j = 0
-    max = X[i,j]
 
-    n,d = X.shape
-    for row in range (n):
-        for column in range (d):
-            if max < X[i,j]:
+    if type(X) != np.ndarray:
+        raise(ValueError)
+    if len(X.shape) == 1:
+        raise(ValueError)
+
+    n, d = X.shape
+    max = X[i, j]
+
+    for row in range(n):
+        for column in range(d):
+            if max < X[row, column]:
                 i = row
                 j = column
+                max = X[i, j]
 
-    return i, j
+    return (i, j)
 
 
 def wallis_product(n_terms):
@@ -72,10 +80,8 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
 
     wallis_prod = 1
+    for n in range(1, n_terms+1):
+        wallis_prod *= (4 * n ** 2)/((4 * n ** 2) - 1)
 
-    for n in range (1, n_terms):
-        wallis_prod = wallis_prod*(4*np.pow(n, 2))/(4*np.pow(n, 2)-1)
-        
-    return wallis_prod
+    return 2 * wallis_prod
 
-print(1,2)

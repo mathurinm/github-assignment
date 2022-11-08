@@ -19,56 +19,50 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
-from tabnanny import check
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
+from sklearn.metrics import accuracy_score
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
+from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """
-        Check if it is fitted
-        """
+        """Check if it is fitted."""
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
 
-        check_is_fitted(X,y)
         return self
 
     def predict(self, X):
-        """
-        Predicts the data with a base estimator
-        """
+        """Predicts the data with a base estimator."""
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        dist_list = euclidean_distances(X, self.X_train_)
+        min_index = np.argmin(dist_list, axis=1)
+        y_pred = self.y_train_[min_index]
 
-        model = BaseEstimator()
-        ypred = model.predict(X)
         return y_pred
 
     def score(self, X, y):
-        """
-        Get the score of our model, the MSE for example
-        """
+        """Get the score of our model, the MSE for example."""
+        """I choose to compute the accuracy"""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        for i in range(len(y_pred)):
-            y_pred[i]=(y_pred[i]-y[i])**2
+        acc = accuracy_score(y_pred, y)
 
-        return y_pred.sum()
+        return acc
