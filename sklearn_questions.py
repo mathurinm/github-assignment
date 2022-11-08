@@ -29,19 +29,19 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 def most_common(lst):
-    '''Returns most common element in list'''
+    """Return most common element in list."""
     return max(set(lst), key=lst.count)
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
-        This functions fits the model
+        Fits the model.
 
         Parameters
         self - instance of One neirest neighbor
@@ -58,11 +58,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.X_train_ = X
         self.y_train_ = y
         self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
         """
-        This functions predicts labels for new features
+        Predict labels for new features.
 
         Parameters
         self - instance of One neirest neighbor
@@ -88,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        This functions evaluates the model
+        Evaluate the model.
 
         Parameters
         self - instance of One neirest neighbor
