@@ -23,7 +23,7 @@ Alicia,González
 Alvaro,Calafell
 Amjad Rehan,Ibrahim
 Christophe,Thomassin
-Matthieu,Haguenauer
+Matthieu,Haguenauer X
 Steve,Moses
 Zofia,Smolen
 Elie,Cochard--Marchewka
