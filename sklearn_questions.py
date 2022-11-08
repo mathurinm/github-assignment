@@ -26,30 +26,49 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array containing training data
+        y : an array of length n containing the class of the training data
+
+        Returns
+        -------
+        The ONN classifier
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class of data X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Returns
+        -------
+        y_pred : an array of length n containing the predicted class of data X
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +78,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+
+        distances = euclidean_distances(X, self.X_)
+        nearest_neighbor_ids = np.argmin(distances, axis=1)
+        y_pred = self.y_[nearest_neighbor_ids]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Score model to evaluate if model correctly predicts the class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array containing training data
+        y : an array of length n containing the class of the training data
+
+        Returns
+        -------
+        The average number of data points correctly classified
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+
+        score = sum(y_pred == y) / len(y)
+
+        return score
