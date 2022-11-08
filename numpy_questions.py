@@ -15,7 +15,6 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-from multiprocessing.sharedctypes import Value
 import numpy as np
 
 
@@ -40,11 +39,11 @@ def max_index(X):
     """
 
     try:
-        if (type(X) == type(None)):
+        if (X is None):
             raise ValueError
         if (X.ndim != 2):
             raise ValueError
-    except:
+    except ValueError:
         raise ValueError
     else:
         i, j = np.unravel_index(X.argmax(), X.shape)
