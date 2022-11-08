@@ -89,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         for i in np.arange(0, len(X), 1):
             
-            norms = euclidean_distances(X, self.X_train_)
+            norms = euclidean_distances(X, self.X_)
             minimum = np.min(np.argmin(norms))
             y_pred[i] = self.y_[minimum]
         
