@@ -40,7 +40,7 @@ def max_index(X):
     """
     Value
     try:
-        if (type(X) is np.ndarray):
+        if (type(X) is not np.ndarray):
             raise ValueError
         if (X.ndim != 2):
             raise ValueError
