@@ -38,14 +38,14 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-
+    Value
     try:
         if (X is None):
             raise ValueError
         if (X.ndim != 2):
             raise ValueError
-    except:
-        raise ValueError
+    except ValueError:
+        print("Test failed")
     else:
         i, j = np.unravel_index(X.argmax(), X.shape)
         return i, j
