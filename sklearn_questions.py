@@ -20,6 +20,7 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
+from scipy import stats
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
@@ -29,45 +30,89 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
-
+    """OneNearestNeighbor classifier."""
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fitting the model: store the training data.
+        Parameters
+         ----------
+         X : ndarray of shape (n_samples, n_features_in_)
+         X is an input array. Rows represent obserwations - real data.
+         Columns represent different factors observed.
 
-        And describe parameters
-        """
+         y: array of shape (n_samples)
+         Y is a vector containing a class of each observation.
+
+         Returns
+         -------
+        y_pred : array of shape (n_tests)
+        A vector of predictions whose length
+        is the number of test cases.
+         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
+    def calculate_euclidean(self, x, y):
+         """Distance between data and a point."""
+         return np.sqrt(np.sum((x - y) ** 2))
     def predict(self, X):
-        """Write docstring.
+        """Prediction of class label for every row in the data set X.
 
-        And describe parameters
-        """
+        Parameters
+        ----------
+        X : ndarray of shape (n_tests, n_features_in_)
+        The input array.
+
+        Returns
+        -------
+        y_pred : array of shape (n_tests)
+        A vector of predictions whose length
+        is the number of test cases. """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+        prediction = np.full(
+            shape = len(X), fill_value=self.classes_[0],
+            dtype = self.classes_.dtype
         )
-
-        # XXX fix
-        return y_pred
+        for i in range(len(X)):
+             test = X[i, :]
+             distances = [self.calculate_euclidean(test,
+                                                       z) for z in self.X_]
+             sorted_k = np.argsort(distances)[:1]
+             nearest_neighb = [self.y_[y] for y in sorted_k]
+             prediction_y = stats.mode(nearest_neighb)[0][0]
+             prediction[i] = prediction_y
+        return prediction
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the score of the prediction made compared with the real value y.
 
-        And describe parameters
-        """
+         Parameters
+         ----------
+         X : ndarray of shape (n_samples, n_features_in_)
+         X is an input array. Rows represent obserwations - real data.
+         Columns represent different factors observed.
+
+         y: array of shape (n_samples)
+         Y is a vector containing a class of each observation.
+
+         Returns
+         -------
+         accuracy : int
+         A share of correctly predicted data points.
+         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        prediction = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        accuracy = sum(prediction == y) / len(y)
+        return accuracy
