@@ -23,6 +23,13 @@ Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
 Matthieu,Haguenauer X
 Steve,MosesX
+Zofia,Smolen
+Elie,Cochard--Marchewka X 
+Guillaume,Plassais X
+Mathieu,Péharpré X 
+Anastasia,Nesterova
+Cedomir,Ljubic
+Constance,Guelluy
 Zofia,Smolen X
 Elie,Cochard--Marchewka X
 Guillaume,Plassais X
@@ -62,5 +69,6 @@ Kaan,Çaylan X
 Hadrien,Strichard
 Aristide, Gasquet X
 Harshit,Shangari X
+Guillaume Plassais X
 Mykyta,Alekseiev X
 Quentin, Stroobants X
