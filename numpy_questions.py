@@ -15,8 +15,8 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-import numpy as np
 
+import numpy as np
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -40,18 +40,20 @@ def max_index(X):
     i = 0
     j = 0
 
-    X_max = X[0,0]
+    if type(X) != np.ndarray:
+        raise ValueError("The input is not a numpy array")
 
-    for i in np.arange(shape(X)[0])
-        for j in np.arange(shape(X)[1]):
-            if X_max < X[i, j]:
-                X_max = X[i, j]
+    elif len(X.shape) != 2:
+        raise ValueError("The shape is not 2D")
 
-return X_max
+    else:
+        i, j = np.unravel_index(X.argmax(), X.shape)
+
+    return i, j
 
     # TODO
 
-    return i, j
+
 
 
 def wallis_product(n_terms):
@@ -73,7 +75,10 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    for k in np.arange(1, n + 1):
-        pi = pi * ((2 * k) ** 2)  / ((2 * k - 1) ** 2)
+
+    pi = 2
+
+    for k in np.arange(1, n_terms + 1):
+        pi *= (4 * k ** 2)  / (4 * k ** 2 - 1) 
     return pi 
     

@@ -35,6 +35,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
+
+        
         """Write docstring.
 
         And describe parameters
