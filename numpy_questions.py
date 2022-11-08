@@ -33,6 +33,6 @@ def max_index(X):
 
 def wallis_product(n_terms):
     wallis = 1
-    for i in range(n_terms -1) + 1:
+    for i in range(n_terms + 1):
         wallis = wallis * (4 * i ** 2 / (4 * i ** 2 - 1))
     return wallis * 2
