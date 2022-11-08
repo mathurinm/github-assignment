@@ -20,6 +20,21 @@ from numpy import unravel_index
 
 
 def max_index(X):
+    """Return the index of the maximum in a numpy array.
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array.
+    Returns
+    -------
+    (i, j) : tuple(int)
+        The row and columnd index of the maximum.
+    Raises
+    ------
+    ValueError
+        If the input is not a numpy error or
+        if the shape is not 2D.
+    """
 
     if not isinstance(X, np.ndarray):
         raise ValueError('input must be a numpy array')
@@ -33,6 +48,19 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
+    """Implement the Wallis product to compute an approximation of pi.
+    See:
+    https://en.wikipedia.org/wiki/Wallis_product
+    Parameters
+    ----------
+    n_terms : int
+        Number of steps in the Wallis product. Note that `n_terms=0` will
+        consider the product to be `1`.
+    Returns
+    -------
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
+    """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
     pi = 2.0

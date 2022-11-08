@@ -31,20 +31,21 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Set the training and classifier label data from the dataset
-           Parameters
-           ----------
-           X : Training data
-           y : target values
-           Returns
-           -------
-           self: instance of OneNearestNeighbor
+
+        """Set the training and classifier label data from the dataset.
+        Parameters
+        ----------
+        X : Training data
+        y : target values
+        Returns
+        -------
+        self: instance of OneNearestNeighbor
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -57,14 +58,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the class labels by calculating euclidean distances
-           and choosing the label of the closest one
-           Parameters
-           ----------
-           X : Test data
-           Returns
-           -------
-           y_pred: returns the nearest class label
+
+        """Predicts the class labels by choosing the label of the closest one.
+        Parameters
+        ----------
+        X : Test data
+        Returns
+        -------
+        y_pred: returns the nearest class label
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -84,15 +85,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Gives the prediction accuracy
-           Parameters
-           ----------
-           X : Test data
-           y : test labels
-           Returns
-           -------
-           accuracy : The value in percent of amount
-           of predictions that were correctly predicted
+
+        """Display the prediction accuracy.
+        Parameters
+        ----------
+        X : Test data
+        y : test labels
+        Returns
+        -------
+        accuracy : The value in % of correct predictions
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
@@ -102,4 +103,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return accuracy
 
     def euclidean_distance(self, p1, p2):
+
+        """Calculate euclidean distance between 2 data points.
+        Parameters
+        ----------
+        p1 : 1st data point
+        p2 : 1st data point
+        Returns
+        -------
+        distance : euclidean distance
+        """
         return np.sqrt(np.sum((p1 - p2) ** 2))
