@@ -97,8 +97,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return prediction
 
     def score(self, X, y):
-        """Return the score of the prediction made
-        compared with the real value y.
+        """Return the score of the prediction compared with the real value y.
 
         Parameters
         ----------
