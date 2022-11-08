@@ -26,30 +26,49 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
+        """ Initialize class """
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the OneNearestNeighbor classifier
 
-        And describe parameters
+        Args:
+            X, np array : Training data.
+            y, np array: Target values.
+
+        Returns:
+            self : OneNearestNeighbor
+                The fitted OneNearestNeighbor classifier.
+
+        Errors:
+            ValueError : if X and y don't have corresponding shapes
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y 
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the class of a new data
 
-        And describe parameters
+        Args :
+            X : np array with features and samples
+
+        Returns : 
+            The closest point, thus predicting the class since\
+            it is a 1NN model
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +76,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
-        return y_pred
+        return self.y_train_[np.argmin(euclidean_distances(X, self.X_train_), axis = 1)]
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Returns the score of the classification e.g. the number of \
+        samples correctly classified in average
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y, y_pred)

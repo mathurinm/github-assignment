@@ -38,8 +38,14 @@ def max_index(X):
         if the shape is not 2D.
     """
     
+    if type(X) != np.ndarray:
+        raise ValueError('The input is not a numpy array')
 
-    return np.unravel_index(np.argmax(X, axis = None), X.shape)
+    if X.ndim != 2:
+        raise ValueError('This array does not have 2 dimensions')
+        
+    else : 
+        return np.unravel_index(np.argmax(X, axis = None), X.shape)
 
 
 def wallis_product(n_terms):
