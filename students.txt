@@ -24,10 +24,10 @@ Christophe,Thomassin X
 Matthieu,Haguenauer
 Steve,MosesX
 Zofia,Smolen X
-Elie,Cochard--Marchewka X 
+Elie,Cochard--Marchewka X
 Guillaume,Plassais
 Anastasia,Nesterova X
-Mathieu,Péharpré X 
+Mathieu,Péharpré X
 Cedomir,Ljubic X
 Constance,Guelluy X
 Dikens,CelajX
@@ -40,7 +40,7 @@ Marine,Chouraqui
 Matthieu,Marquis--Lorber
 Nathan,Rozot X
 Vincenzo,Albano X
-Alix,Laurent X 
+Alix,Laurent X
 Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
