@@ -26,6 +26,8 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import euclidean_distances, accuracy_score
+
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -40,16 +42,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Fit the object by setting X and Y parameters.
         
         Parameters
-        ----------
+        -----------
         X : ndarray of shape (n_samples, n_features)
             Containing input data.
         Y : ndarray of shape (n_samples, )
             Containing output data.
             
         Returns
-        -------
+        ----------
         self : Object OneNearestNeighbor
-            The object itself with the data acknowledged.
+            The fitted classifier object.
+            
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -86,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         for i in np.arange(0, len(X), 1):
             
-            norms = np.linalg.norm(self.X_ - X[i], axis=1)
+            norms = euclidean_distances(X, self.X_train_)
             minimum = np.min(np.argmin(norms))
             y_pred[i] = self.y_[minimum]
         
@@ -112,7 +115,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        return y_pred.sum()
-    
         score = (y_pred == y).mean()
         return score

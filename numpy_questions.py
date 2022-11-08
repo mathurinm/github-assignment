@@ -24,17 +24,17 @@ def max_index(X):
     elif len(np.shape(X)) != 2:
         raise ValueError('Not a 2D array')
     else:
-        i = np.argmax(np.max(X, axis=0))
-        j = np.argmax(np.max(X, axis=1))
-
-    return i, j
+        i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
+        return i, j
 
 def wallis_product(n_terms):
-    pi = 1.0
 
-    for j in range(1, n_terms):
-        pi *= 4 * j ** 2 / (4 * j ** 2 - 1)
-
-    pi *= 2
+    pi = 1
     
+    if n_terms == 0:
+        pi = 2
+    else:
+        for i in np.arange(1, n_terms, 1):
+            pi = 2 * pi * (4 * (i**2)) / ((4 * (i**2)) - 1)
+
     return pi
