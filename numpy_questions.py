@@ -36,3 +36,5 @@ def wallis_product(n_terms):
     for i in range(n_terms + 1):
         wallis = wallis * (4 * i ** 2 / (4 * i ** 2 - 1))
     return wallis * 2
+
+#flake8
