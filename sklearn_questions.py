@@ -26,69 +26,83 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import euclidean_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Return the model with classes
+        """Return the model with classes.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-        The input 2d array.
+            The input 2d array.
 
-        y : ndarray of shape (n_samples, ) 
-        It has consistent length with X.
-        The input Labels.
+        y : ndarray of shape (n_samples, 1)
+            It has consistent length with X.
+            The input Labels.
+
+        Returns
+        -------
+        self : the fitted classifier
 
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Return the predicted classes of X
+        """Return the predicted classes of X.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-        The input 2d array.
+            The input 2d array.
 
-        
+        Returns
+        -------
+        y_pred : ndarray of shape(n_samples, 1)
+                The predicted data.
+
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        distance = euclidean_distances(X, self.X_train_)
+        nearest = np.argmin(distance, axis=1)
+        y_pred = self.y_train_[nearest]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Return the score of prediction
+        """Return the score of prediction.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-        The input 2d array.
+            The input 2d array.
 
-        y : ndarray of shape (n_samples, ) 
-        It has consistent length with X.
-        The input Labels.
-        
+        y : ndarray of shape (n_samples, 1)
+            It has consistent length with X.
+            The input Labels.
+
+        Returns
+        -------
+        Score : the accuracy score of the prediction y_pred,
+                compared to the observed data y
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        score = accuracy_score(y_pred, y)
 
-        # XXX fix
-        return y_pred.sum()
+        return score
