@@ -46,7 +46,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        self
+        self: OneNearestNeighbor object
+            The object with the data stored.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -88,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Returns classifier score.
+        """Return classifier score.
 
         Parameters
         ----------
