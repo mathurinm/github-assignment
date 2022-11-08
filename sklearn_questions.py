@@ -8,13 +8,15 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """OneNearestNeighbor classifier."""
+    """Nearest Neighbor Classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
+        Set the paraeters to train the classification model.
+        
         X : input array (n, m)
         y : target array (n, )
         """
@@ -41,6 +43,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for k in range(len(X)):
+            nearest = np.argmin(np.sqrt(np.sum((X[k] - self.X_)**2, axis=1)))
+            y_pred[k] = self.y_[nearest]
         return y_pred
 
     def score(self, X, y):
@@ -53,10 +58,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         n = X.shape[0]
-
-        # y_pred.sum()
         score = 1 / n * sum(y == y_pred)
-        
         return score
 
 #pydocstyle
