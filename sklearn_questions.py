@@ -27,7 +27,6 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
@@ -35,21 +34,48 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Description
+        -----------
+        Fit the object by setting X and Y parameters.
+        
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Containing input data.
+        Y : ndarray of shape (n_samples, )
+            Containing output data.
+            
+        Returns
+        -------
+        self : Object OneNearestNeighbor
+            The object itself with the data acknowledged.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        
+        self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Description
+        -----------
+        Predict the y values corresponding to the given X array.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+            
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples, )
+            The predicted data based on X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +84,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in np.arange(0, len(X), 1):
+            
+            norms = np.linalg.norm(self.X_ - X[i], axis=1)
+            minimum = np.min(np.argmin(norms))
+            y_pred[i] = self.y_[minimum]
+        
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Description
+        -----------
+        Return the score of the prediction.
+        
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+        Y : ndarray of shape (n_samples, )
+            The output data.
+            
+        Returns
+        -------
+        score : float
+            Average number of samples correctly classified
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
         return y_pred.sum()
+    
+        score = (y_pred == y).mean()
+        return score
