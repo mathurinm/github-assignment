@@ -5,7 +5,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
+from sklearn.metrics import euclidean_distances
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """Nearest Neighbor Classifier."""
@@ -42,9 +42,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        
         for k in range(len(X)):
-            nearest_distance = np.sqrt(np.sum((X[k] - self.X_)**2, axis=1))
-            nearest_index = np.argmin(nearest_distance)
+            distance_min = euclidean_distances(X[k], self.X_)
+            nearest_index = np.argmin(distance_min)
             y_pred[k] = self.y_[nearest_index]
             
         return y_pred
