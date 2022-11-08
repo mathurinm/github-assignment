@@ -60,5 +60,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         n = X.shape[0]
         score = 1 / n * sum(y == y_pred)
         return score
-
-#pydocstyle
