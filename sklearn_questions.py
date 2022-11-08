@@ -35,21 +35,42 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the object with the input data by setting X, and Y parameters.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+        Y : ndarray of shape (n_samples, )
+            The output data.
+
+        Returns
+        -------
+        self : Object OneNearestNeighbor
+            The object itself with the data acknowledged.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the y values corresponding to the given X array.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples, )
+            The predicted data based on X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +78,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
-        return y_pred
+        y_pred = []
+        for x in X:
+            minimum_dist = np.infty
+            minimum_coordinate = None
+            for j in range(len(self.X_)):
+                dist = np.linalg.norm(x - self.X_[j])
+                if dist < minimum_dist:
+                    minimum_dist = dist
+                    minimum_coordinate = j 
+            y_pred.append(self.y_[minimum_coordinate])
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Return the score of the prediction.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+        Y : ndarray of shape (n_samples, )
+            The output data.
+
+        Returns
+        -------
+        score : float
+            Average number of samples correctly classified
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        score = 0
+        for i in range(len(y_pred)):
+            if (y_pred[i] - y[i] == 0):
+                score += 1
+        return score/len(y_pred)
