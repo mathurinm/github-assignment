@@ -23,11 +23,11 @@ def max_index(X):
     # Value error if the data is not a numpy
     if type(X).__module__ != np.__name__:
         print("error, the data is not a numpy")
-        pass
+        raise ValueError
     # Value error if the shape is not 2D.
     elif X.shape != 2:
         print("error, the shape must be 2D")
-        pass
+        raise ValueError
     # The row and column index of the maximum
     else:
         global i, j
