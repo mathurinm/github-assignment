@@ -6,7 +6,7 @@ Etienne,Du Fayet De La Tour, X
 François,Moreau X
 Gaspard,Pasqueron De Fommervault X
 Michael,Ein-Dor X
-Pierre,Collin De La Belliere
+Pierre,Collin De La Belliere X
 Samuel,Berrebi
 Tiphaine,Boutin X
 Joseph,Moussa
