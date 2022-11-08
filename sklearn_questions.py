@@ -40,13 +40,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Data matrix used to fit the classifier
-        y : numpy array
-            Classes of each data point
+            The input array.
+        y : ndarray of shape (n_samples)
+            The input labels.
 
         Returns
         -------
-        None
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -82,7 +81,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y = self.y_[0]
             min_dist = np.linalg.norm(X[:,i] - self.X_[:,0])
             for j in len(self.X_):
-                dist = np.linalg.norm(X[:,i] - self.X_[:,0])
+                dist = np.linalg.norm(X[:,i] - self.X_[:,j])
                 if dist<min_dist:
                     min_dist=dist
                     y = self.y_[j]
@@ -107,7 +106,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        n = len(X)
         y_pred = (y_pred==y)
 
-        return y_pred.sum()/n
+        return y_pred.sum()/len(y)
