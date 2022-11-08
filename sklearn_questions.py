@@ -31,11 +31,13 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
+
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """Fitting the model: store the training data.
+
         Parameters
         ----------
         X : ndarray with shape (n_samples, n_features_in_)
@@ -51,6 +53,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         A vector of predictions whose length
         is the number of test cases.
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -77,7 +80,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         y_pred : array of shape (n_tests)
         A vector of predictions whose length
-        is the number of test cases. """
+        is the number of test cases. 
+        """
         check_is_fitted(self)
         X = check_array(X)
         prediction = np.full(
