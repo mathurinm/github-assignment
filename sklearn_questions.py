@@ -53,7 +53,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         A vector of predictions whose length
         is the number of test cases.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -80,7 +79,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         y_pred : array of shape (n_tests)
         A vector of predictions whose length
-        is the number of test cases. 
+        is the number of test cases.
         """
         check_is_fitted(self)
         X = check_array(X)
