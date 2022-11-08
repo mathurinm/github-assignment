@@ -41,9 +41,9 @@ def max_index(X):
     i = 0
     j = 0
 
-    if type(X) != np.ndarray:
+    if type(X) != np.ndarray :
         raise(ValueError)
-    if len(X.shape) == 1:
+    if len(X.shape) == 1 :
         raise(ValueError)
 
     n, d = X.shape
@@ -84,4 +84,3 @@ def wallis_product(n_terms):
         wallis_prod *= (4 * n ** 2)/((4 * n ** 2) - 1)
 
     return 2 * wallis_prod
-
