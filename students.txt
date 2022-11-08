@@ -27,7 +27,7 @@ Matthieu,Haguenauer
 Steve,MosesX
 Zofia,Smolen
 Elie,Cochard--Marchewka X 
-Guillaume,Plassais
+Guillaume,Plassais X
 Mathieu,Péharpré X 
 Anastasia,Nesterova
 Cedomir,Ljubic
