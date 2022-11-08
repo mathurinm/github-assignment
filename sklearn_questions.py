@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -46,6 +46,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
+        self : class Object
+            The class object.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -58,17 +60,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """ Predicts the class of X
+        """ Predicts the class of X.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Data to be classified
+            Data to be classified.
 
         Returns
         -------
         y : int
-            Predicted class of X
+            Predicted class of X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -91,19 +93,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """ Gives the score of the model on a given dataset
+        """ Gives the score of the model on a given dataset.
 
         Parameters
         ----------
         X : numpy array
-            Data to be classified
+            Data to be classified.
         y : numpy array
-            Classes of each data point
+            Classes of each data point.
 
         Returns
         -------
         score : int
-            score of the model
+            score of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
