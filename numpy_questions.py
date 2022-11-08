@@ -40,7 +40,10 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
+    result = np.where(X == np.amax(X))
+    listOfCordinates = list(zip(result[0], result[1]))
+    for cord in listOfCordinates:
+        i, j = cord
 
     return i, j
 
@@ -62,6 +65,12 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    pi = 0.0
+
+    for i in range(n_terms):
+        left = (2 * i)/(2 * i - 1)
+        right = (2 * i)/(2 * i + 1)
+        tot = left * right
+        pi = pi + tot
+
+    return 2*pi
