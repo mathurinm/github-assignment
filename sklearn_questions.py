@@ -37,20 +37,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def fit(self, X, y):
         """Fitting the model: store the training data.
         Parameters
-         ----------
-         X : ndarray of shape (n_samples, n_features_in_)
-         X is an input array. Rows represent obserwations - real data.
-         Columns represent different factors observed.
+        ----------
+        X : ndarray with shape (n_samples, n_features_in_)
+        X is an input array. Rows represent obserwations - real data.
+        Columns represent different factors observed.
 
-         y: array of shape (n_samples)
-         Y is a vector containing a class of each observation.
+        y: array with shape (n_samples)
+        Y is a vector containing a class of each observation.
 
-         Returns
-         -------
+        Returns
+        -------
         y_pred : array of shape (n_tests)
         A vector of predictions whose length
         is the number of test cases.
-         """
+        """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -62,8 +62,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def calculate_euclidean(self, x, y):
-         """Distance between data and a point."""
-         return np.sqrt(np.sum((x - y) ** 2))
+        """Distance between data and a point."""
+        return np.sqrt(np.sum((x - y) ** 2))
     def predict(self, X):
         """Prediction of class label for every row in the data set X.
 
@@ -80,39 +80,39 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         prediction = np.full(
-            shape = len(X), fill_value=self.classes_[0],
-            dtype = self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
         )
         for i in range(len(X)):
-             test = X[i, :]
-             distances = [self.calculate_euclidean(test,
-                                                       z) for z in self.X_]
-             sorted_k = np.argsort(distances)[:1]
-             nearest_neighb = [self.y_[y] for y in sorted_k]
-             prediction_y = stats.mode(nearest_neighb)[0][0]
-             prediction[i] = prediction_y
+            test = X[i, :]
+            distances = [self.calculate_euclidean(test,
+                z) for z in self.X_]
+            sorted_k = np.argsort(distances)[:1]
+            nearest_neighb = [self.y_[y] for y in sorted_k]
+            prediction_y = stats.mode(nearest_neighb)[0][0]
+            prediction[i] = prediction_y
         return prediction
 
     def score(self, X, y):
-        """Return the score of the prediction made compared with the real value y.
+        """Return the score of the prediction made 
+        compared with the real value y.
 
-         Parameters
-         ----------
-         X : ndarray of shape (n_samples, n_features_in_)
-         X is an input array. Rows represent obserwations - real data.
-         Columns represent different factors observed.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features_in_)
+        X is an input array. Rows represent obserwations - real data.
+        Columns represent different factors observed.
 
-         y: array of shape (n_samples)
-         Y is a vector containing a class of each observation.
+        y: array of shape (n_samples)
+        Y is a vector containing a class of each observation.
 
-         Returns
-         -------
-         accuracy : int
-         A share of correctly predicted data points.
-         """
+        Returns
+        -------
+        accuracy : int
+        A share of correctly predicted data points.
+        """
         X, y = check_X_y(X, y)
         prediction = self.predict(X)
-
         # XXX fix
         accuracy = sum(prediction == y) / len(y)
         return accuracy

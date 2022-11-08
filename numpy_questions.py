@@ -15,10 +15,8 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-from typing import Tuple
+
 import numpy as np
-
-
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -43,25 +41,25 @@ def max_index(X):
     i = 0
     j = 0
     if (type(X) is not np.ndarray):
-         raise ValueError('Input is not a numpy array.')
+        raise ValueError('Input is not a numpy array.')
     elif len(X.shape) != 2:
-         raise ValueError('Input is not 2D.')
+        raise ValueError('Input is not 2D.')
 
     for a in range(len(X)):
-         for b in range(len(X[0])):
-             if X[a][b] > X[i][j]:
-                 i = a
-                 j = b
+        for b in range(len(X[0])):
+            if X[a][b] > X[i][j]:
+                i = a
+                j = b
 
     return i, j
 
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
-
+    
     See:
     https://en.wikipedia.org/wiki/Wallis_product
-
+    
     Parameters
     ----------
     n_terms : int
@@ -73,7 +71,7 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    
+
     pi = 2.0
     if n_terms == 0:
         return pi
