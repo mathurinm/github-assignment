@@ -79,9 +79,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         for i in range(n):
             y = self.y_[0]
-            min_dist = np.linalg.norm(X[:, i] - self.X_[:, 0])
-            for j in len(self.X_):
-                dist = np.linalg.norm(X[:, i] - self.X_[:, j])
+            min_dist = np.linalg.norm(X[i, :] - self.X_[0, :])
+            for j in range(len(self.X_)):
+                dist = np.linalg.norm(X[i, :] - self.X_[j, :])
                 if dist < min_dist:
                     min_dist = dist
                     y = self.y_[j]
