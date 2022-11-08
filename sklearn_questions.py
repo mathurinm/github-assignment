@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+from tabnanny import check
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,21 +36,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Check if it is fitted
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        check_is_fitted(X,y)
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Predicts the data with a base estimator
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +57,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        model = BaseEstimator()
+        ypred = model.predict(X)
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Get the score of our model, the MSE for example
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
+        for i in range(len(y_pred)):
+            y_pred[i]=(y_pred[i]-y[i])**2
+
         return y_pred.sum()
