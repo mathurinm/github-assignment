@@ -45,7 +45,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         
         for k in range(len(X)):
             # distance_min = euclidean_distances(X[k], self.X_)
-            distance_min = np.sqrt(np.sum((X[k] - self.X)**2, axis=1))
+            distance_min = np.sqrt(np.sum((X[k] - self.X_)**2, axis=1))
             nearest_index = np.argmin(distance_min)
             y_pred[k] = self.y_[nearest_index]
             
