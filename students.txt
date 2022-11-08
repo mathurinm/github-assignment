@@ -1,67 +1,67 @@
-Camille,ObeidX
-Nazila,Sharifi Amina X
+First name,Surname
+Camille,Obeid
+Nazila,Sharifi Amina
 Ajouad,Akjouj
-Baptiste,BoutX
-Etienne,Du Fayet De La Tour, X
-François,Moreau X
-Gaspard,Pasqueron De Fommervault X
-Michael,Ein-Dor X
+Baptiste,Bout
+Etienne,Du Fayet De La Tour
+François,Moreau
+Gaspard,Pasqueron De Fommervault
+Michael,Ein-Dor
 Pierre,Collin De La Belliere
 Samuel,Berrebi
-Tiphaine,Boutin X
+Tiphaine,Boutin
+Mathurin,Massias
 Joseph,Moussa
-Arianna,More X
-João,Melo x
-Madhura Prashant,Nirale X
-Maria Susanne,Stoelben X
-Xinyu,Lai X
-Thomas Philipp,Schneider X
-Alvaro,Calafell X
-Mathieu,Nordin X
-Alicia,González X
-Amjad Rehan,Ibrahim X
-Christophe,Thomassin X
+Arianna,More
+João,Melo
+Madhura Prashant,Nirale
+Maria Susanne,Stoelben
+Xinyu,Lai
+Thomas Philipp,Schneider
+Mathieu,Nordin
+Alicia,González
+Alvaro,Calafell
+Amjad Rehan,Ibrahim
+Christophe,Thomassin
 Matthieu,Haguenauer
-Steve,MosesX
-Zofia,Smolen X
-Elie,Cochard--Marchewka X
+Steve,Moses
+Zofia,Smolen
+Elie,Cochard--Marchewka
 Guillaume,Plassais
-Anastasia,Nesterova X
-Mathieu,Péharpré X
-Cedomir,Ljubic X
-Constance,Guelluy X
-Dikens,CelajX
-Elizaveta,Barysheva X
-Guillaume,D'Herouville X
-Idriss,Bennis X
-Kenzo,Bounegta X
-Marie-Sophie,RichardX
+Mathieu,Péharpré
+Anastasia,Nesterova
+Cedomir,Ljubic
+Constance,Guelluy
+Dikens,Celaj
+Elizaveta,Barysheva
+Guillaume,D'Herouville
+Idriss,Bennis
+Kenzo,Bounegta
+Marie-Sophie,Richard
 Marine,Chouraqui
 Matthieu,Marquis--Lorber
-Nathan,Rozot X
-Vincenzo,Albano X
-Alix,Laurent X
-Diane,Paul X
+Nathan,Rozot
+Vincenzo,Albano
+Alix,Laurent
+Diane,Paul
 Elie,Douenias
 Guillaume,De Surville
-Lola,Vitrac X
+Lola,Vitrac
 Maxime,Gasc
-Shihan,Ye X
+Shihan,Ye
 Timothé,Gypteau
-Alexis,Constensoux, X
+Alexis,Constensoux
 Aristide,Gasquet
-Octave,Cheval De Baynast De Septfontaines X
+Octave,Cheval De Baynast De Septfontaines
 Quentin,Stroobants
-Arthur,Perrigot X
-Lauren,Segalla X
-Tobias,Tolciu X
-Danli,Liu X
-Théophile,Lepic X
-Sophie,Marchal X
-Kaan,Çaylan X
+Arthur,Perrigot
+Lauren,Segalla
+Tobias,Tolciu
+Danli,Liu
+Théophile,Lepic
+Hicham,Janati
+Sophie,Marchal
+Kaan,Çaylan
 Hadrien,Strichard
-Aristide, Gasquet X
-Harshit,Shangari X
-Mykyta,Alekseiev X
-Quentin, Stroobants X
-Guillaume, Plassais X
+Sylvain,Combettes
+Harshit,Shangari
