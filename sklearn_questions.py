@@ -84,7 +84,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Compute the score associated with a prediction.
-        
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
