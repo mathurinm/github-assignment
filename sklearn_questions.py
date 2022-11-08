@@ -64,6 +64,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def calculate_euclidean(self, x, y):
         """Distance between data and a point."""
         return np.sqrt(np.sum((x - y) ** 2))
+
     def predict(self, X):
         """Prediction of class label for every row in the data set X.
 
@@ -85,8 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
         for i in range(len(X)):
             test = X[i, :]
-            distances = [self.calculate_euclidean(test,
-                z) for z in self.X_]
+            distances = [self.calculate_euclidean(test,z) for z in self.X_]
             sorted_k = np.argsort(distances)[:1]
             nearest_neighb = [self.y_[y] for y in sorted_k]
             prediction_y = stats.mode(nearest_neighb)[0][0]
