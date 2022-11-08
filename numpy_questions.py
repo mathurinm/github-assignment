@@ -44,7 +44,7 @@ def max_index(X):
         if (X.ndim != 2):
             raise ValueError
     except ValueError:
-        raise ValueError
+        print("There has been a problem")
     else:
         i, j = np.unravel_index(X.argmax(), X.shape)
         return i, j
