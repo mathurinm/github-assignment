@@ -69,7 +69,7 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if n_terms == 0:
-        pi = 0.5
+        pi = 1
     else:
         for i in range(1, n_terms + 1):
             pi = pi * (4 * (i**2)) / ((4 * (i**2)) - 1)

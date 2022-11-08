@@ -42,7 +42,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
         X : ndarray of shape (n_samples, n_features)
             The train data
-        
         y : array of shape (n_samples, 1)
             The target values
 
@@ -87,7 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
         distance = euclidean_distances(X, self.X_train_)
         shorter_distance = np.argmin(distance, axis=1)
-        y_pred =  self.y_train_[shorter_distance]
+        y_pred = self.y_train_[shorter_distance]
         return y_pred
 
     def score(self, X, y):
@@ -97,13 +96,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
         X : ndarray of shape (n_samples, n_features)
             The test data
-        
         y : ndarray of shape (n_samples, 1)
             The true value for the test data
 
         Returns
         -------
-        Score : the accuracy score of the prediction y_pred, compared to the real data y
+        Score : the accuracy score of the prediction compared to the real data
 
         Raises
         -------
