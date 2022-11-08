@@ -35,22 +35,43 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
 
-        And describe parameters
-        """
+        '''Fit the OneNearest Neighbor instance with the data
+
+        Parameters
+        ----------
+        X: training points
+        y: training targets
+
+        Returns
+        ----------
+        Nothing to return.
+        Updates the classes with the possible target values.
+        '''
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
 
-        And describe parameters
-        """
+        '''Predict the output associated with input points
+
+        Parameters
+        ----------
+        X: points whose target value is to predict
+
+        Returns
+        ----------
+        y_pred: predictions associated with the points
+        '''
+
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -58,16 +79,30 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+
+            distances = np.linalg.norm(self.X_ - X[i], axis=1)
+            min_index = np.min(np.argmin(distances))
+            y_pred[i] = self.y_[min_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
-        """
+        '''Computes the score associated with a prediction
+
+        Parameters
+        ----------
+        X: points of test dataset
+        y: outputs of test dataset
+
+        Returns
+        ----------
+        score: mean accuracy of predictions
+        '''
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = (y_pred == y).mean()
+        return score
