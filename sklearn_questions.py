@@ -53,6 +53,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         self.X_ = X
         self.y_ = y
+        self.n_features_in_ = X.shape[2]
 
         return self
 
@@ -109,3 +110,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = (y_pred == y)
 
         return y_pred.sum() / len(y)
+
