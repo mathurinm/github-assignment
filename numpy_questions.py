@@ -4,7 +4,7 @@ The goals of this assignment are:
     * Use numpy in practice with two easy exercises.
     * Use automated tools to validate the code (`pytest` and `flake8`)
     * Submit a Pull-Request on github to practice `git`.
-    
+
 The two functions below are skeleton functions. The docstrings explain what
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
