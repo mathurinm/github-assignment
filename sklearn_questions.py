@@ -86,7 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
         for i in range(len(X)):
             test = X[i, :]
-            distances = [self.calculate_euclidean(test,z) for z in self.X_]
+            distances = [self.calculate_euclidean(test, z) for z in self.X_]
             sorted_k = np.argsort(distances)[:1]
             nearest_neighb = [self.y_[y] for y in sorted_k]
             prediction_y = stats.mode(nearest_neighb)[0][0]
@@ -94,7 +94,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return prediction
 
     def score(self, X, y):
-        """Return the score of the prediction made 
+        """Return the score of the prediction made
         compared with the real value y.
 
         Parameters
