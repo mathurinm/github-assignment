@@ -106,3 +106,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score = (y == y_pred)
         score = score.sum() / N
         return score
+        

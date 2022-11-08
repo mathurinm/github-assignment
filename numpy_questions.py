@@ -40,7 +40,7 @@ def max_index(X):
     try:
         i_max = 0
         j_max = 0
-        n, m = X.shape
+        n, m = np.shape(X)
 
         maximum = X[0, 0]
 
@@ -51,7 +51,7 @@ def max_index(X):
                     i_max = i
                     j_max = j
         return i_max, j_max
-    except:
+    except AttributeError:
         raise ValueError
 
 
