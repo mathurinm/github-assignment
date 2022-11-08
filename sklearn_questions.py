@@ -29,27 +29,45 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model with X_train and y_train.
 
-        And describe parameters
+        Parameters
+        ----------
+        -X (numpy.ndarray) : the training set of
+        shape (n_samples, n_features)
+        y (numpy.ndarray): the n-classes of X
+
+        Returns
+        -------
+        self: the model fitted with its attributes
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels of a test sample.
 
-        And describe parameters
+        Parameters:
+        ----------
+        - X (numpy.ndarray): test sample
+
+        Returns:
+        ----------
+        - y_pred (numpy.ndarray): an array containing the
+        predicted labels for X
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +76,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            closest = np.argmin(np.sqrt(np.sum((X[i] - self.X_)**2, axis=1)))
+            y_pred[i] = self.y_[closest]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the average number of points correctly classified.
 
-        And describe parameters
+        Parameters:
+        ----------
+        - X (numpy.ndarray): test sample
+        - y (numpy.ndarray): true labels of X
+
+        Returns:
+        ----------
+        - accuracy (float) : the scoring metrics
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = sum(y_pred == y) / len(y)
+
+        return accuracy
