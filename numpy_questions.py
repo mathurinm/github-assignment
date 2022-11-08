@@ -32,14 +32,16 @@ def max_index(X):
     else:
         i = 0
         j = 0
+        i_count = 0
+        max = 0
         for row in X:
-            col_count = 0
+            j_count = 0
             for val in row:
                 if val > max:
                     max = val
-                    i, j = row_count, col_count
-                col_count += 1
-            row_count += 1
+                    i, j = i_count, j_count
+                j_count += 1
+            i_count += 1
     return i, j
 
 def wallis_product(n_terms):
