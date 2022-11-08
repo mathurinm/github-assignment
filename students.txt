@@ -21,7 +21,7 @@ Mathieu,Nordin X
 Alicia,González X
 Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
-Matthieu,Haguenauer
+Matthieu,Haguenauer X
 Steve,MosesX
 Zofia,Smolen X
 Elie,Cochard--Marchewka X
