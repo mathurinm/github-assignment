@@ -35,21 +35,40 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """'Fits' the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Data matrix used to fit the classifier
+        y : numpy array
+            Classes of each data point
+
+        Returns
+        -------
+        None
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """ Predicts the class of X
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Data to be classified
+
+        Returns
+        -------
+        y : int
+            Predicted class of X
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +76,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        n=len(X)
 
-        # XXX fix
+        for i in range(n):
+            y = self.y_[0]
+            min_dist = np.linalg.norm(X[:,i] - self.X_[:,0])
+            for j in len(self.X_):
+                dist = np.linalg.norm(X[:,i] - self.X_[:,0])
+                if dist<min_dist:
+                    min_dist=dist
+                    y = self.y_[j]
+            y_pred[i] = y
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """ Gives the score of the model on a given dataset
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy array
+            Data to be classified
+        y : numpy array
+            Classes of each data point
+
+        Returns
+        -------
+        score : int
+            score of the model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        n = len(X)
+        y_pred = (y_pred==y)
 
-        # XXX fix
-        return y_pred.sum()
+        return y_pred.sum()/n
