@@ -37,19 +37,22 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
-    n, m = X.shape
+    try:
+        i_max = 0
+        j_max = 0
+        n, m = X.shape
 
-    maximum = X[0, 0]
+        maximum = X[0, 0]
 
-    for i_ in range(n):
-        for j_ in range(m):
-            if X[i_, j_] > maximum:
-                maximum = X[i_, j_]
-                i = i_
-                j = j_
-    return i, j
+        for i in range(n):
+            for j in range(m):
+                if X[i, j] > maximum:
+                    maximum = X[i, j]
+                    i_max = i
+                    j_max = j
+        return i_max, j_max
+    except:
+        raise ValueError
 
 
 def wallis_product(n_terms):

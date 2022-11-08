@@ -35,21 +35,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the classifier by storing the values of the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : ndarray of shape (n_samples, )
+            The input labels.
+
+        Returns
+        -------
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the classes of data points in X
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The array to be classified.
+
+        Returns
+        -------
+        y_pred : ndarray of shape(n_samples,)
+            The predicted values
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +73,36 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        N = len(X)
+        for i in range(N):
+            y_pred_i = self.y_[0]
+            min_dist = np.linalg.norm(X[i] - self.X_[0])
+            for j in range(len(self.X_)):
+                dist = np.linalg.norm(X[i] - self.X_[j])
+                if dist < min_dist:
+                    min_dist = dist
+                    y_pred_i = self.y_[j]
+            y_pred[i] = y_pred_i
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Returns the score between the true and the predicted values.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The array to be classified.
+        y : ndarray of shape (n_samples, )
+            The true labels.
+
+        Returns
+        -------
+        score : float
+            The score between the true and predicted values.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        N = len(y)
+        score = (y == y_pred)
+        score = score.sum() / N
+        return score
