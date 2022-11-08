@@ -30,13 +30,13 @@ from sklearn.metrics import euclidean_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Fit the One Nearest Neighbor classifier
+        """Fit the One Nearest Neighbor classifier.
 
         Parameters
         ----------
@@ -69,7 +69,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Use the One Nearest Neighbor to make the prediction
+        """Use the One Nearest Neighbor to make the prediction.
 
         Parameters
         ----------
@@ -90,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Get the score of the prediction, compared to real data
+        """Get the score of the prediction, compared to real data.
 
         Parameters
         ----------
@@ -113,7 +113,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             If y contains missing values or infinite values
             If the size of X and y doesn't match
         """
-
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         score = accuracy_score(y_pred, y)
