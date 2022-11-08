@@ -72,9 +72,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         for i in range(len(X)):
-            distances = np.linalg.norm(self.X_ - X[i], axis=1)
-            min_index = np.min(np.argmin(distances))
+
+            dist = np.linalg.norm(self.X_ - X[i], axis=1)
+            min_index = np.min(np.argmin(dist))
             y_pred[i] = self.y_[min_index]
+
         return y_pred
 
     def score(self, X, y):
@@ -92,5 +94,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+
         score = (y_pred == y).mean()
         return score
