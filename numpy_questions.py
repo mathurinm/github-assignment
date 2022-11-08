@@ -16,6 +16,7 @@ This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo..
 """
 import numpy as np
+import pandas as pd
 
 
 def max_index(X):
