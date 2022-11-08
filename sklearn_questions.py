@@ -110,4 +110,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = (y_pred == y)
 
         return y_pred.sum() / len(y)
-
