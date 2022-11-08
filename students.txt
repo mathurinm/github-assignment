@@ -6,7 +6,7 @@ Etienne,Du Fayet De La Tour, X
 François,Moreau X
 Gaspard,Pasqueron De Fommervault X
 Michael,Ein-Dor X
-Pierre,Collin De La Belliere
+Pierre,Collin De La Belliere X
 Samuel,Berrebi
 Tiphaine,Boutin X
 Joseph,Moussa
@@ -21,14 +21,14 @@ Mathieu,Nordin X
 Alicia,González X
 Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
-Matthieu,Haguenauer
+Matthieu,Haguenauer X
 Steve,MosesX
 Zofia,Smolen X
 Elie,Cochard--Marchewka X
 Guillaume,Plassais X
 Anastasia,Nesterova X
 Mathieu,Péharpré X
-Cedomir,Ljubic
+Cedomir,Ljubic X
 Constance,Guelluy X
 Dikens,CelajX
 Elizaveta,Barysheva X
@@ -36,7 +36,7 @@ Guillaume,D'Herouville X
 Idriss,Bennis X
 Kenzo,Bounegta X
 Marie-Sophie,RichardX
-Marine,Chouraqui
+Marine,Chouraqui X
 Matthieu,Marquis--Lorber
 Nathan,Rozot X
 Vincenzo,Albano X
@@ -64,4 +64,3 @@ Aristide, Gasquet X
 Harshit,Shangari X
 Mykyta,Alekseiev X
 Quentin, Stroobants X
-Guillaume, Plassais X
