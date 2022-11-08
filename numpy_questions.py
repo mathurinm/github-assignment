@@ -41,10 +41,10 @@ def max_index(X):
     i = 0
     j = 0
 
-    if type(X) != np.ndarray :
-        raise(ValueError)
-    if len(X.shape) == 1 :
-        raise(ValueError)
+    if type(X) != np.ndarray:
+        raise (ValueError)
+    if len(X.shape) == 1:
+        raise (ValueError)
 
     n, d = X.shape
     max = X[i, j]
