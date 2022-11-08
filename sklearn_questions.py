@@ -75,15 +75,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        n=len(X)
+        n = len(X)
 
         for i in range(n):
             y = self.y_[0]
-            min_dist = np.linalg.norm(X[:,i] - self.X_[:,0])
+            min_dist = np.linalg.norm(X[:, i] - self.X_[:, 0])
             for j in len(self.X_):
-                dist = np.linalg.norm(X[:,i] - self.X_[:,j])
-                if dist<min_dist:
-                    min_dist=dist
+                dist = np.linalg.norm(X[:, i] - self.X_[:, j])
+                if dist < min_dist:
+                    min_dist = dist
                     y = self.y_[j]
             y_pred[i] = y
 
@@ -106,6 +106,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        y_pred = (y_pred==y)
+        y_pred = (y_pred == y)
 
-        return y_pred.sum()/len(y)
+        return y_pred.sum() / len(y)
