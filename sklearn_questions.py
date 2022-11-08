@@ -29,26 +29,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-
-        '''Fit the OneNearest Neighbor instance with the data
+        """Fit the OneNearest Neighbor instance with the data.
 
         Parameters
         ----------
-        X: training points
-        y: training targets
+        X : ndarray of shape (n_samples, n_features)
+            Training points.
+        y : ndarray of shape (n_samples, )
+            Training targets.
 
         Returns
         ----------
         Nothing to return.
         Updates the classes with the possible target values.
-        '''
-
+        """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -60,18 +60,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-
-        '''Predict the output associated with input points
+        """Predict the output associated with input points.
 
         Parameters
         ----------
-        X: points whose target value is to predict
+        X : ndarray of shape (n_samples, n_features)
+            Points whose target value is to predict.
 
         Returns
         ----------
-        y_pred: predictions associated with the points
-        '''
-
+        y_pred : ndarray of shape (n_samples, )
+            Predictions associated with the points.
+        """
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -88,19 +88,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-
-        '''Computes the score associated with a prediction
+        """Compute the score associated with a prediction.
 
         Parameters
         ----------
-        X: points of test dataset
-        y: outputs of test dataset
+        X : ndarray of shape (n_samples, n_features)
+            Points of test dataset.
+        y : ndarray of shape (n_samples, )
+            Outputs of test dataset.
 
         Returns
         ----------
-        score: mean accuracy of predictions
-        '''
-
+        score : float
+            Mean accuracy of predictions.
+        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
