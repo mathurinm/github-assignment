@@ -1,40 +1,60 @@
-"""Assignment - using numpy and making a PR.
-
-The goals of this assignment are:
-    * Use numpy in practice with two easy exercises.
-    * Use automated tools to validate the code (`pytest` and `flake8`)
-    * Submit a Pull-Request on github to practice `git`.
-
-This will be enforced with `flake8`. You can check that there is no flake8
-errors by calling `flake8` at the root of the repo.
-"""
-
 import numpy as np
 
-def max_index(X):
-    """"
-    ValueError
+
+def max_index(X):  
+    """"Return the index of the maximum in a numpy array.
+    
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array.
+        
+    Returns
+    -------
+    (i, j) : tuple(int)
+        The row and columnd index of the maximum.
+    
+    Raises
+    ------
+    ValueError  
         If the input is not a numpy error or
-        if the shape is not 2D.
+        if the shape is not 2D.  
     """  
+    # Value error if the data is not a numpy 
     if type(X).__module__ != np.__name__: 
         print("error, the data is not a numpy")
-        pass
-    elif X.shape != 2: 
+        pass  
+    
+    
+    # Value error if the shape is not 2D. 
+    elif X.shape != 2:
         print("error, the shape must be 2D")
-        pass
+        pass  
+
+
     else:
-    #  The row and columnd index of the maximum.
+        # The row and column index of the maximum
         i = np.argmax(X, axis=0)
         j = np.argmax(X, axis=1)
+
 
     return i, j
 
 
 def wallis_product(n_terms):
+    """Implement the Wallis product to compute an approximation of pi.
+    
+    Parameters
+    ----------
+    n_terms : int
+        Number of steps in the Wallis product. 
+        Note that `n_terms=0` will consider the product to be `1`.
+    Returns
+    -------
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
+    """
     wallis = 1
     for i in range(n_terms + 1):
         wallis = wallis * (4 * i ** 2 / (4 * i ** 2 - 1))
     return wallis * 2
-
-#flake8
