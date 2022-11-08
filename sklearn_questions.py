@@ -31,58 +31,50 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
-
+    """OneNearestNeighbor classifier."""
+        
     def __init__(self):  # noqa: D107
-        """ Initialize class """
+        """Initialize class."""
         pass
 
     def fit(self, X, y):
-        """Fits the OneNearestNeighbor classifier
+        """Fit the OneNearestNeighbor classifier.
 
-        Args:
+        Args :
             X, np array : Training data.
             y, np array: Target values.
 
-        Returns:
+        Returns :
             self : OneNearestNeighbor
-                The fitted OneNearestNeighbor classifier.
+            The fitted OneNearestNeighbor classifier.
 
-        Errors:
-            ValueError : if X and y don't have corresponding shapes
+        Errors :
+            ValueError : if X and y don't have corresponding shapes.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.X_train_ = X
-        self.y_train_ = y 
+        self.y_train_ = y
         self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Predicts the class of a new data
+        """Predict the class of a new data.
 
         Args :
-            X : np array with features and samples
-
-        Returns : 
+            X : np array with features and samples.
+        Returns :
             The closest point, thus predicting the class since\
-            it is a 1NN model
+            it is a 1NN model.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-        return self.y_train_[np.argmin(euclidean_distances(X, self.X_train_), axis = 1)]
+        return self.y_train_[np.argmin(
+            euclidean_distances(X, self.X_train_), axis=1)]
 
     def score(self, X, y):
-        """
-        Returns the score of the classification e.g. the number of \
-        samples correctly classified in average
-        """
+        """Return the average the number of samples correctly classified."""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
