@@ -15,7 +15,6 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-from multiprocessing.sharedctypes import Value
 import numpy as np
 
 
@@ -42,7 +41,8 @@ def max_index(X):
         max_i = 0
         max_j = 0
 
-        n, m = X.shape
+        n, m = np.shape(X)
+
 
         maximum = X[0, 0]
 
@@ -53,8 +53,10 @@ def max_index(X):
                     max_i = i
                     max_j = j
         return max_i, max_j
-    except:
+    except AttributeError:
         raise ValueError
+    
+
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -76,6 +78,6 @@ def wallis_product(n_terms):
     prod = 2
 
     for n in range(1, n_terms + 1):
-        prod *=  4 * n**2 / (4 * n**2 - 1)
+        prod *= 4 * n**2 / (4 * n**2 - 1)
     
     return prod
