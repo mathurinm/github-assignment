@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import euclidean_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,39 +36,88 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the One Nearest Neighbor classifier
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The train data
+        
+        y : array of shape (n_samples, 1)
+            The target values
+
+        Returns
+        -------
+        self : the classifier fitted
+
+        Raises
+        ------
+        ValueError
+            If X is not 2D
+            If X is empty
+            If X contains infinite values
+            If y is not 1D
+            If y contains missing values or infinite values
+            If the size of X and y doesn't match
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_train_ = X
+        self.y_train_ = y
 
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Use the One Nearest Neighbor to make the prediction
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data
+
+        Returns
+        -------
+        y_pred : ndarray of shape(n_samples, 1)
+                The predicted data
+
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        distance = euclidean_distances(X, self.X_train_)
+        shorter_distance = np.argmin(distance, axis=1)
+        y_pred =  self.y_train_[shorter_distance]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Get the score of the prediction, compared to real data
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data
+        
+        y : ndarray of shape (n_samples, 1)
+            The true value for the test data
+
+        Returns
+        -------
+        Score : the accuracy score of the prediction y_pred, compared to the real data y
+
+        Raises
+        -------
+        ValueError
+            If X is not 2D
+            If X is empty
+            If X contains infinite values
+            If y is not 1D
+            If y contains missing values or infinite values
+            If the size of X and y doesn't match
         """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        score = accuracy_score(y_pred, y)
 
-        # XXX fix
-        return y_pred.sum()
+        return score
