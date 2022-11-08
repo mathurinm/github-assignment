@@ -25,14 +25,14 @@ def max_index(X):
         print("error, the data is not a numpy")
         raise ValueError
     # Value error if the shape is not 2D.
-    elif X.shape != 2:
+    elif len(X.shape) != 2:
         print("error, the shape must be 2D")
         raise ValueError
     # The row and column index of the maximum
     else:
         global i, j
         i, j = np.unravel_index(X.argmax(), X.shape)
-    return i, j
+    return j, i
 
 
 def wallis_product(n_terms):
@@ -52,8 +52,10 @@ def wallis_product(n_terms):
         pi = 1
     
     else:
-        wallis = 2
-        for k in range(n_terms+1):
-            wallis = wallis * (4 * k**2 / (4 * k**2 - 1))
-        pi = wallis * 2
+        wallis = 1
+        pi = 1
+        for k in range(n_terms + 1):
+            wallis = 4 * k**2 / (4 * k**2 - 1)
+            pi = wallis * pi
+        pi = pi * 2
     return pi
