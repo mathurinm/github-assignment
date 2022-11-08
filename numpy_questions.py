@@ -21,7 +21,7 @@ def max_index(X):
         if the shape is not 2D.
     """
     # Value error if the data is not a numpy
-    if type(X).__module__ != np.__name__:
+    if not isinstance(X, np.ndarray):
         print("error, the data is not a numpy")
         raise ValueError
     # Value error if the shape is not 2D.
