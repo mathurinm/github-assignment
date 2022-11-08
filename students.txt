@@ -65,3 +65,4 @@ Kaan,Çaylan X
 Hadrien,Strichard
 Sylvain,Combettes
 Harshit,Shangari X
+Guillaume Plassais X
