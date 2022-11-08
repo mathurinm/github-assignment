@@ -25,13 +25,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
- 
         return self
 
     def predict(self, X):
         """
         We want to access the class y for an input array X.
-        
+
         X : input array (n, m)
         Y_pred : output array (n, ), prediction of classes for each X
         """
