@@ -80,7 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         for i in range(len(X)):
-            distances = np.linalg.norm(self.X_ - X[i], axis = 1)
+            distances = np.linalg.norm(self.X_ - X[i], axis=1)
             minimum_coordinate = np.min(np.argmin(distances))
             y_pred[i] = self.y_[minimum_coordinate]
         return y_pred
