@@ -37,22 +37,23 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    try:
-        i_max = 0
-        j_max = 0
-        n, m = np.shape(X)
-
-        maximum = X[0, 0]
-
-        for i in range(n):
-            for j in range(m):
-                if X[i, j] > maximum:
-                    maximum = X[i, j]
-                    i_max = i
-                    j_max = j
-        return i_max, j_max
-    except AttributeError:
+    if not isinstance(X, np.ndarray):
         raise ValueError
+    if X.ndim < 2:
+        raise ValueError
+    i_max = 0
+    j_max = 0
+    n, m = np.shape(X)
+
+    maximum = X[0, 0]
+
+    for i in range(n):
+        for j in range(m):
+            if X[i, j] > maximum:
+                maximum = X[i, j]
+                i_max = i
+                j_max = j
+    return i_max, j_max
 
 
 def wallis_product(n_terms):
