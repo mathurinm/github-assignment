@@ -15,13 +15,17 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-
 import numpy as np
 
 def max_index(X):
-
-    i = np.argmax(np.max(X, axis=0))
-    j = np.argmax(np.max(X, axis=1))
+    
+    if type(X) is not np.ndarray:
+        raise ValueError('Not an array')
+    elif len(np.shape(X)) != 2:
+        raise ValueError('Not a 2D array')
+    else:
+        i = np.argmax(np.max(X, axis=0))
+        j = np.argmax(np.max(X, axis=1))
 
     return i, j
 
