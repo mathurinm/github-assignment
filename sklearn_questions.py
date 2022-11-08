@@ -1,3 +1,5 @@
+"""Assignment - making a sklearn estimator.
+"""
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin

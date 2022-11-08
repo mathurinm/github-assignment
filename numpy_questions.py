@@ -1,3 +1,5 @@
+"""Assignment - using numpy and making a PR.
+"""
 import numpy as np
 
 
