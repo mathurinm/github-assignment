@@ -32,7 +32,7 @@ from sklearn.metrics import accuracy_score
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
-        
+
     def __init__(self):  # noqa: D107
         """Initialize class."""
         pass
