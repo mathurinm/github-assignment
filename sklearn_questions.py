@@ -86,8 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
         distance = euclidean_distances(X, self.X_train_)
         shorter_distance = np.argmin(distance, axis=1)
-        y_pred = self.y_train_[shorter_distance]
-        return y_pred
+        return self.y_train_[shorter_distance]
 
     def score(self, X, y):
         """Get the score of the prediction, compared to real data.
