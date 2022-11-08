@@ -37,8 +37,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-
         """Set the training and classifier label data from the dataset.
+
         Parameters
         ----------
         X : Training data
@@ -58,8 +58,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-
         """Predicts the class labels by choosing the label of the closest one.
+
         Parameters
         ----------
         X : Test data
@@ -85,8 +85,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-
         """Display the prediction accuracy.
+
         Parameters
         ----------
         X : Test data
@@ -103,12 +103,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return accuracy
 
     def euclidean_distance(self, p1, p2):
-
         """Calculate euclidean distance between 2 data points.
+
         Parameters
         ----------
         p1 : 1st data point
         p2 : 1st data point
+
         Returns
         -------
         distance : euclidean distance
