@@ -19,7 +19,9 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
+from scipy import stats
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
@@ -35,21 +37,34 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Set the training and classifier label data from the dataset
+           Parameters
+           ----------
+           X : Training data
+           y : target values
+           Returns
+           -------
+           self: instance of OneNearestNeighbor
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predicts the class labels by calculating euclidean distances
+           and choosing the label of the closest one
+           Parameters
+           ----------
+           X : Test data
+           Returns
+           -------
+           y_pred: returns the nearest class label
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +72,34 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for i in range(len(X)):
+            a = X[i, :]
+            distances = [self.euclidean_distance(a, b) for b in self.X_train_]
+            sorted_d = np.argsort(distances)[:1]
+            nn = [self.y_train_[y] for y in sorted_d]
+            pred = stats.mode(nn)[0][0]
+            y_pred[i] = pred
 
         # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Gives the prediction accuracy
+           Parameters
+           ----------
+           X : Test data
+           y : test labels
+           Returns
+           -------
+           accuracy : The value in percent of amount
+           of predictions that were correctly predicted
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        accuracy = sum(y_pred == y) / len(y)
+        return accuracy
+
+    def euclidean_distance(self, p1, p2):
+        return np.sqrt(np.sum((p1 - p2) ** 2))
