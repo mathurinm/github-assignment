@@ -86,7 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
                 dist = np.linalg.norm(x - self.X_[j])
                 if dist < minimum_dist:
                     minimum_dist = dist
-                    minimum_coordinate = j 
+                    minimum_coordinate = j
             y_pred.append(self.y_[minimum_coordinate])
         return np.array(y_pred)
 
@@ -112,4 +112,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i in range(len(y_pred)):
             if (y_pred[i] - y[i] == 0):
                 score += 1
-        return score/len(y_pred)
+        return score / len(y_pred)
