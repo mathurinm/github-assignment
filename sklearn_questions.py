@@ -34,8 +34,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """
-        Parameters.
+        """Parameters.
 
         X is an array corresponding to the training data
         y is an array corresponding to the target data
