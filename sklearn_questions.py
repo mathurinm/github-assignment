@@ -38,7 +38,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-    
+
         """
         Fit the object by setting X and Y parameters.
 
