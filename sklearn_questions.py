@@ -34,11 +34,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
     def __init__(self):
-        """the self object"""
+        """Define the self object:
+        """
         pass
 
     def fit(self, X, y):
-
         """
         Fit the object by setting X and Y parameters.
 
@@ -65,9 +65,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-
         """
-        Checks fit and predicts the y values corresponding to the given X array.
+        Check fit and predict the y values corresponding to the given X array.
 
         Parameters
         ----------
@@ -94,7 +93,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-
         """
         Return the score of the prediction.
 
