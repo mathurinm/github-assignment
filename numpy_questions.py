@@ -38,7 +38,7 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    if not isinstance(X,np.ndarray):
+    if not isinstance(X, np.ndarray):
         raise ValueError
     if len(X.shape) != 2:
         raise ValueError
@@ -48,8 +48,9 @@ def max_index(X):
         indices[i] = np.argmax(X[i])
         values[i] = np.amax(X[i])
     i = np.argmax(values)
-    j = indices[i]
+    j = int(indices[i])
     return i, j
+
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -72,6 +73,6 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     if n_terms == 0:
         return 0
-    product = [(4*k**2) / (4*k**(2) - 1) for k in range(1,n_terms)]
+    product = [(4*k**2) / (4*k**(2) - 1) for k in range(1, n_terms)]
     pi = 2*math.prod(product)
     return pi
