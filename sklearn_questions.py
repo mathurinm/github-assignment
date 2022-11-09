@@ -39,22 +39,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """
-        Fit the object by setting X and Y parameters.
-
-        Parameters
-        -----------
-        X : ndarray of shape (n_samples, n_features)
-            Containing input data.
-        y : ndarray of shape (n_samples, )
-            Containing output data.
-
-        Returns
-        ----------
-        self : Object OneNearestNeighbor
-            The fitted classifier object.
-
-        """
+        "OneNearestNeighbor classifier."
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
