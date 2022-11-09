@@ -37,12 +37,12 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    # i = 0
+    # j = 0
 
     # TODO
 
-    return i, j
+    return 0, 0
 
 
 def wallis_product(n_terms):
