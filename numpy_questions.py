@@ -43,8 +43,8 @@ def max_index(X):
     if type(X) is not np.ndarray or X.ndim != 2:
         raise ValueError('Input must be a 2D Numpy array.')
 
-    for row in range(1, shape(X)[0]):
-        for col in range(1, shape(X)[1]):
+    for row in range(1, X.shape[0]):
+        for col in range(1, X.shape[1]):
             if X[row][col] > X[i][j]:
                 i = row
                 j = col
