@@ -34,6 +34,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fits the One Nearest Neighbour classifier.
+
         Parameters
         --------------------------------------
         X : ndarray containing the training data
@@ -43,7 +44,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         --------------------------------------
         self : the classifier fitted
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -65,7 +65,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------------------------------------------------
         y_pred : Array with predicted labels
         """
-
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -92,7 +91,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -----------------------------------------------
         The score of the prediction
         """
-
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
