@@ -51,6 +51,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # XXX fix
         self._y_targ = y
         self._X_tr = X
+        self.n_features_in_ = X.shape[1]
 
         return self
 
