@@ -29,27 +29,36 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit training data (store it in the class).
 
-        And describe parameters
+        And describe parameters:
+        X = training features (nd array of shape n samples, p features)
+        y = training samples (nd array of shape n samples)
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts for a point X_i the target y_k of.
 
+            the training sample X_k which is the closest to X_i
         And describe parameters
+        X = points with target values to predict (sort of a test sample)
+            -> ndarray of n samples and p features
+        Returns y_pred (ndarray of size n = predictions
+            associated with the points)
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +66,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for i in range(X.shape[0]):
 
-        # XXX fix
+            norm = np.linalg.norm(self.X_ - X[i], axis=1)
+            min_index = np.min(np.argmin(norm))
+            y_pred[i] = self.y_[min_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Check the score of the classification method.
 
-        And describe parameters
+        And describe parameters:
+        X = ndarray of size n samples, p features = test dataset
+        y = ndarray of size n samples, test target values
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = (y_pred == y).mean()
+        return score
