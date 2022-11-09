@@ -71,7 +71,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
 
         for index in range(X.shape[0]):
-
             distance = np.sum((X[index] - self.X_train_)**2, axis=1)**(1/2)
             smallest = np.argmin(distance)
             y_pred[index] = self.y_train_[smallest]
