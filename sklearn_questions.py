@@ -75,7 +75,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
         # XXX fix
         for u in range(X.shape[0]):
-            dist = np.linalg.norm(X[u] - self._X_tr, axis = 1)
+            dist = np.linalg.norm(X[u] - self._X_tr, axis=1)
             closest_neighbour = np.argmin(dist)
             y_pred[u] = self._y_targ[closest_neighbour]
 
