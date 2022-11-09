@@ -80,15 +80,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             The predicted data based on X.
         """
         check_is_fitted(self)
-        
         X = check_array(X)
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
         norms = euclidean_distances(X, self.X_)
-        min_norm = np.min(np.argmin(norms, axis=1))
+        min_norm = np.argmin(norms, axis=1)
         y_pred = self.y_[min_norm]
         
         return y_pred
