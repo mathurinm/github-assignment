@@ -31,15 +31,15 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):
+        """the self object"""
         pass
 
     def fit(self, X, y):
+    
         """
-        Description
-        -----------
         Fit the object by setting X and Y parameters.
 
         Parameters
@@ -65,9 +65,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
+
         """
-        Description
-        -----------
         Checks fit and predicts the y values corresponding to the given X array.
 
         Parameters
@@ -95,9 +94,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
+
         """
-        Description
-        -----------
         Return the score of the prediction.
 
         Parameters
