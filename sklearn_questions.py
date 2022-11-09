@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -38,18 +39,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Write docstring.
 
         And describe parameters
+
+        Input:
+         X : ndarray of shape (n_samples, n_features) containing the training data 
+         y : array of shape (n_samples,) containing the target values of the training data
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+
+        self.y_train = y
+        self.X_train = X
+        self.nb_samples = X.shape[0]
+        self.nb_features = X.shape[1]
+
         return self
 
     def predict(self, X):
         """Write docstring.
 
         And describe parameters
+
+        Input:
+         X : ndarray of shape (n_samples, n_features) containing the test data 
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +75,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+
+        for i in range(X.shape[0]):
+            dist = np.linalg.norm(self.X_train - X[i], axis=1)
+            min_dist = np.argmin(distance)
+            y_pred[i] = self.y_train[min_dist]
+
         return y_pred
 
     def score(self, X, y):
         """Write docstring.
 
         And describe parameters
+
+        Input:
+         X : ndarray of shape (n_samples, n_features) containing the test data 
+         y : array of shape (n_samples,) containing the target values of the training data
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        
+        return accuracy_score(y_pred, y)
