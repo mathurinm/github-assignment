@@ -29,27 +29,47 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Create classes for x and y and stores them.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : array of shape (n_samples, )
+            The target variable.
+
+        Returns
+        -------
+        self : object of the class OneNearestNeighbor
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.n_features_in_ = X.shape[1]
+        self.n_samples_fit_ = X.shape[0]
+
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict classes of the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        Returns
+        -------
+        y_pred : array of shape (n_samples, )
+            The prediction of the algorithm.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +78,28 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            closest = np.argmin(np.sum((X[i] - self.X_)**2, axis=1)**(1/2))
+            y_pred[i] = self.y_[closest]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the predictions with X and y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : array of shape (n_samples, )
+            The target variable.
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the prediction.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = (y == y_pred).sum() / len(y)
+        return accuracy
