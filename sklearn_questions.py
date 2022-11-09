@@ -42,7 +42,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         ------------------------------------------------
 
-        Returns 
+        Returns
 
         ------------------------------------------------
 
@@ -66,10 +66,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """
 
-        X is an array corresponding to the training data 
+        X is an array corresponding to the training data
         This is a function that predicts to which class does X belong
 
-        Return: the prediction of the class 
+        Return: the prediction of the class
 
         """
         check_is_fitted(self)
