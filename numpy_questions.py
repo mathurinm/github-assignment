@@ -41,7 +41,7 @@ def max_index(X):
     j = 0
 
     # TODO
-    if (X.any() == None):
+    if (X is None):
         raise ValueError('The input is not a numpy array')
     if (X.ndim != 2):
         raise ValueError('The shape of the input is not 2D')
@@ -81,5 +81,5 @@ def wallis_product(n_terms):
         x = 1
     else:
         for i in range(1, n_terms+1):
-            x = x * (4* i ** 2 / (4* i ** 2 - 1))
+            x = x * (4 * i ** 2 / (4 * i ** 2 - 1))
     return x*2
