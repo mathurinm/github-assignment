@@ -104,7 +104,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        score : int
+        score : float
             score of the model.
         """
         X, y = check_X_y(X, y)
