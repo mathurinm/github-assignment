@@ -31,13 +31,13 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """ Initialize the class object.
+        """Initialize the class object.
 
         Parameters
         ----------
@@ -58,23 +58,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.X_ = X
         self.y_ = y
         self.n_features_in_ = X.shape[1]
-        
+
         return self
 
     def predict(self, X):
         """Return the perdiction array.
-        
+
         Parameters
         ----------
         self : The object.
         X : ndarray of shape (n_samples, n_features)
             The input array (training data).
-            
+
         Returns
         -------
-        y_pred : The array with predicted labels of shape (n_samples, n_features).
+        y_pred : ndarray of shape (n_samples, n_features)
+                 Predicted labels.
         """
-
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -86,21 +86,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         distance = euclidean_distances(X, self.X_)
         closest_neighbor_indices = np.argmin(distance, axis=1)
         y_pred = self.y_[closest_neighbor_indices]
-        
+
         return y_pred
 
     def score(self, X, y):
         """Compute prediction score.
-        
+
         Parameters
         ----------
         self : The object.
         X : ndarray of shape (n_samples, n_features)
             The input array (training data).
-            
+
         y : ndarray of shape (n_samples, n_features)
             The expected lables (targets).
-            
+
         Returns
         -------
         score : float
@@ -111,5 +111,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         score = accuracy_score(y_pred, y)
-        
+
         return score
