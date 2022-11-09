@@ -39,10 +39,11 @@ def max_index(X):
 
     if len(X.shape) != 2:
         raise ValueError("Shape of the input is not 2-dimensional")
-         
+  
     i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
 
     return i, j
+
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
