@@ -79,7 +79,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Return the average number of samples corectly classified.
-        
+
         Args:
             X (np array of shape (n_samples, n_features)): Test samples.
             y (np array of shape (n_queries,)): Class for each test sample.
