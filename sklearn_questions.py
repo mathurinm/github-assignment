@@ -87,7 +87,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
                 if dist < min_dist:
                     min_dist = dist
                     y = self.y_train_[j]
-            y_pred[i] = y            
+            y_pred[i] = y
         # XXX fix
         return y_pred
 
@@ -109,7 +109,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
          """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)        
+        y_pred = self.predict(X)
         # XXX fix
-        #return y_pred.sum()
         return (y_pred == y).sum() / len(y)
