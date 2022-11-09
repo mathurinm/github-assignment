@@ -46,8 +46,8 @@ Elie,Douenias
 Guillaume,De Surville
 Lola,Vitrac X
 Maxime,Gasc
+Timothé,Gypteau X
 Shihan,Ye X
-Timothé,Gypteau
 Alexis,Constensoux, X
 Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines X
