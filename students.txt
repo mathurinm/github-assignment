@@ -1,56 +1,54 @@
-First name,Surname
 Camille,ObeidX
-Nazila,Sharifi Amina
+Nazila,Sharifi Amina X
 Ajouad,Akjouj
 Baptiste,BoutX
 Etienne,Du Fayet De La Tour, X
-François,Moreau
+François,Moreau X
 Gaspard,Pasqueron De Fommervault X
 Michael,Ein-Dor X
-Pierre,Collin De La Belliere
+Pierre,Collin De La Belliere X
 Samuel,Berrebi
 Tiphaine,Boutin X
-Mathurin,Massias
 Joseph,Moussa
-Arianna,More
+Arianna,More X
 João,Melo x
-Madhura Prashant,Nirale
+Madhura Prashant,Nirale X
 Maria Susanne,Stoelben X
 Xinyu,Lai X
-Thomas Philipp,Schneider
+Thomas Philipp,Schneider X
 Alvaro,Calafell X
 Mathieu,Nordin X
 Alicia,González X
-Amjad Rehan,Ibrahim
-Christophe,Thomassin
-Matthieu,Haguenauer
+Amjad Rehan,Ibrahim X
+Christophe,Thomassin X
+Matthieu,Haguenauer X
 Steve,MosesX
-Zofia,Smolen
-Elie,Cochard--Marchewka X 
-Guillaume,Plassais
+Zofia,Smolen X
+Elie,Cochard--Marchewka X
+Guillaume,Plassais X
 Anastasia,Nesterova X
-Mathieu,Péharpré X 
-Cedomir,Ljubic
+Mathieu,Péharpré X
+Cedomir,Ljubic X
 Constance,Guelluy X
 Dikens,CelajX
-Elizaveta,Barysheva
+Elizaveta,Barysheva X
 Guillaume,D'Herouville X
-Idriss,Bennis
-Kenzo,Bounegta
+Idriss,Bennis X
+Kenzo,Bounegta X
 Marie-Sophie,RichardX
-Marine,Chouraqui
+Marine,Chouraqui X
 Matthieu,Marquis--Lorber
-Nathan,Rozot
+Nathan,Rozot X
 Vincenzo,Albano X
-Alix,Laurent X 
-Diane,Paul
+Alix,Laurent X
+Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
 Lola,Vitrac X
 Maxime,Gasc
-Shihan,Ye
-Timothé,Gypteau
-Alexis,Constensoux
+Timothé,Gypteau X
+Shihan,Ye X
+Alexis,Constensoux, X
 Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines X
 Quentin,Stroobants
@@ -59,10 +57,10 @@ Lauren,Segalla X
 Tobias,Tolciu X
 Danli,Liu X
 Théophile,Lepic X
-Hicham,Janati
-Sophie,Marchal
-Kaan,Çaylan X 
+Sophie,Marchal X
+Kaan,Çaylan X
 Hadrien,Strichard
-Sylvain,Combettes
+Aristide, Gasquet X
 Harshit,Shangari X
 Mykyta,Alekseiev X
+Quentin, Stroobants X
