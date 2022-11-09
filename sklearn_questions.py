@@ -29,27 +29,51 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Return the class object initialized.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : the class object
+
+        X : n-dimmensional array of shape (n, m)
+            The input array.
+
+        y : n-dimmensional array of targets
+            The input array
+
+        Returns
+        -------
+        self : the class object initialized
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Return the y_pred.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : the class object
+
+        X : n-dimmensional array of shape (n, m)
+            The input array.
+
+        Returns
+        -------
+        y_pred : n-dimmensional array of shape (n, m)
+            An array with the predicted targets of X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,17 +81,40 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        n = X.shape[0]
+        for k in range(n):
+            difference = X[k] - self.X_
+            euclidian_distance = np.linalg.norm(difference, axis=1)
+            m = range(len(euclidian_distance))
+            i = m[euclidian_distance.tolist().index(min(euclidian_distance))]
+            y_pred[k] = self.y_[i]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy score of prediction.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : the class object
+
+        X : n-dimmensional array of shape (n, m)
+            The input array.
+
+        y : n-dimmensional array of shape (n, m)
+            The input array.
+
+        Returns
+        -------
+        final_score : floating point number
+            The accuracy score of prediction.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        score = []
+        n = y_pred.shape[0]
+        for k in range(n):
+            if y_pred[k] == y[k]:
+                score.append(1)
+        final_score = sum(score) / n
+        return final_score
