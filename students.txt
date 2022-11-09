@@ -45,7 +45,7 @@ Diane,Paul X
 Elie,Douenias
 Guillaume,De Surville
 Lola,Vitrac X
-Maxime,Gasc
+Maxime,Gasc X
 Timothé,Gypteau X
 Shihan,Ye X
 Alexis,Constensoux, X
