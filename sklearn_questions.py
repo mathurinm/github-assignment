@@ -118,4 +118,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score = accuracy_score(y_pred, y)
 
         return score
-        
