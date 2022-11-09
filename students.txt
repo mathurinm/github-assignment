@@ -21,11 +21,11 @@ Mathieu,Nordin X
 Alicia,González X
 Amjad Rehan,Ibrahim X
 Christophe,Thomassin X
-Matthieu,Haguenauer
+Matthieu,Haguenauer X
 Steve,MosesX
 Zofia,Smolen X
 Elie,Cochard--Marchewka X
-Guillaume,Plassais
+Guillaume,Plassais X
 Anastasia,Nesterova X
 Mathieu,Péharpré X
 Cedomir,Ljubic X
@@ -64,4 +64,3 @@ Aristide, Gasquet X
 Harshit,Shangari X
 Mykyta,Alekseiev X
 Quentin, Stroobants X
-Guillaume, Plassais X
