@@ -95,7 +95,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
         """
         """
-        Returns the Score of the classifier
+        Returns the score of the classifier
 
         Parameters
         ----------
