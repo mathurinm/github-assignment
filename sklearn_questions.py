@@ -28,7 +28,7 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """OneNearestNeighbor classifier"""
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -37,14 +37,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         Parameters.
 
-        ------------------------------------------------
         X is an array corresponding to the training data
         y is an array corresponding to the target data
-        ------------------------------------------------
-        Returns
-        ------------------------------------------------
-
-        An array with class labels for the training data
+       
+       Return: An array with class labels for the training data
 
         """
         X, y = check_X_y(X, y)
@@ -62,7 +58,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """
+        """Return the Prediction.
 
         X is an array corresponding to the training data
         This is a function that predicts to which class does X belong
@@ -91,7 +87,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """
+        """Return the Score.
 
         X is an array corresponding to the training data
         y is an array corresponding to the target data
