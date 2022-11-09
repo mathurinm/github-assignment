@@ -39,7 +39,7 @@ Idriss,Bennis
 Kenzo,Bounegta
 Marie-Sophie,RichardX
 Marine,Chouraqui
-Matthieu,Marquis--Lorber
+Matthieu,Marquis--Lorber X
 Nathan,Rozot
 Vincenzo,Albano
 Alix,Laurent X 
