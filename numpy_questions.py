@@ -38,7 +38,7 @@ def max_index(X):
     i = 0
     j = 0
 
-    if type(X) is not np.ndarray:
+    if isinstance(X) is not np.ndarray:
         raise ValueError('Not an array')
     elif len(X.shape) != 2:
         raise ValueError('Not a 2D array')

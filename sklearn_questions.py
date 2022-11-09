@@ -34,12 +34,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
     def __init__(self):
-        """Define the self object:
-        """
+        """OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        "OneNearestNeighbor classifier."
+        """OneNearestNeighbor classifier."""
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
