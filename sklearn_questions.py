@@ -38,16 +38,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Fit the nearest neighbor classifier.
 
         Parameters
-         ----------
-         X : ndarray of shape (n_samples, n_features)
-             The train data.
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+           The train data.
 
-         y : ndarray of shape (n_samples,)
-             The target data.
+        y : ndarray of shape (n_samples,)
+            The target data.
 
-         Returns
-         -------
-         self : the fitted neared neighbor classifier.
+        Returns
+        -------
+        self : the fitted neared neighbor classifier.
 
         """
         X, y = check_X_y(X, y)
@@ -63,14 +63,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Predict the class labels for the given test data.
 
         Parameters
-         ----------
-         X : ndarray of shape (n_samples, n_features)
-             The test data.
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data.
 
-         Returns
-         -------
-         y_pred : ndarray of shape(n_samples, )
-                 The predicted data.
+        Returns
+        -------
+        y_pred : ndarray of shape(n_samples, )
+                The predicted data.
 
         """
         check_is_fitted(self)
@@ -94,20 +94,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def score(self, X, y):
         """Return the score of the given test data and labels.
 
-         Parameters
-         ----------
-         X : ndarray of shape (n_samples, n_features)
-             The test data
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data.
 
-         y : ndarray of shape (n_samples,)
-             True labels for the test data
+        y : ndarray of shape (n_samples,)
+            True labels for the test data.
 
-         Returns
-         -------
-         score : float
-             Mean accuracy of the prediction and the real data
+        Returns
+        -------
+        score : float
+                Mean accuracy of the prediction and the real data.
 
-         """
+        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         # XXX fix
