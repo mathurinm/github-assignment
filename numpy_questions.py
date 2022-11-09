@@ -48,6 +48,7 @@ def max_index(X):
             if X[r, c]>= a:
                 i = r
                 j = c
+                a = X[r,c]
     return i, j
 
 def wallis_product(n_terms):
@@ -75,4 +76,4 @@ def wallis_product(n_terms):
     else:
         for i in range(1, n_terms+1):
             x = x* (4* i**2 / (4* i**2 - 1))
-    return x
+    return x*2
