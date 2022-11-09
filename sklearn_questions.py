@@ -26,6 +26,8 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,23 +37,41 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-
         
-        """Write docstring.
+        """
+        Parameters 
+        ----------
+        X: Training array where each row is a sample and each column is a feature
+        y: Vector containing the target feature (y has as many rows as X)
 
-        And describe parameters
+        Returns 
+        -------
+        The "fit" step is training the data we have and makes them ready to be used for our prediction
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
+        self.X_ = X
+        self.y_ = y
+        self.n_features_ = X.shape[1]
+
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
 
-        And describe parameters
+        """
+        Parameters 
+        ----------
+        X: Array containing the data for which we want to approximate the target
+
+        Returns 
+        -------
+        y_pred: The vector containing the y_k of the training sample which are the closest to 
+        the points of X
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,16 +80,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
+        distances = euclidean_distances(X, self.X_)
+
+        """ 
+        Distances contains the distances between the row vectors of X and the row vectors of our training array 
+
+        """
+
+        nearest_neighbor_indices = np.argmin(distances, axis=1)
+
+        y_pred = self.y_[nearest_neighbor_indices]
+
+
+
         # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
+        """
+        Parameters 
+        ----------
+        X: Array containing the data for which we want to approximate the target
+        y: Vector containing the target feature for our training data
+
+        Returns 
+        -------
+        The proportion of points that were correctly predicted/classified
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y_pred, y) 
+        
