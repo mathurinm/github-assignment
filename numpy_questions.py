@@ -41,6 +41,8 @@ def max_index(X):
     j = 0
 
     # TODO
+    i = np.argmax(D) // X.shape[1]
+    j = np.argmax(D) % X.shape[1]-1
 
     return i, j
 
