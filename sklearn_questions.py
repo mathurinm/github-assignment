@@ -55,7 +55,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Return y_pred
+        """Return y_pred.
 
         Parameters
         -------------------------------------------------
@@ -80,7 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Return the  score
+        """Return the  score.
 
         Parameters
         -----------------------------------------------
