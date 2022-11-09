@@ -29,7 +29,9 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
+
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -38,19 +40,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Write docstring.
 
         And describe parameters
-        """
-        """
         We fit with the data X (input data), and Y(output data).
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
         Y : ndarray of shape (n_samples, )
-        
         Returns
         -------
-        self : Object OneNearestNeighbor,  Object with the data 
+        self : Object OneNearestNeighbor,  Object with the data
         """
-        X, y = check_X_y(X, y) #
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
@@ -67,12 +66,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         """
         Predicts the  classes corresponding to X.
-        
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The array we want to predict the classes
-        
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
@@ -107,7 +104,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Input data
         Y : ndarray of shape (n_samples, )
             Output data.
-        
         Returns
         -------
         score : float
@@ -118,4 +114,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         score = (y_pred == y).mean()
-        return y_pred.sum()
+        return score

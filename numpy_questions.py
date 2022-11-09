@@ -70,8 +70,7 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    arr = np.arange(1, n_terms)
-    halfpi_approx = 1
-    for k in arr:
-        halfpi_approx = halfpi_approx * 4 * (k ** 2)/(4 * (k ** 2) - 1)
-    return 2 * halfpi_approx
+    prod = 1
+    for k in range(1, n_terms+1):
+        prod = prod * 4 * (k ** 2) / (4 * k ** 2 - 1)
+    return 2 * prod
