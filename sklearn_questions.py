@@ -1,4 +1,5 @@
 """Assignment - making a sklearn estimator.
+
 The goal of this assignment is to implement by yourself a scikit-learn
 estimator for the OneNearestNeighbor and check that it is working properly.
 The nearest neighbor classifier predicts for a point X_i the target y_k of
@@ -15,6 +16,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -34,16 +36,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def fit(self, X, y):
         """
         Parameters
-
+        
         ------------------------------------------------
-
         X is an array corresponding to the training data
         y is an array corresponding to the target data
-
         ------------------------------------------------
-
         Returns
-
         ------------------------------------------------
 
         An array with class labels for the training data
