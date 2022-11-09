@@ -28,11 +28,10 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics import euclidean_distances, accuracy_score
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
         pass
 
     def fit(self, X, y):
@@ -45,7 +44,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -----------
         X : ndarray of shape (n_samples, n_features)
             Containing input data.
-        Y : ndarray of shape (n_samples, )
+        y : ndarray of shape (n_samples, )
             Containing output data.
             
         Returns
@@ -57,7 +56,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        
         self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
@@ -68,7 +66,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         Description
         -----------
-        Predict the y values corresponding to the given X array.
+        Checks fit and predicts the y values corresponding to the given X array.
 
         Parameters
         ----------
@@ -81,17 +79,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             The predicted data based on X.
         """
         check_is_fitted(self)
+        
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        for i in np.arange(0, len(X), 1):
-            
-            norms = euclidean_distances(X, self.X_)
-            minimum = np.min(np.argmin(norms))
-            y_pred[i] = self.y_[minimum]
+        norms = euclidean_distances(X, self.X_)
+        min_norm = np.min(np.argmin(norms, axis=1))
+        y_pred = self.y_[min_norm]
         
         return y_pred
 
@@ -115,5 +108,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        score = (y_pred == y).mean()
+        score = accuracy_score(y_pred, y)
         return score

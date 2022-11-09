@@ -29,11 +29,11 @@ def max_index(X):
 
 def wallis_product(n_terms):
 
-    pi = 2
+    pi = 1
     
     if n_terms == 0:
-        return 2.0
+        pi = 2.0
     else:
         for i in range(1, n_terms):
-            pi = pi * (4 * (i**2)) / ((4 * (i**2)) - 1)
-        return pi
+            pi = 2 * pi * (4 * (i**2)) / ((4 * (i**2)) - 1)
+    return pi
