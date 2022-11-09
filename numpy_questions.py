@@ -72,4 +72,4 @@ def wallis_product(n_terms):
     prod_2 = np.prod(L / (L+1))
     pi = 2*prod_1*prod_2
 
-    return pi 
+    return pi
