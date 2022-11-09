@@ -23,51 +23,65 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
+from sklearn.metrics import pairwise_distances
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """This class fits an OneNearestNeighbor model."""
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
+        """Initiate the class object."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the model based on the inputted data.
 
-        And describe parameters
+        Args:
+            self : The class object
+            X : The covariates of the data
+            y : The class or target variables of the data
+
+        Returns:
+            self : The class object, now fitted.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
-    def predict(self, X):
-        """Write docstring.
+    def predict(self, xs):
+        """Predicts the classes of a vector of observations.
 
-        And describe parameters
+        Args:
+            self : The class object (who must be already fitted)
+            xs : an array of observations to predict
+
+        Returns:
+            np.array : the predicted array of classes
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
-        return y_pred
+        distances = pairwise_distances(self.X_, xs)
+        indexes = np.argsort(distances, axis=0)[0, :]
+        return self.y_[indexes]
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy of the model.
 
-        And describe parameters
+        Args:
+            self : The class object
+            X : The covariates of our data
+            y : the class variable of our data
+
+        Returns :
+            float : The accuracy of our model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        test = sum(x == y for x, y in zip(y_pred, y))
+        return test/len(y)
