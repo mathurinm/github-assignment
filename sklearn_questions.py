@@ -36,7 +36,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Fits the One Nearest Neighbour classifier.
         Parameters
         --------------------------------------
-        X : Array containing the training data
+        X : ndarray containing the training data
         y : array containing the target values
 
         Returns
@@ -60,7 +60,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         -------------------------------------------------
-        X :Array containing the input data
+        X : ndarray containing the input data
 
         Returns
         -------------------------------------------------
@@ -90,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         -----------------------------------------------
-        X: Array containing the input data
+        X: ndarray containing the input data
         y: The array with predicted labels
 
         Returns
