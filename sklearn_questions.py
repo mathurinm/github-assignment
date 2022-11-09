@@ -27,7 +27,6 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
@@ -35,22 +34,36 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Group the points of X depending on their target.
 
-        And describe parameters
+        Input:
+        X : 2D array whose first dimension is the number of points, the second is the number of features
+        y : 1D array with the associated tagets
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.data_ = (X,y)
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
+        Give the prediction associated to the training point with the smallest euclidian distance.
+
+        Output:
+        y : 1D array containing the preedictions
+
+
+        Input:
+        Fitted model (self)
+        X : 2D array whose first dimension is the number of points, the second is the number of features
+        """
+
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -58,16 +71,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        train, targets = self.data_
+
+
+        for i in range(len(X)):
+            x = X[i]
+            normes = np.linalg.norm(train - x, axis=1)
+
+            k = np.min(np.argmin(normes))
+
+            y_pred[i] = targets[k]
+
         return y_pred
 
-    def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
+    def score(self, X, y):
+        """
+        Compare line by line the difference between the prediction and the actual values, and calculates the average.
+
+        Input:
+        X : 2D array whose first dimension is the number of points, the second is the number of features
+        y : 1D array with the associated taget
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
+        y_pred = np.equal(y_pred, y)
+        n = len(y_pred)
         # XXX fix
-        return y_pred.sum()
+        return (y_pred.sum()/n)
+
