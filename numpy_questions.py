@@ -34,7 +34,6 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
     if isinstance(X, np.ndarray) is False:
         raise ValueError("Input is not an Array")
 
@@ -58,9 +57,10 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
+
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
     result = 1
     for count in range(2, 2*(n_terms+1), 2):
         result *= ((count*count)/((count-1)*(count+1)))
-    return 2*result
+    return 2 * result
