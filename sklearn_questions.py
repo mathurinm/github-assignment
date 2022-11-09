@@ -30,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -95,7 +95,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return accuracy_score
 
     def mode(self, labels):
+        """Returns the  most commonly occured value."""
         return Counter(labels).most_common(1)[0][0]
 
     def euclid_distance(self, point1, point2):
+        """Returns the euclidean distance between two points."""
         return np.sqrt(np.sum((point1 - point2) ** 2))
