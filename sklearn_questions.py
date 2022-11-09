@@ -39,7 +39,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         X is an array corresponding to the training data
         y is an array corresponding to the target data
-       
+
        Return: An array with class labels for the training data
 
         """
