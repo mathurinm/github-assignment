@@ -26,7 +26,7 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -43,6 +43,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         --------------------------------------
         self : the classifier fitted
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -94,6 +95,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -----------------------------------------------
         The score of the prediction
         """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
