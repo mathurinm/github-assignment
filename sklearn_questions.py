@@ -27,8 +27,9 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -38,7 +39,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Group the points of X depending on their target.
 
         Input:
-        X : 2D array whose first dimension is the number of points, the second is the number of features
+        X : 2D array whose first dimension is the number of points,
+            the second is the number of features
         y : 1D array with the associated tagets
 
         """
@@ -46,14 +48,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        self.data_ = (X,y)
+        self.data_ = (X, y)
         self.n_features_in_ = X.shape[1]
 
         return self
 
     def predict(self, X):
         """
-        Give the prediction associated to the training point with the smallest euclidian distance.
+        Give the prediction associated to the closest training point.
 
         Output:
         y : 1D array containing the preedictions
@@ -61,9 +63,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Input:
         Fitted model (self)
-        X : 2D array whose first dimension is the number of points, the second is the number of features
+        X : 2D array whose first dimension is the number of points,
+            the second is the number of features
         """
-
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -73,24 +75,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         train, targets = self.data_
 
-
         for i in range(len(X)):
             x = X[i]
             normes = np.linalg.norm(train - x, axis=1)
-
             k = np.min(np.argmin(normes))
-
             y_pred[i] = targets[k]
 
         return y_pred
 
-
     def score(self, X, y):
         """
-        Compare line by line the difference between the prediction and the actual values, and calculates the average.
+        Calculate average error between predictions and reality.
 
         Input:
-        X : 2D array whose first dimension is the number of points, the second is the number of features
+        X : 2D array whose first dimension is the number of points,
+            the second is the number of features
         y : 1D array with the associated taget
         """
         X, y = check_X_y(X, y)
@@ -98,6 +97,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         y_pred = np.equal(y_pred, y)
         n = len(y_pred)
-        # XXX fix
         return (y_pred.sum()/n)
-
