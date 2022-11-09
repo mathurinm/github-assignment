@@ -20,6 +20,7 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
+from collections import Counter
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
@@ -35,21 +36,28 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the nearest neighbor classifier from the training dataset.
 
-        And describe parameters
+        Parameters :
+        X : Training data (ndarray of shape (n_samples, n_features))
+        Y : Target values (array-like of shape (n_samples,) or
+        (n_samples, n_targets))
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters:
+        X : Test samples
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +67,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        for index, element in enumerate(X):
+            distance_list = []
+            nearest_neighbour = []
+            for x in self.X_train_:
+                distance = self.euclid_distance(element, x)
+                distance_list.append(distance)
+            sorted_list = np.argsort(distance_list)[:1]
+            for sort_distance in sorted_list:
+                nearest_neighbour.append(self.y_train_[sort_distance])
+            pred = self.mode(nearest_neighbour)
+            y_pred[index] = pred
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters :
+        X : Test samples
+        y : True labels for X
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        accuracy_score = (y_pred == y).sum() / len(y)
+        return accuracy_score
+
+    def mode(self, labels):
+        return Counter(labels).most_common(1)[0][0]
+
+    def euclid_distance(self, point1, point2):
+        return np.sqrt(np.sum((point1 - point2) ** 2))
