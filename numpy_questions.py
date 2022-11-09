@@ -69,7 +69,7 @@ def wallis_product(n_terms):
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
 
-       if n_terms == 0:
+        if n_terms == 0:
             result = 1
         else:
             result = 1
