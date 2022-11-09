@@ -80,7 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             nn_index = np.argmin(neighbors)
             nn_indexes.append(nn_index)
 
-        y_pred = [self.y_[_] for _ in nn_indexes]
+        y_pred = np.array([self.y_[_] for _ in nn_indexes])
         return y_pred
 
     def score(self, X, y):
