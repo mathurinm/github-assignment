@@ -80,9 +80,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # XXX fix
 
         for i in range(X.shape[0]):
-            dist = np.linalg.norm(self.X_train - X[i], axis=1)
+            dist = np.linalg.norm(self._X_train - X[i], axis=1)
             min_dist = np.argmin(dist)
-            y_pred[i] = self.y_train[min_dist]
+            y_pred[i] = self._y_train[min_dist]
 
         return y_pred
 
