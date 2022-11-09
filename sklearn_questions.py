@@ -49,7 +49,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
          -------
          self : the fitted neared neighbor classifier
 
-        
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -81,23 +80,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        
-        
+ 
         for i in range(len(X)):
-            y = self.y_[0]
+            y = self.y_train_[0]
             min_dist = np.inf
             for j in range(len(self.X_)):
                 dist = np.linalg.norm(X[i, :]-self.X_[j, :])
                 if dist < min_dist:
                     min_dist = dist
-                    y = self.y_[j]
+                    y = self.y_train_[j]
             y_pred[i] = y
 
-
-
         # XXX fix
-
         return y_pred
 
     def score(self, X, y):
