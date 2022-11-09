@@ -35,21 +35,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the One nearest neighbor estimator from the training dataset.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D array of shape (samples, features)
+            Training sample.
+        y : 1D array of shape (samples)
+            Target of the training sample.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X = X
+        self.y = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target for the provided data X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D array of shape (samples, features)
+            Testing sample.
+
+        Returns
+        -------
+        y_pred : 1D array of shape (samples)
+            Predicted target of the testing sample.
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +74,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        nn_indexes = []
+        for k in range(len(X)):
+            neighbors = [np.linalg.norm(i) for i in np.array(self.X) - X[k]]
+            nn_index = np.argmin(neighbors)
+            nn_indexes.append(nn_index)
+
+        y_pred = [self.y[_] for _ in nn_indexes]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D array of shape (samples, features)
+            Testing sample.
+        y : 1D array of shape (samples)
+            Real target of the testing sample.
+
+        Returns
+        -------
+        y_pred.sum() : float
+            Mean accuracy on the given test data and labels
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
+        y_pred = np.equal(y, y_pred) / len(y)
         return y_pred.sum()
