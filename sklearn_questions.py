@@ -82,7 +82,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
         # XXX fix
         for i in np.arange(0, len(X), 1):
             proximity = np.linalg.norm(self.X_ - X[i], axis=1)
