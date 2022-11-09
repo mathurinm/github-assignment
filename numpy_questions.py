@@ -42,7 +42,7 @@ def max_index(X):
     if len(X.shape) != 2:
         raise ValueError("Shape of the input is not 2-dimensional")
          
-    i, j = np.unravel_index(np.argmax(a, axis=None), a.shape)
+    i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
 
     return i, j
 
