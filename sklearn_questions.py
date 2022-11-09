@@ -30,7 +30,6 @@ from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.metrics import accuracy_score
 
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 

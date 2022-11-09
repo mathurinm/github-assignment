@@ -17,8 +17,8 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
-def max_index(X):
 
+def max_index(X):
 
     i = 0
     j = 0
@@ -40,3 +40,4 @@ def wallis_product(n_terms):
         pi *= (4 * k ** 2) / (4 * k ** 2 - 1)
 
     return pi
+    
