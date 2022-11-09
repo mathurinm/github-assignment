@@ -49,7 +49,7 @@ def max_index(X):
     loc_max = X[0][0]
     for x in range(X.shape[0]):
         for y in range(X.shape[1]):
-            if arr2D[x][y] > loc_max:
+            if X[x][y] > loc_max:
                 loc_max = X[x][y]
                 i = x
                 j = y
@@ -74,8 +74,7 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
+
     product = 1.
     for i in range(1, n_terms+1):
         product = product * 4 * (i ** 2) / (4 * (i ** 2) - 1)
