@@ -40,10 +40,11 @@ def max_index(X):
     i = 0
     j = 0
 
-    result = np.where(X == np.amax(X))
-    listOfCordinates = list(zip(result[0], result[1]))
-    for cord in listOfCordinates:
-        i, j = cord
+    if len(np.shape(X)) != 2:
+        raise ValueError("input is not a 2D array")
+    if type(X) != np.ndarray:
+        raise ValueError("input is not a numpy array")
+    i, j = np.unravel_index(np.argmax(X, axis=None), X.shape)
 
     return i, j
 
@@ -65,12 +66,10 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    pi = 0.0
 
-    for i in range(n_terms):
-        left = (2 * i)/(2 * i - 1)
-        right = (2 * i)/(2 * i + 1)
-        tot = left * right
-        pi = pi + tot
+    L = 2*np.arange(1, n_terms + 1)
+    prod_1 = np.prod(L / (L-1))
+    prod_2 = np.prod(L / (L+1))
+    pi = 2*prod_1*prod_2
 
-    return 2*pi
+    return pi 
