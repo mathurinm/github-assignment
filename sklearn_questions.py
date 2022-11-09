@@ -40,7 +40,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X : ndarray containing the training data
         y : array containing the target values
 
-        Returns
+        Return
         --------------------------------------
         self : the classifier fitted
         """
@@ -55,13 +55,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Returns y_pred
+        """Return y_pred
 
         Parameters
         -------------------------------------------------
         X : ndarray containing the input data
 
-        Returns
+        Return
         -------------------------------------------------
         y_pred : Array with predicted labels
         """
@@ -80,14 +80,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Returns the  score
+        """Return the  score
 
         Parameters
         -----------------------------------------------
         X: ndarray containing the input data
         y: The array with predicted labels
 
-        Returns
+        Return
         -----------------------------------------------
         The score of the prediction
         """
