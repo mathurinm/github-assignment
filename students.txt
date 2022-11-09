@@ -49,7 +49,7 @@ Guillaume,De Surville
 Lola,Vitrac X
 Maxime,Gasc
 Shihan,Ye
-Timothé,Gypteau X
+Timothé,GypteauX
 Alexis,Constensoux
 Aristide,Gasquet
 Octave,Cheval De Baynast De Septfontaines
