@@ -28,10 +28,6 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-def euclidean_dist(X1, X2):
-    return np.sqrt(np.sum((X1 - X2)**2))
-
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
@@ -71,7 +67,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         distances = np.zeros((X.shape[0], self.X_train_.shape[0]))
         for i in range(X.shape[0]):
             for j in range(self.X_train_.shape[0]):
-                distances[i, j] = euclidean_dist(X[i, :], self.X_train_[j, :])
+
+                distance_pre_norm = (X[i, :] - self.X_train_[j, :])**2
+                distances[i, j] = np.sqrt(np.sum(distance_pre_norm))
 
         nearest_indices = np.argmin(distances, axis=1)
         predictions = self.y_train_[nearest_indices]
