@@ -41,8 +41,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
 
         Input:
-         X : ndarray of shape (n_samples, n_features) containing the training data 
-         y : array of shape (n_samples,) containing the target values of the training data
+         X : ndarray of shape (n_samples, n_features)
+             containing the training data 
+         y : array of shape (n_samples,)
+             containing the target values of the training data
 
         """
         X, y = check_X_y(X, y)
@@ -64,7 +66,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
 
         Input:
-         X : ndarray of shape (n_samples, n_features) containing the test data 
+         X : ndarray of shape (n_samples, n_features)
+             containing the test data 
 
         """
         check_is_fitted(self)
@@ -89,13 +92,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
 
         Input:
-         X : ndarray of shape (n_samples, n_features) containing the test data 
-         y : array of shape (n_samples,) containing the target values of the training data
+         X : ndarray of shape (n_samples, n_features)
+             containing the test data 
+         y : array of shape (n_samples,) 
+             containing the target values of the training data
 
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        
+
         return accuracy_score(y_pred, y)
