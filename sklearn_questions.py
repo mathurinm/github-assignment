@@ -1,5 +1,5 @@
 """Assignment - making a sklearn estimator.
--
+
 The goal of this assignment is to implement by yourself a scikit-learn
 estimator for the OneNearestNeighbor and check that it is working properly.
 -
@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         """Initialize class."""
@@ -37,6 +37,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier from the training dataset.
+
         Args:
             X (np array of shape (n_samples, n_features)): Training data.
             y (np array of shape (n_samples, 1)): Target values.
@@ -56,6 +57,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict the class labels for the provided data.
+
         Args:
             X (np array of shape (n_samples, n_features)): Test samples.
         Returns:
@@ -77,6 +79,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Return the average number of samples corectly classified.
+        
         Args:
             X (np array of shape (n_samples, n_features)): Test samples.
             y (np array of shape (n_queries,)): Class for each test sample.
