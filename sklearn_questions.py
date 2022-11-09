@@ -22,6 +22,8 @@ for the methods you code and for the class. The docstring will be checked using
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.metrics import accuracy_score
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
@@ -35,22 +37,44 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """ Initialize the class object.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarry of shape (n_samples, n_features)
+            The input array of training data.
+        y : ndarry of shape (n_samples)
+            Target labels.
+
+        Returns
+        -------
+        self : The initialized object.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Return the perdiction array.
+        
+        Parameters
+        ----------
+        self : The object.
+        X : ndarray of shape (n_samples, n_features)
+            The input array (training data).
+            
+        Returns
+        -------
+        y_pred : The array with predicted labels of shape (n_samples, n_features).
         """
+
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -59,15 +83,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        distance = euclidean_distances(X, self.X_)
+        closest_neighbor_indices = np.argmin(distance, axis=1)
+        y_pred = self.y_[closest_neighbor_indices]
+        
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Compute prediction score.
+        
+        Parameters
+        ----------
+        self : The object.
+        X : ndarray of shape (n_samples, n_features)
+            The input array (training data).
+            
+        y : ndarray of shape (n_samples, n_features)
+            The expected lables (targets).
+            
+        Returns
+        -------
+        score : float
+            The 'score' of the accuracy of the prediction.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        score = accuracy_score(y_pred, y)
+        
+        return score
