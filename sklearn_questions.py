@@ -42,7 +42,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Input:
          X : ndarray of shape (n_samples, n_features)
-             containing the training data 
+             containing the training data
          y : array of shape (n_samples,)
              containing the target values of the training data
 
@@ -67,7 +67,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Input:
          X : ndarray of shape (n_samples, n_features)
-             containing the test data 
+             containing the test data
 
         """
         check_is_fitted(self)
@@ -93,8 +93,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Input:
          X : ndarray of shape (n_samples, n_features)
-             containing the test data 
-         y : array of shape (n_samples,) 
+             containing the test data
+         y : array of shape (n_samples,)
              containing the target values of the training data
 
         """
