@@ -18,10 +18,10 @@ errors by calling `flake8` at the root of the repo.
 import numpy as np
 
 def max_index(X):
-    
+
     i = 0
     j = 0
-    
+
     if type(X) is not np.ndarray:
         raise ValueError('Not an array')
     elif len(X.shape) != 2:
@@ -35,6 +35,6 @@ def wallis_product(n_terms):
     pi = 2
 
     for k in np.arange(1, n_terms + 1):
-        pi *= (4 * k ** 2)  / (4 * k ** 2 - 1)
-        
-    return pi 
+        pi *= (4 * k ** 2) / (4 * k ** 2 - 1)
+
+    return pi

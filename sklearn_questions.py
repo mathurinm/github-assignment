@@ -29,6 +29,8 @@ from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.metrics import accuracy_score
 
+
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
@@ -40,19 +42,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Description
         -----------
         Fit the object by setting X and Y parameters.
-        
+
         Parameters
         -----------
         X : ndarray of shape (n_samples, n_features)
             Containing input data.
         y : ndarray of shape (n_samples, )
             Containing output data.
-            
+
         Returns
         ----------
         self : Object OneNearestNeighbor
             The fitted classifier object.
-            
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -60,7 +62,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
-        
+
         return self
 
     def predict(self, X):
@@ -73,7 +75,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input data.
-            
+
         Returns
         -------
         y_pred : ndarray of shape (n_samples, )
@@ -83,14 +85,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
 
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape = len(X), fill_value=self.classes_[0],
+            dtype = self.classes_.dtype
         )
 
         norms = euclidean_distances(X, self.X_)
         min_norm = np.argmin(norms, axis=1)
         y_pred = self.y_[min_norm]
-        
+
         return y_pred
 
     def score(self, X, y):
@@ -98,14 +100,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Description
         -----------
         Return the score of the prediction.
-        
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input data.
         Y : ndarray of shape (n_samples, )
             The output data.
-            
+
         Returns
         -------
         score : float
