@@ -77,4 +77,4 @@ def wallis_product(n_terms):
         for i in range(n_terms):
             result *= (4 * i**2) / (4 * i**2 - 1)
 
-    return 2**result
+    return 2*result
