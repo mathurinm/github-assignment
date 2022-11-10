@@ -29,45 +29,88 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Store training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        self
+
+        X : ndarray of shape (n_train_rows, n_features)
+            X_train data
+
+        y : ndarray of shape (n_train_rows, )
+            y_train data;
+
+        Returns
+        -------
+        self
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = self.X_.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Make predictions using one nearest neighboor.
 
-        And describe parameters
+        Calculate euclidean distances for each X_test datapoint
+        with each X_train data point and choose the index of the
+        data point which has the smallest euclidean distance and
+        uses it's index to make the prediction of the corresponding
+        y_train data point
+
+        Parameters
+        ----------
+        self
+
+        X :  ndarray of shape (n_test_rows, n_features)
+            X_test data;
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_test_rows, )
+            y predictions for given X_test data;
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = []
 
-        # XXX fix
-        return y_pred
+        for i in X:
+            euc_dis = np.linalg.norm(self.X_ - i, axis=1)
+            y_pred.append(self.y_[euc_dis.tolist().index(min(euc_dis))])
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate  accuracy of predictions.
 
-        And describe parameters
+        Calculate proportion of correct y_pred.
+
+        Parameters
+        ----------
+        self
+
+        X : ndarray of shape (n_test_rows, n_features)
+            X_test data;
+
+        y : ndarray of shape (n_train_rows, )
+            y_train data;
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        accuracy = np.sum(np.equal(y, y_pred)/len(y))
+        return accuracy
