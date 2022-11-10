@@ -35,8 +35,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Fits the estimator with inputs given. It will store both inputs
-        in train_features_ and train_target_ attributes of the estimator.
+        """Fit the estimator with inputs given.
+
+        It will store both inputs in train_features_ and train_target_
+        attributes of the estimator.
 
         Parameters
         ----------
@@ -53,7 +55,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the class of X.
+        """Predict the class of X.
 
         Parameters
         ----------
@@ -81,8 +83,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Evaluates the score of the estimator regarding the inputs.
-        Precisely it computes the accuracy of the sample.
+        """Evaluate the score of the estimator regarding the inputs.
+
+        It computes the accuracy of the sample, the average good predictions.
 
         Parameters
         ----------
