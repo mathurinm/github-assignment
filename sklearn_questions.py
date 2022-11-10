@@ -26,30 +26,43 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the nearest classifier
 
-        And describe parameters
+        Args:
+            X (ndarray): ndarray representing the data in 2D.
+            y (ndarray): target values. 1D.
+
+        Returns:
+            _self_ : an object with several attributes : classes, X_train, y_train, n.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
-        # XXX fix
+        self.X_train = X
+        self.y_train = y
+        self.n = X.shape[1]
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """_summary_
 
-        And describe parameters
+        Args:
+            X (2D ndarray): 
+
+        Returns:
+            _type_: _description_
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -57,9 +70,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        
+        norm = euclidean_distances(X, self.X_train)
+        index = np.argmin(norm, axis = 1)
 
-        # XXX fix
-        return y_pred
+        return self.y_train[index]
 
     def score(self, X, y):
         """Write docstring.
@@ -68,6 +83,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        
+        #The original KNeighborsClassifier is a subclass of the 
+        # sklearn.base.ClassifierMixin. 
+        # The score method uses accuracy_score. 
+        # To match the results, we use the same method
+        return accuracy_score(y_pred, y)
