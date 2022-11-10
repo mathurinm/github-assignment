@@ -75,7 +75,9 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    if n_terms == 0 or n_terms == 1:
+    if n_terms == 0:
+        return 2.
+    if n_terms == 1:
         return 8/3
 
     else:
