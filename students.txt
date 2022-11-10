@@ -10,7 +10,33 @@ Pierre,Collin De La Belliere X
 Samuel,Berrebi
 Tiphaine,Boutin X
 Joseph,Moussa
+Arianna,More X
+João,Melo x
+Madhura Prashant,Nirale X
+Maria Susanne,Stoelben X
+Xinyu,Lai X
+Thomas Philipp,Schneider X
+Alvaro,Calafell X
+Mathieu,Nordin X
+Alicia,González X
 Amjad Rehan,Ibrahim X
+Christophe,Thomassin X
+Matthieu,Haguenauer X
+Steve,MosesX
+Zofia,Smolen X
+Elie,Cochard--Marchewka X
+Guillaume,Plassais X
+Anastasia,Nesterova X
+Mathieu,Péharpré X
+Cedomir,Ljubic X
+Constance,Guelluy X
+Dikens,CelajX
+Elizaveta,Barysheva X
+Guillaume,D'Herouville X
+Idriss,Bennis X
+Kenzo,Bounegta X
+Marie-Sophie,RichardX
+Marine,Chouraqui X
 Matthieu,Marquis--Lorber
 Nathan,Rozot X
 Vincenzo,Albano X
