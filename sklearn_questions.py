@@ -29,27 +29,35 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the estimator with inputs given. It will store both inputs
+        in train_features_ and train_target_ attributes of the estimator.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of features.
+        y : ndarray of classes corresponding to the features given by X.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.train_features_ = X
+        self.n_train_ = len(y)
+        self.train_target_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the class of X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of features.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +66,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        n = len(X)
+
+        for i in range(n):
+            prediction = self.train_target_[0]
+            dist = np.linalg.norm(X[i] - self.train_features_[0])
+            for idx in range(1, self.n_train_):
+                test_dist = np.linalg.norm(X[i] - self.train_features_[idx])
+                if test_dist < dist:
+                    dist = test_dist
+                    prediction = self.train_target_[idx]
+            y_pred[i] = prediction
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Evaluates the score of the estimator regarding the inputs.
+        Precisely it computes the accuracy of the sample.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of features, from which predictions are made and compared with y.
+        y : ndarray of classes corresponding to the features given by X, to be compared with
+        the predictions of the estimator on X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        result = 0
+
+        n = len(y)
+        for i in range(n):
+            if y_pred[i] == y[i]:
+                result += 1
+
+        return result/n
