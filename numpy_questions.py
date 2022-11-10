@@ -73,6 +73,6 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     if n_terms == 0:
         return 2
-    product = [(4*k**2) / (4*k**(2) - 1) for k in range(1, n_terms)]
+    product = [(4*k**2) / (4*k**(2) - 1) for k in range(1, n_terms + 1)]
     pi = 2*math.prod(product)
     return pi
