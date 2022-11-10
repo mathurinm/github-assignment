@@ -86,9 +86,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
-        X : ndarray of features, from which predictions are made and compared with y.
-        y : ndarray of classes corresponding to the features given by X, to be compared with
-        the predictions of the estimator on X.
+        X : ndarray of features, from which predictions are made and
+        compared with y.
+        y : ndarray of classes corresponding to the features given by X, to be
+        compared with the predictions of the estimator on X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
