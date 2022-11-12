@@ -44,7 +44,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y (ndarray): target values. 1D.
 
         Returns:
-            _self_ : an object with several attributes : classes, X_train, y_train, n.
+            _self_ : an object with several attributes :
+                classes, X_train, y_train, n.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -52,14 +53,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.X_train = X
         self.y_train = y
         self.n = X.shape[1]
-        
+
         return self
 
     def predict(self, X):
         """_summary_
 
         Args:
-            X (2D ndarray): 
+            X (2D ndarray):
 
         Returns:
             _type_: _description_
@@ -69,12 +70,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
-        )
-        
-        norm = euclidean_distances(X, self.X_train)
-        index = np.argmin(norm, axis = 1)
+            )
 
-        return self.y_train[index]
+        norm = euclidean_distances(X, self.X_train)
+        index = np.argmin(norm, axis=1)
+        y_pred = self.y_train[index]
+        return y_pred
 
     def score(self, X, y):
         """Write docstring.
@@ -83,9 +84,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        
-        #The original KNeighborsClassifier is a subclass of the 
-        # sklearn.base.ClassifierMixin. 
-        # The score method uses accuracy_score. 
+        # The original KNeighborsClassifier is a subclass of the
+        # sklearn.base.ClassifierMixin.
+        # The score method uses accuracy_score.
         # To match the results, we use the same method
         return accuracy_score(y_pred, y)
