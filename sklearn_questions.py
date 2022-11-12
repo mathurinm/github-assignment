@@ -37,7 +37,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Fit the nearest classifier
+        """
+        Fit the nearest classifier
 
         Args:
             X (ndarray): ndarray representing the data in 2D.
@@ -57,7 +58,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """_summary_
+        """
+        Make the predictions.
 
         Args:
             X (2D ndarray):
