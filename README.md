@@ -40,3 +40,30 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
     pydocstyle
   ```
   - When it is green notify the professors that you are done.
+
+## How to contribute to an existing repository
+### Preliminary steps
+If it is your first time using Git and GitHub, you will need to create a [GitHub](https://github.com/) account and [download, install and configure Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git). Once this is done, [authenticate with GitHub](https://docs.github.com/en/get-started/quickstart/set-up-git#authenticating-with-github-from-git) with either HTTPS or SSH. The following assumes that you are [cloning with HTTPS URLs](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls). If you are using [SSH URLs](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-ssh-urls), change `https://github.com/` with `git@github.com:` in what follows.
+
+### Contribution
+  - Fork the repository at https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME
+  - Clone your forked repository: `git clone https://github.com/MYLOGIN/REPOSITORY_NAME`
+  - Change directory to `REPOSITORY_NAME`: `cd REPOSITORY_NAME`
+  - Add reference to the upstream repository: `git remote add upstream https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME`
+  - Check your remote repositories: `git remote -v`. You should see something like this:
+    ```
+    origin https://github.com/MYLOGIN/REPOSITORY_NAME.git (fetch)
+    origin https://github.com/MYLOGIN/REPOSITORY_NAME.git (push)
+    upstream https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME (fetch)
+    upstream https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME (push)
+    ```
+  - Fetch the `main` branch from the upstream repository: `git fetch upstream main`
+  - Go on the upstream `main` branch: `git checkout upstream/main`
+  - Make sure you are up-to-date with the upstream `main` branch: `git pull upstream main`
+  - Create and switch to a new working branch: `git switch -c MYBRANCH`
+  - Make the desired modifications
+  - Add the modified file(s) to commit: `git add FILE` (use space to add multiple files)
+  - Create a commit with a message: `git commit -m "RELEVANT MESSAGE"`
+  - Push your commit on the upstream repository from your working branch: `git push --set-upstream origin MYBRANCH`. Now, to create a pull request, you can either click the link on your terminal or go to the web page of your repository and click the `Compare & pull request` button
+  - Click the `Create pull request` button
+  - You're set!
