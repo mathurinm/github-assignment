@@ -53,7 +53,7 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
 
 ## Summary: how to contribute to an existing repository
   - Fork the repository you want to contribute to at https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME
-  - Clone your forked repository: `git clone https://github.com/MYLOGIN/REPOSITORY_NAME` or `git clone git@github.com/MYLOGIN/REPOSITORY_NAME` (depending on if you sue the HTTPS or the SSH protocol)
+  - Clone your forked repository: `git clone https://github.com/MYLOGIN/REPOSITORY_NAME` or `git clone git@github.com:MYLOGIN/REPOSITORY_NAME` (depending on if you use the HTTPS or the SSH protocol)
   - Change directory to `REPOSITORY_NAME`: `cd REPOSITORY_NAME`
   - Add reference to the repository named upstream: `git remote add upstream https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME`
   - (optional sanity check) Check your remote repositories: `git remote -v`. You should see something like this:
