@@ -31,9 +31,7 @@ from sklearn.metrics import euclidean_distances
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
-    OneNearestNeighbor classifier implementing the 1-nearest neighbor algorithm
-    Our classifier predicts the class of a sample based on the closest training
-    sample in the Euclidean space.
+    OneNearestNeighbor classifier implementing the 1nearest neighbor algorithm.
 
     Parameters
     ----------
