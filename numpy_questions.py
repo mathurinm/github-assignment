@@ -18,12 +18,6 @@ def max_index(X):
     ------
     ValueError
         If the input is not a numpy array or if the shape is not 2D.
-
-    Examples
-    --------
-        sample_array = np.array([[1, 2, 3], [4, 5, 6]])
-        max_index(sample_array)
-    (1, 2)
     """
     if not isinstance(X, np.ndarray):
         raise ValueError("Input is not a numpy array")
@@ -53,11 +47,6 @@ def wallis_product(n_terms):
     -------
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
-
-    Examples
-    --------
-      wallis_product(2)
-    3.5555555555555554
     """
     # Wallis product
     pi_approximation = 2.0
@@ -68,4 +57,5 @@ def wallis_product(n_terms):
 
     if n_terms == 0:
         return 2.0
+
     return pi_approximation
