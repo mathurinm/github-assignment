@@ -35,39 +35,86 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fitting your model to the training data
+            by setting X_train and the y_train.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The features of the training set.
+
+        y : ndarray of shape (n_samples, )
+            The observation of the training set.
+
+        Returns
+        -------
+        self
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class of a new set of data.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The features of the testing set.
 
-        And describe parameters
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples, )
+                 Array of the predicted classes
         """
+
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
         # XXX fix
-        return y_pred
+        y_pred = []
+        for x in X:
+            # Computing the distance between x and x_i
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+
+            # Computing V(x)
+            k_nearest_idx = np.argsort(distances)[0]
+
+            # Get class of k-nearest points
+            k_nearest_labels = self.y_train_[k_nearest_idx]
+
+            # Find the most common class and set it as the prediction
+            y_pred.append(k_nearest_labels)
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """Evaluate de performance of the model by comparing the
+           results from our model and the value in the testing set.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The features of the testing set.
 
-        And describe parameters
+        y : ndarray of shape (n_samples, )
+            The observation of the testing set.
+
+        Returns
+        -------
+        score : float
+                The number of correct answer devided by the total
+                number of answer
         """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        y_compare = y == y_pred
+        score = y_compare.sum() / len(y_pred)
+        return score
