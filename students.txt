@@ -21,7 +21,7 @@ Alexandre	Brun
 Benjamin	Cerf X
 Ghali	Chraibi X
 Tess	Coullon
-Jules	Crevola
+Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan
