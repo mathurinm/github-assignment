@@ -40,7 +40,16 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input must be a numpy array.")
+
+    if X.ndim != 2:
+        raise ValueError("Input array must be 2D.")
+
+    for a in range(len(X)):
+        for b in range(len(X[0])):
+            if X[a, b] > X[i, j]:
+                i, j = a, b
 
     return i, j
 
@@ -64,4 +73,17 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    if n_terms < 0:
+        raise ValueError("Number of terms should be non-negative.")
+
+    result = 1.0
+
+    for i in range(1, n_terms + 1):
+        term = (4 * i**2) / (4 * i**2 - 1)
+        result *= term
+
+    # Multiply by 2 to get the final approximation of pi
+    pi_approximation = 2 * result
+
+    return pi_approximation
