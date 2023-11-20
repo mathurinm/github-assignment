@@ -58,8 +58,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+
         self.X_ = X
         self.y_ = y
+
 
         return self
 
