@@ -29,25 +29,40 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
-    def __init__(self):  # noqa: D107
+    def __init__(self): # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model using X as training data and y as target values.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target values.
 
         And describe parameters
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self._X_train = X
+        self._y_train = y
+        self.n_features_in_ = X.shape[1]
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        # XXX fit
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Write docstring. Predict the class labels for the provided data.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
 
         And describe parameters
         """
@@ -55,19 +70,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
+            dtype=self.classes_.dtype)
+        for idx, x in enumerate(X):
+            distance = np.sqrt(np.sum((self._X_train - x) ** 2, axis=1))
+            nearest_neighbour_index = np.argmin(distance)
+            y_pred[idx] = self._y_train[nearest_neighbour_index]
         # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
 
         And describe parameters
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
+        correct_predictions = np.sum(y_pred == y)
+        accuracy = correct_predictions / len(y)
+
         # XXX fix
-        return y_pred.sum()
+        return accuracy
