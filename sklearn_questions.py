@@ -99,7 +99,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             closest_index = np.argmin(np.linalg.norm(x_i - self.X_train_,
                                                      axis=1))
             y_pred[i] = self.y_train_[closest_index]
-            
+
         return y_pred
 
     def score(self, X, y):
