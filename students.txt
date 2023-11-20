@@ -1,25 +1,25 @@
 First name	Last name
-Nadiy	Abdel Karim Dit Aramouni
-Aadhar	Agarwal
+Nadiy	Abdel Karim Dit Aramouni X
+Aadhar	Agarwal X
 Dogbo	Agbre
 Alae	Ahmad
 Raphaël	Amzallag
-Abdufattokh	Ashurov
+Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
-Elise	Barattini
-Ugo	Benazra
-Safwane	Benseddiq
+Elise	Barattini X
+Ugo	Benazra X
+Safwane	Benseddiq X
 Mohamed	Benslimane
 Dora	Bijvoet
 Alexander	Bohane
 Apolline	Boillot
-Thomas	Bordes
+Thomas	Bordes X
 Nathan	Bout
 Thibaut	Boyenval
 Cathal	Brady 
 Alexandre	Brun
-Benjamin	Cerf
-Ghali	Chraibi
+Benjamin	Cerf X
+Ghali	Chraibi X
 Tess	Coullon
 Jules	Crevola
 Matteo Alessandro	D'Alessandro
@@ -27,62 +27,61 @@ Valentine	Dana
 Solal	Danan x
 Charles	De Cian
 Augustin	De Saint Affrique
-Matthieu	Delsart
+Matthieu	Delsart X
 Yuding	Duan
-Alexandre	Foulon
-Antoine	Gosset
+Alexandre	Foulon X
+Antoine	Gosset X
 Léopold	Guichot
-Nacer	Hadni
+Nacer	Hadni X
 Houcine	Hassani Idrissi
-Gaspard	Hassenforder
+Gaspard	Hassenforder X
 Farah	Jabri
-Thibault	Jauneau
+Thibault	Jauneau X
 Zixu	Jin
-Sami	Kalai
-Tanmay	Kale
+Sami	Kalai X
+Tanmay	Kale X
 Xiaohan	Ke
 Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
-Ameya	Kulkarni
-Constance	Laverdure
-François	Lebrun
+Ameya	KulkarniX
+Constance	Laverdure X
+François	LebrunX
 Giacomo	Lustri
-Felipe	Mansilla
+Felipe	Mansilla XXXX
 Yanqing	Mao
 Virgile	Martin
 Nicola	Massari
 Mathurin	Massias
-Tarek	Massoud
-Artus	Mathieu
-Zineb	Mechiche Alami
+Tarek	Massoud X
+Artus	Mathieu X
+Zineb	Mechiche Alami X
 Xianghan	Mei
 Samuel	Mesguiche
 Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita
-Thanh Liêm	Nguyen
+Thanh Liêm	Nguyen X
 Carlo Antonio	Patti
-Julien	Pezzi
+Julien	Pezzi x
 Trung Dan	Phan
-Auguste	Piromalli
+Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
-Nicolas	Schroeder
+Nicolas	Schroeder X
 Rong	Shen
 Charles	Siret
 Hadrien	Strichard
-Eva	Toledano
+Eva	Toledano x
 Tim	Valencony
 Antonio Roberto	Ventura
-Khushi	Verma
+Khushi	VermaX
 Henri	Vignial
 Chenfei	Wang
 Mingyu	Wang
 Fangzhou	Xu
 Jialong	Xu
-Zhongyuan	Zhang
+Zhongyuan	Zhang X
 Yufeng	Zhou
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
-
