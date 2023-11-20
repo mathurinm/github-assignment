@@ -26,7 +26,6 @@ def test_max_index():
 
     with pytest.raises(ValueError):
         max_index(np.array([0, 1]))
-    print(1)
 
 
 def test_wallis_product():

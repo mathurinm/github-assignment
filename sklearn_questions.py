@@ -20,9 +20,13 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+from sklearn.base import BaseEstimator
+from sklearn.base import ClassifierMixin
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
+from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -33,52 +37,32 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """
-        Fit the model using X as training data and y as target values.
-
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Training data.
-        y : array-like of shape (n_samples,)
-            Target values.
-
-        Returns
-        -------
-        self : object
-            Returns self.
-        """
+        """Fit the model using X as training data and y as target values."""
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.X_ = X
         self.y_ = y
+
+        # Set the classes_ attribute
+        self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """
-        Predict the class labels for the provided data.
-
-        Parameters
-        ----------
-        X : array-like of shape (n_queries, n_features)
-            Test samples.
-
-        Returns
-        -------
-        y_pred : array of shape (n_queries,)
-            Class labels for each data sample.
-        """
+        """Predict the class labels for the provided data."""
         # This line also needs to be indented to be part of the predict method
         check_is_fitted(self, ['X_', 'y_'])
         X = check_array(X)
 
-        y_pred = []
-        for x in X:
-            distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
-            nearest_neighbor = np.argmin(distances)
-            y_pred.append(self.y_[nearest_neighbor])
+        # Compute distances between each test point and all training points
+        distances = cdist(X, self.X_)
 
-        return np.array(y_pred)
+        # Find the nearest neighbor index for each test point
+        nearest_neighbor_idx = distances.argmin(axis=1)
+
+        # Predict the class of the nearest neighbor
+        y_pred = self.y_[nearest_neighbor_idx]
+        return y_pred
 
     def score(self, X, y):
         """
