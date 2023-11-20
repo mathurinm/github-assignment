@@ -1,22 +1,4 @@
-"""Assignment - using numpy and making a PR.
-
-The goals of this assignment are:
-    * Use numpy in practice with two easy exercises.
-    * Use automated tools to validate the code (`pytest` and `flake8`)
-    * Submit a Pull-Request on github to practice `git`.
-
-The two functions below are skeleton functions. The docstrings explain what
-are the inputs, the outputs and the expected error. Fill the function to
-complete the assignment. The code should be able to pass the test that we
-wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
-the repo. It should say that 2 tests ran with success.
-
-We also ask to respect the pep8 convention: https://pep8.org.
-This will be enforced with `flake8`. You can check that there is no flake8
-errors by calling `flake8` at the root of the repo.
-"""
 import numpy as np
-
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -29,21 +11,32 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
     ValueError
-        If the input is not a numpy error or
+        If the input is not a numpy array or
         if the shape is not 2D.
     """
     i = 0
     j = 0
 
-    # TODO
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input is not a numpy array")
 
-    return i, j
+    if X.ndim != 2:
+        raise ValueError("Input array must be 2D")
 
+    # Find the indices of the maximum value
+    max_index = np.unravel_index(np.argmax(X), X.shape)
+
+    return max_index
+
+# Example usage
+sample_array = np.array([[1, 2, 3], [4, 5, 6]])
+result = max_index(sample_array)
+print("Index of the maximum value:", result)
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -62,6 +55,20 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    
+    # Wallis product
+    pi_approximation = 2.0
+    for i in range(1, n_terms + 1):
+        numerator = 4 * i**2
+        denominator = 4 * i**2 - 1
+        pi_approximation *= numerator / denominator
+    
+    if n_terms == 0:
+        return 2.0
+    
+    return pi_approximation
+
+# Example usage
+n_terms = 100000
+pi_approximation = wallis_product(n_terms)
+print(f"Approximation of pi using {n_terms} terms in the Wallis product: {pi_approximation}")
