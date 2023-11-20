@@ -18,7 +18,7 @@ Thomas	Bordes X
 Nathan	Bout
 Thibaut	Boyenval
 Cathal	Brady 
-Alexandre	Brun
+Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
 Tess	Coullon
