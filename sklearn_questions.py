@@ -47,7 +47,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         self : object
-            Returns the modified instance of the OneNearestNeighbor class, which now has the training data stored within it.
+            Returns the modified instance of the OneNearestNeighbor class,
+            which now has the training data stored within it.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -78,7 +79,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         #     shape=len(X), fill_value=self.classes_[0],
         #     dtype=self.classes_.dtype
         # )
-        closest_ind = np.argmin(np.linalg.norm(X[:, np.newaxis] - self.X_train_, axis=2), axis=1)
+        temp = np.linalg.norm(X[:, np.newaxis] - self.X_train_, axis=2)
+        closest_ind = np.argmin(temp, axis=1)
         y_pred = self.y_train_[closest_ind]
         # XXX fix
 
