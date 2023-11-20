@@ -46,13 +46,14 @@ def max_index(X):
         raise ValueError("Input array must be 2D.")
 
     # TODO
-    maxs = []
-    for i in range(len(X)):
-        for j in range(len(i)):
-            maxs.append([X[i][j], i, j])
-    max_element = max([el[0] for el in maxs])
-    i = maxs[maxs.index(max_element)][1]
-    j = maxs[maxs.index(max_element)][2]
+    # maxs = []
+    # for i in range(len(X)):
+    #     for j in range(len(X[i])):
+    #         maxs.append([X[i][j], i, j])
+    # max_element = max([el[0] for el in maxs])
+    # i = maxs[maxs.index(max_element)][1]
+    # j = maxs[maxs.index(max_element)][2]
+    i, j = np.unravel_index(np.argmax(X), X.shape)
     return i, j
 
 

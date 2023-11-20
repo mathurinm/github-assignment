@@ -35,39 +35,72 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The training input samples.
+        y : array-like or pd.Series, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns the modified instance of the OneNearestNeighbor class, which now has the training data stored within it.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class for the input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
+        # y_pred = np.full(
+        #     shape=len(X), fill_value=self.classes_[0],
+        #     dtype=self.classes_.dtype
+        # )
+        closest_ind = np.argmin(np.linalg.norm(X[:, np.newaxis] - self.X_train_, axis=2), axis=1)
+        y_pred = self.y_train_[closest_ind]
         # XXX fix
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the OneNearestNeighbor model on the input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+        y : array-like or pd.Series, shape (n_samples,)
+            The true labels.
+
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
+        accuracy = np.mean(y_pred == y)
         # XXX fix
-        return y_pred.sum()
+        return accuracy
