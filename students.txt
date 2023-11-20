@@ -68,7 +68,7 @@ Trung Dan	Phan
 Auguste	Piromalli
 Aubry	Poitevin
 Malo	Renaudin
-Nicolas	Schroeder
+Nicolas	SchroederX
 Rong	Shen
 Charles	Siret
 Hadrien	Strichard
