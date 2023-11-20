@@ -19,7 +19,7 @@ Thibaut	Boyenval
 Cathal	Brady X
 Alexandre	Brun
 Benjamin	Cerf X
-Ghali	Chraibi
+Ghali	Chraibi X
 Tess	Coullon
 Jules	Crevola
 Matteo Alessandro	D'Alessandro
