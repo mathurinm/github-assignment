@@ -10,7 +10,7 @@ Elise	Barattini X
 Ugo	Benazra X
 Safwane	Benseddiq X
 Mohamed	Benslimane
-Dora	Bijvoet
+Dora	Bijvoet X
 Alexander	Bohane
 Apolline	Boillot
 Thomas	Bordes X
