@@ -40,10 +40,10 @@ def max_index(X):
 
     if not isinstance(X, np.ndarray):
         raise ValueError("X should be a numpy array")
-    
+
     if X.ndim != 2:
         raise ValueError("X should be a 2D array")
-    
+
     i = 0
     j = 0
 
@@ -74,4 +74,3 @@ def wallis_product(n_terms):
     unit_term = unit_term ** 2
 
     return 2 * np.prod(4*unit_term / (4 * unit_term - 1))
-
