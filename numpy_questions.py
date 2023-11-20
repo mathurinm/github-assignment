@@ -29,7 +29,7 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
@@ -40,7 +40,20 @@ def max_index(X):
     i = 0
     j = 0
 
-    # TODO
+    # Raise value error if X is not a numpy array
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input is not a numpy array")
+
+    # Raise value error if X is not 2D
+    if len(X.shape) != 2:
+        raise ValueError("Input is not 2D")
+
+    # Find the index of the maximum
+    for row in range(X.shape[0]):
+        for col in range(X.shape[1]):
+            if X[row, col] > X[i, j]:
+                i = row
+                j = col
 
     return i, j
 
@@ -64,4 +77,13 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    pi = 1
+
+    if n_terms == 0:
+        return pi * 2
+
+    for n in range(1, n_terms + 1):
+        pi *= (4*n**2)/(4*n**2 - 1)
+
+    return pi * 2
