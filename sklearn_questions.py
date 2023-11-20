@@ -29,29 +29,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    This class implements a simple one nearest neighbor classifier.
+    """
 
     def __init__(self):  # noqa: D107
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """
-        Validates the input and compute the classes.
+        """Fit the classifier with training data.
 
-        Parameters
-        ----------
-        X : ndarray of shape (n_samples, n_features)
-            The input array.
+        Args:
+            X (array-like): Training data, a 2D numpy array or similar
+            array-like structure.
+            y (array-like): Target values, a 1D numpy array or similar
+            array-like structure.
 
-        y : ndarray of shape (n_samples,)
-
-        Returns
-        -------
-        None: NoneType
-
-        Raises
-        -------
-        see check_X_y and check_classification_targets.
+        Returns:
+            self: Returns an instance of self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -64,28 +61,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """
-        Predict the class labels for the provided data.
+        """Predict the class labels for the provided data.
 
-        Parameters
-        ----------
-        X : ndarray of shape (n_samples, n_features)
-            The input array.
+        Args:
+            X (array-like): Test samples, a 2D numpy array or similar
+            array-like structure.
 
-        Returns
-        -------
-        y_pred : ndarray of shape (n_samples,)
-            The predicted classes.
-
-        Raises
-        ------
-        ValueError
-            If the input is not fitted.
-
-        Notes
-        -----
-        This function uses the Euclidean distance to compute the closest
-        neighbor.
+        Returns:
+            array: Predicted class labels for each data sample.
         """
         check_is_fitted(self)
 
@@ -101,20 +84,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """
-        Return the mean accuracy on the given test data and labels.
+        """Returns the mean accuracy on the given test data and labels.
 
-        Parameters
-        ----------
-        X : ndarray of shape (n_samples, n_features)
-            The input array.
+        Args:
+            X (array-like): Test samples, a 2D numpy array or similar
+            array-like structure.
+            y (array-like): True labels for X, a 1D numpy array or similar
+            array-like structure.
 
-        y : ndarray of shape (n_samples,)
-
-        Returns
-        -------
-        score : float
-            Mean accuracy of self.predict(X) wrt. y.
+        Returns:
+            float: Mean accuracy of self.predict(X) wrt. y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
