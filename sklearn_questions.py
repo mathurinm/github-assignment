@@ -9,6 +9,35 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+    """One Nearest Neighbor Classifier.
+
+    This classifier implements the One Nearest Neighbor algorithm for
+    classification.
+
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    classes_ : ndarray of shape (n_classes,)
+        The unique classes present in the training data.
+    n_features_in_ : int
+        The number of features in the input data.
+    X_train_ : array-like or pd.DataFrame, shape (n_samples, n_features)
+        The input training data.
+    y_train_ : array-like or pd.Series, shape (n_samples,)
+        The target values.
+
+    Methods
+    -------
+    fit(X, y)
+        Fit the OneNearestNeighbor classifier.
+    predict(X)
+        Predict the target values for input data.
+    score(X, y)
+        Return the mean accuracy on the given test data and labels.
+    """
     def __init__(self):
         pass
 
@@ -61,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             # Find the index of the closest training example to x_test
             closest_index = np.argmin(
                 np.linalg.norm(x_test - self.X_train_, axis=1)
-                )
+            )
             y_pred[i] = self.y_train_[closest_index]
 
         return y_pred
