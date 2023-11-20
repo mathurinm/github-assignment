@@ -1,10 +1,7 @@
-
 import numpy as np
 
 
 def max_index(X):
-
-
     """Return the index of the maximum in a numpy array.
 
     Parameters
@@ -20,8 +17,7 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy array or
-        if the shape is not 2D.
+        If the input is not a numpy array or if the shape is not 2D.
     """
     if not isinstance(X, np.ndarray):
         raise ValueError("Input is not a numpy array")
@@ -30,8 +26,6 @@ def max_index(X):
         raise ValueError("Input array must be 2D")
 
     # Find the indices of the maximum value
-   
-   
     max_index = np.unravel_index(np.argmax(X), X.shape)
 
     return max_index
@@ -61,8 +55,6 @@ def wallis_product(n_terms):
         denominator = 4 * i**2 - 1
         pi_approximation *= numerator / denominator
 
-    
     if n_terms == 0:
         return 2.0
-    
     return pi_approximation
