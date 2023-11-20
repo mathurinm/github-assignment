@@ -48,7 +48,7 @@ Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
 François	LebrunX
-Giacomo	Lustri
+Giacomo	Lustri X
 Felipe	Mansilla XXXX
 Yanqing	Mao
 Virgile	Martin X
