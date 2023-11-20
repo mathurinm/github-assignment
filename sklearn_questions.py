@@ -29,27 +29,47 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier to the data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input training data.
+        y : ndarray of shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target values of input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted target values.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +78,30 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x_test in enumerate(X):
+            close_i = np.argmin(np.linalg.norm(self.X_train_ - x_test, axis=1))
+            y_pred[i] = self.y_train_[close_i]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the model on the given data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarry of shape (n_samples, n_features)
+            The input data.
+        y : ndarray of shape (n_samples,)
+            The true target values.
+
+        Returns
+        -------
+        score : float
+            The accuracy of the model on the data.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
