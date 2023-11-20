@@ -64,9 +64,28 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted classes.
+
+        Raises
+        ------
+        ValueError
+            If the input is not fitted.
+
+        Notes
+        -----
+        This function uses the Euclidean distance to compute the closest
+        neighbor.
         """
         check_is_fitted(self)
 
@@ -78,13 +97,24 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dists = np.sum((self.X_ - x) ** 2, axis=1)
             closest_idx = np.argmin(dists)
             y_pred[idx] = self.y_[closest_idx]
-            
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        y : ndarray of shape (n_samples,)
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of self.predict(X) wrt. y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
