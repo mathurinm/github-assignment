@@ -1,12 +1,12 @@
 First name	Last name
-Nadiy	Abdel Karim Dit Aramouni
+Nadiy	Abdel Karim Dit Aramouni X
 Aadhar	Agarwal
 Dogbo	Agbre
 Alae	Ahmad
 Raphaël	Amzallag
 Abdufattokh	Ashurov
 Zakaria	Atlassi Douch
-Elise	Barattini
+Elise	Barattini X
 Ugo	Benazra
 Safwane	Benseddiq
 Mohamed	Benslimane
@@ -16,7 +16,7 @@ Apolline	Boillot
 Thomas	Bordes
 Nathan	Bout
 Thibaut	Boyenval
-Cathal	Brady
+Cathal	Brady X
 Alexandre	Brun
 Benjamin	Cerf
 Ghali	Chraibi
@@ -27,55 +27,55 @@ Valentine	Dana
 Solal	Danan
 Charles	De Cian
 Augustin	De Saint Affrique
-Matthieu	Delsart
+Matthieu	Delsart X
 Yuding	Duan
 Alexandre	Foulon
-Antoine	Gosset
+Antoine	Gosset X
 Léopold	Guichot
-Nacer	Hadni
+Nacer	Hadni X
 Houcine	Hassani Idrissi
-Gaspard	Hassenforder
+Gaspard	Hassenforder X
 Farah	Jabri
-Thibault	Jauneau
+Thibault	Jauneau X
 Zixu	Jin
-Sami	Kalai x
+Sami	Kalai
 Tanmay	Kale
 Xiaohan	Ke
 Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
-Ameya	Kulkarni
+Ameya	KulkarniX
 Constance	Laverdure
-François	Lebrun
+François	LebrunX
 Giacomo	Lustri
 Felipe	Mansilla
 Yanqing	Mao
 Virgile	Martin
 Nicola	Massari
 Mathurin	Massias
-Tarek	Massoud
-Artus	Mathieu
+Tarek	Massoud X
+Artus	Mathieu X
 Zineb	Mechiche Alami
 Xianghan	Mei
 Samuel	Mesguiche
 Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita
-Thanh Liêm	Nguyen
+Thanh Liêm	Nguyen X
 Carlo Antonio	Patti
-Julien	Pezzi
+Julien	Pezzi x
 Trung Dan	Phan
-Auguste	Piromalli
+Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder
 Rong	Shen
 Charles	Siret
 Hadrien	Strichard
-Eva	Toledano
+Eva	Toledano x
 Tim	Valencony
 Antonio Roberto	Ventura
-Khushi	Verma
+Khushi	VermaX
 Henri	Vignial
 Chenfei	Wang
 Mingyu	Wang
