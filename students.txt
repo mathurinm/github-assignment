@@ -16,7 +16,7 @@ Apolline	Boillot
 Thomas	Bordes X
 Nathan	Bout
 Thibaut	Boyenval
-Cathal	Brady X
+Cathal	Brady 
 Alexandre	Brun
 Benjamin	Cerf X
 Ghali	Chraibi X
@@ -24,7 +24,7 @@ Tess	Coullon
 Jules	Crevola
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
-Solal	Danan
+Solal	Danan x
 Charles	De Cian
 Augustin	De Saint Affrique
 Matthieu	Delsart X
@@ -85,4 +85,3 @@ Zhongyuan	Zhang X
 Yufeng	Zhou
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
-
