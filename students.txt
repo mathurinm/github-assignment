@@ -6,7 +6,7 @@ Alae	Ahmad
 Raphaël	Amzallag
 Abdufattokh	Ashurov
 Zakaria	Atlassi Douch
-Elise	Barattini X
+Elise	Barattini
 Ugo	Benazra
 Safwane	Benseddiq
 Mohamed	Benslimane
@@ -41,7 +41,7 @@ Zixu	Jin
 Sami	Kalai
 Tanmay	Kale
 Xiaohan	Ke
-Jack	Khoueiri
+Jack	Khoueiri X
 Lucijan	Kodeli
 Evgenii	Kostromin
 Ameya	Kulkarni
