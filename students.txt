@@ -45,7 +45,7 @@ Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
 Ameya	KulkarniX
-Constance	Laverdure
+Constance	Laverdure X
 François	LebrunX
 Giacomo	Lustri
 Felipe	Mansilla
@@ -85,3 +85,4 @@ Zhongyuan	Zhang
 Yufeng	Zhou
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
+
