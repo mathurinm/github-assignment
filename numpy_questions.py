@@ -2,10 +2,10 @@ import numpy as np
 
 
 def max_index(X):
-    
+
     if not isinstance(X, np.ndarray):
         raise ValueError("X is not a numpy array")
-    
+
     if len(X.shape) != 2:
         raise ValueError("X is not a two-dimensional array")
 
@@ -14,6 +14,7 @@ def max_index(X):
     maxIndices = np.unravel_index(flatIndex, size)
 
     return maxIndices
+
 
 def wallis_product(n_terms):
 
@@ -29,8 +30,7 @@ def wallis_product(n_terms):
     return 2 * result
 
 
-
-X = np.random.randint(0, 20, size = (5,8))
+X = np.random.randint(0, 20, size=(5, 8))
 result = max_index(X)
 print(X, result)
 
