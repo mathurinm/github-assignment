@@ -45,7 +45,7 @@ Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
 Ameya	Kulkarni
-Constance	Laverdure
+Constance	Laverdure x
 François	Lebrun
 Giacomo	Lustri
 Felipe	Mansilla
@@ -86,4 +86,3 @@ Yufeng	Zhou
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
 
-essai 2
