@@ -71,3 +71,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         return y_pred.sum()
+
+.
