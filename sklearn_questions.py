@@ -70,8 +70,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.X_ = X
-        self.y_ = y
+    
+        self.X_train_ = X
+        self.y_train_ = y
+
+        self.n_features_in_ = X.shape[1]
 
         return self
 
@@ -88,17 +91,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred : array, shape (n_samples,)
             Predicted class labels.
         """
-        check_is_fitted(self, attributes=['X_', 'y_'])
+        check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        for i, x in enumerate(X):
-            distances = np.linalg.norm(self.X_ - x, axis=1)
-            nearest_neighbor_index = np.argmin(distances)
-            y_pred[i] = self.y_[nearest_neighbor_index]
+        distances = np.linalg.norm(X, self.X_train_)
+        nearest_neighbor_index = np.argmin(distances, axis=1)
+        
+        y_pred = self.y_train_[nearest_neighbor_index]
 
         return y_pred
 
