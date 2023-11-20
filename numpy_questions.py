@@ -1,5 +1,5 @@
 """
-numpy_questions.py
+numpy_questions.py.
 
 This module contains functions related
 to numpy operations and mathematical computations.

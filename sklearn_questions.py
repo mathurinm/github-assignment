@@ -1,5 +1,5 @@
 """
-sklearn_questions.py
+sklearn_questions.py.
 
 This module contains a custom classifier, OneNearestNeighbor,
 implemented using scikit-learn's BaseEstimator and ClassifierMixin.
