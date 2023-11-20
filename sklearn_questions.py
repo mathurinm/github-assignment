@@ -61,7 +61,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.X_ = X
         self.y_ = y
 
-
         return self
 
     def predict(self, X):
