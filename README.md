@@ -1,5 +1,5 @@
 # Working with git and GitHub
-This README contains:
+This README contain:
 - an assignment for students of the Python class
 - general useful information about working with GitHub.
 
