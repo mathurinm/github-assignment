@@ -1,4 +1,4 @@
-ôXFirst name	Last name
+First name	Last name
 Nadiy	Abdel Karim Dit Aramouni
 Aadhar	Agarwal
 Dogbo	Agbre
