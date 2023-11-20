@@ -40,6 +40,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Fit the model using X as training data and y as target values."""
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.X_ = X
         self.y_ = y
 
