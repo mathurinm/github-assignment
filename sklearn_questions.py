@@ -26,49 +26,99 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
+from sklearn.metrics import accuracy_score
+from scipy.spatial.distance import cdist
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    classes_ : array, shape (n_classes,)
+        The unique classes present in the training data.
+
+    X_ : array-like or pd.DataFrame, shape (n_samples, n_features)
+        The input data stored during fitting.
+
+    y_ : array-like, shape (n_samples,)
+        The target values stored during fitting.
+
+    """
+
+    def __init__(self):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the OneNearestNeighbor model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input data.
+        y : array-like, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the target values for input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Predicted target values.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        distances = cdist(X, self.X_, metric='euclidean')
+        nearest_indices = np.argmin(distances, axis=1)
+        y_pred = self.y_[nearest_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Returns the accuracy of the model on the given data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input data.
+        y : array-like, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        #accuracy = accuracy_score(y, y_pred)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
