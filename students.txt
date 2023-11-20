@@ -6,11 +6,11 @@ Alae	Ahmad X
 Raphaël	Amzallag
 Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
-Elise	Barattini X
+Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
 Mohamed	Benslimane
-Dora	Bijvoet
+Dora	Bijvoet X
 Alexander	Bohane
 Apolline	Boillot X
 Thomas	Bordes
@@ -26,7 +26,7 @@ Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan x
-Charles	De Cian
+Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
 Yuding	Duan
@@ -75,7 +75,7 @@ Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
 Tim	Valencony X
-Antonio Roberto	Ventura
+Antonio Roberto	Ventura X
 Khushi	Verma
 Henri	Vignial X
 Khushi	VermaX
