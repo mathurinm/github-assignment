@@ -1,4 +1,4 @@
-First name	Last name
+ôXFirst name	Last name
 Nadiy	Abdel Karim Dit Aramouni
 Aadhar	Agarwal
 Dogbo	Agbre
@@ -34,7 +34,7 @@ Antoine	Gosset
 Léopold	Guichot
 Nacer	Hadni
 Houcine	Hassani Idrissi
-Gaspard	Hassenforder
+Gaspard	Hassenforder X
 Farah	Jabri
 Thibault	Jauneau
 Zixu	Jin
