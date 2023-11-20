@@ -96,10 +96,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         for i, x_i in enumerate(X):
             # Find the index of the closest point in the training set
-            closest_index = np.argmin(np.linalg.norm(x_i - self.X_train_, 
+            closest_index = np.argmin(np.linalg.norm(x_i - self.X_train_,
                                                      axis=1))
             y_pred[i] = self.y_train_[closest_index]
-
+            
         return y_pred
 
     def score(self, X, y):
