@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,15 +36,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Validates the input and compute the classes.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        y : ndarray of shape (n_samples,)
+
+        Returns
+        -------
+        None: NoneType
+
+        Raises
+        -------
+        see check_X_y and check_classification_targets.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -52,13 +69,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        X = check_array(X)
+
+        y_pred = np.zeros(X.shape[0], dtype=self.y_.dtype)
+
+        for idx, x in enumerate(X):
+            dists = np.sum((self.X_ - x) ** 2, axis=1)
+            closest_idx = np.argmin(dists)
+            y_pred[idx] = self.y_[closest_idx]
+            
         return y_pred
 
     def score(self, X, y):
@@ -69,5 +89,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
