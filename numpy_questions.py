@@ -1,11 +1,45 @@
-import numpy as np
 """
-Utilities for working with NumPy arrays.
+numpy_questions.py
 
-This module provides functions for common operations on NumPy arrays,
-Including finding the index of the maximum value and computing
-the Wallis product for an approximation of pi.
+This module contains functions related
+to numpy operations and mathematical computations.
+
+Functions
+---------
+max_index(X)
+    Return the index of the maximum in a numpy array.
+
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array.
+
+    Returns
+    -------
+    (i, j) : tuple(int)
+        The row and column index of the maximum.
+
+    Raises
+    ------
+    ValueError
+        If the input is not a numpy array or if the shape is not 2D.
+
+wallis_product(n_terms)
+    Implement the Wallis product to compute an approximation of pi.
+
+    Parameters
+    ----------
+    n_terms : int
+        Number of steps in the Wallis product. Note that `n_terms=0` will
+        consider the product to be `1`.
+
+    Returns
+    -------
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
 """
+
+import numpy as np
 
 
 def max_index(X):

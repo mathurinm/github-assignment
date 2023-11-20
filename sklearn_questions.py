@@ -1,3 +1,30 @@
+"""
+sklearn_questions.py
+
+This module contains a custom classifier, OneNearestNeighbor,
+implemented using scikit-learn's BaseEstimator and ClassifierMixin.
+
+Classes
+-------
+OneNearestNeighbor(BaseEstimator, ClassifierMixin)
+    One Nearest Neighbor Classifier.
+
+    This classifier implements the One Nearest Neighbor
+    algorithm for classification.
+
+Attributes
+----------
+None
+
+Methods
+-------
+fit(X, y)
+    Fit the OneNearestNeighbor classifier.
+predict(X)
+    Predict the target values for input data.
+score(X, y)
+    Return the mean accuracy on the given test data and labels.
+"""
 
 import numpy as np
 from sklearn.base import BaseEstimator
@@ -38,6 +65,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     score(X, y)
         Return the mean accuracy on the given test data and labels.
     """
+
     def __init__(self):
         """
         Initialize the OneNearestNeighbor classifier.
