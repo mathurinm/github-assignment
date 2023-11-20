@@ -7,10 +7,10 @@ Raphaël	Amzallag
 Abdufattokh	Ashurov
 Zakaria	Atlassi Douch
 Elise	Barattini X
-Ugo	Benazra Ben
-Safwane	Benseddiq
+Ugo	Benazra
+Safwane	Benseddiq 
 Mohamed	Benslimane
-Dora	Bijvoet
+Dora	Beivoet  
 Alexander	Bohane
 Apolline	Boillot
 Thomas	Bordes
