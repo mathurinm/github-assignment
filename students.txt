@@ -1,30 +1,31 @@
 First name	Last name
 Nadiy	Abdel Karim Dit Aramouni X
-Aadhar	Agarwal
+Aadhar	Agarwal X
 Dogbo	Agbre
-Alae	Ahmad
+Alae	Ahmad X
 Raphaël	Amzallag
-Abdufattokh	Ashurov
+Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
 Elise	Barattini X
-Ugo	Benazra
+Ugo	Benazra X
 Safwane	Benseddiq X
 Mohamed	Benslimane
 Dora	Bijvoet
 Alexander	Bohane
-Apolline	Boillot
+Apolline	Boillot X
 Thomas	Bordes
+Thomas	Bordes X
 Nathan	Bout
 Thibaut	Boyenval
-Cathal	Brady X
+Cathal	Brady 
 Alexandre	Brun
 Benjamin	Cerf X
-Ghali	Chraibi
+Ghali	Chraibi X
 Tess	Coullon
-Jules	Crevola
+Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
-Solal	Danan
+Solal	Danan x
 Charles	De Cian
 Augustin	De Saint Affrique
 Matthieu	Delsart X
@@ -38,29 +39,29 @@ Gaspard	Hassenforder X
 Farah	Jabri
 Thibault	Jauneau X
 Zixu	Jin
-Sami	Kalai
+Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
 Jack	Khoueiri
 Lucijan	Kodeli
-Evgenii	Kostromin
+Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
 François	LebrunX
 Giacomo	Lustri X
-Felipe	Mansilla
+Felipe	Mansilla XXXX
 Yanqing	Mao
-Virgile	Martin
+Virgile	Martin X
 Nicola	Massari
 Mathurin	Massias
 Tarek	Massoud X
 Artus	Mathieu X
-Zineb	Mechiche Alami
+Zineb	Mechiche Alami X
 Xianghan	Mei
-Samuel	Mesguiche
+Samuel	Mesguiche X
 Pietro	Micelli
 Badr	Moufad
-Alexandra-Catalina	Negoita
+Alexandra-Catalina	Negoita X
 Thanh Liêm	Nguyen X
 Carlo Antonio	Patti
 Julien	Pezzi x
@@ -73,10 +74,11 @@ Rong	Shen
 Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
-Tim	Valencony
+Tim	Valencony X
 Antonio Roberto	Ventura
+Khushi	Verma
+Henri	Vignial X
 Khushi	VermaX
-Henri	Vignial
 Chenfei	Wang
 Mingyu	Wang
 Fangzhou	Xu
@@ -85,4 +87,3 @@ Zhongyuan	Zhang X
 Yufeng	Zhou
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
-
