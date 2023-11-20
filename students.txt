@@ -44,7 +44,7 @@ Xiaohan	Ke
 Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
-Ameya	Kulkarni
+Ameya	KulkarniX
 Constance	Laverdure
 François	Lebrun
 Giacomo	Lustri
