@@ -34,7 +34,7 @@ Antoine	Gosset X
 Léopold	Guichot
 Nacer	Hadni X
 Houcine	Hassani Idrissi
-Gaspard	Hassenforder
+Gaspard	Hassenforder X
 Farah	Jabri
 Thibault	Jauneau X
 Zixu	Jin
