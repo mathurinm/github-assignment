@@ -16,7 +16,7 @@ Apolline	Boillot
 Thomas	Bordes
 Nathan	Bout
 Thibaut	Boyenval
-Cathal	Brady x
+Cathal	Brady 
 Alexandre	Brun
 Benjamin	Cerf
 Ghali	Chraibi
