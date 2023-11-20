@@ -29,7 +29,7 @@ Charles	De Cian
 Augustin	De Saint Affrique
 Matthieu	Delsart X
 Yuding	Duan
-Alexandre	Foulon
+Alexandre	Foulon X
 Antoine	Gosset X
 Léopold	Guichot
 Nacer	Hadni X
