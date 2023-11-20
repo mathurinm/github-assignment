@@ -1,10 +1,10 @@
-Firs name	Last name
+First name	Last name
 Nadiy	Abdel Karim Dit Aramouni
 Aadhar	Agarwal
 Dogbo	Agbre
 Alae	Ahmad
 Raphaël	Amzallag
-Abdufattokh	Ashurov
+Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
 Elise	Barattini
 Ugo	Benazra
