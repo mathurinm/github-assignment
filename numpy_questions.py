@@ -1,5 +1,7 @@
 
 import numpy as np
+
+
 def max_index(X):
 
 
@@ -28,6 +30,8 @@ def max_index(X):
         raise ValueError("Input array must be 2D")
 
     # Find the indices of the maximum value
+   
+   
     max_index = np.unravel_index(np.argmax(X), X.shape)
 
     return max_index
