@@ -28,6 +28,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         # Set the n_features_in_ attribute
         self.n_features_in_ = X.shape[1]
