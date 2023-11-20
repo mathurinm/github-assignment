@@ -29,27 +29,65 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
+
+    This classifier implements a one-nearest neighbor algorithm.
+    The nearest neighbor classifier predicts for a point X_i the target
+    y_k of the training sample X_k which is the closest to X_i.
+
+    Methods
+    -------
+    fit(X, y)
+        Fit the model using X as training data and y as target values.
+    predict(X)
+        Predict the labels for the given data.
+    score(X, y)
+        Calculate the mean accuracy based on the test data and the labels
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model using X as training data and y as target values.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy array of shape (n_samples, n_features)
+        containing the training data consisting of number samples
+        each with n features.
+
+        y : numpy array of shape (n_samples,) containing the training labels,
+        where y[i] is the label for X[i].
+
+        Returns
+        -------
+        self : object, the fitted estimator
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X  # To store training data
+        self.y_ = y  # To store target values
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels for the given data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy array of shape (n_samples, n_features)
+        containing the testing sample consisting of number
+        samples each with n features.
+
+        Returns
+        -------
+        y_pred : numpy array of shape (n_samples,) containing the predicted
+        class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +96,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the mean accuracy based on the test data and the labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy array of shape (n_samples, n_features) containing
+        the test data consisting of number samples each with n features.
+
+        y : numpy array of shape (n_samples,) containing the true labels for
+        the test data
+
+        Returns
+        -------
+        accuracy : float, the mean accuracy of the predictions. An float
+        representing the proportion of correctly predicted labels.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
