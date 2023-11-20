@@ -19,8 +19,10 @@ import numpy as np
 
 def max_index(X):
     """Return the index of the maximum in a numpy array."""
-    if not X.ndim != 2 or isinstance(X, np.ndarray):
-        raise ValueError("input must be a two-dimensional numpy array.")
+    if not isinstance(X, np.ndarray):
+        raise ValueError(" X must be a numpy array.")
+    if X.ndim != 2
+        raise ValueError("X must be 2D.")
 
     i, j = np.unravel_index(np.argmax(X), X.shape)
     return i, j
