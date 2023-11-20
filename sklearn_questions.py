@@ -7,6 +7,7 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+
     def __init__(self):
         pass
 
@@ -57,7 +58,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         for i, x_test in enumerate(X):
             # Find the index of the closest training example to x_test
-            closest_index = np.argmin(np.linalg.norm(x_test - self.X_train_, axis=1))
+            closest_index = np.argmin(np.linalg.norm(x_test-self.X_train_, axis=1))
             y_pred[i] = self.y_train_[closest_index]
 
         return y_pred

@@ -1,6 +1,8 @@
 
 import numpy as np
 def max_index(X):
+
+
     """Return the index of the maximum in a numpy array.
 
     Parameters
@@ -29,6 +31,7 @@ def max_index(X):
 
     return max_index
 
+
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
@@ -53,6 +56,7 @@ def wallis_product(n_terms):
         denominator = 4 * i**2 - 1
         pi_approximation *= numerator / denominator
 
+    
     if n_terms == 0:
         return 2.0
     
