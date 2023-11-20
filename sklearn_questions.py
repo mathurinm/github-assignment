@@ -1,5 +1,4 @@
-"""
-sklearn_questions.py
+"""sklearn_questions.py.
 
 This module contains the implementation of the OneNearestNeighbor classifier
 for scikit-learn.
