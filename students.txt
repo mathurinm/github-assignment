@@ -1,12 +1,12 @@
 First name	Last name
-Nadiy	Abdel Karim Dit Aramouni X
+Nadiy	Abdel Karim Dit Aramouni
 Aadhar	Agarwal
 Dogbo	Agbre
 Alae	Ahmad
 Raphaël	Amzallag
 Abdufattokh	Ashurov
 Zakaria	Atlassi Douch
-Elise	Barattini X
+Elise	Barattini
 Ugo	Benazra
 Safwane	Benseddiq
 Mohamed	Benslimane
@@ -27,16 +27,16 @@ Valentine	Dana
 Solal	Danan
 Charles	De Cian
 Augustin	De Saint Affrique
-Matthieu	Delsart X
+Matthieu	Delsart
 Yuding	Duan
 Alexandre	Foulon
-Antoine	Gosset X
+Antoine	Gosset
 Léopold	Guichot
 Nacer	Hadni
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder
 Farah	Jabri
-Thibault	Jauneau X
+Thibault	Jauneau
 Zixu	Jin
 Sami	Kalai
 Tanmay	Kale
@@ -44,35 +44,35 @@ Xiaohan	Ke
 Jack	Khoueiri
 Lucijan	Kodeli
 Evgenii	Kostromin
-Ameya	KulkarniX
+Ameya	Kulkarni
 Constance	Laverdure
-François	LebrunX
+François	Lebrun
 Giacomo	Lustri
 Felipe	Mansilla
 Yanqing	Mao
 Virgile	Martin
 Nicola	Massari
 Mathurin	Massias
-Tarek	Massoud X
-Artus	Mathieu X
+Tarek	Massoud
+Artus	Mathieu
 Zineb	Mechiche Alami
 Xianghan	Mei
 Samuel	Mesguiche
 Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita
-Thanh Liêm	Nguyen X
+Thanh Liêm	Nguyen
 Carlo Antonio	Patti
-Julien	Pezzi x
+Julien	Pezzi
 Trung Dan	Phan
-Auguste	Piromalli X
+Auguste	Piromalli
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder
 Rong	Shen
 Charles	Siret
 Hadrien	Strichard
-Eva	Toledano x
+Eva	Toledano
 Tim	Valencony
 Antonio Roberto	Ventura
 Khushi	Verma
