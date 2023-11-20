@@ -6,7 +6,7 @@ Alae	Ahmad
 Raphaël	Amzallag
 Abdufattokh	Ashurov
 Zakaria	Atlassi Douch
-Elise	Barattini
+Elise	Barattini X
 Ugo	Benazra
 Safwane	Benseddiq
 Mohamed	Benslimane
@@ -36,7 +36,7 @@ Nacer	Hadni
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder
 Farah	Jabri
-Thibault	Jauneau
+Thibault	Jauneau X
 Zixu	Jin
 Sami	Kalai
 Tanmay	Kale
@@ -46,7 +46,7 @@ Lucijan	Kodeli
 Evgenii	Kostromin
 Ameya	Kulkarni
 Constance	Laverdure
-François	Lebrun
+François	LebrunX
 Giacomo	Lustri
 Felipe	Mansilla
 Yanqing	Mao
@@ -54,7 +54,7 @@ Virgile	Martin
 Nicola	Massari
 Mathurin	Massias
 Tarek	Massoud X
-Artus	Mathieu
+Artus	Mathieu X
 Zineb	Mechiche Alami
 Xianghan	Mei
 Samuel	Mesguiche
@@ -63,9 +63,9 @@ Badr	Moufad
 Alexandra-Catalina	Negoita
 Thanh Liêm	Nguyen
 Carlo Antonio	Patti
-Julien	Pezzi
+Julien	Pezzi x
 Trung Dan	Phan
-Auguste	Piromalli
+Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder
