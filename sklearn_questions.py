@@ -1,88 +1,66 @@
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    def __init__(self):
-        pass
+def max_index(X):
+    """Return the index of the maximum in a numpy array.
 
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array.
 
-    def fit(self, X, y):
-        """Fit the OneNearestNeighbor classifier.
+    Returns
+    -------
+    (i, j) : tuple(int)
+        The row and column index of the maximum.
 
-        Parameters
-        ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            Training data.
-        y : array-like or pd.Series, shape (n_samples,)
-            Target values.
+    Raises
+    ------
+    ValueError
+        If the input is not a numpy array or
+        if the shape is not 2D.
+    """
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input is not a numpy array")
 
-        Returns
-        -------
-        self : object
-            Returns self.
-        """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
+    if X.ndim != 2:
+        raise ValueError("Input array must be 2D")
 
-        # Set the n_features_in_ attribute
-        self.n_features_in_ = X.shape[1]
+    # Find the indices of the maximum value
+    max_index = np.unravel_index(np.argmax(X), X.shape)
+
+    return max_index
+
+# Example usage
+sample_array = np.array([[1, 2, 3], [4, 5, 6]])
+result = max_index(sample_array)
+
+print("Index of the maximum value:", result)
+
+def wallis_product(n_terms):
+    """Implement the Wallis product to compute an approximation of pi.
+
+    See:
+    https://en.wikipedia.org/wiki/Wallis_product
+
+    Parameters
+    ----------
+    n_terms : int
+        Number of steps in the Wallis product. Note that `n_terms=0` will
+        consider the product to be `1`.
+
+    Returns
+    -------
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
+    """
+    # Wallis product
+    pi_approximation = 2.0
+    for i in range(1, n_terms + 1):
+        numerator = 4 * i**2
+        denominator = 4 * i**2 - 1
+        pi_approximation *= numerator / denominator
+
+    if n_terms == 0:
+        return 2.0
     
-
-        # Calculate and store any necessary information for prediction
-        self.X_train_ = X
-        self.y_train_ = y
-
-        return self
-
-    def predict(self, X):
-        """Predict the target values for input data.
-
-        Parameters
-        ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            Data for which to predict the target values.
-
-        Returns
-        -------
-        y_pred : array, shape (n_samples,)
-            Predicted target values.
-        """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.empty(len(X), dtype=self.classes_.dtype)
-
-        for i, x_test in enumerate(X):
-            # Find the index of the closest training example to x_test
-            closest_index = np.argmin(np.linalg.norm(x_test - self.X_train_, axis=1))
-            y_pred[i] = self.y_train_[closest_index]
-
-        return y_pred
-
-    def score(self, X, y):
-        """Return the mean accuracy on the given test data and labels.
-
-        Parameters
-        ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            Test samples.
-        y : array-like or pd.Series, shape (n_samples,)
-            True labels for X.
-
-        Returns
-        -------
-        score : float
-            Mean accuracy of self.predict(X) with respect to y.
-        """
-        X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-
-        # Calculate mean accuracy
-        accuracy = np.mean(y_pred == y)
-
-        return accuracy
+    return pi_approximation
