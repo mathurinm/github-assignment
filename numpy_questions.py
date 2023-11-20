@@ -1,3 +1,4 @@
+
 import numpy as np
 
 def max_index(X):
@@ -19,9 +20,8 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
 
+    
     if not isinstance(X, np.ndarray):
         raise ValueError("Input is not a numpy array")
 
@@ -36,6 +36,8 @@ def max_index(X):
 # Example usage
 sample_array = np.array([[1, 2, 3], [4, 5, 6]])
 result = max_index(sample_array)
+
+
 print("Index of the maximum value:", result)
 
 def wallis_product(n_terms):
@@ -55,20 +57,16 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    
+
     # Wallis product
     pi_approximation = 2.0
     for i in range(1, n_terms + 1):
         numerator = 4 * i**2
         denominator = 4 * i**2 - 1
         pi_approximation *= numerator / denominator
-    
+
     if n_terms == 0:
         return 2.0
     
     return pi_approximation
 
-# Example usage
-n_terms = 100000
-pi_approximation = wallis_product(n_terms)
-print(f"Approximation of pi using {n_terms} terms in the Wallis product: {pi_approximation}")

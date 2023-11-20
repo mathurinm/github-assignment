@@ -10,6 +10,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def __init__(self):
         pass
 
+
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier.
 
@@ -31,7 +32,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # Set the n_features_in_ attribute
         self.n_features_in_ = X.shape[1]
-        
+    
+
         # Calculate and store any necessary information for prediction
         self.X_train_ = X
         self.y_train_ = y
