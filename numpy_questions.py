@@ -1,4 +1,11 @@
 import numpy as np
+"""
+Utilities for working with NumPy arrays.
+
+This module provides functions for common operations on NumPy arrays,
+Including finding the index of the maximum value and computing
+the Wallis product for an approximation of pi.
+"""
 
 
 def max_index(X):

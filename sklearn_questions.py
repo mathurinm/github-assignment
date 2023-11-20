@@ -39,6 +39,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Return the mean accuracy on the given test data and labels.
     """
     def __init__(self):
+        """
+        Initialize the OneNearestNeighbor classifier.
+
+        Parameters
+        ----------
+        None
+        """
         pass
 
     def fit(self, X, y):
