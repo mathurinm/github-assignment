@@ -1,12 +1,15 @@
 """
 sklearn_questions.py
 
-This module contains the implementation of the OneNearestNeighbor classifier for scikit-learn.
+This module contains the implementation of the OneNearestNeighbor classifier 
+for scikit-learn.
 
-- The OneNearestNeighbor class is a custom scikit-learn estimator for the nearest neighbor classifier.
+- The OneNearestNeighbor class is a custom scikit-learn estimator for the 
+  nearest neighbor classifier.
 - It includes the fit, predict, and score methods.
 
-For usage instructions and examples, refer to the docstrings within the class and methods.
+For usage instructions and examples, refer to the docstrings within the 
+class and methods.
 """
 import numpy as np
 from sklearn.base import BaseEstimator
