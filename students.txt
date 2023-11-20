@@ -15,11 +15,11 @@ Alexander	Bohane
 Apolline	Boillot
 Thomas	Bordes X
 Nathan	Bout
-Thibaut	Boyenval
-Cathal	Brady
+Thibaut	Boyenval X
+Cathal	Brady X
 Alexandre	Brun X
-Benjamin	Cerf
-Ghali	Chraibi
+Benjamin	Cerf X
+Ghali	Chraibi X
 Tess	Coullon
 Jules	Crevola
 Matteo Alessandro	D'Alessandro
