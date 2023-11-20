@@ -26,7 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
+from scipy.spatial.distance import cdist
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -41,9 +41,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
-
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -53,12 +53,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        # Compute distances between each test point and all training points
+        distances = cdist(X, self.X_)
+
+        # Find the nearest neighbor index for each test point
+        nearest_neighbor_idx = distances.argmin(axis=1)
+
+        # Predict the class of the nearest neighbor
+        y_pred = self.y_[nearest_neighbor_idx]
         return y_pred
 
     def score(self, X, y):
@@ -68,6 +71,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
