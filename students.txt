@@ -6,11 +6,11 @@ Alae	Ahmad X
 Raphaël	Amzallag
 Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
-Elise	Barattini X
+Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
 Mohamed	Benslimane
-Dora	Bijvoet
+Dora	Bijvoet X
 Alexander	Bohane
 Apolline	Boillot X
 Thomas	Bordes
@@ -26,7 +26,7 @@ Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan x
-Charles	De Cian
+Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
 Yuding	Duan
@@ -36,14 +36,14 @@ Léopold	Guichot
 Nacer	Hadni X
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
-Farah	Jabri
+Farah	Jabri X
 Thibault	Jauneau X
 Zixu	Jin
 Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
-Jack	Khoueiri
-Lucijan	Kodeli
+Jack	Khoueiri X
+Lucijan	Kodeli X
 Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
@@ -58,12 +58,12 @@ Tarek	Massoud X
 Artus	Mathieu X
 Zineb	Mechiche Alami X
 Xianghan	Mei
+Pietro	Micelli X
 Samuel	Mesguiche X
-Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita X
 Thanh Liêm	Nguyen X
-Carlo Antonio	Patti
+Carlo Antonio	Patti X
 Julien	Pezzi x
 Trung Dan	Phan
 Auguste	Piromalli X
@@ -75,7 +75,7 @@ Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
 Tim	Valencony X
-Antonio Roberto	Ventura
+Antonio Roberto	Ventura X
 Khushi	Verma
 Henri	Vignial X
 Khushi	VermaX
