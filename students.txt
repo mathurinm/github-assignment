@@ -57,7 +57,7 @@ Tarek	Massoud X
 Artus	Mathieu X
 Zineb	Mechiche Alami X
 Xianghan	Mei
-Samuel	Mesguiche
+Samuel	Mesguiche X
 Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita
