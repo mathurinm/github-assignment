@@ -28,25 +28,33 @@ from scipy.spatial.distance import cdist
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier.
+
     Parameters
     ----------
     No parameters are required for initialization.
+
     Attributes
     ----------
     classes_ : array-like
         The unique classes found in the training data.
+
     Methods
     -------
     fit(X, y)
         Fit the OneNearestNeighbor classifier to the training data.
+
     predict(X)
         Predict the class labels for input samples.
+
     score(X, y)
         Return the mean accuracy on the given test data and labels.
+
     """
 
     def __init__(self):
-        """Initialize the OneNearestNeighbor classifier."""
+        """Initialize the OneNearestNeighbor classifier.
+        
+        """
         pass
 
     def fit(self, X, y):
