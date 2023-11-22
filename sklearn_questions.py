@@ -80,6 +80,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            closest_index = np.argmin(distances)
+            y_pred[i] = self.y_train_[closest_index]
+
         return y_pred
 
     def score(self, X, y):
