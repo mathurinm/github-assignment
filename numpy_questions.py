@@ -21,7 +21,7 @@ def max_index(X):
     """Return the index of the maximum in a numpy array."""
     if not isinstance(X, np.ndarray):
         raise ValueError(" X must be a numpy array.")
-    if X.ndim != 2
+    if X.ndim != 2:
         raise ValueError("X must be 2D.")
 
     i, j = np.unravel_index(np.argmax(X), X.shape)
@@ -35,7 +35,7 @@ def wallis_product(n_terms):
 
     n = np.arange(1, n_terms + 1)
     terms = (2.0 * n / (2.0 * n - 1)) * (2.0 * n / (2.0 * n + 1))
-    pi_approximation = np.prod(terms)
+    pi_approx = np.prod(terms)
 
-    return pi_approximation * 2
+    return pi_approx * 2
 
