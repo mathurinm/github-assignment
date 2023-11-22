@@ -31,7 +31,7 @@ Matthieu	Delsart
 Yuding	Duan
 Alexandre	Foulon
 Antoine	Gosset
-Léopold	Guichot
+Léopold	Guichot		X
 Nacer	Hadni
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder
