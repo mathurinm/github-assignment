@@ -76,3 +76,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = self.predict(X)
         return (y_pred == y).mean()
         #return y_pred.sum()
+
