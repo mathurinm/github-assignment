@@ -35,40 +35,73 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the OneNearestNeighbor classifier to the data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or Pandas.DataFrame
+            Input data of shape (n_sample, n_features).
+        y : array_like or Pandas.Series
+            Target values associated to X of shape (n_samples, ).
+
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Returns the label prediction for given data, using the ONN classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or Pandas.DataFrame
+            New data for which to predict the label,
+            of shape (n_sample, n_features).
+
+        Returns
+        -------
+        y_pred : array-like or Pandas.Series
+            Label prediction vector of shape (n_new, ).
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        distances = np.linalg.norm(X[:, None] - self.X_train_, axis=2)
+        argmins = np.argmin(distances, axis=1)
+        y_pred = self.y_train_[argmins]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Returns the average number of samples correctly
+        predicted by the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or Pandas.DataFrame
+            Input data to predict, of shape (n_sample, n_features).
+        y : array_like or Pandas.Series
+            Actual target values associated to X of shape (n_sample, ).
+
+        Returns
+        -------
+        score : float
+            Number of correct guesses divided by n_sample.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = (y_pred == y).mean()
+        return score
