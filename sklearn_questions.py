@@ -29,28 +29,76 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the OneNearestNeighbour function to the training data (X, y).
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training input data.
+
+        y : ndarray of size (n_samples,)
+            The target values as integers or strings.
+
+        Returns
+        ----------
+        self : OneNearestNeighbor classifier
+            The OneNearestNeighbor classifier fitted on the training data
+            (X, y).
+
+        Raises
+        ----------
+        ValueError
+            If the input X is not a numpy array or
+            if the shape is not 2D.
+            If the input y is not a numpy array or
+            if the shape is not 1D.
+            If the number of samples in X and y are not equal.
+            If X or y contain non-finite values.
+        ValueError
+            If the input y is consistent with a classification task. Checks tha
+            t y does not contain continuous values, but rather class labels.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the label of the new observations with features given by the input array X.
+        
+        Uses the fitted OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_new_samples, n_features)
+            The features of the new observations to be predicted.
+
+        Returns
+        ----------
+        y_pred : ndarray of shape (n_new_samples,)
+            The predicted labels of the new observations whose features are
+            given by the input array X.
+
+        Raises
+        ----------
+        NotFittedError
+            If the OneNearestNeighbor classifier is not fitted by checking if
+            the attributes X_ and y_ are defined.
+        ValueError
+            If the input X is not a numpy array or
+            if the shape is not 2D or
+            if X containes non-finite values.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,7 +107,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+            nearest_neighbor_index = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_neighbor_index]
+
         return y_pred
 
     def score(self, X, y):
@@ -70,5 +122,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = 0
+
+        for i, prediction in enumerate(y_pred):
+            if prediction == y[i]:
+                score += 1
+
+        return score/len(y)
