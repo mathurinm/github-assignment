@@ -50,6 +50,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def __init__(self):
+        """Initialize the classifier."""
         pass
 
     def fit(self, X, y):
