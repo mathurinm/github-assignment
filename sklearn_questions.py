@@ -30,6 +30,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.utils.validation import _check_sample_weight
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
@@ -114,4 +115,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         score = accuracy_score(y, y_pred)
         return score
-    
