@@ -81,7 +81,7 @@ Henri	Vignial X
 Khushi	VermaX
 Chenfei	Wang X
 Mingyu	Wang
-Fangzhou	Xu
+Fangzhou	Xu X
 Jialong	Xu
 Zhongyuan	Zhang X
 Yufeng	Zhou
