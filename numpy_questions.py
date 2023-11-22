@@ -37,15 +37,15 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-if not isinstance(X, np.ndarray):
-    raise ValueError("X is not a NumPy Array")
+    if not isinstance(X, np.ndarray):
+        raise ValueError("X is not a NumPy Array")
 
-if len(x.shape) != 2:
-    raise ValueError("X is not a two dimensional array")
+    if len(x.shape) != 2:
+        raise ValueError("X is not a two dimensional array")
 
-flatIndex = np.argmax(X)
-size = X.shape
-maxIndices = np.unravel_index(flatIndex, size)
+    flatIndex = np.argmax(X)
+    size = X.shape
+    maxIndices = np.unravel_index(flatIndex, size)
 
 return maxIndices
 
