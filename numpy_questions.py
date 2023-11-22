@@ -74,11 +74,11 @@ def wallis_product(n_terms):
 
     result = 1.0
     for k in range(1, n_terms + 1):
-        term = (2 * k) / (2 * k - 1) * (2 * k) / (2 * k + 1)
+        term = ((2 * k) / (2 * k - 1)) * ((2 * k) / (2 * k + 1))
         result *= term
 
     # Multiply by 2 to get the final approximation of pi
-    return result
+    return 2 * result
 
 
 X = np.random.randint(0, 20, size=(5, 8))
