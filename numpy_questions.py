@@ -78,7 +78,7 @@ def wallis_product(n_terms):
         result *= term
 
     # Multiply by 2 to get the final approximation of pi
-    return 2 * result
+    return result
 
 
 X = np.random.randint(0, 20, size=(5, 8))
