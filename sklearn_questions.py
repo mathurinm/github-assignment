@@ -29,45 +29,90 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Train a OneNearestNeighbor classifier. This is just memorizing the
+        data.
+        Parameters
+        ----------
+        X : ndarray of shape (num_train, D).
+            The input array containing the training data consisting of
+        num_train samples with flatten size D.
 
-        And describe parameters
+        y : ndarray of shape (num_train,)
+            The trainnig labels associate to the input array, where y[i] is
+            the label for X[i].
+        Returns
+        -------
+        X_train : ndarray of shape (num_train, D)
+            Copy of X
+        y_train : ndarray of shape (num_train,)
+            Copy of y
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-
+        self.X_train_ = X.copy()
+        self.y_train_ = y.copy()
+        self.n_features_in_ = X.shape[1]
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict labels for test data using the fitted classifier. Gives
+    label of the closest point using Euclidean distance.
+        Parameters
+        ----------
+        X : ndarray of shape (num_test, D)
+            The input array containing the test data consisting of num_test
+            samples with flatten size D.
+        Returns
+        -------
+        y : ndarray of shape (num_test,)
+            Predicted labels associated to the test data, where y[i] is the
+            predicted label for X[i].
         """
+
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
+        A = np.diag(X @ X.T)[:, np.newaxis]
+        B = np.diag(self.X_train_ @ self.X_train_.T)[np.newaxis, :]
+        C = X @ self.X_train_.T
+        dists = np.sqrt(A + B - 2 * C)
+        nearest = np.argsort(dists)[:, 0]
+        for i in range(len(X)):
+            y_pred[i] = self.y_train_[nearest[i]]
         # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
         And describe parameters
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        accuracy : float
+            Mean accuracy of self.predict(X) w.r.t. y.
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-
+        accuracy = np.mean(self.predict(X) == y)
         # XXX fix
-        return y_pred.sum()
+        return accuracy
