@@ -33,6 +33,7 @@ from sklearn.utils.validation import _check_sample_weight
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -52,18 +53,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Returns self.
 
         """
-        
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         if sample_weight is not None:
             # Handle sample weights if provided
             sample_weight = _check_sample_weight(sample_weight, X)
     
-        self.sample_weight_ = sample_weight
-        
-                
+        self.sample_weight_ = sample_weight  
         self.classes_ = np.unique(y)
-
         self.X_ = X
         self.y_ = y
         self.n_features_in_ = X.shape[1]
@@ -118,4 +115,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         score = accuracy_score(y, y_pred)
         return score
-    
