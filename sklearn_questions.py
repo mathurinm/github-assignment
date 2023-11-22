@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -62,12 +62,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """
-        Returns the label prediction for given data, using the ONN classifier.
+        Return the label prediction for given data, using the ONN classifier.
 
         Parameters
         ----------
         X : array-like or Pandas.DataFrame
-            New data for which to predict the label,
+            New data for which to predict the label, \
             of shape (n_sample, n_features).
 
         Returns
@@ -85,7 +85,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Returns the average number of samples correctly
+        Return the average number of samples correctly \
         predicted by the classifier.
 
         Parameters
@@ -102,6 +102,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         score = (y_pred == y).mean()
         return score
