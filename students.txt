@@ -84,6 +84,6 @@ Mingyu	Wang
 Fangzhou	Xu X
 Jialong	Xu
 Zhongyuan	Zhang X
-Yufeng	Zhou
+Yufeng	Zhou X
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
