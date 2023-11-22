@@ -35,8 +35,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Train a OneNearestNeighbor classifier. This is just memorizing the
-        data.
+        """
+        Train a OneNearestNeighbor classifier.
+
+        This is just memorizing the data.
+
         Parameters
         ----------
         X : ndarray of shape (num_train, D).
@@ -53,7 +56,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_train : ndarray of shape (num_train,)
             Copy of y
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -64,8 +66,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict labels for test data using the fitted classifier. Gives
-    label of the closest point using Euclidean distance.
+        """Predict labels for test data using the fitted classifier.
+        
+        Gives label of the closest point using Euclidean distance.
+
         Parameters
         ----------
         X : ndarray of shape (num_test, D)
@@ -77,7 +81,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Predicted labels associated to the test data, where y[i] is the
             predicted label for X[i].
         """
-
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -95,9 +98,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Return the mean accuracy on the given test data and labels.
-
-        And describe parameters
+        """
+        Return the mean accuracy on the given test data and labels.
 
         Parameters
         ----------
