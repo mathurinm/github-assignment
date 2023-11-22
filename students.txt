@@ -1,21 +1,21 @@
 First name	Last name
 Nadiy	Abdel Karim Dit Aramouni X
 Aadhar	Agarwal X
-Dogbo	Agbre
+Dogbo	Agbre X
 Alae	Ahmad X
 Raphaël	Amzallag
 Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
-Elise	Barattini X
+Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
-Mohamed	Benslimane
+Mohamed	Benslimane X
 Dora	Bijvoet X
-Alexander	Bohane
+Alexander	Bohane X
 Apolline	Boillot X
 Thomas	Bordes
 Thomas	Bordes X
-Nathan	Bout
+Nathan	Bout X
 Thibaut	Boyenval
 Cathal	Brady 
 Alexandre	Brun X
@@ -26,7 +26,7 @@ Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan x
-Charles	De Cian
+Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
 Yuding	Duan
@@ -36,14 +36,14 @@ Léopold	Guichot
 Nacer	Hadni X
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
-Farah	Jabri
+Farah	Jabri X
 Thibault	Jauneau X
 Zixu	Jin
 Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
-Jack	Khoueiri
-Lucijan	Kodeli
+Jack	Khoueiri X
+Lucijan	Kodeli X
 Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
@@ -58,19 +58,19 @@ Tarek	Massoud X
 Artus	Mathieu X
 Zineb	Mechiche Alami X
 Xianghan	Mei
+Pietro	Micelli X
 Samuel	Mesguiche X
-Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita X
 Thanh Liêm	Nguyen X
-Carlo Antonio	Patti
+Carlo Antonio	Patti X
 Julien	Pezzi x
 Trung Dan	Phan
 Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
-Rong	Shen
+Rong	Shen X
 Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
@@ -79,11 +79,11 @@ Antonio Roberto	Ventura X
 Khushi	Verma
 Henri	Vignial X
 Khushi	VermaX
-Chenfei	Wang
+Chenfei	Wang X
 Mingyu	Wang
-Fangzhou	Xu
+Fangzhou	Xu X
 Jialong	Xu
 Zhongyuan	Zhang X
-Yufeng	Zhou
-Qiling	Zhu
+Yufeng	Zhou X
+Qiling	Zhu X
 Mohamed-El Hocine	Zidi
