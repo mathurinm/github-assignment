@@ -20,55 +20,89 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.metrics import accuracy_score
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    This classifier implements a one-nearest-neighbor rule which predicts the
+    target of a new point to be the same as the target of the closest point
+    from the training set.
+
+    Attributes
+    ----------
+    X_ : array-like, shape (n_samples, n_features)
+        The input samples.
+
+    y_ : array-like, shape (n_samples,)
+        The class labels for the input samples.
+
+    classes_ : array, shape (n_classes,)
+        The class labels known to the classifier.
+
+    n_features_in_ : int
+        The number of features in the fit data.
+    """
+
+    def __init__(self):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the model using X as training data and y as target values.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Training data.
+
+        y : array-like, shape (n_samples,)
+            Target values.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like, shape (n_query, n_features)
+            Test samples.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
-        return y_pred
+        y_pred = []
+        for x in X:
+            distances = np.sqrt(((self.X_ - x) ** 2).sum(axis=1))  # distances to all training points
+            nearest_neighbor_idx = distances.argmin()   # index of the NN
+            y_pred.append(self.y_[nearest_neighbor_idx])
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like, shape (n_samples,)
+            True labels for X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y, y_pred)
