@@ -40,7 +40,7 @@ def max_index(X):
 if not isinstance(X, np.ndarray):
     raise ValueError("X is not a NumPy Array")
 
-if len(x.shape) != 2
+if len(x.shape) != 2:
     raise ValueError("X is not a two dimensional array")
 
 flatIndex = np.argmax(X)
