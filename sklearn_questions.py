@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import pairwise_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -67,7 +68,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict labels for test data using the fitted classifier.
-        
+
         Gives label of the closest point using Euclidean distance.
 
         Parameters
@@ -87,10 +88,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        A = np.diag(X @ X.T)[:, np.newaxis]
-        B = np.diag(self.X_train_ @ self.X_train_.T)[np.newaxis, :]
-        C = X @ self.X_train_.T
-        dists = np.sqrt(A + B - 2 * C)
+        dists = pairwise_distances(X, self.X_train_)
         nearest = np.argsort(dists)[:, 0]
         for i in range(len(X)):
             y_pred[i] = self.y_train_[nearest[i]]
