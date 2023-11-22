@@ -103,11 +103,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        score : float
-            Mean accuracy of the classifier on the provided test data and labels.
+        score (float):  Mean accuracy of the classifier on the provided test data and labels.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
+        
         return (y_pred == y).mean()
-    
