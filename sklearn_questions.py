@@ -132,4 +132,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
- 
