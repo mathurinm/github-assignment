@@ -40,7 +40,6 @@ def max_index(X):
     i = 0
     j = 0
 
-
     if not isinstance(X, np.ndarray):
         raise ValueError("X is not a numpy array")
 
@@ -48,11 +47,10 @@ def max_index(X):
         raise ValueError("X is not a 2D array")
 
     for k in range(X.shape[0]):
-        for l in range(X.shape[1]):
-            if X[k, l] > X[i, j]:
+        for u in range(X.shape[1]):
+            if X[k, u] > X[i, j]:
                 i = k
-                j = l
-
+                j = u
     return (i, j)
 
 

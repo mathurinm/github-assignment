@@ -86,7 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         y_pred = []
         for x in X:
-            distances = np.sqrt(((self.X_ - x) ** 2).sum(axis=1))  # distances to all training points
+            distances = np.sqrt(((self.X_ - x) ** 2).sum(axis=1))
             nearest_neighbor_idx = distances.argmin()   # index of the NN
             y_pred.append(self.y_[nearest_neighbor_idx])
         return np.array(y_pred)
