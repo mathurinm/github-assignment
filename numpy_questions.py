@@ -79,7 +79,7 @@ def wallis_product(n_terms):
     # Multiply by two and obtain the aprox. of Pi 
     return 2 * result
 
-X = np.random.randit(0, 20, size=(5, 8))
+X = np.random.randint(0, 20, size=(5, 8))
 result = max_index(X)
 print(X, result)
 n_terms = (100000)
