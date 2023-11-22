@@ -1,31 +1,32 @@
 First name	Last name
 Nadiy	Abdel Karim Dit Aramouni X
-Aadhar	Agarwal
-Dogbo	Agbre
-Alae	Ahmad
+Aadhar	Agarwal X
+Dogbo	Agbre X
+Alae	Ahmad X
 Raphaël	Amzallag
-Abdufattokh	Ashurov
+Abdufattokh	Ashurov X
 Zakaria	Atlassi Douch
-Elise	Barattini X
-Ugo	Benazra
+Elise	Barattini xx
+Ugo	Benazra X
 Safwane	Benseddiq X
-Mohamed	Benslimane
-Dora	Bijvoet
-Alexander	Bohane
-Apolline	Boillot
+Mohamed	Benslimane X
+Dora	Bijvoet X
+Alexander	Bohane X
+Apolline	Boillot X
 Thomas	Bordes
-Nathan	Bout
+Thomas	Bordes X
+Nathan	Bout X
 Thibaut	Boyenval
-Cathal	Brady X
-Alexandre	Brun
+Cathal	Brady 
+Alexandre	Brun X
 Benjamin	Cerf X
-Ghali	Chraibi
+Ghali	Chraibi X
 Tess	Coullon
-Jules	Crevola
+Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
-Solal	Danan
-Charles	De Cian
+Solal	Danan x
+Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
 Yuding	Duan
@@ -35,54 +36,54 @@ Léopold	Guichot
 Nacer	Hadni X
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
-Farah	Jabri
+Farah	Jabri X
 Thibault	Jauneau X
 Zixu	Jin
-Sami	Kalai
+Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
-Jack	Khoueiri
-Lucijan	Kodeli
-Evgenii	Kostromin
+Jack	Khoueiri X
+Lucijan	Kodeli X
+Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
 François	LebrunX
-Giacomo	Lustri
-Felipe	Mansilla
+Giacomo	Lustri X
+Felipe	Mansilla XXXX
 Yanqing	Mao
-Virgile	Martin
+Virgile	Martin X
 Nicola	Massari
 Mathurin	Massias
 Tarek	Massoud X
 Artus	Mathieu X
-Zineb	Mechiche Alami
+Zineb	Mechiche Alami X
 Xianghan	Mei
-Samuel	Mesguiche
-Pietro	Micelli
+Pietro	Micelli X
+Samuel	Mesguiche X
 Badr	Moufad
-Alexandra-Catalina	Negoita
+Alexandra-Catalina	Negoita X
 Thanh Liêm	Nguyen X
-Carlo Antonio	Patti
+Carlo Antonio	Patti X
 Julien	Pezzi x
 Trung Dan	Phan
 Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
-Nicolas	Schroeder
-Rong	Shen
+Nicolas	Schroeder X
+Rong	Shen X
 Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
-Tim	Valencony
-Antonio Roberto	Ventura
+Tim	Valencony X
+Antonio Roberto	Ventura X
+Khushi	Verma
+Henri	Vignial X
 Khushi	VermaX
-Henri	Vignial
-Chenfei	Wang
+Chenfei	Wang X
 Mingyu	Wang
-Fangzhou	Xu
+Fangzhou	Xu X
 Jialong	Xu
 Zhongyuan	Zhang X
-Yufeng	Zhou
+Yufeng	Zhou X
 Qiling	Zhu
 Mohamed-El Hocine	Zidi
-
