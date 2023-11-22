@@ -40,7 +40,7 @@ def max_index(X):
     i = 0
     j = 0
 
-    if type(X) != np.ndarray:
+    if type(X) is not np.ndarray:
         raise ValueError('X must be an array')
     elif X.ndim != 2:
         raise ValueError('X must be 2D')
