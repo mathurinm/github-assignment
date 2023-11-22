@@ -70,7 +70,7 @@ Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
-Rong	Shen
+Rong	Shen X
 Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
