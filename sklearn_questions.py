@@ -29,28 +29,71 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    classes_ : array of shape (n_classes,)
+        The classes found in the training data.
+    n_features_in_ : int
+        The number of features in the training data.
+
+    Methods
+    -------
+    fit(X, y)
+        Fit the OneNearestNeighbor model to the training data.
+    predict(X)
+        Predict the class labels for the input data.
+    score(X, y)
+        Compute the accuracy of the OneNearestNeighbor model on the test data.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model to the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array with shape (n_samples, n_features)
+            The input training data.
+        y : array with shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # Store training data for prediction
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the input data using the L2 distance.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array with shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        y_pred : array with shape (n_samples,)
+            The predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +102,40 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # Compute the L2 distance for each point and store it in a distance
+        num_test = X.shape[0]
+        num_train = self.X_.shape[0]
+        dists = np.zeros((num_test, num_train))
+
+        for i in range(num_test):
+            dists[i, :] = np.sqrt(np.sum(np.square(X[i] - self.X_), axis=1))
+
+        # Find the one nearest neighbour
+        for i in range(dists.shape[0]):
+            closest_indices = np.argsort(dists[i])[0]
+            closest_y = self.y_[closest_indices]
+            y_pred[i] = closest_y
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the ONN model on the test data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array with shape (n_samples, n_features)
+            The input test data.
+        y : array with shape (n_samples,)
+            The true labels for the test data.
+
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the model on the test data.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        test = y_pred == y
+
+        return test.sum()/test.shape[0]
