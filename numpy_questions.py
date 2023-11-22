@@ -74,7 +74,7 @@ def wallis_product(n_terms):
 
     result = 1.0 
     for k in range (1, n_terms + 1):
-        term = (2 * k) / (2 * k - 1) * (2 * k) / (2 * k - 1)
+        term = (2 * k) / (2 * k - 1) * (2 * k) / (2 * k + 1)
         result *= term 
     # Multiply by two and obtain the aprox. of Pi 
     return 2 * result
