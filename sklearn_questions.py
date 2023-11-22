@@ -75,8 +75,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the label of the new observations with features given by the input array X.
-        
+        """Predicts the label of the new observations
+        with features given by the input array X.
+
         Uses the fitted OneNearestNeighbor classifier.
 
         Parameters
