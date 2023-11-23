@@ -45,7 +45,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
         self._X = X
         self._y = y
-    
+        return self
 
     def predict(self, X):
         """Write docstring.
