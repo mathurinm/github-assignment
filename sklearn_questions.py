@@ -34,6 +34,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     Parameters
     ----------
+    Nothing
 
     Attributes
     ----------
@@ -42,6 +43,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def __init__(self):
+        """Initialise of OneNearestNeighbor classifier.
+
+        Parameters
+        ----------
+        Nothing
+
+        Attributes
+        ----------
+        Nothing
+        """
         pass
 
     def fit(self, X, y):
