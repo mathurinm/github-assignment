@@ -92,13 +92,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        dists = euclidean_distances(X, self.X_train_)
 
-        # sum_test = np.sum(X ** 2, axis=1, keepdims=True) # Need to brodcast for the sum
-        # sum_train = np.sum(self.X_train ** 2, axis=1)
-        # scalar_product = X @ self.X_train.T
-        # dists = np.sqrt(sum_test + sum_train - 2 * scalar_product)
-
+        # From LAB 2 KNN ML compute_distances_two_loops 
+        shape_train = np.shape(self.X_train_)[0]
+        shape_test = np.shape(X)[0]
+        dists = np.zeros((shape_test, shape_train))
+        for i in range(shape_test):
+            for j in range(shape_train):
+                # dists[i, j] = np.linalg.norm(X[i, :] - self.X_train[j, :], 2)
+                dists[i, j] = np.sqrt(np.sum(np.square(X[i, :] - self.X_train_[j, :])))
+   
         closest_idx = np.argmin(dists, axis=1)
         y_pred = self.y_train_[closest_idx]
         return y_pred
