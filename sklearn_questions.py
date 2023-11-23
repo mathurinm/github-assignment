@@ -46,7 +46,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self._X = X
         self._y = y
     
-        return self
 
     def predict(self, X):
         """Write docstring.
