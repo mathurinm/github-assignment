@@ -26,16 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
-import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics import accuracy_score
-from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -72,7 +63,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1] 
+        self.n_features_in_ = X.shape[1]
         self.X_train_ = X
         self.y_train_ = y
         return self
@@ -93,16 +84,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
 
-        # From LAB 2 KNN ML compute_distances_two_loops 
+        # From LAB 2 KNN ML compute_distances_two_loops
         shape_train = np.shape(self.X_train_)[0]
         shape_test = np.shape(X)[0]
         dists = np.zeros((shape_test, shape_train))
         for i in range(shape_test):
             for j in range(shape_train):
-                # dists[i, j] = np.linalg.norm(X[i, :] - self.X_train[j, :], 2)
-                dists[i, j] = np.sqrt(np.sum(np.square(X[i, :] - self.X_train_[j, :])))
-   
+                dists[i, j] = np.sqrt(
+                    np.sum(np.square(X[i, :] - self.X_train_[j, :]))
+                    )
         closest_idx = np.argmin(dists, axis=1)
+
         y_pred = self.y_train_[closest_idx]
         return y_pred
 
