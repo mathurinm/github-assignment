@@ -30,10 +30,10 @@ def test_max_index():
 
 def test_wallis_product():
     pi_approx = wallis_product(0)
-    assert pi_approx == 2.
+    np.testing.assert_equal(pi_approx, 2.)
 
     pi_approx = wallis_product(1)
-    assert pi_approx == 8 / 3
+    np.testing.assert_equal(pi_approx, 8 / 3.)
 
     pi_approx = wallis_product(100000)
     assert abs(pi_approx - m.pi) < 1e-4
