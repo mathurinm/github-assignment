@@ -70,7 +70,7 @@ def wallis_product(n_terms):
     if n_terms == 0:
         return 1.0
 
-    pi_approx = 2.0
+    pi_approx = 1.0
     for i in range(1, n_terms + 1):
         numerator = 4 * i**2
         denominator = 4 * i**2 - 1
