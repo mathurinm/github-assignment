@@ -16,7 +16,7 @@ Apolline	Boillot X
 Thomas	Bordes
 Thomas	Bordes X
 Nathan	Bout X
-Thibaut	Boyenval
+Thibaut	Boyenval X
 Cathal	Brady 
 Alexandre	Brun X
 Benjamin	Cerf X
