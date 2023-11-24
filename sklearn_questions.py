@@ -29,28 +29,68 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    classes_ : array, shape (n_classes,)
+        The unique classes present in the training data.
+    n_features_in_ : int
+        Number of features in the input data.
+    X_train_ : array-like, shape (n_samples, n_features)
+        The training input samples.
+    y_train_ : array-like, shape (n_samples,)
+        The target values.
+
+    """
+
+    def __init__(self):
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The training input samples.
+        y : array-like or pd.Series, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_train_ = X
+        self.y_train_ = y
 
-        # XXX fix
+        # No actual training is needed for a 1-NN classifier.
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Class labels for each data sample.
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +99,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # For each sample, find the index of the closest class.
+        for i, sample in enumerate(X):
+            closest_index = np.argmin(
+                np.linalg.norm(sample - self.X_train_, axis=1))
+            y_pred[i] = self.y_train_[closest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+        y : array-like or pd.Series, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of self.predict(X) wrt. y.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # Calculate the mean accuracy.
+        score = np.mean(y_pred == y)
+        return score
