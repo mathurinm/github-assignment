@@ -43,11 +43,12 @@ def max_index(X):
     if not isinstance(X, np.ndarray) or (len(X.shape) != 2):
         raise ValueError("The input must be a 2D numpy array")
     else:
-        m = np.argmax(X)  # Extracting the index of the max of the flattened array
-        i = m // np.shape(X)[1] # Isolates the row index 
-        j = m % np.shape(X)[1] # Isolates the column index
+        m = np.argmax(X)   # Extracting the index of the max of the flat array
+        i = m // np.shape(X)[1]   # Isolates the row index
+        j = m % np.shape(X)[1]    # Isolates the column index
 
     return i, j
+
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -66,6 +67,6 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    
+
     a = 4 * np.arange(1, n_terms + 1, dtype='int64') ** 2
     return 2 * np.prod(a / (a - 1))

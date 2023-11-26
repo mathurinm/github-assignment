@@ -31,7 +31,7 @@ from sklearn.utils.multiclass import check_classification_targets
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
-    def __init__(self): 
+    def __init__(self):
         """Initialize the 1-NN classifier"""
 
     def fit(self, X, y):
@@ -84,11 +84,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             nearest_index = np.argmin(distances)
             nearest_label = self.y_train_[nearest_index]
             y_pred[i] = nearest_label
-    
+
         return y_pred
 
     def score(self, X, y):
-        """ 
+        """
         Returns the mean accuracy of our 1-NN.
 
         Parameters
