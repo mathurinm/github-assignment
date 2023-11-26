@@ -29,46 +29,100 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    Attributes
+    ----------
+    classes_ : array, shape (n_classes,)
+        The classes seen during fitting.
+    n_features_in_ : int
+        The number of features in the input data.
+
+    Methods
+    -------
+    fit(X, y)
+        Fit the OneNearestNeighbor classifier to the training data.
+
+    predict(X)
+        Predict the class labels for the input data.
+
+    score(X, y)
+        Compute the accuracy of the classifier on the input data.
+
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier to the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Training data.
+        y : array-like or pd.Series, shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the values for the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Input data for which to predict class labels.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Predicted values for X.
+
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.full(shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype)
 
-        # XXX fix
+        for i, x_i in enumerate(X):
+            closest_index = np.argmin(np.linalg.norm(x_i - self.X_train_, axis=1))
+            y_pred[i] = self.y_train_[closest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the classifier on the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Input data.
+        y : array-like or pd.Series, shape (n_samples,)
+            True labels for input data.
+
+        Returns
+        -------
+        accuracy : float
+            Accuracy of the classifier on the input data.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
