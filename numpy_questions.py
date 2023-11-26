@@ -18,6 +18,8 @@ errors by calling `flake8` at the root of the repo.
 import numpy as np
 
 
+import numpy as np
+
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -28,8 +30,8 @@ def max_index(X):
 
     Returns
     -------
-    (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+    (i, j) : tuple of int
+        The row and column index of the maximum.
 
     Raises
     ------
@@ -37,28 +39,28 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    n_samples, n_features = np.shape(X)
-
+    # Check if X is a numpy array
     if not isinstance(X, np.ndarray):
         raise ValueError("Input is not a numpy array")
 
+    # Check if the shape is 2D
     if X.ndim != 2:
         raise ValueError("Input array does not have a 2D shape")
+
+    n_samples, n_features = np.shape(X)
 
     m = X[0, 0]
     i = 0
     j = 0
 
-    for k in n_samples :
-        for l in n_features:
+    for k in range(n_samples):
+        for l in range(n_features):
             if X[k, l] > m:
                 m = X[k, l]
                 i = k
                 j = l
-            else:
-                continue
-    return i, j
 
+    return i, j
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -75,10 +77,9 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if n_terms == 0:
-        return 1.0
+        return 2.0
 
     terms = np.arange(1, n_terms + 1)
     pi_approximation = 2.0 * np.prod((2 * terms) ** 2 / ((2 * terms - 1) * (2 * terms + 1)))
 
     return pi_approximation
-
