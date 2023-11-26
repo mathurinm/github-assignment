@@ -17,9 +17,6 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
-
-import numpy as np
-
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -54,11 +51,11 @@ def max_index(X):
     j = 0
 
     for k in range(n_samples):
-        for l in range(n_features):
-            if X[k, l] > m:
-                m = X[k, l]
+        for g in range(n_features):
+            if X[k, g] > m:
+                m = X[k, g]
                 i = k
-                j = l
+                j = g
 
     return i, j
 
@@ -80,6 +77,7 @@ def wallis_product(n_terms):
         return 2.0
 
     terms = np.arange(1, n_terms + 1)
-    pi_approximation = 2.0 * np.prod((2 * terms) ** 2 / ((2 * terms - 1) * (2 * terms + 1)))
+    pi_approximation = 2.0 * np.prod((2 * terms) ** 2 / 
+                                     ((2 * terms - 1) * (2 * terms + 1)))
 
     return pi_approximation
