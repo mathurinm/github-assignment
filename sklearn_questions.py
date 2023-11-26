@@ -29,14 +29,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):
-        """Initialize the 1-NN classifier"""
+        """Initialize the 1-NN classifier."""
 
     def fit(self, X, y):
         """
-        Fits the 1-NN with the data provided.
+        Fit the 1-NN with the data provided.
 
         Parameters
         ----------
@@ -59,7 +59,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """
-        Returns a y vector with the 1-NN labels associated to X.
+        Return a y vector with the 1-NN labels associated to X.
 
         Parameters
         ----------
@@ -89,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Returns the mean accuracy of our 1-NN.
+        Return the mean accuracy of our 1-NN.
 
         Parameters
         ----------
@@ -105,7 +105,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Mean accuracy of the prediction vs the target labels (y)
 
         """
-
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
