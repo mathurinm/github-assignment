@@ -38,15 +38,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y, sample_weight=None):
-        """Store X and y values for the model.
+    """Store X and y values for the model.
 
-        Parameters
-        ----------
-        X : ndarray of shape (n_samples, n_features)
-            The input array containing the observations of the features.
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        The input array containing the observations of the features.
 
-        y : array of shape (n_samples, )
-            The input array containing the actual values.
+    y : array of shape (n_samples, )
+        The input array containing the actual values.
 
         Returns
         -------
@@ -58,9 +58,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ValueError
             If input data is not valid.
 
-        """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
+    """
+    X, y = check_X_y(X, y)
+    check_classification_targets(y)
 
         if sample_weight is not None:
             # Handle sample weights if provided
