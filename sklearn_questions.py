@@ -20,11 +20,8 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import euclidean_distances
@@ -32,19 +29,22 @@ from sklearn.utils.validation import _check_sample_weight
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y, sample_weight=None):
-        """Stores X and y values
+        """Stores X and y values.
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input array containing the observations of the features.
         y : array of shape (n_samples, )
             The input array containing the actual values.
+
         Returns
         -------
         self : object
@@ -53,7 +53,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         if sample_weight is not None:
-            # Handle sample weights if provided
             sample_weight = _check_sample_weight(sample_weight, X)
 
         self.sample_weight_ = sample_weight
@@ -67,10 +66,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predicts the target values for input data X.
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input array containing the observations of the features.
+
         Returns
         -------
         y_pred : array of shape (n_samples,)
@@ -86,19 +87,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         distances = euclidean_distances(X, self.X_)
 
         closest_indices = np.argmin(distances, axis=1)
-
         y_pred = self.y_[closest_indices]
 
         return y_pred
 
     def score(self, X, y, sample_weight=None):
         """Scores the model based on accuracy.
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input array containing the observations of the features.
         y : array of shape (n_samples, )
             The true target values.
+
         Returns
         -------
         score : float
