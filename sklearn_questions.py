@@ -26,6 +26,9 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.utils.validation import _check_sample_weight
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -34,40 +37,83 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def __init__(self):  # noqa: D107
         pass
 
-    def fit(self, X, y):
-        """Write docstring.
+    def fit(self, X, y, sample_weight=None):
+        """Stores X and y values
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array containing the observations of the features.
 
-        And describe parameters
+        y : array of shape (n_samples, )
+            The input array containing the actual values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        if sample_weight is not None:
+            # Handle sample weights if provided
+            sample_weight = _check_sample_weight(sample_weight, X)
+
+        self.sample_weight_ = sample_weight
+
         self.classes_ = np.unique(y)
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the target values for input data X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array containing the observations of the features.
+
+        Returns
+        -------
+        y_pred : array of shape (n_samples,)
+            Predicted target values for X.
         """
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
+        distances = euclidean_distances(X, self.X_)
 
-        # XXX fix
+        closest_indices = np.argmin(distances, axis=1)
+
+        y_pred = self.y_[closest_indices]
+
         return y_pred
 
-    def score(self, X, y):
-        """Write docstring.
+    def score(self, X, y, sample_weight=None):
+        """Scores the model based on accuracy.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array containing the observations of the features.
+
+        y : array of shape (n_samples, )
+            The true target values.
+
+        Returns
+        -------
+        score : float
+            The accuracy of the model on the provided data and labels.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = accuracy_score(y, y_pred, sample_weight=sample_weight)
+        return score
