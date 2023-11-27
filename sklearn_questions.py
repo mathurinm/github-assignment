@@ -30,15 +30,15 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.utils.validation import _check_sample_weight
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y, sample_weight=None):
-        """Stores X and y values
+        """Store X and y values for the model.
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
@@ -51,19 +51,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         self : object
             Returns self.
+        
+        Raises
+        ------
+        ValueError
+            If input data is not valid.
 
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         if sample_weight is not None:
             # Handle sample weights if provided
             sample_weight = _check_sample_weight(sample_weight, X)
 
         self.sample_weight_ = sample_weight
-
         self.classes_ = np.unique(y)
-
         self.X_ = X
         self.y_ = y
         self.n_features_in_ = X.shape[1]
