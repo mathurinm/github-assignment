@@ -82,7 +82,7 @@ Khushi	VermaX
 Chenfei	Wang X
 Mingyu	Wang
 Fangzhou	Xu X
-Jialong	Xu
+Jialong Xu X	
 Zhongyuan	Zhang X
 Yufeng	Zhou X
 Qiling	Zhu X
