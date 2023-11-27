@@ -26,8 +26,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def __init__(self):
-        self.X_ = None
-        self.y_ = None
+        # Initialize without setting attributes
+        pass
 
     def fit(self, X, y):
         """
@@ -47,6 +47,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        # Set attributes during fit
         self.X_ = X
         self.y_ = y
         return self
@@ -90,7 +91,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         score : float
-            Mean accuracy of self.predict(X) with respect to y.
+            Mean accuracy of the predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)

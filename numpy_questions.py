@@ -33,7 +33,9 @@ def wallis_product(n_terms):
     """
     Implement the Wallis product to compute an approximation of pi.
 
-    This method calculates an approximation of pi using the Wallis product formula.
+    This method calculates an approximation of pi using the Wallis 
+    
+    product formula.
 
     Parameters
     ----------
