@@ -30,6 +30,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.utils.validation import _check_sample_weight
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
@@ -51,7 +52,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         self : object
             Returns self.
-        
+
         Raises
         ------
         ValueError
@@ -64,14 +65,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         if sample_weight is not None:
             # Handle sample weights if provided
             sample_weight = _check_sample_weight(sample_weight, X)
-        
         self.n_features_in_ = X.shape[1]
         self.sample_weight_ = sample_weight
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
-        
-
         return self
 
     def predict(self, X):
