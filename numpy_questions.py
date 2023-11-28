@@ -1,3 +1,4 @@
+"""This module contains functions related to NumPy (or sklearn) operations."""
 import numpy as np
 
 
