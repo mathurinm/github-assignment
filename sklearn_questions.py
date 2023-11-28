@@ -9,7 +9,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
     OneNearestNeighbor classifier.
     A simple implementation of the nearest neighbor classifier which predicts
-    the target of a new point as the target of the closest point in the training set.
+    the target of a new point as the target
+    of the closest point in the training set.
     Proximity is measured using the Euclidean distance.
     """
 

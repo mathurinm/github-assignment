@@ -9,7 +9,8 @@
 #
 # Pip is a thing that installs packages, pip itself is a package that someone
 # might want to install, especially if they're looking to run this get-pip.py
-# script. Pip has a lot of code to deal with the security of installing
+# script. Pip has a lot of code to deal 
+#with the security of installing
 # packages, various edge cases on various platforms, and other such sort of
 # "tribal knowledge" that has been encoded in its code base. Because of this
 # we basically include an entire copy of pip inside this blob. We do this
@@ -21,6 +22,13 @@
 # `scripts/generate.py` in https://github.com/pypa/get-pip.
 
 import sys
+import os.path
+import pkgutil
+import shutil
+import tempfile
+import argparse
+import importlib
+from base64 import b85decode
 
 this_python = sys.version_info[:2]
 min_version = (3, 7)
@@ -32,15 +40,6 @@ if this_python < min_version:
     ]
     print("ERROR: " + " ".join(message_parts))
     sys.exit(1)
-
-
-import os.path
-import pkgutil
-import shutil
-import tempfile
-import argparse
-import importlib
-from base64 import b85decode
 
 
 def include_setuptools(args):
@@ -84,12 +83,12 @@ def monkeypatch_for_cert(tmpdir):
     """Patches `pip install` to provide default
     certificate with the lowest priority.
 
-    This ensures that the bundled certificates 
+    This ensures that the bundled certificates
     are used unless the user specifies a
-    custom cert via any of pip's option passing 
+    custom cert via any of pip's option passing
     mechanisms (config, env-var, CLI).
 
-    A monkeypatch is the easiest way to achieve this, 
+    A monkeypatch is the easiest way to achieve this,
     without messing too much with
     the rest of pip's internals.
     """
