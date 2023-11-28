@@ -13,15 +13,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def fit(self, X, y):
-       """
-       Fit the OneNearestNeighbor model to the training data.
-       """
+        """
+        Fit the OneNearestNeighbor model to the training data.
+        """
         X, y = check_X_y(X, y)
-        self.n_features_in_ = X.shape[1]  # Set the number of features in the input
+        self.n_features_in_ = X.shape[1]
         check_classification_targets(y)
         self.X_ = X
         self.y_ = y
-        self.classes_ = unique_labels(y)  # Store unique classes seen during fit
+        self.classes_ = unique_labels(y)
         return self
 
     def predict(self, X):
