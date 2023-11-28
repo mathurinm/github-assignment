@@ -9,6 +9,7 @@ from sklearn.utils.multiclass import unique_labels
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
     OneNearestNeighbor classifier.
+
     A simple implementation of the nearest neighbor classifier which predicts
     the target of a new point as the target
     of the closest point in the training set.
@@ -16,9 +17,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def fit(self, X, y):
-        """
-        Fit the OneNearestNeighbor model to the training data.
-        """
+        """Fit the OneNearestNeighbor model to the training data."""
         X, y = check_X_y(X, y)
         self.n_features_in_ = X.shape[1]
         check_classification_targets(y)
@@ -28,9 +27,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """
-        Predict the class labels for the provided data.
-        """
+        """Predict the class labels for the provided data."""
         check_is_fitted(self)
         X = check_array(X)
 
@@ -43,9 +40,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return np.array(y_pred)
 
     def score(self, X, y):
-        """
-        Return the mean accuracy on the given test data and labels.
-        """
+        """Return the mean accuracy on the given test data and labels."""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
