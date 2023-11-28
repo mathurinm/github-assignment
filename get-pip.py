@@ -81,12 +81,16 @@ def determine_pip_install_arguments():
 
 
 def monkeypatch_for_cert(tmpdir):
-    """Patches `pip install` to provide default certificate with the lowest priority.
+    """Patches `pip install` to provide default
+    certificate with the lowest priority.
 
-    This ensures that the bundled certificates are used unless the user specifies a
-    custom cert via any of pip's option passing mechanisms (config, env-var, CLI).
+    This ensures that the bundled certificates 
+    are used unless the user specifies a
+    custom cert via any of pip's option passing 
+    mechanisms (config, env-var, CLI).
 
-    A monkeypatch is the easiest way to achieve this, without messing too much with
+    A monkeypatch is the easiest way to achieve this, 
+    without messing too much with
     the rest of pip's internals.
     """
     from pip._internal.commands.install import InstallCommand
