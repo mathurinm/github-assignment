@@ -49,7 +49,7 @@ def max_index(X):
     max_number = X[i, j]
     for m in range(X.shape[0]):
         for n in range(X.shape[1]):
-            if X[i, j] > max_number:
+            if X[m, n] > max_number:
                 max_number = X[m, n]
                 i, j = m, n
     return i, j

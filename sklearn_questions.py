@@ -84,7 +84,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Write docstring.
-        
+
         Returns the mean accuracy on the given test data and labels.
 
         Parameters:
