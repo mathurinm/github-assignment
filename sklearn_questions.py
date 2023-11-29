@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -38,36 +39,55 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Write docstring.
 
         And describe parameters
+        Parameters:
+        X : array-like, shape(n_samples, n_features)
+            The training input samples.
+
+        y : array-like, shape(n_samples, )
+            The target values.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
         """Write docstring.
 
         And describe parameters
+
+        Parameters:
+        X : array-like, shape(n_samples, n_features)
+            The input samples.
+
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.empty(shape=len(X), dtype=self.classes_.dtype)
 
-        # XXX fix
+        for i, x_sample in enumerate(X):
+            distances = np.linalg.norm(self.X_ - x_sample, axis=1)
+            nearest_neighbor_index = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_neighbor_index]
+
         return y_pred
 
     def score(self, X, y):
         """Write docstring.
 
         And describe parameters
+        Parameters:
+        X : array-like, shape(n_samples, n_features)
+            The input samples.
+        y : array-like, shape(n_samples, )
+            The true class labels.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = accuracy_score(y, y_pred)
+        return accuracy

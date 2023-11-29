@@ -8,7 +8,7 @@ The goals of this assignment are:
 The two functions below are skeleton functions. The docstrings explain what
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
-wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
+wrote. To run the tests, use `pytest test_numpy_questions.py` at the root of
 the repo. It should say that 2 tests ran with success.
 
 We also ask to respect the pep8 convention: https://pep8.org.
@@ -34,13 +34,21 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy error or
+        If the input is not a numpy array or
         if the shape is not 2D.
     """
+    if type(X) != np.ndarray:
+        raise ValueError('Input is not a numpy array')
+    if len(X.shape) != 2:
+        raise ValueError('Dimension of the input is not 2')
+
     i = 0
     j = 0
 
     # TODO
+    ind = np.unravel_index(np.argmax(X, axis=None), X.shape)
+    i = ind[0]
+    j = ind[1]
 
     return i, j
 
@@ -64,4 +72,13 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    if n_terms == 0:
+        return 2
+    pi_2 = 1
+
+    for n in range(1, n_terms+1):
+        pi_2 *= 2 * n * 2 * n / ((2 * n - 1) * (2 * n + 1))
+    pi = pi_2 * 2
+
+    return pi
