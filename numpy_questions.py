@@ -84,4 +84,4 @@ def wallis_product(n_terms):
         pi_term = pi_up / pi_down
         pi_product *= pi_term
     pi = pi_product * 2
-    return 0.
+    return pi

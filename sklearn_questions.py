@@ -29,13 +29,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """Write docstring.
+
         Fit the model using X as training data and y as target values.
 
         Parameters:
@@ -47,7 +48,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns:
         self : object
             Returns self.
-
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -55,11 +55,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
-        
         return self
 
     def predict(self, X):
         """Write docstring.
+
         Predict the class labels for the provided data.
 
         Parameters:
@@ -69,7 +69,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns:
         y_pred : ndarray of shape (n_samples,)
             Predicted class label per sample.
-
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -77,16 +76,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        for x in X:
+        for i, x in enumerate(X):
             distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
             nearest_neighbor_index = np.argmin(distances)
-            y_pred.append(self.y_[nearest_neighbor_index])
-
-        y_pred = np.array(y_pred)
+            y_pred[i] = self.y_[nearest_neighbor_index]
         return y_pred
 
     def score(self, X, y):
         """Write docstring.
+        
         Returns the mean accuracy on the given test data and labels.
 
         Parameters:
@@ -101,6 +99,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-
         return np.mean(y_pred == y)
