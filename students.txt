@@ -29,7 +29,7 @@ Solal	Danan x
 Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
-Yuding	Duan
+Yuding	Duan X
 Alexandre	Foulon X
 Antoine	Gosset X
 Léopold	Guichot  X
