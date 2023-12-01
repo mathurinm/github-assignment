@@ -10,7 +10,7 @@ are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
 wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
 the repo. It should say that 2 tests ran with success.
-
+pyth
 We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
@@ -37,12 +37,16 @@ def max_index(X):
         If the input is not a numpy error or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    if isinstance(X, np.ndarray) is False:
+        raise ValueError("The input is not a numpy array")
+    elif len(X.shape) != 2:
+        raise ValueError("The input is not 2-dimensional")
 
-    # TODO
+    flatIndex = np.argmax(X)
+    size = X.shape
+    maxIndices = np.unravel_index(flatIndex, size)
 
-    return i, j
+    return maxIndices
 
 
 def wallis_product(n_terms):
@@ -64,4 +68,15 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    if n_terms == 0:
+        pi = 2.0
+        return pi
+
+    result = 1.0
+    for k in range(1, n_terms + 1):
+        term = (2 * k) / (2 * k - 1) * (2 * k) / (2 * k + 1)
+        result *= term
+    pi = 2 * result
+
+    return pi
