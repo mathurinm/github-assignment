@@ -35,9 +35,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """ 
+        Fit the OneNearestNeighbor classifier to the provided training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The training input samples.
+        y : array-like, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+        Returns self to allow method chaining.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -48,7 +59,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for input samples.
+
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples for which to predict class labels.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Predicted class labels for each input sample.
 
         And describe parameters
         """
@@ -63,9 +84,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Test samples.
+        y : array-like, shape (n_samples,)
+            True labels for `X`.
+
+        Returns
+        -------
+        accuracy : float
+            Mean accuracy of predictions on the given test data and labels.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
