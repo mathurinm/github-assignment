@@ -17,7 +17,7 @@ Thomas	Bordes
 Thomas	Bordes X
 Nathan	Bout X
 Thibaut	Boyenval X
-Cathal	Brady 
+Cathal	Brady X 
 Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
