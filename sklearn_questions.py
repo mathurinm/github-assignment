@@ -29,46 +29,79 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
+        """Just a placeholder."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Training data.
+        y : array-like, shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target values for the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Input data for prediction.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            Predicted target values.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.empty(len(X), dtype=self.classes_.dtype)
 
-        # XXX fix
+        for i, x_i in enumerate(X):
+            # Find the index of the closest sample in the training data
+            closest_index = np.argmin(np.linalg.norm(x_i - self.X_, axis=1))
+            y_pred[i] = self.y_[closest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            Test samples.
+        y : array-like, shape (n_samples,)
+            True labels.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # Calculate accuracy by comparing predicted and true labels
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
