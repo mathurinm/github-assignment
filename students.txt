@@ -84,13 +84,7 @@ Mingyu	Wang
 Fangzhou	Xu X
 Jialong Xu X	
 Zhongyuan	Zhang X
-<<<<<<< HEAD
-Yufeng	Zhou
-Qiling	Zhu X
-Mohamed-El Hocine	Zidi
-=======
 Yufeng	Zhou X
 Qiling	Zhu X
 Mohamed-El Hocine	Zidi X
 Xianghan Mei X
->>>>>>> 89a13ca3bae1c4f78cd3c756a3f0b8ba4045ccbd
