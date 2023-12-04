@@ -72,8 +72,8 @@ def wallis_product(n_terms):
     result = 2.0  # Initialize the result with 2.0
 
     for i in range(1, n_terms + 1):
-        numerator = 4 * i**2
-        denominator = 4 * i**2 - 1
+        numerator = 4 * i**2  # Squaring
+        denominator = 4 * i**2 - 1  # Squaring
         result *= numerator / denominator
 
     return result
