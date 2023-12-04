@@ -67,13 +67,13 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if n_terms == 0:
-        return 1.0
+        return 2.0
 
-    result = 2.0  # Initialize the result with 2.0
+    result = 2.0
 
     for i in range(1, n_terms + 1):
-        numerator = 4 * i**2  # Squaring
-        denominator = 4 * i**2 - 1  # Squaring
+        numerator = 4 * i**2
+        denominator = 4 * i**2 - 1
         result *= numerator / denominator
 
     return result
