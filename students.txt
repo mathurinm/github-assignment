@@ -1,23 +1,23 @@
 First name	Last name
 Nadiy	Abdel Karim Dit Aramouni X
 Aadhar	Agarwal X
-Dogbo	Agbre
+Dogbo	Agbre X
 Alae	Ahmad X
 Raphaël	Amzallag
 Abdufattokh	Ashurov X
-Zakaria	Atlassi Douch
+Zakaria	Atlassi Douch X
 Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
 Mohamed	Benslimane X
 Dora	Bijvoet X
-Alexander	Bohane
+Alexander	Bohane X
 Apolline	Boillot X
 Thomas	Bordes
 Thomas	Bordes X
 Nathan	Bout X
-Thibaut	Boyenval
-Cathal	Brady 
+Thibaut	Boyenval X
+Cathal	Brady X 
 Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
@@ -29,10 +29,10 @@ Solal	Danan x
 Charles	De Cian  X
 Augustin	De Saint Affrique
 Matthieu	Delsart X
-Yuding	Duan
+Yuding	Duan X
 Alexandre	Foulon X
 Antoine	Gosset X
-Léopold	Guichot
+Léopold	Guichot  X
 Nacer	Hadni X
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
@@ -70,7 +70,7 @@ Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
-Rong	Shen
+Rong	Shen X
 Charles	Siret
 Hadrien	Strichard
 Eva	Toledano x
@@ -81,9 +81,16 @@ Henri	Vignial X
 Khushi	VermaX
 Chenfei	Wang X
 Mingyu	Wang
-Fangzhou	Xu
-Jialong	Xu
+Fangzhou	Xu X
+Jialong Xu X	
 Zhongyuan	Zhang X
+<<<<<<< HEAD
 Yufeng	Zhou
 Qiling	Zhu X
 Mohamed-El Hocine	Zidi
+=======
+Yufeng	Zhou X
+Qiling	Zhu X
+Mohamed-El Hocine	Zidi X
+Xianghan Mei X
+>>>>>>> 89a13ca3bae1c4f78cd3c756a3f0b8ba4045ccbd
