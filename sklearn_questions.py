@@ -29,26 +29,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """ 
-        Fit the OneNearestNeighbor classifier to the provided training data.
+        """Fit the one-nearest neighbor regressor from the training dataset.
 
         Parameters
         ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            The training input samples.
-        y : array-like, shape (n_samples,)
-            The target values.
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            Training data.
+
+        y : {array-like, sparse matrix} of shape (n_samples,)
+            Target values.
 
         Returns
         -------
-        self : object
-        Returns self to allow method chaining.
+        self : OneNearestNeighbor
+            The fitted one-nearest neighbor regressor.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -56,22 +56,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Predict the class labels for input samples.
+        """Predict the target for the provided data.
 
         Parameters
         ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            The input samples for which to predict class labels.
+        X : {array-like, sparse matrix} of shape (n_queries, n_features)
+            Test samples.
 
         Returns
         -------
-        y_pred : array, shape (n_samples,)
-            Predicted class labels for each input sample.
-
-        And describe parameters
+        y_pred : ndarray of shape (n_queries,) or (n_queries, n_outputs),\
+              dtype=int.
+              Target values.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -81,26 +82,34 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        labels = []
+        for x in X:
+            distances = np.sqrt(np.sum((self.X_train_ - x)**2, axis=1))
+            nearest_idx = np.argmin(distances)
+            nearest_label = self.y_train_[nearest_idx]
+            labels.append(nearest_label)
+        y_pred = np.array(labels)
+
         return y_pred
 
     def score(self, X, y):
-        """Return the mean accuracy on the given test data and labels.
+        """Calculate the accuracy for the provided data.
 
         Parameters
         ----------
-        X : array-like or pd.DataFrame, shape (n_samples, n_features)
-            Test samples.
-        y : array-like, shape (n_samples,)
-            True labels for `X`.
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            Training data.
+
+        y : {array-like, sparse matrix} of shape (n_samples,)
+            Target values.
 
         Returns
         -------
-        accuracy : float
-            Mean accuracy of predictions on the given test data and labels.
-
+        accuracy_score : a float number between 0 and 1.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        y_pred = y_pred == y
+        return y_pred.sum()/len(y)
