@@ -52,7 +52,7 @@ Giacomo	Lustri X
 Felipe	Mansilla XXXX
 Yanqing	Mao
 Virgile	Martin X
-Nicola	Massari
+Nicola	Massari X
 Mathurin	Massias
 Tarek	Massoud X
 Artus	Mathieu X
