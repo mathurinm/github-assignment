@@ -71,7 +71,7 @@ Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
 Rong	Shen X
-Charles	Siret
+Charles	Siret X
 Hadrien	Strichard
 Eva	Toledano x
 Tim	Valencony X
