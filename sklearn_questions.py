@@ -26,49 +26,70 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import pairwise_distances_argmin_min
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier - i.e. memorize training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data
+        y : ndarray of shape (n_samples,)
+            Target values
         """
+        # Validate and preprocess the input data
         X, y = check_X_y(X, y)
+        # Check that the target variable is valid for a classification task
         check_classification_targets(y)
+        # Memorize the different classes
         self.classes_ = np.unique(y)
+        # Memorize the number of features
         self.n_features_in_ = X.shape[1]
+        # Memorize X and y as private attributes
+        self._X_fit = X
+        self._y_fit = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels frolm the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Data for prediction
         """
+        # Verify that the model was fitted before proceeding to predictions
         check_is_fitted(self)
+        # Check that X is a valid array
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        # Predict the labels
+        nearest_indices, _ = pairwise_distances_argmin_min(
+            X, self._X_fit, metric='euclidean')
+        y_pred = self._y_fit[nearest_indices]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the model on the given data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarry of shape (n_samples, n_features)
+            Data for testing
+        y : ndarray of shape (n_samples,)
+            Target vakyes for testing
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        accuracy = np.mean(y_pred == y)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy
