@@ -3,9 +3,9 @@ Nadiy	Abdel Karim Dit Aramouni X
 Aadhar	Agarwal X
 Dogbo	Agbre X
 Alae	Ahmad X
-Raphaël	Amzallag
+Raphaël	Amzallag X
 Abdufattokh	Ashurov X
-Zakaria	Atlassi Douch
+Zakaria	Atlassi Douch X
 Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
@@ -17,7 +17,7 @@ Thomas	Bordes
 Thomas	Bordes X
 Nathan	Bout X
 Thibaut	Boyenval X
-Cathal	Brady 
+Cathal	Brady X 
 Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
@@ -27,9 +27,9 @@ Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan x
 Charles	De Cian  X
-Augustin	De Saint Affrique
+Augustin	De Saint Affrique X
 Matthieu	Delsart X
-Yuding	Duan
+Yuding	Duan X
 Alexandre	Foulon X
 Antoine	Gosset X
 Léopold	Guichot  X
@@ -38,7 +38,7 @@ Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
 Farah	Jabri X
 Thibault	Jauneau X
-Zixu	Jin
+Zixu	Jin  X
 Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
@@ -52,7 +52,7 @@ Giacomo	Lustri X
 Felipe	Mansilla XXXX
 Yanqing	Mao
 Virgile	Martin X
-Nicola	Massari
+Nicola	Massari X
 Mathurin	Massias
 Tarek	Massoud X
 Artus	Mathieu X
@@ -71,7 +71,7 @@ Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
 Rong	Shen X
-Charles	Siret
+Charles	Siret X
 Hadrien	Strichard
 Eva	Toledano x
 Tim	Valencony X
@@ -86,4 +86,5 @@ Jialong Xu X
 Zhongyuan	Zhang X
 Yufeng	Zhou X
 Qiling	Zhu X
-Mohamed-El Hocine	Zidi
+Mohamed-El Hocine	Zidi X
+Xianghan Mei X
