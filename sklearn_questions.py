@@ -29,27 +29,86 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    classes_ : array, shape (n_classes,)
+        The classes seen during the fit.
+
+    Examples
+    --------
+    >>> from sklearn.model_selection import train_test_split
+    >>> from sklearn.metrics import accuracy_score
+
+    >>> # Generate some example data
+    >>> X = np.random.rand(100, 2)
+    >>> y = (X[:, 0] + X[:, 1] > 1).astype(int)
+
+    >>> # Split the data into training and testing sets
+    >>> X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2
+        )
+
+    >>> # Create and fit the OneNearestNeighbor classifier
+    >>> clf = OneNearestNeighbor()
+    >>> clf.fit(X_train, y_train)
+
+    >>> # Make predictions on the test set
+    >>> y_pred = clf.predict(X_test)
+
+    >>> # Calculate the accuracy
+    >>> accuracy = accuracy_score(y_test, y_pred)
+    >>> print("Accuracy:", accuracy)
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model.
 
-        And describe parameters
+        Parameters:
+        -----------
+        X: array-like, shape (n_samples, n_features)
+            Training data input.
+
+        y: array-like, shape (n_samples,)
+            Target values.
+
+        Returns:
+        --------
+        self: object
+            Returns the instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # The fit method for OneNearestNeighbor is a simple memorization of
+        # the training data, as there is no training involved in this model.
+        self.X_train_ = np.array(X)
+        self.y_train_ = np.array(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target values for input data.
 
-        And describe parameters
+        Parameters:
+        -----------
+        X: array-like, shape (n_samples, n_features)
+            Input data for prediction.
+
+        Returns:
+        --------
+        y_pred: array-like, shape (n_samples,)
+            Predicted target values.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,16 +117,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-        return y_pred
+        # Find the index of the closest point in the training set
+        y_pred = [self.y_train_[
+            np.argmin(np.linalg.norm(self.X_train_ - x, axis=1))
+            ] for x in X]
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Compute the accuracy of the model on input data.
 
-        And describe parameters
+        Parameters:
+        -----------
+        X: array-like, shape (n_samples, n_features)
+            Input data.
+
+        y: array-like, shape (n_samples,)
+            True target values.
+
+        Returns:
+        --------
+        accuracy: float
+            Accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = np.mean(y == y_pred)
+
+        return score
