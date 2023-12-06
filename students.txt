@@ -1,24 +1,24 @@
 First name	Last name
 Nadiy	Abdel Karim Dit Aramouni X
 Aadhar	Agarwal X
-Dogbo	Agbre
+Dogbo	Agbre X
 Alae	Ahmad X
-Raphaël	Amzallag
+Raphaël	Amzallag X
 Abdufattokh	Ashurov X
-Zakaria	Atlassi Douch
-Elise	Barattini X
+Zakaria	Atlassi Douch X
+Elise	Barattini xx
 Ugo	Benazra X
 Safwane	Benseddiq X
-Mohamed	Benslimane
-Dora	Bijvoet
-Alexander	Bohane
+Mohamed	Benslimane X
+Dora	Bijvoet X
+Alexander	Bohane X
 Apolline	Boillot X
 Thomas	Bordes
 Thomas	Bordes X
-Nathan	Bout
-Thibaut	Boyenval
-Cathal	Brady 
-Alexandre	Brun
+Nathan	Bout X
+Thibaut	Boyenval X
+Cathal	Brady X 
+Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
 Tess	Coullon
@@ -26,64 +26,65 @@ Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
 Solal	Danan x
-Charles	De Cian
-Augustin	De Saint Affrique
+Charles	De Cian  X
+Augustin	De Saint Affrique X
 Matthieu	Delsart X
-Yuding	Duan
+Yuding	Duan X
 Alexandre	Foulon X
 Antoine	Gosset X
-Léopold	Guichot
+Léopold	Guichot  X
 Nacer	Hadni X
 Houcine	Hassani Idrissi
 Gaspard	Hassenforder X
-Farah	Jabri
+Farah	Jabri X
 Thibault	Jauneau X
 Zixu	Jin
 Sami	Kalai X
 Tanmay	Kale X
 Xiaohan	Ke
-Jack	Khoueiri
-Lucijan	Kodeli
+Jack	Khoueiri X
+Lucijan	Kodeli X
 Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
 François	LebrunX
-Giacomo	Lustri
+Giacomo	Lustri X
 Felipe	Mansilla XXXX
 Yanqing	Mao
 Virgile	Martin X
-Nicola	Massari
+Nicola	Massari X
 Mathurin	Massias
 Tarek	Massoud X
 Artus	Mathieu X
 Zineb	Mechiche Alami X
 Xianghan	Mei
+Pietro	Micelli X
 Samuel	Mesguiche X
-Pietro	Micelli
 Badr	Moufad
 Alexandra-Catalina	Negoita X
 Thanh Liêm	Nguyen X
-Carlo Antonio	Patti
+Carlo Antonio	Patti X
 Julien	Pezzi x
 Trung Dan	Phan
 Auguste	Piromalli X
 Aubry	Poitevin
 Malo	Renaudin
 Nicolas	Schroeder X
-Rong	Shen
-Charles	Siret
+Rong	Shen X
+Charles	Siret X
 Hadrien	Strichard
 Eva	Toledano x
 Tim	Valencony X
-Antonio Roberto	Ventura
+Antonio Roberto	Ventura X
 Khushi	Verma
 Henri	Vignial X
 Khushi	VermaX
-Chenfei	Wang
+Chenfei	Wang X
 Mingyu	Wang
-Fangzhou	Xu
-Jialong	Xu
+Fangzhou	Xu X
+Jialong Xu X	
 Zhongyuan	Zhang X
-Yufeng	Zhou
-Qiling	Zhu
-Mohamed-El Hocine	Zidi
+Yufeng	Zhou X
+Qiling	Zhu X
+Mohamed-El Hocine	Zidi X
+Xianghan Mei X
