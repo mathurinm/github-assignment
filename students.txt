@@ -21,7 +21,7 @@ Cathal	Brady X
 Alexandre	Brun X
 Benjamin	Cerf X
 Ghali	Chraibi X
-Tess	Coullon
+Tess	Coullon X
 Jules	Crevola X
 Matteo Alessandro	D'Alessandro
 Valentine	Dana
@@ -47,7 +47,7 @@ Lucijan	Kodeli X
 Evgenii	Kostromin X
 Ameya	KulkarniX
 Constance	Laverdure X
-François	LebrunX
+François	Lebrun X
 Giacomo	Lustri X
 Felipe	Mansilla XXXX
 Yanqing	Mao
