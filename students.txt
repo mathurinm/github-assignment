@@ -80,7 +80,7 @@ Khushi	Verma
 Henri	Vignial X
 Khushi	VermaX
 Chenfei	Wang X
-Mingyu	Wang
+Mingyu	Wang X
 Fangzhou	Xu X
 Jialong Xu X	
 Zhongyuan	Zhang X
