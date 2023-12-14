@@ -20,60 +20,60 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+from sklearn.utils.multiclass import check_classification_targets
 
+
+# ... le reste du code ...
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """OneNearestNeighbor classifier."""
+    """Classifier implementing the 1-nearest neighbor algorithm.
+
+    This classifier implements a simple 1-nearest neighbor algorithm using
+    Euclidean distance to find the nearest neighbor.
+    """
 
     def __init__(self):
-        """Initialise OneNearestNeighbor classifier."""
+        """Initialize the OneNearestNeighbor classifier."""
         pass
-
 
     def fit(self, X, y):
         """Fit the model using X as training data and y as target values.
 
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
+        Parameters:
+        X : array-like of shape (n_samples, n_features)
             Training data.
-        y : array-like, shape (n_samples,)
+        y : array-like of shape (n_samples,)
             Target values.
 
-        Returns
-        -------
+        Returns:
         self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
+        check_classification_targets(y)
+        self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
         """Predict the class labels for the provided data.
 
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
+        Parameters:
+        X : array-like of shape (n_samples, n_features)
             Test samples.
 
-        Returns
-        -------
-        y_pred : array, shape (n_samples,)
+        Returns:
+        y_pred : array of shape (n_samples,)
             Class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
 
-        # Implement the logic for finding the nearest neighbor
-        # TODO: Implement nearest neighbor search
         y_pred = np.empty(X.shape[0], dtype=self.y_.dtype)
-
         for idx, x in enumerate(X):
             distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
             nearest_neighbor_idx = np.argmin(distances)
@@ -84,15 +84,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def score(self, X, y):
         """Return the mean accuracy on the given test data and labels.
 
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
+        Parameters:
+        X : array-like of shape (n_samples, n_features)
             Test samples.
-        y : array-like, shape (n_samples,)
+        y : array-like of shape (n_samples,)
             True labels for X.
 
-        Returns
-        -------
+        Returns:
         score : float
             Mean accuracy of self.predict(X) wrt. y.
         """
