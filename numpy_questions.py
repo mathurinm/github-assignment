@@ -49,13 +49,11 @@ def max_index(X):
 
     # Get the index of the maximum value
 
-    max_index = np.argmax(X)  # By default, the index is into the flattened array.
-    num_rows, num_cols = X.shape  
+    max_index = np.argmax(X)  # By default, the index is in the flattened array
+    num_rows, num_cols = X.shape
 
     i = max_index // num_cols
     j = max_index % num_cols
-
-
     return i, j
 
 
@@ -80,7 +78,7 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
 
     if n_terms == 0:
-        return 1.0
+        return 2.0
 
     pi = 2.0  # We initialize pi.
 
