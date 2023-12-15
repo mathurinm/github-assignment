@@ -28,7 +28,6 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier."""
 
@@ -55,7 +54,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_  = X.shape[1]
+        self.n_features_in_ = X.shape[1]
         self._X_train = X
         self._y_train = y
         return self
@@ -86,6 +85,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y_pred[i] = prediction_x
 
         return y_pred
+
     def score(self, X, y):
         """
         Return the mean accuracy on the given test data and labels.
@@ -102,7 +102,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
             Mean accuracy of self.predict(X) wrt. y.
         """
-        X,y = check_X_y(X,y)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         mask = y_pred == y
         y_pred = mask.astype(int) / len(X)

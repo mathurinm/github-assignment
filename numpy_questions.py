@@ -69,13 +69,10 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    product =1
+    product = 1
     for i in range(1, n_terms+1):
         # Each term in the product is (4*i**2) / (4*i**2 - 1)
         product *= (4.0 * i**2) / (4.0 * i**2 - 1)
-    
     # The approximation of pi is 2 times the product
     pi_approx = 2 * product
-    
     return pi_approx
-
