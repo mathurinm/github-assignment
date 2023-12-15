@@ -32,8 +32,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
-        self.X_ = None
-        self.y_ = None
+        pass
+
+
 
     def fit(self, X, y):
         """
