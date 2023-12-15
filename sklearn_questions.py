@@ -118,4 +118,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = self.predict(X)
         accuracy = np.mean(y_pred == y)
 
-       return accuracy
+        return accuracy
