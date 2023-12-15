@@ -33,21 +33,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """
-        Fitting the One nearest neighbor classifier.
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
-        Training samples.
-        y : array-like, shape (n_samples,)
-        Target values.
-        Returns
-        -------
-        self : object
-        Returns self.
-        """
-        # Checking that X and y have a correct shape
 
+        # Checking that X and y have a correct shape
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         
@@ -57,62 +44,32 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.y_ = y  # Store the target labels
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """
-        Predicting the target values.
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
-            Input samples.
 
-        Returns
-        -------
-        y_pred : array-like, shape (n_samples,)
-            Predicted target values.
-        """
         # Checking if the model has been fitted
-
         check_is_fitted(self)
 
         # Checking the input array and initializing predictions
-
         X = check_array(X)
-
         y_pred = np.empty(len(X), dtype=self.y_.dtype)
 
         for i, x in enumerate(X):
 
             # Calculating Euclidean distances between x and all samples
-
             distances = np.linalg.norm(self.X_ - x, axis=1)
 
             # Finding the index of the nearest neighbor
-
             nearest_neighbor_idx = np.argmin(distances)
 
             # Assigning the label of the nearest neighbor to y_pred[i]
-
             y_pred[i] = self.y_[nearest_neighbor_idx]
 
         return y_pred
 
     def score(self, X, y):
-        """
-        Return the mean accuracy of the given test data and labels.
-        Parameters
-        ----------
-        X : array-like, shape (n_samples, n_features)
-            Test samples.
-        y : array-like, shape (n_samples,)
-            True labels for X.
-        Return
-        -------
-        accuracy : float
-            Mean accuracy of self.predict(X) with respect to y.
-        """
+
         X, y = check_X_y(X, y)
 
         y_pred = self.predict(X)
