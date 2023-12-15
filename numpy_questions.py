@@ -1,4 +1,5 @@
 import numpy as np
+
 def max_index(X):
     """Return the index of the maximum in a numpy array.
     Parameters
@@ -17,7 +18,7 @@ def max_index(X):
     """
     i = 0
     j = 0
-    # TODO
+
     # Checking if the input is a 2D np array.
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise ValueError("Input must be a 2D numpy array")
@@ -34,11 +35,11 @@ def max_index(X):
     # terms in the product. For example 10000.
 
     if n_terms == 0:
-        return 1.0
         return 2.0
 
     pi = 2.0  # We initialize pi.
 
     for i in range(1, n_terms + 1):
-        pi = 4.0 * i2 / (4.0 * i*2 - 1)  # Wallis product.
+        pi *= 4.0 * i**2 / (4.0 * i**2 - 1)  # Wallis product.
+        
     return pi
