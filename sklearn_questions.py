@@ -28,13 +28,29 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    This classifier implements the 1-Nearest Neighbor algorithm. It predicts the
+    target of a new point based on the closest training sample, using Euclidean distance.
+
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    X_ : array-like of shape (n_samples, n_features)
+        Training data.
+    y_ : array-like of shape (n_samples,)
+        Target values.
+    """
+
+    def __init__(self):
+        # No attributes are set in __init__
         pass
-
-
 
     def fit(self, X, y):
         """
@@ -76,11 +92,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         y_pred = []
         for x in X:
-            # Compute the Euclidean distances to all training samples
             distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
-            # Find the index of the nearest neighbor
             nearest_neighbor_index = np.argmin(distances)
-            # Append the class of the nearest neighbor
             y_pred.append(self.y_[nearest_neighbor_index])
 
         return np.array(y_pred)
