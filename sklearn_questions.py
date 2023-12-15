@@ -80,7 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype)
 
         for i, x in enumerate(X):
-            nearest_idx = np.argmin(np.linalg.norm(self.X_train - X, axis=1))
+            nearest_idx = np.argmin(np.linalg.norm(self.X_train - x, axis=1))
             prediction_x = self.y_train[nearest_idx]
             y_pred[i] = prediction_x
 
