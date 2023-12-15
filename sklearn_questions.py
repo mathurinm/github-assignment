@@ -30,10 +30,8 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
-
     def _init_(self):  # noqa: D107
         pass
-
 
     def fit(self, X, y):
 
@@ -48,7 +46,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         return self
-
 
     def predict(self, X):
 
@@ -71,7 +68,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y_pred[i] = self.y_[nearest_neighbor_idx]
 
         return y_pred
-
 
     def score(self, X, y):
 
