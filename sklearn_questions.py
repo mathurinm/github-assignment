@@ -55,8 +55,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-        self.X_train = X
-        self.y_train = y
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
@@ -80,8 +80,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype)
 
         for i, x in enumerate(X):
-            nearest_idx = np.argmin(np.linalg.norm(self.X_train - x, axis=1))
-            prediction_x = self.y_train[nearest_idx]
+            nearest_idx = np.argmin(np.linalg.norm(self.X_train_ - x, axis=1))
+            prediction_x = self.y_train_[nearest_idx]
             y_pred[i] = prediction_x
 
         return y_pred
