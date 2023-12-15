@@ -29,7 +29,7 @@ def max_index(X):
         raise ValueError("Input must be a 2D numpy array")
 
     # Get the index of the maximum value
-    max_index = np.argmax(X)  # By default, the index is in the flattened array
+    max_index = np.argmax(X) # By default, the index is in the flattened array
     num_rows, num_cols = X.shape
 
     i = max_index // num_cols
