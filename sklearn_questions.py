@@ -27,47 +27,94 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
 
-    def __init__(self):  # noqa: D107
+    def _init_(self):  # noqa: D107
         pass
-
-    def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
+        Fitting the One nearest neighbor classifier.
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+        Training samples.
+        y : array-like, shape (n_samples,)
+        Target values.
+        Returns
+        -------
+        self : object
+        Returns self.
+        """
+        # Checking that X and y have a correct shape
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        
+        # Storing the classes and number of features
         self.classes_ = np.unique(y)
+        self.X_ = X  # Store the training data
+        self.y_ = y  # Store the target labels
+        self.n_features_in_ = X.shape[1]
 
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        Predicting the target values.
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Input samples.
+        And describe parameters
+        Returns
+        -------
+        y_pred : array-like, shape (n_samples,)
+            Predicted target values.
+        """
+        # Checking if the model has been fitted
 
-        # XXX fix
+        check_is_fitted(self)
+
+        # Checking the input array and initializing predictions
+
+        X = check_array(X)
+
+        y_pred = np.empty(len(X), dtype=self.y_.dtype)
+
+        for i, x in enumerate(X):
+
+            # Calculating Euclidean distances between x and all samples
+
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+
+            # Finding the index of the nearest neighbor
+
+            nearest_neighbor_idx = np.argmin(distances)
+
+            # Assigning the label of the nearest neighbor to y_pred[i]
+
+            y_pred[i] = self.y_[nearest_neighbor_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """
+        Return the mean accuracy of the given test data and labels.
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Test samples.
+        y : array-like, shape (n_samples,)
+            True labels for X.
+        Return
+        -------
+        accuracy : float
+            Mean accuracy of self.predict(X) with respect to y.
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        y_pred = self.predict(X)
+        accuracy = np.mean(y_pred == y)
+
+       return accuracy
