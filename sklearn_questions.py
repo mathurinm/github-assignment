@@ -27,17 +27,20 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+
 
     def _init_(self):  # noqa: D107
         pass
+
 
     def fit(self, X, y):
 
         # Checking that X and y have a correct shape
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        
+
         # Storing the classes and number of features
         self.classes_ = np.unique(y)
         self.X_ = X  # Store the training data
@@ -45,6 +48,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         return self
+
 
     def predict(self, X):
 
@@ -67,6 +71,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y_pred[i] = self.y_[nearest_neighbor_idx]
 
         return y_pred
+
 
     def score(self, X, y):
 
