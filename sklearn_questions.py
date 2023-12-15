@@ -28,10 +28,11 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
 
     def _init_(self):  # noqa: D107
         pass
+
+    def fit(self, X, y):
         """
         Fitting the One nearest neighbor classifier.
         Parameters
@@ -66,7 +67,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
         X : array-like, shape (n_samples, n_features)
             Input samples.
-        And describe parameters
+
         Returns
         -------
         y_pred : array-like, shape (n_samples,)
