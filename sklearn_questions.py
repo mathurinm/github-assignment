@@ -30,26 +30,10 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """
-    OneNearestNeighbor classifier.
-
-    This classifier implements the 1-Nearest Neighbor algorithm. It predicts the
-    target of a new point based on the closest training sample, using Euclidean distance.
-
-    Parameters
-    ----------
-    None
-
-    Attributes
-    ----------
-    X_ : array-like of shape (n_samples, n_features)
-        Training data.
-    y_ : array-like of shape (n_samples,)
-        Target values.
-    """
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):
-        # No attributes are set in __init__
+        """No parameter in init."""
         pass
 
     def fit(self, X, y):
@@ -69,8 +53,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Returns the instance itself.
         """
         X, y = check_X_y(X, y)
-        self.X_ = X
-        self.y_ = y
+        check_classification_targets(y)
+        self.classes_ = np.unique(y)
+        self.n_features_in_  = X.shape[1]
+        self._X_train = X
+        self._y_train = y
         return self
 
     def predict(self, X):
@@ -89,15 +76,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
+        y_pred = np.full(
+            shape=len(X), fill_value=self.classes_[0],
+            dtype=self.classes_.dtype)
 
-        y_pred = []
-        for x in X:
-            distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
-            nearest_neighbor_index = np.argmin(distances)
-            y_pred.append(self.y_[nearest_neighbor_index])
+        for i, x in enumerate(X):
+            nearest_idx = np.argmin(np.linalg.norm(self.X_train - x, axis=1))
+            prediction_x = self.y_train[nearest_idx]
+            y_pred[i] = prediction_x
 
-        return np.array(y_pred)
-
+        return y_pred
     def score(self, X, y):
         """
         Return the mean accuracy on the given test data and labels.
@@ -114,6 +102,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
             Mean accuracy of self.predict(X) wrt. y.
         """
-        X, y = check_X_y(X, y)
+        X,y = check_X_y(X,y)
         y_pred = self.predict(X)
-        return np.mean(y_pred == y)
+        mask = y_pred == y
+        y_pred = mask.astype(int) / len(X)
+
+        return y_pred.sum()
