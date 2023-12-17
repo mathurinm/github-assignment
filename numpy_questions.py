@@ -29,7 +29,7 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
@@ -37,12 +37,29 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    # Check if X is a numpy array and has 2 dimensions
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
 
-    # TODO
+    # Get the shape of the array
+    n_rows, n_cols = X.shape
 
-    return i, j
+    # Check if the array is not empty
+    if n_rows == 0 or n_cols == 0:
+        raise ValueError("Input array must not be empty.")
+
+    # Initialize variables to store the maximum value and its indices
+    max_value = X[0, 0]
+    max_indices = (0, 0)
+
+    # Iterate through the array to find the maximum value and its indices
+    for i in range(n_rows):
+        for j in range(n_cols):
+            if X[i, j] > max_value:
+                max_value = X[i, j]
+                max_indices = (i, j)
+
+    return max_indices
 
 
 def wallis_product(n_terms):
@@ -62,6 +79,20 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    # Check if n_terms is non-negative
+    if n_terms < 0:
+        raise ValueError("Number of terms must be non-negative.")
+
+    # Initialize the Wallis product to 1
+    wallis_result = 1.0
+
+    # Calculate the Wallis product
+    for i in range(1, n_terms + 1):
+        numerator = 4 * i**2
+        denominator = 4 * i**2 - 1
+        wallis_result *= numerator / denominator
+
+    # Multiply by 2 to get the final approximation of pi
+    pi_approximation = 2 * wallis_result
+
+    return pi_approximation
