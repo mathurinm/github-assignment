@@ -26,30 +26,54 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Return the fit of a OneNearestNeighbor.
 
-        And describe parameters
+        Parameters
+        ----------
+            X : feature matrix of size n x p
+            y : response vector of size n x 1
+    
+            n is the sample size
+            p is the feature size
+    
+        Returns
+        -------
+            Return the instance itself 
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
 
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Return the predictions vector fitted on X.
 
-        And describe parameters
+        Parameters
+        ----------
+            X : feature matrix of size n x p
+            y_pred : prediction vector of size n x 1
+    
+            n is the sample size
+            p is the feature size
+    
+        Returns
+        -------
+        Return the prediction vector  
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,15 +83,30 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        for i, x_i in enumerate(X):
+            distances = np.linalg.norm(self.X_ - x_i, axis=1)
+            closest_index = np.argmin(distances)
+            y_pred[i] = self.y_[closest_index]
+        
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the score of the prediction based on euclidean distance.
 
-        And describe parameters
+        Parameters
+        ----------
+            y : response vector of size n x 1
+            y_pred : prediction vector of size n x 1
+        
+            n is the sample size
+    
+        Returns
+        -------
+        Return the mean of euclidean distance from all points.  
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        accuracy = accuracy_score(y, y_pred)
 
         # XXX fix
-        return y_pred.sum()
+        return accuracy
