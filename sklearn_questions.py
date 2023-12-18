@@ -42,13 +42,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
             X : feature matrix of size n x p
             y : response vector of size n x 1
-    
+
             n is the sample size
             p is the feature size
-    
+
         Returns
         -------
-            Return the instance itself 
+        Return the instance itself
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -67,13 +67,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
             X : feature matrix of size n x p
             y_pred : prediction vector of size n x 1
-    
+
             n is the sample size
             p is the feature size
-    
+
         Returns
         -------
-        Return the prediction vector  
+        Return the prediction vector
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -87,7 +87,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             distances = np.linalg.norm(self.X_ - x_i, axis=1)
             closest_index = np.argmin(distances)
             y_pred[i] = self.y_[closest_index]
-        
+
         return y_pred
 
     def score(self, X, y):
@@ -97,12 +97,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
             y : response vector of size n x 1
             y_pred : prediction vector of size n x 1
-        
+
             n is the sample size
-    
+
         Returns
         -------
-        Return the mean of euclidean distance from all points.  
+        Return the mean of euclidean distance from all points.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
