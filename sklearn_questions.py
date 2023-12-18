@@ -108,3 +108,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = mask.astype(int) / len(X)
 
         return y_pred.sum()
+    
+    
