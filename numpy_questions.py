@@ -67,9 +67,6 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 0000
-
     pi_half = 1
     if n_terms == 0:
         pi_approx = 2 * pi_half
