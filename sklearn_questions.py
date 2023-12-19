@@ -41,7 +41,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
-            Training data (input samples).
+            Training data.
         y : array-like of shape (n_samples,)
             Target values.
 
@@ -52,18 +52,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
-
-        self.X_train_ = X
-        self.y_train = y
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
         """
-        Predict the class labels (target values) for the provided data (input samples).
+        Predict the class labels for the provided data.
 
         Parameters
         ----------
@@ -77,11 +72,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        distances = euclidean_distances(X, self.X_train_)
-        nearest_indices = np.argmin(distances, axis=1)
-        y_pred = self.y_train_(nearest_indices)
 
-        # XXX fix
+        y_pred = np.array(
+            [self.y_[np.argmin(np.sum((self.X_ - x)**2, axis=1))] for x in X]
+        )
         return y_pred
 
     def score(self, X, y):
@@ -98,10 +92,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         score : float
-            Mean accuracy of self.predict(X) with respect to y.
+            Mean accuracy of self.predict(X) wrt. y.
         """
-        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        accuracy = np.mean(y_pred = y)
-        return accuracy
+        return accuracy_score(y, y_pred)
