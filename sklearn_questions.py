@@ -30,15 +30,31 @@ from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """OneNearestNeighbor classifier."""
+    """OneNearestNeighbor classifier implementing a simple 1-NN algorithm."""
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
+        """
+        Initialize the OneNearestNeighbor classifier.
+
+        This classifier doesn't require any initialization parameters,
+        so the `__init__` method is empty.
+        """
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model using X as training data and y as target values.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -46,17 +62,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-<<<<<<< HEAD
-=======
-
-        # XXX fix
->>>>>>> ddb6e034469782b7db2d4237b08ff57766ba5cc0
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        Returns
+        -------
+        y_pred : array of shape (n_samples,)
+            Predicted class label per sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -70,11 +89,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of self.predict(X) wrt. y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         return accuracy_score(y, y_pred)
