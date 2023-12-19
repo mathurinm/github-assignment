@@ -29,45 +29,69 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the model to the training data.
 
-        And describe parameters
+        Parameters:
+        X : array-like or sparse matrix, shape (n_samples, n_features)
+            The input samples.
+        y : array-like, shape (n_samples,)
+            The target values.
+
+        Returns:
+        self : object
+            Returns the instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class labels for the given input samples.
 
-        And describe parameters
+        Parameters:
+        X (array-like): Input samples.
+
+        Returns:
+        array-like: Predicted class labels for the input samples.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        fill = self.classes_[0]
+        dtype = self.classes_.dtype
+        y_pred = np.full(shape=len(X), fill_value=fill, dtype=dtype)
+        for i, x in enumerate(X):
+            nearest_i = np.argmin(np.linalg.norm(self.X_train_ - x, axis=1))
+            y_pred[i] = self.y_train_[nearest_i]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy score of the model.
 
-        And describe parameters
+        This method calculates the accuracy score of the model
+        by comparing the predicted labels with the true labels.
+
+        Parameters:
+        X (array-like): The input features.
+        y (array-like): The true labels.
+
+        Returns:
+        float: The accuracy score.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        acc = y_pred == y
+        return acc.mean()
