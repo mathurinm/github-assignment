@@ -1,87 +1,91 @@
 First name	Last name
-Nadiy	Abdel Karim Dit Aramouni
-Aadhar	Agarwal
-Dogbo	Agbre
-Alae	Ahmad
-Raphaël	Amzallag
-Abdufattokh	Ashurov
-Zakaria	Atlassi Douch
-Elise	Barattini
-Ugo	Benazra
-Safwane	Benseddiq
-Mohamed	Benslimane
-Dora	Bijvoet
-Alexander	Bohane
-Apolline	Boillot
+
+Nadiy	Abdel Karim Dit Aramouni X
+Aadhar	Agarwal X
+Dogbo	Agbre X
+Alae	Ahmad X
+Raphaël	Amzallag X
+Abdufattokh	Ashurov X
+Zakaria	Atlassi Douch X
+Elise	Barattini xx
+Ugo	Benazra X
+Safwane	Benseddiq X
+Mohamed	Benslimane X
+Dora	Bijvoet X
+Alexander	Bohane X
+Apolline	Boillot X
 Thomas	Bordes
-Nathan	Bout
-Thibaut	Boyenval
-Cathal	Brady
-Alexandre	Brun
-Benjamin	Cerf
-Ghali	Chraibi
-Tess	Coullon
-Jules	Crevola
+Thomas	Bordes X
+Nathan	Bout X
+Thibaut	Boyenval X
+Cathal	Brady X 
+Alexandre	Brun X
+Benjamin	Cerf X
+Ghali	Chraibi X
+Tess	Coullon X
+Jules	Crevola X
 Matteo Alessandro	D'Alessandro
-Valentine	Dana
-Solal	Danan
-Charles	De Cian
-Augustin	De Saint Affrique
-Matthieu	Delsart
-Yuding	Duan
-Alexandre	Foulon
-Antoine	Gosset
-Léopold	Guichot
-Nacer	Hadni
-Houcine	Hassani Idrissi
-Gaspard	Hassenforder
-Farah	Jabri
-Thibault	Jauneau
-Zixu	Jin
-Sami	Kalai
-Tanmay	Kale
+Valentine	Dana X
+Solal	Danan x
+Charles	De Cian  X
+Augustin	De Saint Affrique X
+Matthieu	Delsart X
+Yuding	Duan X
+Alexandre	Foulon X
+Antoine	Gosset X
+Léopold	Guichot  X
+Nacer	Hadni X
+Houcine	Hassani Idrissi X
+Gaspard	Hassenforder X
+Farah	Jabri X
+Thibault	Jauneau X
+Zixu	Jin  X
+Sami	Kalai X
+Tanmay	Kale X
 Xiaohan	Ke
-Jack	Khoueiri
-Lucijan	Kodeli
-Evgenii	Kostromin
-Ameya	Kulkarni
-Constance	Laverdure
-François	Lebrun
-Giacomo	Lustri
-Felipe	Mansilla
+Jack	Khoueiri X
+Lucijan	Kodeli X
+Evgenii	Kostromin X
+Ameya	KulkarniX
+Constance	Laverdure X
+François	Lebrun X
+Giacomo	Lustri X
+Felipe	Mansilla XXXX
 Yanqing	Mao
-Virgile	Martin
-Nicola	Massari
+Virgile	Martin X
+Nicola	Massari X
 Mathurin	Massias
-Tarek	Massoud
-Artus	Mathieu
-Zineb	Mechiche Alami
+Tarek	Massoud X
+Artus	Mathieu X
+Zineb	Mechiche Alami X
 Xianghan	Mei
-Samuel	Mesguiche
-Pietro	Micelli
+Pietro	Micelli X
+Samuel	Mesguiche X
 Badr	Moufad
-Alexandra-Catalina	Negoita
-Thanh Liêm	Nguyen
-Carlo Antonio	Patti
-Julien	Pezzi
+Alexandra-Catalina	Negoita X
+Thanh Liêm	Nguyen X
+Carlo Antonio	Patti X
+Julien	Pezzi x
 Trung Dan	Phan
-Auguste	Piromalli
-Aubry	Poitevin
-Malo	Renaudin X
-Nicolas	Schroeder
-Rong	Shen
-Charles	Siret
+Auguste	Piromalli X
+Aubry	Poitevin x
+Malo	Renaudin
+Nicolas	Schroeder X
+Rong	Shen X
+Charles	Siret X
 Hadrien	Strichard
-Eva	Toledano
-Tim	Valencony
-Antonio Roberto	Ventura
+Eva	Toledano x
+Tim	Valencony X
+Antonio Roberto	Ventura X
 Khushi	Verma
-Henri	Vignial
-Chenfei	Wang
-Mingyu	Wang
-Fangzhou	Xu
-Jialong	Xu
-Zhongyuan	Zhang
-Yufeng	Zhou
-Qiling	Zhu
-Mohamed-El Hocine	Zidi
+Henri	Vignial X
+Khushi	VermaX
+Chenfei	Wang X
+Mingyu	Wang X
+Fangzhou	Xu X
+Jialong Xu X	
+Zhongyuan	Zhang X
+Yufeng	Zhou X
+Qiling	Zhu X
+Mohamed-El Hocine	Zidi X
+Xianghan Mei X
