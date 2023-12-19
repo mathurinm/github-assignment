@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -73,7 +73,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
         )
 
         for i, x_test in enumerate(X):
