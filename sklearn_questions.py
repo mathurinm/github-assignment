@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import pairwise_distances, accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -43,8 +44,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = X  # Store the training data for future reference
+        self.y_train_ = y  # Store the training labels
         return self
 
     def predict(self, X):
@@ -54,12 +55,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.empty(len(X), dtype=self.classes_.dtype)
 
-        # XXX fix
+        for i, x_test in enumerate(X):
+            # Compute Euclidean distances between x_test
+            # and all training samples
+            distances = pairwise_distances(
+                [x_test], self.X_train_, metric='euclidean')[0]
+
+            # Find the index of the nearest neighbor
+            nearest_neighbor_index = np.argmin(distances)
+
+            # Assign the label of the nearest neighbor as the prediction
+            y_pred[i] = self.y_train_[nearest_neighbor_index]
+
         return y_pred
 
     def score(self, X, y):
@@ -69,6 +78,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        accuracy = accuracy_score(y, y_pred)
+        return accuracy
