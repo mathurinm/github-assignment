@@ -35,22 +35,61 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the model using training data (X) and target values (y).
 
-        And describe parameters
+        Parameters
+        ----------
+        Self: refers to the instance of the class
+            Used to access class attributes and methods
+            Used to call other methods
+
+        X : ndarray of shape (n_samples, n_features)
+            The input design matrix.
+
+        y: 1darray of shape(n_samples, )
+            The input target value
+
+        Returns
+        -------
+        Self: Returning the instance of the class on which method was called Enables method chaining
+            Returns references to the instance
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self._X_train = X
+        self._y_train = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Used to predict the label of class of the input data.
 
-        And describe parameters
+        Parameters:
+        -----------
+        X : numpy.ndarray
+            The X_test data set used for prediction
+
+        Returns:
+        --------
+        y_pred: numpy.ndarray
+            The label predictions for each data points in X_test
+
+        Notes:
+        ------
+        This method predicts the label of class of the input data based
+        on the fitted model. The predictions are based on 1NN algorithm.
+
+        The input X should be a 2-dimensional numpy array, where each row
+        represents a single data point, and the number of columns matches the
+        number of features used during model training.
+
+        The output y_pred is a numpy array of the same length as X, containing
+        the predicted class labels for each corresponding data point in X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +98,50 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            nearestidx = np.argmin(np.linalg.norm(self._X_train - x, axis=1))
+            predictionx = self._y_train[nearestidx]
+            y_pred[i] = predictionx
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Used to compute the accuracy score of the 1-kk classifier on the given data.
 
-        And describe parameters
+        Parameters:
+        -----------
+        X : numpy.ndarray
+            The input data for which to calculate the accuracy.
+            the X_test dataset
+
+        y : numpy.ndarray
+            The true class labels corresponding to the input data.
+            the y_test array
+
+        Returns:
+        --------
+        float
+            The accuracy of the classifier, as a value between 0 and 1
+
+        Notes:
+        ------
+        This method calculates the accuracy of the classifier based on the provided
+        data with the comparision between predicted class labels and true class labels.
+
+        The input X should be a 2-dimensional numpy array, where each row
+        represents a data point, and the number of columns matches the
+        number of features used during model training.
+
+        The output y_pred is a numpy array of the same length as X, containing
+        the predicted class labels for each corresponding data point in X.
+
+        The accuracy is calculated as the proportion of correctly predicted
+        class labels to the total number of data points.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
+        mask = y_pred == y
+        y_pred = mask.astype(int) / len(X)
+
         return y_pred.sum()
