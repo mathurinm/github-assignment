@@ -46,6 +46,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+<<<<<<< HEAD
+=======
+
+        # XXX fix
+>>>>>>> ddb6e034469782b7db2d4237b08ff57766ba5cc0
         return self
 
     def predict(self, X):
