@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -68,7 +68,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """
-        Used to predict the label of class of the input data.
+        Use to predict the label of class of the input data.
 
         Parameters:
         -----------
@@ -107,8 +107,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Used to compute the accuracy score of
-        the 1-kk classifier on the given data.
+        Compute the accuracy score of the 1kk classifier on the given data.
 
         Parameters:
         -----------
@@ -118,21 +117,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         y : numpy.ndarray
             The true class labels corresponding to the input data.
-            the y_test array
+            y_test array
 
         Returns:
         --------
         float
-            The accuracy of the classifier, as a value between 0 and 1
+            The accuracy of the classifier as a value between 0 and 1
 
         Notes:
         ------
-        This method calculates the accuracy of the classifier based
-        on the provided
-        data with the comparision between predicted class labels and
-        true class labels.
+        This method calculates the accuracy of the classifier on the provided
+        data by comparing the predicted class labels with true class labels.
 
-        The input X should be a 2-dimensional numpy array, where each row
+        The input X should be a 2-dimensional numpy array where each row
         represents a data point, and the number of columns matches the
         number of features used during model training.
 
@@ -144,7 +141,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         mask = y_pred == y
         y_pred = mask.astype(int) / len(X)
 
