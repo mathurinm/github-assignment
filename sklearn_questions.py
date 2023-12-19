@@ -52,7 +52,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        Self: Returning the instance of the class on which method was called Enables method chaining
+        Self: Returning the instance of the class on
+        which method was called Enables method chaining
             Returns references to the instance
         """
         X, y = check_X_y(X, y)
@@ -106,7 +107,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Used to compute the accuracy score of the 1-kk classifier on the given data.
+        Used to compute the accuracy score of
+        the 1-kk classifier on the given data.
 
         Parameters:
         -----------
@@ -125,8 +127,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Notes:
         ------
-        This method calculates the accuracy of the classifier based on the provided
-        data with the comparision between predicted class labels and true class labels.
+        This method calculates the accuracy of the classifier based
+        on the provided
+        data with the comparision between predicted class labels and
+        true class labels.
 
         The input X should be a 2-dimensional numpy array, where each row
         represents a data point, and the number of columns matches the
