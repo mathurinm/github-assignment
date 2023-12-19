@@ -53,7 +53,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
-        check_is_fitted(self, ['X_','y_'])
+        check_is_fitted(self,  ['X_', 'y_'])
         X = check_array(X)
 
         y_pred = []
