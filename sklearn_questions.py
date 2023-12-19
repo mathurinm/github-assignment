@@ -68,9 +68,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Calculate the score.
-    
+
         This is the detailed description that follows after the summary line.
-        It should be separated by one blank line and should be indented properly.
+        It should be separated by one blank line and should be indented.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
