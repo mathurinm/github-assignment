@@ -94,8 +94,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
             Mean accuracy of self.predict(X) wrt. y.
         """
-        X,y = check_X_y(X, y)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         accuracy = np.mean(y_pred == y)
-        return accuracy 
+        return accuracy
