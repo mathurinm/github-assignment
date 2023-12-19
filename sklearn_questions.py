@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -55,8 +56,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-         self.X_train_ = X
-         self.y_train_ = y
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
@@ -80,7 +81,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        y_pred = np.array([self.y_train_[np.argmin(np.linalg.norm(X_i - self.X_train_, axis=1))] for X_i in X])
+        y_pred = np.array([self.y_train_[np.argmin(
+            np.linalg.norm(X_i - self.X_train_, axis=1))] for X_i in X])
         return y_pred
 
     def score(self, X, y):
@@ -102,5 +104,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        accuracy = accuracy_score(y,y_pred)
+        accuracy = accuracy_score(y, y_pred)
         return accuracy
