@@ -54,6 +54,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.X_ = X
         self.y_ = y
+        self.classes_ = np.unique(y)
         return self
 
     def predict(self, X):
