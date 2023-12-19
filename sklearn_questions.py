@@ -101,4 +101,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         mask = y_pred == y
         y_pred[mask] = 1
         y_pred[~mask] = 0
-        return y_pred.sum()
+        return y_pred.mean()
