@@ -67,8 +67,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
-        And describe parameters
+        """Calculate the score.
+    
+        This is the detailed description that follows after the summary line.
+        It should be separated by one blank line and should be indented properly.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
