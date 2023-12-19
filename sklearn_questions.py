@@ -20,7 +20,6 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 
-
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
@@ -35,7 +34,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         Initialize the OneNearestNeighbor classifier.
 
-        This classifier doesn't require any initialization parameters, 
+        This classifier doesn't require any initialization parameters,
         so the `__init__` method is empty.
         """
         pass
@@ -59,8 +58,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.X_ = X
         self.y_ = y
-        self.classes_=np.unique(y)
-        self.n_features_in_=X.shape[1]
+        self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
