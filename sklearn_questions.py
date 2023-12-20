@@ -57,7 +57,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
-
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
