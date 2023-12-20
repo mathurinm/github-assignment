@@ -44,7 +44,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        if len(self.classes_) <= 1:
+            raise ValueError(
+                "Classifier can't predict when only one class is present."
+            )
+
+        self.x_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
@@ -59,8 +66,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-        return y_pred
+        # Using broadcasting to compute distances
+        train_points_expanded = self.x_[:, np.newaxis, :]
+        distances = np.sqrt(np.sum((train_points_expanded - X) ** 2, axis=2)).T
+
+        # Sort the distances and take the k smallest distances
+        indices = np.argsort(distances)[:, :1]
+
+        # Take the label mode as the prediction
+        y_pred = self.y_[indices]
+
+        return np.squeeze(y_pred)
 
     def score(self, X, y):
         """Write docstring.
@@ -70,5 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # Calculate accuracy
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
