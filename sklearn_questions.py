@@ -87,7 +87,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         nearest_indices = np.argmin(distances, axis=1)
 
         # Predict
-        y_pred = self.y_train_(nearest_indices)
+        y_pred = self.y_train_[nearest_indices]
 
         return y_pred
 
