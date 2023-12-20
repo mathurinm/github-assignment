@@ -26,10 +26,11 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -55,9 +56,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
+
+        # Store Training data
         self.X_ = X
         self.y_ = y
-        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
@@ -78,12 +82,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = []
 
-        for x in X:
-            distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
-            nearest_neighbor_idx = np.argmin(distances)
-            y_pred.append(self.y_[nearest_neighbor_idx])
+        distances = euclidean_distances(X, self.X_train_)
+        nearest_indices = np.argmin(distances, axis=1)
+
+        # Predict
+        y_pred = self.y_train_(nearest_indices)
 
         return np.array(y_pred)
 
