@@ -29,28 +29,53 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The training input samples.
+        y : array-like, shape (n_samples,)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        if len(self.classes_) <= 1:
+            raise ValueError(
+                "Classifier can't predict when only one class is present."
+            )
+
+        self.x_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels for input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : array, shape (n_samples,)
+            The predicted labels for each input sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +84,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-        return y_pred
+        # Using broadcasting to compute distances
+        train_points_expanded = self.x_[:, np.newaxis, :]
+        distances = np.sqrt(np.sum((train_points_expanded - X) ** 2, axis=2)).T
+
+        # Sort the distances and take the k smallest distances
+        indices = np.argsort(distances)[:, :1]
+
+        # Take the label mode as the prediction
+        y_pred = self.y_[indices]
+
+        return np.squeeze(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the model on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like or pd.DataFrame, shape (n_samples, n_features)
+            The input samples.
+        y : array-like, shape (n_samples,)
+            The true labels.
+
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # Calculate accuracy
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
