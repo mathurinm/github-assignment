@@ -89,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # Predict
         y_pred = self.y_train_(nearest_indices)
 
-        return np.array(y_pred)
+        return y_pred
 
     def score(self, X, y):
         """
