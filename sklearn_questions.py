@@ -78,10 +78,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = []
 
         for x in X:
             distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
