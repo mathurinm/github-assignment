@@ -8,9 +8,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
     OneNearestNeighbor classifier.
 
-    This classifier implements the 1-Nearest Neighbor algorithm for classification.
-    It predicts the class label for each sample based on the nearest neighbor in
-    the training set, using Euclidean distance as the proximity measure.
+    This classifier implements the 1-Nearest Neighbor algorithm for 
+    classification.
+    It predicts the class label for each sample based on the nearest neighbor 
+    in the training set, using Euclidean distance as the proximity measure.
     """
 
     def __init__(self):
