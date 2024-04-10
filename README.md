@@ -108,3 +108,25 @@ You should also configure your email with
 - `git fetch`, `git rebase`: similar ideas to pull and merge, but done in a different fashion. See [this StackOverflow question](url{https://stackoverflow.com/questions/16666089/whats-the-difference-between-git-merge-and-git-rebase). be aware of those, but usually you'll be fine/better with simple merging.
 - `git reset --hard HEAD`: undoes the changes of the latest commit. Do not do it if you have already pushed your last commit, as you won't be able to push in a clean fashion. If you want to undo an already published commit, use
 `git revert YOUR_COMMIT_HASH`, where `YOUR_COMMIT_HASH` is a number like 444b1cff (get it via the `git log` command mentioned above)
+
+
+
+# VSCode configuration
+- Install the VScode `Python` and `autopep8` extensions vie the Extensions menu (`ctrl + shift + x` or left panel)
+- Configure your editor to autoformat on save, and to use autopep8 as formatter, by adding the following options to your User settings (Type `ctrl + maj + p` to open the command palette, then search for "Preferences: open User settings (JSON)" to open your `settings.json`):
+
+```
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.rulers": [
+            79
+        ],
+        "editor.semanticHighlighting.enabled": false,
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.autopep8",
+    },
+    "autopep8.args": [
+        "[\"--max-line-length\", \"88\"]"
+    ],
+```
