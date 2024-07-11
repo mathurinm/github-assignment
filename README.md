@@ -67,7 +67,6 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
     upstream https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME (push)
     ```
     (or the same with `git@github.com:...` if you added them with the SSH syntax)
-  - Fetch the `main` branch from the `upstream` repository: `git fetch upstream main`
   - Locally, switch to the upstream `main` branch: `git switch main`
   - Make sure you are up-to-date with the upstream `main` branch: `git pull upstream main`
   - Create and switch to a new working branch called `YOURBRANCH` (name to customize): `git switch -c YOURBRANCH` (`-c` means "create").
@@ -76,7 +75,7 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
   - Create a commit with a message: `git commit -m "RELEVANT COMMIT NAME"`. The commit name should be a meaningful summary of the modifications that the commit contains (what was added/removed/changed/fixed/...).
   - Push your commit on the upstream repository from your working branch: `git push --set-upstream origin YOURBRANCH`. Note that you only need to use `--set-upstream origin YOURBRANCH` once: after that, git remembers that your local branch should be pushed to the corresponding distant branch.  Now, to create a pull request, you can either click the link that appears on your terminal or go to the web page of your repository and click the `Compare & pull request` button
   - Click the `Create pull request` button, select which branch you want to merge into which branch
-  - You're set!
+  - You're set! You can continue working locally on the same branch, and push your changes regularly. the Pull Request page on GitHub will update every time you push.
 
 
 ## Good practices with git
