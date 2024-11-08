@@ -48,7 +48,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self : object
             Returns the instance itself.
         """
-
         if X is None or y is None:
             raise ValueError("X and y must not be None.")
 
@@ -73,7 +72,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred : array-like of shape (n_samples,)
             The predicted class labels for each sample.
         """
-
         check_is_fitted(self, ['X_train_', 'y_train_'])
         X = check_array(X)
 
@@ -99,7 +97,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
             The accuracy of the model on the test data.
         """
-
         if X is None or y is None:
             raise ValueError("X and y must not be None.")
 
