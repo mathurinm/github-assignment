@@ -74,8 +74,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-        y_pred = (y_pred == y)
-        return y_pred.sum()
+        return np.mean(y_pred == y) 
