@@ -15,7 +15,7 @@ Brochier	Felix
 Bùi	An Bình
 Bunford	Philip
 Burman	Dev
-Caceres	Gauthier
+Caceres	Gauthier X
 Capizzi	Simone
 Casalini	Sofia
 Chen	Zhipeng
@@ -23,8 +23,8 @@ Combettes	Sylvain
 Coutière	Guillaume
 De Rosen	Vassili
 Della Gatta	Tommaso
-Deng	Dixin
-Desjuzeur	Basile
+Deng	Dixin X
+Desjuzeur	Basile X
 Digua	Mehdi
 Drion	Thibaud
 Falcon De Longevialle	Aymeric
@@ -44,20 +44,20 @@ Kire	Cedric Emmanuel
 Kozikowski	Florian
 Krstic	Vera
 Lacombe	Paul
-Lafarguette	Pierre
+Lafarguette	Pierre X
 Laget	Rémi
 Le Guyet	Théo
 Leibovici	Louis
 Leroy	Etienne
 Louis	Paul-Philip
 Malezieux	Côme
-Mansard	Diane
+Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
 Melkonian	Audrey
-Milcent	Thomas
+Milcent	   Thomas  X
 Moufad	Badr
-Müller	Felix
+Müller	Felix X
 Naton	Augustin X
 Niddam	Samy
 Ochterbeck	Maxim Leon
