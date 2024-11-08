@@ -29,28 +29,52 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the OneNearestNeighbor model to the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The training input samples.
+        y : array-like of shape (n_samples,)
+            The target values (class labels) for training samples.
+        self : an object where X and y are going to be stored as attributes
+
+        Returns
+        -------
+        self : object
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_train_ = X
+        self.y_train_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predicts the class label of the provided data.
 
-        And describe parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The input samples to classify.
+        self : object of the class
+            The instance of the OneNearestNeighbor classifier
+            that the method is called on. This allows access
+            to the trained model's attributes and methods,
+            such as the training data and classes.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each input sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +83,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            nearest_neighbor_idx = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_neighbor_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Return the accuracy of the classifier on the provided test data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+
+        y : array-like of shape (n_samples,)
+            The true labels for the input samples.
+            Each element corresponds to the true
+            label for the respective sample in `X`.
+
+        self : object of the class
+
+        Returns
+        -------
+        score : int
+            The sum of the predicted labels. This is the
+            raw sum of the predicted class labels
+            for all the samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        accuracy = np.mean(y_pred == y)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy
