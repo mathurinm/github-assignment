@@ -50,7 +50,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Fits the OneNearestNeighbor model to the training data.
+        """Fit the OneNearestNeighbor model to the training data.
 
         Has the following parameters:
         ----------
@@ -76,7 +76,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the class labels for the provided data.
+        """Predict the class labels for the provided data.
 
         Has the following parameters:
         ----------
@@ -100,7 +100,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Computes the accuracy of the model on the given data.
+        """Compute the accuracy of the model on the given data.
 
         Has the following parameters:
         ----------
