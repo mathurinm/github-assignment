@@ -1,3 +1,4 @@
+
 """Assignment - making a sklearn estimator.
 
 The goal of this assignment is to implement by yourself a scikit-learn
@@ -41,11 +42,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
-
         self.X_train_ = X
         self.y_train_ = y
+        self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
         return self
 
     def predict(self, X):
@@ -74,4 +74,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        return np.sum(y_pred == y)
+
+        X, y = check_X_y(X, y)
+        y_pred = self.predict(X)
+        y_pred = (y_pred == y)
+        return y_pred.sum()
