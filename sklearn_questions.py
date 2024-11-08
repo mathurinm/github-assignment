@@ -37,6 +37,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fit the model using the training data.
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
@@ -63,6 +64,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict the class labels for the provided data.
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
@@ -86,6 +88,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Compute the accuracy of the model on the provided data.
+        
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
