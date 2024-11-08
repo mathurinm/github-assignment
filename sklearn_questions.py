@@ -26,31 +26,48 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits the classifier with thetraining data X and labels y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X (ndarray) : Shape (n, d) ; the coordinates of the training points
+        y (ndarray) : Shape (n, 1) ; the labels of the training points
+
+        Returns
+        -------
+        self (OneNearestNeighbor) : The fitted classifier
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the lables of the points in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X (ndarray) : Shape (n, d) ; Coordinates of points to
+                                     predict the label of.
+
+        Returns
+        -------
+        y_pred (ndarray) : Shape (n, 1) ; Predicted labels of the points in X
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +76,26 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = cdist(X, self.X_)
+        index_min_distancs_array = distances.argmin(axis=1)
+        y_pred = self.y_[index_min_distancs_array]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute accuracy score of the classifier on the provided test base.
 
-        And describe parameters
+        Parameters
+        ----------
+        X (ndarray) : Shape (n, d) ; the coordinates of the test points
+        y (ndarray) : Shape (n, 1) ; the corresponding
+                                     lables of the test points
+
+        Returns
+        -------
+        accuracy (float) : The accuracy score on the provided test base
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        y_pred = y_pred == y
+        return y_pred.sum() / len(y_pred)
