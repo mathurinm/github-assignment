@@ -82,7 +82,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             distances = np.linalg.norm(self.X_train_ - x, axis=1)
             nearest_idx = np.argmin(distances)
             y_pred[i] = self.y_train_[nearest_idx]
-            return y_pred
+        return y_pred
 
     def score(self, X, y):
         """Calculate the accuracy of the classifier.
