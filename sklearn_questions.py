@@ -29,13 +29,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier on the training data.
+
         Parameters :
         X : array-like of shape (n_samples, n_features)
             Training data.

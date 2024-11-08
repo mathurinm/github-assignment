@@ -50,7 +50,6 @@ def max_index(X):
     # Convert the flattened index to row and column indices
     i, j = np.unravel_index(flat_index, X.shape)
 
-
     return i, j
 
 
