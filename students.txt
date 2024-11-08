@@ -33,7 +33,7 @@ Ferreira Valente Da Silva	Rafael
 Filisetti	Paul
 Giuliani	Alessandro
 Guenoun	Raphaël
-Guillet	Nicolas
+Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
 Hauchecorne	Lucien
@@ -50,7 +50,7 @@ Le Guyet	Théo
 Leibovici	Louis
 Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
@@ -76,12 +76,12 @@ Song	Siyuan
 Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
-Tessier	Simon
+Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
-Violleau	Alexandre
+Violleau	Alexandre X
 Wang	Chung-Hao
-Wang	Han
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
 Yu	Chenghao
