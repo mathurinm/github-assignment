@@ -4,7 +4,7 @@ This README contains:
 - general useful information about working with GitHub.
 
 ## I) The assignment
-Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy, project started by Thomas Moreau and Alexandre Gramfort.
+This work is based on https://github.com/x-datascience-datacamp/datacamp-assignment-numpy, project started by Thomas Moreau and Alexandre Gramfort.
 
 ### What this assignment teaches you:
 
@@ -19,10 +19,12 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
 ### Prerequisite
   - Create a GitHub account.
   - Add **one** of the following ways to authenticate to push to your repositories:
-    - SSH: generate and add a public/private SSH key pair to GitHub. [GitHub tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
     - HTTPS: generate and save a GitHub token to connect with HTTPS: [GitHub tutorial](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+    - SSH: generate and add a public/private SSH key pair to GitHub. [GitHub tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+    (SSH may be a bit more complex)
 ### Part A: basic PR
-  - Fork the repository by clicking on the `Fork` button on the upper right corner
+  - Fork this repository by clicking on the `Fork` button on the upper right corner of this page.
   - Clone the repository of your fork with: `git clone https://github.com/YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login)
   - Check which remote (distant) repositories your local repository knows, with `git remote -v` (v for verbose)
   - Setup git to work with the original repo (mine) with `git remote add upstream https://github.com/mathurinm/github-assignment` (tell git: there's a new remote repository to track and its name is `upstream`)
