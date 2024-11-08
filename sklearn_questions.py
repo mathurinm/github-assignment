@@ -44,7 +44,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
@@ -59,7 +60,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = np.sqrt(
+            np.sum(
+                (X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]) ** 2, axis=2
+                )
+        )
+        y_pred = self.y_[np.argmin(distances, axis=1)]
         return y_pred
 
     def score(self, X, y):
@@ -70,5 +76,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
