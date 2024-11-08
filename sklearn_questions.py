@@ -30,7 +30,7 @@ from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """"OneNearestNeighbor classifier."""
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
