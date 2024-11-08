@@ -10,11 +10,11 @@ Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
-Blivet	Alexandre
+Blivet	Alexandre  X
 Brochier	Felix
 Bùi	An Bình
 Bunford	Philip
-Burman	Dev
+Burman	Dev x
 Caceres	Gauthier X
 Capizzi	Simone
 Casalini	Sofia
@@ -37,25 +37,25 @@ Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
 Hauchecorne	Lucien X
-Henry-Leo	Valentin X 
-Jamai	Mamoun
+Henry-Leo	Valentin X
+Jamai	Mamoun X
 Jankowska	Magdalena X
-Kire	Cedric Emmanuel
+Kire	Cedric Emmanuel X
 Kozikowski	Florian
 Krstic	Vera
 Lacombe	Paul X
 Lafarguette	Pierre X
 Laget	Rémi X
 Le Guyet	Théo
-Leibovici	Louis
+Leibovici	Louis X
 Leroy	Etienne  X
 Louis	Paul-Philip
 Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
-Melkonian	Audrey
-Milcent	   Thomas  X
+Melkonian	Audrey X
+Milcent	Thomas X
 Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
@@ -67,12 +67,12 @@ Passet	Lydia
 Péretié	Louis
 Popat	Sheetal X
 Pottier	Clément X
-Rajzman	Samuel
+Rajzman	Samuel X
 Salerno	Marco
 Senghor	Adrien X
 Sijelmassi Idrissi	Iliass X
 Singh	Dhawal
-Song	Siyuan
+Song	Siyuan X
 Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
