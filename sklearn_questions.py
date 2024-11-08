@@ -84,7 +84,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
 
-        for i, test_sample in enumerate(X):
+        for i, x in enumerate(X):
 
             distances = np.sqrt(((self.X_train_ - x) ** 2).sum(axis=1))
 
