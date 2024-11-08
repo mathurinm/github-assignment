@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -57,17 +58,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
+            shape=len(X), 
+            fill_value=self.classes_[0], 
             dtype=self.classes_.dtype
         )
 
         for idx, x in enumerate(X):
-            # Compute the Euclidean distances between x and all samples in X_train_
+            # Compute the Euclidean distances 
             distances = np.sqrt(((self.X_train_ - x) ** 2).sum(axis=1))
-        
+
             # Find the index of the nearest training sample
             nearest_index = np.argmin(distances)
-        
+
             # Assign the label of the nearest neighbor to y_pred[idx]
             y_pred[idx] = self.y_train_[nearest_index]
 
