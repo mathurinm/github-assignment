@@ -10,7 +10,7 @@ Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
-Blivet	Alexandre
+Blivet	Alexandre X
 Brochier	Felix
 Bùi	An Bình
 Bunford	Philip
@@ -37,7 +37,7 @@ Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
 Hauchecorne	Lucien X
-Henry-Leo	Valentin X 
+Henry-Leo	Valentin X
 Jamai	Mamoun
 Jankowska	Magdalena X
 Kire	Cedric Emmanuel X
@@ -55,7 +55,7 @@ Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
 Melkonian	Audrey X
-Milcent	Thomas X 
+Milcent	Thomas X
 Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
