@@ -31,8 +31,8 @@ from sklearn.utils.multiclass import check_classification_targets
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier.
 
-    Implementation of the 1-Nearest Neighbor algorithm. It assigns 
-    the class of the nearest training sample to each test sample based on 
+    Implementation of the 1-Nearest Neighbor algorithm. It assigns
+    the class of the nearest training sample to each test sample based on
     the Euclidean distance.
 
     Attributes:
