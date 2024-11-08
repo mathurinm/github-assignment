@@ -35,22 +35,24 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """X is a matrix of covariates
+        y is a matrix of outputs associated to X
+        We fit the model, ie we memorize the distances
+        the data points and the labels.
+        So, we are able to compute distances and make predictions
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """OneNearestNeighbor gives you the prediction for a new X once the
+        model is fitted.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +61,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            nearest_idx = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_idx]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """The score of the model to measure the performance.
+        Gives you how close the predictions are from the real labels.
 
-        And describe parameters
+        X: data we want to predict.
+
+        y: real labels corresponding to X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        correct_pred = (y_pred == y)
+        accuracy = correct_pred.sum() / len(y)
+        return accuracy
