@@ -35,9 +35,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the model by remembering X and y after checking them.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training vector, where `n_samples` is the number of samples and
+            `n_features` is the number of features.
+
+        y : array-like of shape (n_samples,)
+            Target vector relative to X.
+
+        Returns
+        -------
+        self
+            Fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -49,9 +62,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Estimation results.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Vector to be scored, where `n_samples` is the number of samples and
+            `n_features` is the number of features.
+
+        Returns
+        -------
+        T : array-like of shape (n_samples,)
+            Returns the predicted class for each sample, where classes are
+            ordered as they are in ``self.classes_``.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -69,9 +93,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Return the accuracy of the model on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Accuracy of self.predict(X) w.r.t. y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
