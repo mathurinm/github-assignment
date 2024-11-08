@@ -29,28 +29,28 @@ Digua	Mehdi
 Drion	Thibaud
 Falcon De Longevialle	Aymeric
 Fan	Jingyi X
-Ferreira Valente Da Silva	Rafael
+Ferreira Valente Da Silva	Rafael X
 Filisetti	Paul
 Giuliani	Alessandro
 Guenoun	Raphaël
-Guillet	Nicolas
+Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
-Hauchecorne	Lucien
+Hauchecorne	Lucien X
 Henry-Leo	Valentin X 
 Jamai	Mamoun
-Jankowska	Magdalena
+Jankowska	Magdalena X
 Kire	Cedric Emmanuel X
 Kozikowski	Florian
 Krstic	Vera
-Lacombe	Paul
+Lacombe	Paul X
 Lafarguette	Pierre X
-Laget	Rémi
+Laget	Rémi X
 Le Guyet	Théo
 Leibovici	Louis
 Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
@@ -65,23 +65,23 @@ Opitz	Glenn X
 Parekh	Nischay Chintanbhai
 Passet	Lydia
 Péretié	Louis
-Popat	Sheetal
+Popat	Sheetal X
 Pottier	Clément X
 Rajzman	Samuel
 Salerno	Marco
 Senghor	Adrien X
-Sijelmassi Idrissi	Iliass
+Sijelmassi Idrissi	Iliass X
 Singh	Dhawal
 Song	Siyuan
 Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
-Tessier	Simon
+Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
-Violleau	Alexandre
+Violleau	Alexandre X
 Wang	Chung-Hao
-Wang	Han
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
 Yu	Chenghao
