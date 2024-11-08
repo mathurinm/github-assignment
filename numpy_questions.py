@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+import flake8
 import numpy as np
 
 
@@ -37,12 +38,22 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("The input must be a numpy array")
 
-    # TODO
+    if X.ndim != 2:
+        raise ValueError("The input array must be 2D")
 
-    return i, j
+    max_value = X[0, 0]
+    max_index = (0, 0)
+
+    for i in range(X.shape[0]):
+        for j in range(X.shape[1]):
+            if X[i, j] > max_value:
+                max_value = X[i, j]
+                max_index = (i, j)
+
+    return max_index
 
 
 def wallis_product(n_terms):
@@ -64,4 +75,17 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    if n_terms == 0:
+        return 1.0  # No terms means the product should be 1.0
+
+    product = 1.0
+    for i in range(1, n_terms + 1):
+        product *= (4 * i ** 2) / (4 * i ** 2 - 1)
+
+    # Multiply the result by 2 to get the approximation of pi
+    return 2 * product
+
+flake8
+
+

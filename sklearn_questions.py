@@ -26,7 +26,8 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-
+from sklearn.metrics.pairwise import euclidean_distances
+import flake8
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -35,40 +36,86 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Fit the model using the training data.
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The training data.
+        
+        y : array-like of shape (n_samples,)
+            The target values (class labels).
+        
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
         """
+
+        if X is None or y is None:
+            raise ValueError("X and y must not be None.")
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict the class labels for the provided data.
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The data to predict on.
+        
+        Returns
+        -------
+        y_pred : array-like of shape (n_samples,)
+            The predicted class labels for each sample.
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        check_is_fitted(self, ['X_train_', 'y_train_'])
+        X = check_array(X)
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(f"Number of features of the model must match the input. Model n_features is {self.n_features_in_} and input n_features is {X.shape[1]}")
+
+        distances = euclidean_distances(X, self.X_train_)
+        nearest_neighbor_indices = np.argmin(distances, axis=1)
+        y_pred = self.y_train_[nearest_neighbor_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """Compute the accuracy of the model on the provided data.
+        
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The test data.
+        
+        y : array-like of shape (n_samples,)
+            The true target values (class labels).
+        
+        Returns
+        -------
+        score : float
+            The accuracy of the model on the test data.
         """
+         
+        if X is None or y is None:
+            raise ValueError("X and y must not be None.")
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        accuracy = np.mean(y_pred == y)
+    
+        return accuracy
 
-        # XXX fix
-        return y_pred.sum()
+
+flake8
