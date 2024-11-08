@@ -15,7 +15,6 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-import flake8
 import numpy as np
 
 
@@ -85,7 +84,3 @@ def wallis_product(n_terms):
 
     # Multiply the result by 2 to get the approximation of pi
     return 2 * product
-
-flake8
-
-

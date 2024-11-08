@@ -27,7 +27,7 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics.pairwise import euclidean_distances
-import flake8
+
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     "OneNearestNeighbor classifier."
@@ -37,15 +37,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fit the model using the training data.
-        
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
             The training data.
-        
         y : array-like of shape (n_samples,)
             The target values (class labels).
-        
         Returns
         -------
         self : object
@@ -67,12 +64,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict the class labels for the provided data.
-        
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
             The data to predict on.
-        
         Returns
         -------
         y_pred : array-like of shape (n_samples,)
@@ -83,7 +78,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
 
         if X.shape[1] != self.n_features_in_:
-            raise ValueError(f"Number of features of the model must match the input. Model n_features is {self.n_features_in_} and input n_features is {X.shape[1]}")
+            raise ValueError("Error in the number of features of the model.")
 
         distances = euclidean_distances(X, self.X_train_)
         nearest_neighbor_indices = np.argmin(distances, axis=1)
@@ -93,29 +88,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Compute the accuracy of the model on the provided data.
-        
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
             The test data.
-        
         y : array-like of shape (n_samples,)
             The true target values (class labels).
-        
         Returns
         -------
         score : float
             The accuracy of the model on the test data.
         """
-         
+
         if X is None or y is None:
             raise ValueError("X and y must not be None.")
 
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         accuracy = np.mean(y_pred == y)
-    
+
         return accuracy
-
-
-flake8
