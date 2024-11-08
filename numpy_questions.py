@@ -85,6 +85,3 @@ def wallis_product(n_terms):
     product = np.prod(terms)
 
     return 2 * product
-
-
-print(wallis_product(1))

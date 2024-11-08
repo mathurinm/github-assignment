@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -26,49 +27,91 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics import accuracy_score
+from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
+    # comment serves to ignore flake8
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits model on data after having checked them.
 
-        And describe parameters
+        Parameters
+        ----------
+        - X : np.array of shape (n_samples, n_features)
+            The input variables.
+        - y : np.array of shape (n_samples)
+            Target feature.
+
+        Return
+        ------
+        None
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts 1-NN of every entry of input variables.
 
-        And describe parameters
+        Parameters
+        ----------
+        - X : np.array of shape (n_samples, n_features)
+            Input variables to be predicted
+
+        Returns
+        -------
+        - y : np.array of shape (n_samples)
+            Predictions.
         """
         check_is_fitted(self)
         X = check_array(X)
+
+        # well shaped array with only first class value
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
+            shape=len(X),
+            fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # distances between each element of X and
+        # X_train shape (num_pred, num_train)
+        distances = cdist(X, self.X_train_)
+
+        # sorts distances in descending order and takes first index
+        knn_indices = np.argsort(distances, axis=1)[:, :1]
+
+        # gets the classes of those knn
+        y_pred = self.y_train_[knn_indices]
+
+        # convert a list of list into an array
+        y_pred = np.array([np.array(xi)[0] for xi in y_pred])
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy between y and the prediction made for X.
 
-        And describe parameters
+        Parameters
+        ----------
+        - X : np.array of shape
+
+        Returns
+        -------
+        - score : float
+            The mean accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy_score(y_pred, y)
