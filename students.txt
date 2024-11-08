@@ -77,7 +77,7 @@ Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
 Tessier	Simon
-Tinelli	Léa
+Tinelli	Léa  X
 Triomphe	Gustave
 Violleau	Alexandre
 Wang	Chung-Hao
