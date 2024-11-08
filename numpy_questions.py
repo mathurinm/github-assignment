@@ -71,12 +71,12 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     # Start with an initial product value of 1.0
+    if n_terms == 0:
+        return 1.0
     product = 1.0
-
     # Calculate the Wallis product for the specified number of terms
     for n in range(1, n_terms + 1):
         term = (4 * n ** 2) / (4 * n ** 2 - 1)
         product *= term
-
-    # Wallis product approximates pi/2, so multiply by 2
+    # Wallis product approximates pi/2, so we multiply it by 2
     return product * 2
