@@ -33,10 +33,15 @@ Ferreira Valente Da Silva	Rafael
 Filisetti	Paul
 Giuliani	Alessandro
 Guenoun	Raphaël
+<<<<<<< HEAD
 Guillet	Nicolas
 Haas	Pierre X
+=======
+Guillet	Nicolas X
+Haas	Pierre
+>>>>>>> 10f420ca81a55700e6569721a555b04479a82419
 Harasym	Martyna
-Hauchecorne	Lucien
+Hauchecorne	Lucien X
 Henry-Leo	Valentin X 
 Jamai	Mamoun
 Jankowska	Magdalena X
@@ -50,7 +55,7 @@ Le Guyet	Théo
 Leibovici	Louis
 Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
@@ -76,12 +81,12 @@ Song	Siyuan
 Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
-Tessier	Simon
+Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
-Violleau	Alexandre
+Violleau	Alexandre X
 Wang	Chung-Hao
-Wang	Han
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
 Yu	Chenghao
