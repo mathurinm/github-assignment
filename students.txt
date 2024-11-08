@@ -2,14 +2,14 @@ Last name	First name
 
 Alberge	Julie
 Arya	Aditeya
-Bairagi	Soumyabrata
+Bairagi	Soumyabrata X
 Bakkass	Shaymaa
 Barry	Ibrahim
-Belaïdi	William
+Belaïdi	William X
 Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
-Bidault	Grégoire
+Bidault	Grégoire x
 Blivet	Alexandre
 Brochier	Felix
 Bùi	An Bình
@@ -19,69 +19,69 @@ Caceres	Gauthier X
 Capizzi	Simone
 Casalini	Sofia
 Chen	Zhipeng
-Combettes	Sylvain
+Combettes	Sylvain X
 Coutière	Guillaume
 De Rosen	Vassili
 Della Gatta	Tommaso
-Deng	Dixin
+Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
 Drion	Thibaud
 Falcon De Longevialle	Aymeric
-Fan	Jingyi
-Ferreira Valente Da Silva	Rafael
+Fan	Jingyi X
+Ferreira Valente Da Silva	Rafael X
 Filisetti	Paul
 Giuliani	Alessandro
 Guenoun	Raphaël
-Guillet	Nicolas
+Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
-Hauchecorne	Lucien
-Henry-Leo	Valentin
+Hauchecorne	Lucien X
+Henry-Leo	Valentin X 
 Jamai	Mamoun
-Jankowska	Magdalena
+Jankowska	Magdalena X
 Kire	Cedric Emmanuel
 Kozikowski	Florian
 Krstic	Vera
-Lacombe	Paul
-Lafarguette	Pierre
-Laget	Rémi
+Lacombe	Paul X
+Lafarguette	Pierre X
+Laget	Rémi X
 Le Guyet	Théo
 Leibovici	Louis
-Leroy	Etienne
+Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
 Melkonian	Audrey X
-Milcent	Thomas
+Milcent	Thomas X 
 Moufad	Badr
-Müller	Felix
-Naton	Augustin
+Müller	Felix X
+Naton	Augustin X
 Niddam	Samy
 Ochterbeck	Maxim Leon
-Opitz	Glenn
+Opitz	Glenn X
 Parekh	Nischay Chintanbhai
 Passet	Lydia
 Péretié	Louis
-Popat	Sheetal
-Pottier	Clément
+Popat	Sheetal X
+Pottier	Clément X
 Rajzman	Samuel
 Salerno	Marco
-Senghor	Adrien
-Sijelmassi Idrissi	Iliass
+Senghor	Adrien X
+Sijelmassi Idrissi	Iliass X
 Singh	Dhawal
 Song	Siyuan
 Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt
-Tessier	Simon
+Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
-Violleau	Alexandre
+Violleau	Alexandre X
 Wang	Chung-Hao
-Wang	Han
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
 Yu	Chenghao
