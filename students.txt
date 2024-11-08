@@ -70,7 +70,7 @@ Pottier	Clément X
 Rajzman	Samuel
 Salerno	Marco
 Senghor	Adrien X
-Sijelmassi Idrissi	Iliass
+Sijelmassi Idrissi	Iliass X
 Singh	Dhawal
 Song	Siyuan
 Soto	Victor
