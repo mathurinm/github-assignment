@@ -54,8 +54,8 @@ Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
-Melkonian	Audrey
-Milcent	   Thomas  X
+Melkonian	Audrey X
+Milcent	Thomas X 
 Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
