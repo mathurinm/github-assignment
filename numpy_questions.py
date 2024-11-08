@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -39,9 +40,22 @@ def max_index(X):
     """
     i = 0
     j = 0
-
-    # TODO
-
+    max_val = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Parameter must be an ndarray")
+    else:
+        if X.ndim != 2:  # Vérifie si le nombre de dimensions n'est pas 2
+            raise ValueError("Shape of the input must be 2D")
+        else:
+            if np.all(X) == None:
+                raise ValueError("Parameter cannot be None")
+            else:
+                for k in np.arange(np.size(X[0])):
+                    for l in np.arange(np.size(X[1])):
+                        if X[k, l] > max_val:
+                            max_val = X[k, l]
+                            i = k
+                            j = l
     return i, j
 
 
@@ -62,6 +76,12 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    pi = 0
+    wallis = []
+    if n_terms == 0:
+        pi = 1
+    else:
+        for i in np.arange(1, n_terms + 1):
+            wallis.append((4 * i**2) / ((4 * i**2) - 1))
+        pi = 2 * np.prod(wallis)
+    return pi
