@@ -5,7 +5,7 @@ Arya	Aditeya
 Bairagi	Soumyabrata X
 Bakkass	Shaymaa
 Barry	Ibrahim
-Belaïdi	William
+Belaïdi	William X
 Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
@@ -19,7 +19,7 @@ Caceres	Gauthier X
 Capizzi	Simone
 Casalini	Sofia
 Chen	Zhipeng
-Combettes	Sylvain
+Combettes	Sylvain X
 Coutière	Guillaume
 De Rosen	Vassili
 Della Gatta	Tommaso
@@ -28,7 +28,7 @@ Desjuzeur	Basile X
 Digua	Mehdi
 Drion	Thibaud
 Falcon De Longevialle	Aymeric
-Fan	Jingyi
+Fan	Jingyi X
 Ferreira Valente Da Silva	Rafael
 Filisetti	Paul
 Giuliani	Alessandro
@@ -39,16 +39,16 @@ Harasym	Martyna
 Hauchecorne	Lucien
 Henry-Leo	Valentin X 
 Jamai	Mamoun
-Jankowska	Magdalena
+Jankowska	Magdalena X
 Kire	Cedric Emmanuel
 Kozikowski	Florian
 Krstic	Vera
-Lacombe	Paul
+Lacombe	Paul X
 Lafarguette	Pierre X
 Laget	Rémi
 Le Guyet	Théo
 Leibovici	Louis
-Leroy	Etienne
+Leroy	Etienne  X
 Louis	Paul-Philip
 Malezieux	Côme
 Mansard	Diane x
@@ -66,10 +66,10 @@ Parekh	Nischay Chintanbhai
 Passet	Lydia
 Péretié	Louis
 Popat	Sheetal
-Pottier	Clément
+Pottier	Clément X
 Rajzman	Samuel
 Salerno	Marco
-Senghor	Adrien
+Senghor	Adrien X
 Sijelmassi Idrissi	Iliass
 Singh	Dhawal
 Song	Siyuan
