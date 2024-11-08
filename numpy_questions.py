@@ -40,7 +40,7 @@ def max_index(X):
     i = 0
     j = 0
 
-    if isinstance(X, np.ndarray) == False or X.ndim != 2:  
+    if isinstance(X, np.ndarray) is False or X.ndim != 2:
         raise ValueError
 
     max_val = np.argmax(X)
@@ -70,7 +70,7 @@ def wallis_product(n_terms):
 
     if n_terms <= 0:
         return 1
-        
+
     for i in range(1, n_terms+1):
         product *= (4 * i**2) / (4 * i**2 - 1)
 
