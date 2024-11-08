@@ -8,7 +8,7 @@ The goals of this assignment are:
 The two functions below are skeleton functions. The docstrings explain what
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
-wrote. To run the tests, use `pytest test_numpy_questions.py` at the root of
+wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
 the repo. It should say that 2 tests ran with success.
 
 We also ask to respect the pep8 convention: https://pep8.org.
@@ -37,12 +37,16 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
-
     # TODO
+    # Check if X is a 2D numpy array
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array")
 
-    return i, j
+    # Find the index of the maximum element
+    # here np.argmax finds the maximum number of the flattened array
+    # and np.unrabel_index converts the flattened index in to a 2D tupple based on the shape of the numpy provided
+    max_idx = np.unravel_index(np.argmax(X), X.shape)
+    return max_idx[0], max_idx[0]
 
 
 def wallis_product(n_terms):
@@ -64,4 +68,19 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    # Handle the special case where n_terms is 0
+    if n_terms == 0:
+        return 1.0
+
+    # Initialize the product for Wallis formula
+    products = 1.0
+
+    # Compute the Wallis product
+    for k in range(1, n_terms + 1):
+        term = (4 * k**2) / (4 * k**2 - 1)
+        products *= term
+
+    # Multiply by 2 to approximate pi
+    pi = 2 * products
+
+    return pi
