@@ -29,46 +29,94 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    A classifier that predicts the class of tested points by finding the
+    closest training points in Euclidean space.
+
+    Has the following attributes:
+    ----------
+    classes_ : array, shape (n_classes,)
+        The unique classes in the training data.
+
+    n_features_in_ : int
+        The number of features in the training data.
+
+    X_train_ : ndarray, shape (n_samples, n_features)
+        The training data, stored for distance computation during prediction.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model to the training data.
 
-        And describe parameters
+        Has the following parameters:
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input training data.
+
+        y : ndarray of shape (n_samples,)
+            The target labels for the training data.
+
+        Returns:
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_train_ = X
+        self.y_train_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided data.
 
-        And describe parameters
+        Has the following parameters:
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data for which to predict the labels.
+
+        Returns:
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted labels for each sample in X.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.full(shape=len(X), fill_value=self.classes_[0],
+                         dtype=self.classes_.dtype)
 
-        # XXX fix
+        for i, test_point in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - test_point, axis=1)
+            nearest_neighbor_index = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_neighbor_index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the model on the given data.
 
-        And describe parameters
+        Has the following parameters:
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data for which to compute the accuracy.
+
+        y : ndarray of shape (n_samples,)
+            The true labels for the input data.
+
+        Returns:
+        -------
+        accuracy : float
+            The fraction of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
