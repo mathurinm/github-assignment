@@ -80,7 +80,7 @@ Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
 Violleau	Alexandre
-Wang	Chung-Hao
+Wang	Chung-Hao X
 Wang	Han
 Xie	Kaixin
 Youssef	Tracy
