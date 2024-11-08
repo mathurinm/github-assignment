@@ -23,7 +23,7 @@ Combettes	Sylvain
 Coutière	Guillaume
 De Rosen	Vassili
 Della Gatta	Tommaso
-Deng	Dixin
+Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
 Drion	Thibaud
@@ -44,7 +44,7 @@ Kire	Cedric Emmanuel
 Kozikowski	Florian
 Krstic	Vera
 Lacombe	Paul
-Lafarguette	Pierre
+Lafarguette	Pierre X
 Laget	Rémi
 Le Guyet	Théo
 Leibovici	Louis
@@ -55,9 +55,9 @@ Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
 Melkonian	Audrey
-Milcent	Thomas
+Milcent	   Thomas  X
 Moufad	Badr
-Müller	Felix
+Müller	Felix X
 Naton	Augustin
 Niddam	Samy
 Ochterbeck	Maxim Leon
