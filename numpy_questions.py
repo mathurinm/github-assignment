@@ -46,7 +46,7 @@ def max_index(X):
     # here np.argmax finds the maximum number of the flattened array
     # and np.unrabel_index converts the flattened index in to a 2D tupple based on the shape of the numpy provided
     max_idx = np.unravel_index(np.argmax(X), X.shape)
-    return max_idx[0], max_idx[1] 
+    return max_idx[0], max_idx[0]
 
 
 def wallis_product(n_terms):
@@ -73,14 +73,14 @@ def wallis_product(n_terms):
         return 1.0
 
     # Initialize the product for Wallis formula
-    product = 1.0
+    products = 1.0
 
     # Compute the Wallis product
     for k in range(1, n_terms + 1):
         term = (4 * k**2) / (4 * k**2 - 1)
-        product *= term
+        products *= term
 
     # Multiply by 2 to approximate pi
-    pi = 2 * product
+    pi = 2 * products
 
     return pi
