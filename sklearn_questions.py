@@ -58,13 +58,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), 
-            fill_value=self.classes_[0], 
+            shape=len(X),
+            fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
         for idx, x in enumerate(X):
-            # Compute the Euclidean distances 
+            # Compute the Euclidean distances
             distances = np.sqrt(((self.X_train_ - x) ** 2).sum(axis=1))
 
             # Find the index of the nearest training sample
