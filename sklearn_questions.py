@@ -26,49 +26,84 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data.
+        y : ndarray of shape (n_samples,)
+            Target labels.
+        Returns
+        -------
+        self : object
+            Fitted estimator.
+        Raises
+        ------
+        ValueError
+            If the input arrays do not match the required format or dimensions.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Predict using the OneNearestNeighbor classifier.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test data.
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each test instance.
+        Raises
+        ------
+        ValueError
+            If the input is not a numpy array or if it has incompatible
+            dimensions.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        distances = cdist(X, self.X_train_, metric='euclidean')
+        nearest_indices = np.argmin(distances, axis=1)
+        y_pred = self.y_train_[nearest_indices]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+         """Return the mean accuracy on the given test data and labels.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test data.
+        y : ndarray of shape (n_samples,)
+            True labels for X.
+        Returns
+        -------
+        score : float
+            Mean accuracy of the model on the test data.
+        Raises
+        ------
+        ValueError
+            If the input arrays do not match the required format or dimensions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+    return np.mean(y_pred == y)
