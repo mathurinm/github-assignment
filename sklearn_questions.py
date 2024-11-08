@@ -23,6 +23,7 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
+from scipy.spatial import distance
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
@@ -43,8 +44,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -58,8 +60,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        for i, sample in enumerate(X):
+            # Calculate the Euclidean distance to all training samples
+            distances = distance.cdist(
+                [sample], self.X_, 'euclidean'
+            ).flatten()
+            # Find the index of the nearest neighbor
+            nearest_index = np.argmin(distances)
+            # Assign the class label of the nearest neighbor
+            y_pred[i] = self.y_[nearest_index]
         return y_pred
 
     def score(self, X, y):
@@ -69,6 +78,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
