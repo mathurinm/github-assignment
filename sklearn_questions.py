@@ -62,7 +62,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         self.X_train_ = X
         self.y_train_ = y
-        
+
         return self
 
     def predict(self, X):
@@ -81,7 +81,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Raises
         ------
         ValueError
-            If the input is not a numpy array or if it has incompatible dimensions.
+            If the input is not a numpy array or if it has incompatible
+            dimensions.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -89,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         distances = cdist(X, self.X_train_, metric='euclidean')
         nearest_indices = np.argmin(distances, axis=1)
         y_pred = self.y_train_[nearest_indices]
-        
+
         return y_pred
 
     def score(self, X, y):
