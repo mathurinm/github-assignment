@@ -40,7 +40,7 @@ def max_index(X):
     i = 0
     j = 0
 
-    if isinstance(X, np.ndarray):
+    if not isinstance(X, np.ndarray):
         raise ValueError("The input is not a numpy array")
     elif len(X.shape) != 2:
         raise ValueError("The input is not a 2D array")
@@ -69,7 +69,10 @@ def wallis_product(n_terms):
     """
     pi = 1
 
-    for n in range(n_terms):
+    if n_terms == 0:
+        return 1.0  # Return 1 directly for n_terms=0
+
+    for n in range(1, n_terms + 1):
         pi *= 4 * n**2 / (4 * n**2 - 1)
 
-    return pi
+    return pi * 2

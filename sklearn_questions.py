@@ -34,7 +34,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     This classifier implements a simple nearest neighbor classifier that uses
     the Euclidean distance to find the closest training sample for predictions.
     """
-    
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -83,15 +83,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        for x in X:
+        for i, x in enumerate(X):
             # Compute the Euclidean distances to all training samples
             distances = np.linalg.norm(self.X_train_ - x, axis=1)
             # Find the index of the closest sample
             nearest_index = np.argmin(distances)
-            # Append the class of the nearest sample
-            y_pred.append(self.y_train_[nearest_index])
+            # Set the predicted class for this sample
+            y_pred[i] = self.y_train_[nearest_index]
 
-        np.array(y_pred)
+        return y_pred
 
     def score(self, X, y):
         """Return the mean accuracy on the given test data and labels.
