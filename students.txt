@@ -2,7 +2,7 @@ Last name	First name
 
 Alberge	Julie
 Arya	Aditeya
-Bairagi	Soumyabrata
+Bairagi	Soumyabrata X
 Bakkass	Shaymaa X 
 Barry	Ibrahim
 Belaïdi	William X
@@ -10,7 +10,7 @@ Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
-Blivet	Alexandre
+Blivet	Alexandre  X
 Brochier	Felix
 Bùi	An Bình
 Bunford	Philip
@@ -26,19 +26,19 @@ Della Gatta	Tommaso
 Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
-Drion	Thibaud
+Drion	Thibaud X
 Falcon De Longevialle	Aymeric
 Fan	Jingyi X
 Ferreira Valente Da Silva	Rafael X
-Filisetti	Paul
+Filisetti	Paul X
 Giuliani	Alessandro
 Guenoun	Raphaël
 Guillet	Nicolas X
 Haas	Pierre
 Harasym	Martyna
 Hauchecorne	Lucien X
-Henry-Leo	Valentin X 
-Jamai	Mamoun
+Henry-Leo	Valentin X
+Jamai	Mamoun X
 Jankowska	Magdalena X
 Kire	Cedric Emmanuel X
 Kozikowski	Florian
@@ -46,7 +46,7 @@ Krstic	Vera
 Lacombe	Paul X
 Lafarguette	Pierre X
 Laget	Rémi X
-Le Guyet	Théo
+Le Guyet	Théo X
 Leibovici	Louis X
 Leroy	Etienne  X
 Louis	Paul-Philip
@@ -55,7 +55,7 @@ Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
 Melkonian	Audrey X
-Milcent	Thomas X 
+Milcent	Thomas X
 Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
@@ -63,11 +63,11 @@ Niddam	Samy
 Ochterbeck	Maxim Leon
 Opitz	Glenn X
 Parekh	Nischay Chintanbhai
-Passet	Lydia
-Péretié	Louis
+Passet	Lydia X
+Péretié	Louis X
 Popat	Sheetal X
 Pottier	Clément X
-Rajzman	Samuel
+Rajzman	Samuel X
 Salerno	Marco
 Senghor	Adrien X
 Sijelmassi Idrissi	Iliass X
