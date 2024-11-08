@@ -37,7 +37,7 @@ Guillet	Nicolas
 Haas	Pierre
 Harasym	Martyna
 Hauchecorne	Lucien
-Henry-Leo	Valentin X 
+Henry-Leo	Valentin X
 Jamai	Mamoun
 Jankowska	Magdalena
 Kire	Cedric Emmanuel
@@ -53,7 +53,7 @@ Louis	Paul-Philip
 Malezieux	Côme
 Mansard	Diane x
 Martins Da Silva	João
-Massias	Mathurin
+Massias	Mathurin X
 Melkonian	Audrey
 Milcent	   Thomas  X
 Moufad	Badr
