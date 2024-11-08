@@ -31,10 +31,10 @@ from sklearn.utils.multiclass import check_classification_targets
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier.
 
-    It is a classifier that predicts the class of tested points by finding the
+    A classifier that predicts the class of tested points by finding the
     closest training points in Euclidean space.
 
-    It has the following attributes:
+    Has the following attributes:
     ----------
     classes_ : array, shape (n_classes,)
         The unique classes in the training data.
@@ -50,9 +50,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """We fit the OneNearestNeighbor model to the training data.
+        """Fits the OneNearestNeighbor model to the training data.
 
-        It has the following parameters:
+        Has the following parameters:
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input training data.
@@ -60,7 +60,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y : ndarray of shape (n_samples,)
             The target labels for the training data.
 
-        It returns:
+        Returns:
         -------
         self : OneNearestNeighbor
             Fitted estimator.
@@ -76,14 +76,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """It predicts the class labels for the provided data.
+        """Predicts the class labels for the provided data.
 
-        It has the following parameters:
+        Has the following parameters:
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input data for which to predict the labels.
 
-        It returns:
+        Returns:
         -------
         y_pred : ndarray of shape (n_samples,)
             The predicted labels for each sample in X.
@@ -100,9 +100,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """It computes the accuracy of the model on the given data.
+        """Computes the accuracy of the model on the given data.
 
-        It has the following parameters:
+        Has the following parameters:
         ----------
         X : ndarray of shape (n_samples, n_features)
             The input data for which to compute the accuracy.
@@ -110,7 +110,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y : ndarray of shape (n_samples,)
             The true labels for the input data.
 
-        It returns:
+        Returns:
         -------
         accuracy : float
             The fraction of correctly classified samples.
