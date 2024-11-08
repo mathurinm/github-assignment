@@ -14,7 +14,7 @@ Blivet	Alexandre
 Brochier	Felix
 Bùi	An Bình
 Bunford	Philip
-Burman	Dev
+Burman	Dev X
 Caceres	Gauthier
 Capizzi	Simone
 Casalini	Sofia
