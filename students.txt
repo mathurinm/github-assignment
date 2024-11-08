@@ -4,13 +4,8 @@ Alberge	Julie
 Arya	Aditeya
 Bairagi	Soumyabrata X
 Bakkass	Shaymaa
-<<<<<<< HEAD
 Barry	Ibrahim X
-Belaïdi	William
-=======
-Barry	Ibrahim
 Belaïdi	William X
->>>>>>> e9b0c4855bb917d7146bc2dfbaa7032e10c6ecf7
 Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
@@ -31,7 +26,7 @@ Della Gatta	Tommaso
 Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
-Drion	Thibaud
+Drion	Thibaud X
 Falcon De Longevialle	Aymeric
 Fan	Jingyi X
 Ferreira Valente Da Silva	Rafael X
@@ -51,7 +46,7 @@ Krstic	Vera
 Lacombe	Paul X
 Lafarguette	Pierre X
 Laget	Rémi X
-Le Guyet	Théo
+Le Guyet	Théo X
 Leibovici	Louis X
 Leroy	Etienne  X
 Louis	Paul-Philip
@@ -68,7 +63,7 @@ Niddam	Samy
 Ochterbeck	Maxim Leon
 Opitz	Glenn X
 Parekh	Nischay Chintanbhai
-Passet	Lydia
+Passet	Lydia X
 Péretié	Louis
 Popat	Sheetal X
 Pottier	Clément X
