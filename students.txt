@@ -33,8 +33,13 @@ Ferreira Valente Da Silva	Rafael X
 Filisetti	Paul X
 Giuliani	Alessandro
 Guenoun	Raphaël
+<<<<<<< HEAD
+Guillet	Nicolas
+Haas	Pierre X
+=======
 Guillet	Nicolas X
 Haas	Pierre
+>>>>>>> 10f420ca81a55700e6569721a555b04479a82419
 Harasym	Martyna
 Hauchecorne	Lucien X
 Henry-Leo	Valentin X
