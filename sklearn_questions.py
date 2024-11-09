@@ -26,21 +26,32 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from scipy.spatial.distance import euclidean
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    This classifier implements the 1-NN algorithm.
+    The target class of a given sample is the class of the closest training
+    sample in feature space, measured by Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the 1NN classifier according to the given training data.
 
-        And describe parameters
+        X : array-like, shape (n_samples, n_features)
+            Training data.
+        y : array-like, shape (n_samples,)
+            Target values.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
@@ -48,24 +59,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Perform classification on an array of test vectors X.
 
-        And describe parameters
+        X : array-like, shape (n_samples, n_features)
+            Test samples.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = np.array([self.closest_sample(x) for x in X])
 
         # XXX fix
         return y_pred
 
-    def score(self, X, y):
-        """Write docstring.
+    def closest_sample(self, x):
+        """Find the class label of the closest training sample to x.
 
-        And describe parameters
+        x : array-like, shape (n_features,)
+            A single input sample.
+        """
+        distances = [euclidean(x, train_x) for train_x in self.X_]
+        min_index = np.argmin(distances)
+        return self.y_[min_index]
+
+    def score(self, X, y):
+        """Return the mean accuracy on the given test data and labels.
+
+        X : array-like, shape (n_samples, n_features)
+            Test samples.
+        y : array-like, shape (n_samples,)
+            True labels for X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
