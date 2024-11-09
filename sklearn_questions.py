@@ -35,12 +35,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Attribute properties to the classifier we will use.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : instance of the OneNearestNeighbor class
+            The classifier we will use for our predictions.
+        X : numpy array
+            The set of features we will train our model on.
+        y : numpy array with one column
+            The target we train with.
+
+        Returns
+        -------
+        self : instance of the OneNearestNeighbor class
+            The classifier we will use for our predictions.
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
@@ -48,27 +63,47 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class according to a set of features.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : instance of the OneNearestNeighbor class
+            The classifier we will use for our predictions.
+        X : numpy array
+            The set of features we predict from.
+
+        Returns
+        -------
+        y_pred : numpy array
+            The predictions.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
-        return y_pred
+        y_pred = []
+        for x in X:
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+            closest_index = np.argmin(distances)
+            y_pred.append(self.y_[closest_index])
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """Evaluate the accuracy of the classifier.
 
-        And describe parameters
+       Parameters
+        ----------
+        self : instance of the OneNearestNeighbor class
+            The classifier we will use for our predictions.
+        X : numpy array
+            The set of features we predict from.
+
+        Returns
+        -------
+        accuracy : float
+            Proportion of correctly classified samples
         """
         X, y = check_X_y(X, y)
+        check_is_fitted(self)
         y_pred = self.predict(X)
+        accuracy = np.mean(y == y_pred)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy
