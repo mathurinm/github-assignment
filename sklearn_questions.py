@@ -57,7 +57,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         --------------------
         self.classes gives us the different classes in y
         self.n_features_in_ gives us the nb of features in our data X
-        self.X_train_ and self.Y_train enable us to store X and y independently
+        self.X_train_ and self.Y_train enable us to store X and y
+        while fitting them with the model
         we will use them afterwards for predictions
         """
         X, y = check_X_y(X, y)

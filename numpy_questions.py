@@ -60,16 +60,6 @@ def wallis_product(n_terms):
     See:
     https://en.wikipedia.org/wiki/Wallis_product
 
-    Parameters
-    ----------
-    n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
-
-    Returns
-    -------
-    pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
