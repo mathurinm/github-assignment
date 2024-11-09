@@ -50,11 +50,6 @@ def max_index(X):
     return i, j
 
 
-X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-i, j = max_index(X)
-print(f"Max is on the {i+1} row，and {j+1} column")
-
-
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
@@ -84,6 +79,3 @@ def wallis_product(n_terms):
         product = product * ((2*i)/(2*i-1)*(2*i)/(2*i+1))
 
     return product
-
-
-print(2 * wallis_product(10000))
