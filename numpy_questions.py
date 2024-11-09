@@ -44,6 +44,7 @@ def max_index(X):
         raise ValueError
        
     max = np.argmax(X)
+   
     i, j = np.unravel_index(max, X.shape)
 
     return i, j
@@ -70,10 +71,11 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     if n_terms == 0:
         return 1
-       
-    product = 1 
 
-    for i in range(1, n_terms + 1):
-        product *= (4 * i**2) / (4 * i**2 - 1)
+    else:
+        pi = 1
 
-    return 2 * product
+        for k in range(1, n_terms+1):
+            pi *= 4 * k**2 / (4 * k**2 - 1)
+
+        return 2 * pi
