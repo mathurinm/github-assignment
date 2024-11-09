@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,22 +36,61 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        The aim of this function is to fit a model to the data and ensure it
+        is correctly fitted via different checks
 
-        And describe parameters
+        Parameters
+        ----------
+        self : has been defined precedently as a constructor with no parameters
+        X : ndarray of dim = 2d, corresponds to the data used here
+        check done ensuring it has the correct format
+        y : ndarray of dim = 1d, correspond to the target we aim for
+        check done with check_classification to ensure it is
+        filled with "correct targets"
+
+        Returns
+        -------
+        self : the model fitted to the data
+
+        Other functions used
+        --------------------
+        self.classes gives us the different classes in y
+        self.n_features_in_ gives us the nb of features in our data X
+        self.X_train_ and self.Y_train enable us to store X and y independently
+        we will use them afterwards for predictions
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = X
+        self.Y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        The aim of this function is to compute the euclidian distance
+        for each point, storing the distance into y_pred
 
-        And describe parameters
+        Parameters
+        ----------
+        self : our model, fitted in the above function
+        with our data X and y
+        check done to ensure the model has been correctly fitted
+        X : ndarray of dim = 2d, corresponds to the data used here
+        check done ensuring it has the correct format
+
+        Returns
+        -------
+        y_pred : the prediction we make according to our model
+        using the data X
+        To fill y_pred with thecorrect values:
+        * create an empty array
+        * compute the euclidian distance pairwise for our data
+        ie comparing X and X_train, that we trained following our model
+        * filling y_pred with, for each Y_train :
+        the narrowest euclidian distance found and stored in distances
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,17 +98,32 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        distances = euclidean_distances(X, self.X_train_)
+        for i in range(len(X)):
+            index = np.argmin(distances[i])
+            y_pred[i] = self.Y_train_[index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        The aim of this function is to compare our predictions
+        with the true values expected
 
-        And describe parameters
+        Parameters
+        ----------
+        self : our model, fitted in the above function with our data X and y
+        X : ndarray of dim = 2d, corresponds to the data used here
+        check done ensuring it has the correct format
+        y : ndarray of dim = 1d, the target
+        check done ensuring it has the correct format
+
+        Returns
+        -------
+        The % of "good predictions" in our model by taking
+        the mean of Booleans in y_pred == y
+        ie the nb of times y_pred and y are the same
+        divided by the nb of comparisons made
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
