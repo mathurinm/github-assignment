@@ -34,10 +34,9 @@ def max_index(X):
     Raises
     ------
     ValueError
-        If the input is not a numpy array or
+        If the input is not a numpy array or None.
         if the shape is not 2D.
     """
-
     if X is None:
         raise ValueError("Input is None")
 
