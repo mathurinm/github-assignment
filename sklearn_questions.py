@@ -29,46 +29,81 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
+        """Initialize the model."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model on training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data (input)
+        y : ndarray of shape (n_samples,)
+            Class labels of training data
+
+        Returns
+        -------
+        self : object
+            The fitted estimator
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        X, y = check_X_y(X, y)  # check if X/y are of expected type/shape
+        check_classification_targets(y)  # check if y is an array of discrete
+        self.classes_ = np.unique(y)  # store all possible labels
+        self.n_features_in_ = X.shape[1]  # store number of features
+        # store training data and labels
+        self.X_train_ = X
+        self.y_train_ = y
 
-        # XXX fix
-        return self
+        return self  # return current instance of the OneNearestNeighbor class
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels (based on test data).
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        -- The input data to classify
+
+         Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted class labels for each sample
         """
-        check_is_fitted(self)
-        X = check_array(X)
+        check_is_fitted(self)  # ensure the model has been fitted
+        X = check_array(X)  # validate input data
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+            dtype=self.classes_.dtype)  # initialize prediction array
 
-        # XXX fix
+        # For each sample in X, find the closest training sample
+        for i, x_test in enumerate(X):
+            squared_diff = (self.X_train_ - x_test) ** 2
+            distances = np.sqrt(np.sum(squared_diff, axis=1))
+            closest_index = np.argmin(distances)  # closest sample index
+            y_pred[i] = self.y_train_[closest_index]  # predict the class
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate accuracy of model (average number of times it's right).
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        -- The input on which to score the model
+        y : ndarray of shape (n_samples,)
+        -- The true labels for the input
+
+        Returns
+        -------
+        score : float
+        Average number of times the model correctly classifies samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
