@@ -75,7 +75,7 @@ Singh	Dhawal X
 Song	Siyuan X
 Soto	Victor
 Sreeraj	Nandana
-Sriram	Samyukt
+Sriram	Samyukt X
 Tessier	Simon X
 Tinelli	Léa
 Triomphe	Gustave
