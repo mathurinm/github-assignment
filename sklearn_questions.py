@@ -30,15 +30,15 @@ from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """
-        The aim of this function is to fit a model to the data and ensure it
-        is correctly fitted via different checks
+        """Fit model to the data and ensure it's correctly fitted
 
         Parameters
         ----------
@@ -70,9 +70,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """
-        The aim of this function is to compute the euclidian distance
-        for each point, storing the distance into y_pred
+        """Compute the euclidian distance for each point
 
         Parameters
         ----------
@@ -106,9 +104,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """
-        The aim of this function is to compare our predictions
-        with the true values expected
+        """Compare predictions with true values expected
 
         Parameters
         ----------
