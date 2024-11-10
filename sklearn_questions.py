@@ -30,13 +30,7 @@ from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """Define a new class we call OneNearestNeighbor classifier.
-
-    Parameters
-    ----------
-    BaseEstimator : provides basic functionnality for all Estimators in sklearn
-    ClassifierMixin : provides more functionnalities for classification tasks
-    """
+    """OneNearestNeighbor classifier"""
 
     def __init__(self):  # noqa: D107
         pass
