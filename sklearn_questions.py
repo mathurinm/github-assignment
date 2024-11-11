@@ -40,9 +40,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : array of shape (n_samples, n_features)
-            Training data, where `n_samples` is the number of samples and 
+            Training data, where `n_samples` is the number of samples and
             `n_features` is the number of features.
-        
+
         y : array of shape (n_samples,)
             Target values (class labels) for the training data.
 
@@ -50,7 +50,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         self : object
             Returns the instance itself.
-        
+
         Raises
         ------
         ValueError
@@ -65,25 +65,25 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict the class label for each sample in `X` using the nearest 
+        """Predict the class label for each sample in `X` using the nearest
         neighbor in the training set.
 
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
-            Test data to predict, where `n_samples` is the number of samples 
+            Test data to predict, where `n_samples` is the number of samples
             and `n_features` is the number of features.
-        
+
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels for each sample in `X`.
-        
+
         Raises
         ------
         NotFittedError
             If the model has not been fitted with training data.
-        
+
         ValueError
             If `X` has an incompatible number of features or invalid data types.
         """
@@ -94,7 +94,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        for i, x_test  in enumerate(X):
+        for i, x_test in enumerate(X):
             distance = np.linalg.norm(self._X_train_ - x_test, axis=1)
             index = np.argmin(distance)
             y_pred[i] = self._y_train_[index]
@@ -102,30 +102,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Calculate the accuracy of the model on the provided test data and labels.
+        """Calculate the accuracy of the model on the provided test data
+        and labels.
 
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
             Test samples.
-        
+
         y : array-like of shape (n_samples,)
             True labels for `X`.
-        
+
         Returns
         -------
         accuracy : int
             The accuracy score, defined as the number of correct predictions.
-        
+
         Raises
-        ------      
+        ------   
         NotFittedError
-            If the model has not been fitted with training data.  
+            If the model has not been fitted with training data.
 
         ValueError
             If `X` and `y` have inconsistent lengths or invalid data types.
         """
         X, y = check_X_y(X, y)
-        y_pred  = self.predict(X)
+        y_pred = self.predict(X)
         accuracy = np.mean(y_pred == y)
         return accuracy
