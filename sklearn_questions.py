@@ -29,28 +29,63 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the 1-Nearest Neighbor model by storing the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            Training data, where `n_samples` is the number of samples and 
+            `n_features` is the number of features.
+        
+        y : array of shape (n_samples,)
+            Target values (class labels) for the training data.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+        
+        Raises
+        ------
+        ValueError
+            If `X` and `y` have inconsistent lengths or invalid data types.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self._X_train_ = X
+        self._y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class label for each sample in `X` using the nearest 
+        neighbor in the training set.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data to predict, where `n_samples` is the number of samples 
+            and `n_features` is the number of features.
+        
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each sample in `X`.
+        
+        Raises
+        ------
+        NotFittedError
+            If the model has not been fitted with training data.
+        
+        ValueError
+            If `X` has an incompatible number of features or invalid data types.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +94,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x_test  in enumerate(X):
+            distance = np.linalg.norm(self._X_train_ - x_test, axis=1)
+            index = np.argmin(distance)
+            y_pred[i] = self._y_train_[index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy of the model on the provided test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        
+        y : array-like of shape (n_samples,)
+            True labels for `X`.
+        
+        Returns
+        -------
+        accuracy : int
+            The accuracy score, defined as the number of correct predictions.
+        
+        Raises
+        ------      
+        NotFittedError
+            If the model has not been fitted with training data.  
+
+        ValueError
+            If `X` and `y` have inconsistent lengths or invalid data types.
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        y_pred  = self.predict(X)
+        accuracy = np.mean(y_pred == y)
+        return accuracy
