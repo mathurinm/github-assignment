@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,46 +30,101 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Stock the number of classes of our ONN, the number of features of X, and X, y as X_train, y_train.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array of predictors.
+        y : ndarry of shape (n_samples,)
+            The input array of predictions.
+
+        Returns
+        -------
+        Nothing.
+
+        Raises
+        ------
+        ValueError
+            If X is not of dimension 2D or
+            if y has not the same length as X or
+            if y is not composed of discrete values or
+            if y is not compatible for classification.
+
+        TypeError
+            If X is not valid (ndarray or df).
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the classification for each row of a new X, following ONN method.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The new sample to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The classification of the new sample by ONN.
+
+        Raises
+        ------
+        AttributeError
+            If the model is not correctly fitted.
+
+        TypeError
+            If X is not valid (ndarray or df).
         """
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        for i, x in enumerate(X):
+            norms = np.linalg.norm(self.X_train_ - x, axis=1)
+            n_n = np.argmin(norms)
+            y_pred[i] = self.y_train_[n_n]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the score of the model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The new sample to classify.
+        y : ndarray of shape (n_samples,)
+            The true classification for the new sample.
+
+        Returns
+        -------
+        Score of the model: proportion of values correctly predicted for the
+        new sample X.
+
+        Raises
+        ------
+        ValueError
+            If X is not of dimension 2D or
+            if y has not the same length as X.
+
+        TypeError
+            If X is not valid (ndarray or df).
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        y_pred = y_pred == y
+        return y_pred.sum() / len(y)
