@@ -119,7 +119,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             The accuracy score, defined as the number of correct predictions.
 
         Raises
-        ------   
+        ------
         NotFittedError
             If the model has not been fitted with training data.
 
