@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,46 +30,79 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model to the data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+        y : ndarray of shape (n_samples,)
+            The target.
+
+        Returns
+        -------
+        self : object
+            The instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target of the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted target.
         """
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
+            shape=len(X),
+            fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+            nearest_idx = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the model on the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+        y : ndarray of shape (n_samples,)
+            The target.
+
+        Returns
+        -------
+        accuracy : float
+            The accuracy of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.isclose(y_pred, y).sum() / len(y)
