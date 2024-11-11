@@ -65,8 +65,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict the class label for each sample in `X` using the nearest
-        neighbor in the training set.
+        """Predict the class label for each sample in `X` using the 1NN.
 
         Parameters
         ----------
@@ -102,8 +101,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Calculate the accuracy of the model on the provided test data
-        and labels.
+        """Calculate the accuracy of the model on the provided test data.
 
         Parameters
         ----------
