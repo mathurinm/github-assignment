@@ -36,7 +36,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Stock the number of classes of our ONN, the number of features of X, and X, y as X_train, y_train.
+        """Stock number of classes, number of features and X_train, y_train.
 
         Parameters
         ----------
@@ -69,7 +69,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the classification for each row of a new X, following ONN method.
+        """Predicts the classification for new X, with ONN method.
 
         Parameters
         ----------
@@ -92,7 +92,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
         )
         for i, x in enumerate(X):
             norms = np.linalg.norm(self.X_train_ - x, axis=1)

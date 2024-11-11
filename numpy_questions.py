@@ -43,19 +43,16 @@ def max_index(X):
     max_val = 0
     if not isinstance(X, np.ndarray):
         raise ValueError("Parameter must be an ndarray")
-    else:
-        if X.ndim != 2:  # Vérifie si le nombre de dimensions n'est pas 2
-            raise ValueError("Shape of the input must be 2D")
-        else:
-            if np.all(X) == None:
-                raise ValueError("Parameter cannot be None")
-            else:
-                for k in np.arange(np.size(X[0])):
-                    for l in np.arange(np.size(X[1])):
-                        if X[k, l] > max_val:
-                            max_val = X[k, l]
-                            i = k
-                            j = l
+    if X.ndim != 2:  # Vérifie si le nombre de dimensions n'est pas 2
+        raise ValueError("Shape of the input must be 2D")
+    if np.all(X) is None:
+        raise ValueError("Parameter cannot be None")
+    for a in np.arange(np.size(X[0])):
+        for b in np.arange(np.size(X[1])):
+            if X[a, b] > max_val:
+                max_val = X[a, b]
+                i = a
+                j = b
     return i, j
 
 
