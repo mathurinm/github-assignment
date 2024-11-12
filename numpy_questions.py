@@ -17,7 +17,6 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
-
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -37,10 +36,15 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
+   
     i = 0
     j = 0
 
-    # TODO
+    max_idx = np.argmax(X)
+    i, j = np.unravel_index(max_idx, X.shape)
+
 
     return i, j
 
