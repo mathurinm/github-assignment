@@ -53,7 +53,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
 
-        distances = np.sqrt(((X[:, np.newaxis] - self.X_train_) ** 2).sum(axis=2))
+        distances = np.sqrt(
+            ((X[:, np.newaxis] - self.X_train_) ** 2).sum(axis=2)
+            )
 
         closest_indices = distances.argmin(axis=1)
 
