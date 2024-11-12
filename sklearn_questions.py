@@ -20,11 +20,8 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -44,7 +41,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
@@ -54,12 +52,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        distances = np.sqrt(((X[:, np.newaxis] - self.X_train_) ** 2).sum(axis=2))
+
+        closest_indices = distances.argmin(axis=1)
+
+        y_pred = self.y_train_[closest_indices]
         return y_pred
 
     def score(self, X, y):
@@ -69,6 +67,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
