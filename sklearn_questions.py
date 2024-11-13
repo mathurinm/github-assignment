@@ -29,13 +29,14 @@ from sklearn.utils.multiclass import type_of_target
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """ Fit the OneNearestNeighbor Classifier to our data.
+        """Fit the OneNearestNeighbor Classifier to our data.
+
         This will allow our model to 'see' the data, and store it for
         predictions. it first starts by checking that X and y are 2D and
         1D, respectively, and converts both into numpy arrays if not already.
@@ -62,7 +63,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """ Predict the class labels for the input samples X.
+        """Predict the class labels for the input samples X.
 
         Parameters
         ----------
@@ -84,7 +85,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Calculates classifier accuracy on test data and labels.
+        """Calculate the classifier accuracy on test data and labels.
 
         Parameters
         ----------
