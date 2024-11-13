@@ -45,7 +45,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             "binary",
             "multiclass",
             "multilabel-indicator",
-        ]:  # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
+        ]:  # Changed to type_of_target since this is the new method in the
+            # sklearn documentation to check the type of the target variable
             raise ValueError(f"Unknown label type: {type_of_target(y)}")
 
         self.classes_ = np.unique(y)
@@ -63,7 +64,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
 
-        distances = np.linalg.norm(self.X_values_[:, np.newaxis, :] - X, axis=2)
+        distances = np.linalg.norm(
+            self.X_values_[:, np.newaxis, :] - X, axis=2)
         idx = np.argmin(distances, axis=0)
         y_pred = self.y_values_[idx]
 
