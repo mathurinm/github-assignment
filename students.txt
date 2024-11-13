@@ -3,7 +3,7 @@ Last name	First name
 Alberge	Julie
 Arya	Aditeya
 Bairagi	Soumyabrata X
-Bakkass	Shaymaa X 
+Bakkass	Shaymaa X
 Barry	Ibrahim X
 Belaïdi	William X
 Benayoun	Laëtitia
@@ -27,7 +27,7 @@ Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
 Drion	Thibaud X
-Falcon De Longevialle	Aymeric
+Falcon De Longevialle	Aymeric X
 Fan	Jingyi X
 Ferreira Valente Da Silva	Rafael X
 Filisetti	Paul X
