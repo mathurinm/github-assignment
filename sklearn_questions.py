@@ -41,9 +41,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        if type_of_target(y) not in ['binary', 'multiclass', 'multilabel-indicator']: # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
-            raise ValueError(f'Unknown label type: {type_of_target(y)}')
-        
+        if type_of_target(y) not in [
+            "binary",
+            "multiclass",
+            "multilabel-indicator",
+        ]:  # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
+            raise ValueError(f"Unknown label type: {type_of_target(y)}")
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
         self.X_values_ = X
@@ -63,8 +67,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         idx = np.argmin(distances, axis=0)
         y_pred = self.y_values_[idx]
 
-
-    
         return y_pred
 
     def score(self, X, y):
