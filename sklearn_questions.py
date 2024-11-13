@@ -29,17 +29,16 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Checks X, y, stores them for future usage.
+        """Check X, y, stores them for future usage.
 
         Parameters
         ----------
-
         X : {array-like, sparse matrix} of shape (n_samples, n_features)
             n x p matrix with n training data points and p features.
 
@@ -48,7 +47,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-
         self : OneNearestNeighbour
             The fitted OneNearestNeighbour
         """
@@ -56,10 +54,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-        self.is_fitted = True
+        self.is_fitted_ = True
 
-        self.X = X
-        self.y = y
+        self.X_ = X
+        self.y_ = y
 
         return self
 
@@ -70,15 +68,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
-
         X : {array-like, sparse matrix} of shape (n_samples, n_features)
+
             n x p matrix with n data points and p features,
             on which we predict.
 
         Returns
         -------
-
         y_pred : array of shape (n_samples x 1)
+
             The predicted outcomes.
         """
         check_is_fitted(self)
@@ -91,11 +89,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i in range(len(y_pred)):
 
             distances = []
-            for j in range(len(self.X)):
-                dist = np.linalg.norm(X[i]-self.X[j])
+            for j in range(len(self.X_)):
+                dist = np.linalg.norm(X[i]-self.X_[j])
                 distances.append(dist)
 
-            y_pred[i] = self.y[np.argmin(distances)]
+            y_pred[i] = self.y_[np.argmin(distances)]
 
         return y_pred
 
@@ -105,7 +103,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
-
         X : {array-like, sparse matrix} of shape (n_samples, n_features)
             n x p matrix with n test data points and p features.
 
@@ -115,7 +112,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-
         score : float
             The accuracy based on y and predictions of X.
         """
