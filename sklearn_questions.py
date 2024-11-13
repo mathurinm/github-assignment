@@ -63,6 +63,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predicts using One Nearest Neighbour for each observation in X.
+        
         For each observation in X, we find the closest point,
         in the fitted data and return its label.
 
@@ -99,6 +100,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Compute the accuracy on the given X and y.
+
         Calls predict and compares the labels
 
         Parameters
