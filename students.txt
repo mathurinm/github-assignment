@@ -3,7 +3,7 @@ Last name	First name
 Alberge	Julie
 Arya	Aditeya
 Bairagi	Soumyabrata X
-Bakkass	Shaymaa X 
+Bakkass	Shaymaa X
 Barry	Ibrahim X
 Belaïdi	William X
 Benayoun	Laëtitia
@@ -77,7 +77,7 @@ Soto	Victor
 Sreeraj	Nandana
 Sriram	Samyukt X
 Tessier	Simon X
-Tinelli	Léa
+Tinelli	Léa X
 Triomphe	Gustave
 Violleau	Alexandre X
 Wang	Chung-Hao X
