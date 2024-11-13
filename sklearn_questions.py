@@ -35,22 +35,51 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Checks X, y, stores them for future usage.
 
-        And describe parameters
+        Parameters
+        ----------
+
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            n x p matrix with n training data points and p features.
+
+        y : array of shape (n_samples x 1)
+            Vector with n outcome variables
+
+        Returns
+        -------
+
+        self : OneNearestNeighbour
+            The fitted OneNearestNeighbour
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.is_fitted = True
 
-        # XXX fix
+        self.X = X
+        self.y = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts using One Nearest Neighbour for each observation in X.
+        For each observation in X, we find the closest point,
+        in the fitted data and return its label.
 
-        And describe parameters
+        Parameters
+        ----------
+
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            n x p matrix with n data points and p features,
+            on which we predict.
+
+        Returns
+        -------
+
+        y_pred : array of shape (n_samples x 1)
+            The predicted outcomes.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +88,47 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(y_pred)):
+
+            distances = []
+            for j in range(len(self.X)):
+                dist = np.linalg.norm(X[i]-self.X[j])
+                distances.append(dist)
+
+            y_pred[i] = self.y[np.argmin(distances)]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy on the given X and y.
+        Calls predict and compares the labels
 
-        And describe parameters
+        Parameters
+        ----------
+
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            n x p matrix with n test data points and p features.
+
+        y : array of shape (n_samples x 1)
+            Test vector with n outcome variables, to be compared with
+            model's predictions on X
+
+        Returns
+        -------
+
+        score : float
+            The accuracy based on y and predictions of X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        result = []
+        for i in range(len(y_pred)):
+            if y_pred[i] == y[i]:
+                result.append(1)
+            else:
+                result.append(0)
+
+        score = np.sum(result) / len(y_pred)
+
+        return score
