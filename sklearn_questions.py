@@ -35,22 +35,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """ Fit the OneNearestNeighbor Classifier to our data. 
-        This will allow our model to 'see' the data, and store it for predictions. 
-        it first starts by checking that X and y are 2D and 1D, respectively, and converts both into numpy arrays if not already. 
-        
-        Parameters: 
+        """ Fit the OneNearestNeighbor Classifier to our data.
+        This will allow our model to 'see' the data, and store it for
+        predictions. it first starts by checking that X and y are 2D and
+        1D, respectively, and converts both into numpy arrays if not already.
+
+        Parameters:
         ----------
         self: refers to the class itself
         X: Design Matrix, predictors
         y: Target labels
         """
-        X, y = check_X_y(X, y) 
-        if type_of_target(y) not in ['binary', 'multiclass', 'multilabel-indicator']: # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
+        X, y = check_X_y(X, y)
+        if type_of_target(y) not in [
+            'binary', 'multiclass', 'multilabel-indicator'
+        ]:
+            # type_of_target: new method in sklearn documentation
+            # to check the type of the target variable
             raise ValueError(f'Unknown label type: {type_of_target(y)}')
-        
-        self.X_train_ = X # Storing the feature matrix
-        self.y_train_ = y # Storing the target labels
+
+        self.X_train_ = X  # Storing the feature matrix
+        self.y_train_ = y  # Storing the target labels
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
@@ -79,7 +84,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Calculate the accuracy of the classifier on the given test data and labels.
+        """Calculates classifier accuracy on test data and labels.
 
         Parameters
         ----------
