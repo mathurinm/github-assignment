@@ -25,7 +25,7 @@ from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.multiclass import type_of_target
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -35,40 +35,67 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        """ Fit the OneNearestNeighbor Classifier to our data. 
+        This will allow our model to 'see' the data, and store it for predictions. 
+        it first starts by checking that X and y are 2D and 1D, respectively, and converts both into numpy arrays if not already. 
+        
+        Parameters: 
+        ----------
+        self: refers to the class itself
+        X: Design Matrix, predictors
+        y: Target labels
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
+        X, y = check_X_y(X, y) 
+        if type_of_target(y) not in ['binary', 'multiclass', 'multilabel-indicator']: # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
+            raise ValueError(f'Unknown label type: {type_of_target(y)}')
+        
+        self.X_train_ = X # Storing the feature matrix
+        self.y_train_ = y # Storing the target labels
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """ Predict the class labels for the input samples X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+        Input samples for which predictions are to be made.
+
+        Returns
+        -------
+        y_pred : array of shape (n_samples,)
+        Predicted class labels for each input sample in X.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        distances = np.linalg.norm(self.X_train_[:, np.newaxis, :] - X, axis=2)
+        indices = np.argmin(distances, axis=0)
+        y_pred = self.y_train_[indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy of the classifier on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+        Test samples to predict.
+        y : array-like of shape (n_samples,)
+        True labels for the test samples.
+
+        Returns
+        -------
+        accuracy : float
+        The accuracy of the model as a float between 0.0 and 1.0.
         """
+        check_is_fitted(self)
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y == y_pred)
+        return accuracy
