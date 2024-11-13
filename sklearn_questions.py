@@ -19,13 +19,14 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.multiclass import type_of_target
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -40,11 +41,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        check_classification_targets(y)
+        if type_of_target(y) not in ['binary', 'multiclass', 'multilabel-indicator']: # Changed to type_of_target since this is the new method in the sklearn documentation to check the type of the target variable
+            raise ValueError(f'Unknown label type: {type_of_target(y)}')
+        
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_values_ = X
+        self.y_values_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -54,12 +58,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        distances = np.linalg.norm(self.X_values_[:, np.newaxis, :] - X, axis=2)
+        idx = np.argmin(distances, axis=0)
+        y_pred = self.y_values_[idx]
+
+
+    
         return y_pred
 
     def score(self, X, y):
@@ -70,5 +75,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y == y_pred)
