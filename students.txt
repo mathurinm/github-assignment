@@ -2,89 +2,89 @@ Last name	First name
 
 Alberge	Julie
 Arya	Aditeya
-Bairagi	Soumyabrata
-Bakkass	Shaymaa
-Barry	Ibrahim
-Belaïdi	William
+Bairagi	Soumyabrata X
+Bakkass	Shaymaa X 
+Barry	Ibrahim X
+Belaïdi	William X
 Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
-Bidault	Grégoire
-Blivet	Alexandre
-Brochier	Felix
-Bùi	An Bình
+Bidault	Grégoire x
+Blivet	Alexandre  X
+Brochier	Felix X
+Bùi	An Bình X
 Bunford	Philip
-Burman	Dev
+Burman	Dev x
 Caceres	Gauthier X
 Capizzi	Simone
 Casalini	Sofia
 Chen	Zhipeng
-Combettes	Sylvain
+Combettes	Sylvain X
 Coutière	Guillaume
 De Rosen	Vassili
 Della Gatta	Tommaso
-Deng	Dixin
+Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
-Drion	Thibaud
+Drion	Thibaud X
 Falcon De Longevialle	Aymeric
-Fan	Jingyi
-Ferreira Valente Da Silva	Rafael
-Filisetti	Paul
+Fan	Jingyi X
+Ferreira Valente Da Silva	Rafael X
+Filisetti	Paul X
 Giuliani	Alessandro
 Guenoun	Raphaël
-Guillet	Nicolas
-Haas	Pierre
-Harasym	Martyna
-Hauchecorne	Lucien
-Henry-Leo	Valentin
-Jamai	Mamoun
-Jankowska	Magdalena
-Kire	Cedric Emmanuel
-Kozikowski	Florian
+Guillet	Nicolas X
+Haas	Pierre X
+Harasym	Martyna X
+Hauchecorne	Lucien X
+Henry-Leo	Valentin X
+Jamai	Mamoun X
+Jankowska	Magdalena X
+Kire	Cedric Emmanuel X
+Kozikowski	Florian X
 Krstic	Vera
-Lacombe	Paul
+Lacombe	Paul X
 Lafarguette	Pierre X
-Laget	Rémi
-Le Guyet	Théo
-Leibovici	Louis
-Leroy	Etienne
+Laget	Rémi X
+Le Guyet	Théo X
+Leibovici	Louis X
+Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
 Martins Da Silva	João
 Massias	Mathurin
-Melkonian	Audrey
-Milcent	   Thomas  X
+Melkonian	Audrey X
+Milcent	Thomas X
 Moufad	Badr
-Müller	Felix
-Naton	Augustin
+Müller	Felix X
+Naton	Augustin X
 Niddam	Samy
 Ochterbeck	Maxim Leon
-Opitz	Glenn
-Parekh	Nischay Chintanbhai
-Passet	Lydia
-Péretié	Louis
-Popat	Sheetal
-Pottier	Clément
-Rajzman	Samuel
-Salerno	Marco
-Senghor	Adrien
-Sijelmassi Idrissi	Iliass
-Singh	Dhawal
-Song	Siyuan
+Opitz	Glenn X
+Parekh	Nischay Chintanbhai X
+Passet	Lydia X
+Péretié	Louis X
+Popat	Sheetal X
+Pottier	Clément X
+Rajzman	Samuel X
+Salerno	Marco X
+Senghor	Adrien X
+Sijelmassi Idrissi	Iliass X
+Singh	Dhawal X
+Song	Siyuan X
 Soto	Victor
 Sreeraj	Nandana
-Sriram	Samyukt
-Tessier	Simon
+Sriram	Samyukt X
+Tessier	Simon X
 Tinelli	Léa X
 Triomphe	Gustave
-Violleau	Alexandre
-Wang	Chung-Hao
-Wang	Han
+Violleau	Alexandre X
+Wang	Chung-Hao X
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
-Yu	Chenghao
+Yu	Chenghao x
 Zana	Solal
 Zhang	Wenxu
 Zheng	Wenlei
