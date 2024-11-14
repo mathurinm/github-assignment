@@ -65,13 +65,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             y_pred[i] = self.y_train_[nearest_idx]
 
         return y_pred
-    
+
     def score(self, X, y):
         """Compute the accuracy of the model
-
         And describe parameters
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
-    
