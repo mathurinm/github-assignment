@@ -35,7 +35,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-
         """Write docstring.
 
         X : Training vectors
@@ -69,7 +68,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Compute the accuracy of the model
+        """Compute the accuracy of the model.
 
         And describe parameters
         """
