@@ -29,7 +29,6 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
@@ -37,62 +36,42 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Write docstring.
-        Fit the OneNearestNeighbor classifier 
-
-        And describe parameters:
-        X : array-like of shape (samples, features)
-            Training vectors, where samples is the number of samples
+        X : Training vectors, where samples is the number of samples
             and features is the number of features.
         y : array-like of shape (samples,)
             Target values (class labels in classification).
-
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-        self.X = X
-        self.y = y
-
+        self.X_train_ = X
+        self.y_train = y
         return self
 
     def predict(self, X):
         """Write docstring.
-        Predict the class labels
-
         And describe parameters:
-        X : array-like of shape (observations, features)
-            Test vectors, where observations is the number of samples
+        X : Test vectors, where observations is the number of samples
             and features is the number of features.
         y_pred : ndarray of shape (observations,)
-            Predicted class l
-            abels for each data sample.
-
+            Predicted class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
-        n_count = X.shape[0]
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        for i in range(n_count):
-            distances = []
-            for j in range(self.X.shape[0]):
-                distance = np.sqrt(np.sum((X[i] - self.X[j]) ** 2))
-                distances.append(distance)
-            index = np.argmin(distances)
-            y_pred[i] = self.y[index]
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            nearest_idx = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_idx]
 
         return y_pred
-
-
-
-
+    
     def score(self, X, y):
-        """Write docstring.
-        Compute the accuracy of the model
-
+        """Compute the accuracy of the model
         And describe parameters
         X : array-like of shape (samples, n_features)
             Test samples.
@@ -101,5 +80,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         return np.mean(y_pred == y)
+
+ 
