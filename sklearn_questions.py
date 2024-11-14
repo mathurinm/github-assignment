@@ -68,7 +68,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     
     def score(self, X, y):
         """Compute the accuracy of the model
-        
+
         And describe parameters
         """
         X, y = check_X_y(X, y)
