@@ -36,10 +36,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Write docstring.
-        X : Training vectors, where samples is the number of samples
-            and features is the number of features.
-        y : array-like of shape (samples,)
-            Target values (class labels in classification).
+        X : Training vectors
+        y : Target values (class labels in classification).
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -52,10 +50,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """Write docstring.
         And describe parameters:
-        X : Test vectors, where observations is the number of samples
-            and features is the number of features.
-        y_pred : ndarray of shape (observations,)
-            Predicted class labels for each data sample.
+        X : Test vectors
+        y_pred : Predicted class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -72,14 +68,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     
     def score(self, X, y):
         """Compute the accuracy of the model
+        
         And describe parameters
-        X : array-like of shape (samples, n_features)
-            Test samples.
-        y : array-like of shape (samples,)
-            True labels for X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
-
- 
+    
