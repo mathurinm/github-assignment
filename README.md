@@ -130,6 +130,6 @@ You should also configure your email with
         "editor.defaultFormatter": "ms-python.autopep8",
     },
     "autopep8.args": [
-        "[\"--max-line-length\", \"88\"]"
+        "--max-line-length=88"
     ],
 ```
