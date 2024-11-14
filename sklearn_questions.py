@@ -65,7 +65,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Test vectors, where observations is the number of samples
             and features is the number of features.
         y_pred : ndarray of shape (observations,)
-            Predicted class labels for each data sample.
+            Predicted class l
+            abels for each data sample.
 
         """
         check_is_fitted(self)
@@ -81,7 +82,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
                 distance = np.sqrt(np.sum((X[i] - self.X[j]) ** 2))
                 distances.append(distance)
             index = np.argmin(distances)
-            y_pred[i] = self.y_[index]
+            y_pred[i] = self.y[index]
 
         return y_pred
 
