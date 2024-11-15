@@ -8,13 +8,14 @@ The goals of this assignment are:
 The two functions below are skeleton functions. The docstrings explain what
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
-wrote. To run the tests, use `pytest test_numpy_question.py` at the root of
+wrote. To run the tests, use `pytest test_numpy_questions.py` at the root of
 the repo. It should say that 2 tests ran with success.
 
 We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -37,12 +38,27 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("X must be a numpy array!")
+    if len(X.shape) != 2:
+        raise ValueError("X should be a 2D numpy array!")
 
-    # TODO
+    n_samples, n_features = X.shape
 
+    max_value = X[0, 0]
+    i, j = 0, 0
+
+    for n in range(n_samples):
+        for p in range(n_features):
+            if X[n, p] > max_value:
+                max_value = X[n, p]
+                i, j = n, p
     return i, j
+
+
+# We can test our function
+
+print(max_index(np.array([[2, 3, 4], [1, 6, 5]])))
 
 
 def wallis_product(n_terms):
@@ -62,6 +78,16 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    product = 1  # We initialize at the first term value of the Wallis product
+
+    if n_terms == 0:
+        return 1
+    else:
+        for n in range(1, n_terms + 1):
+            product *= 4 * n**2 / (4 * n**2 - 1)
+        return product * 2
+
+
+# We can test our code:
+
+print(wallis_product(1000))
