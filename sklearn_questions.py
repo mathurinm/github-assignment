@@ -29,13 +29,13 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Fits a 1-nn model.
+        """Fit a 1-nn model.
 
         Parameters
         ----------
@@ -61,7 +61,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the class of the data points provided.
+        """Predict the class of the data points provided.
 
         Parameters
         ----------
@@ -88,7 +88,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Computes the score of the model on a given dataset.
+        """Compute the score of the model on a given dataset.
 
         Parameters
         ----------
