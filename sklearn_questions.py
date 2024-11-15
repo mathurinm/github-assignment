@@ -35,22 +35,43 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits a 1-nn model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training array.
+
+        y : ndarray of shape (n_samples)
+            The target values.
+
+        Returns
+        -------
+        self : OneNearestNeihbor
+            The fitted classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self._X = X
+        self._y = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the class of the data points provided.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_points, n_features)
+            The array of points to be predicted.
+
+        Returns
+        -------
+        y : ndarray of shape (n_points)
+            The predicted classes.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +80,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = np.array([
+            np.linalg.norm(self._X - x, axis=1) for x in X
+        ])
+        argmins = np.argmin(distances, axis=1)
+        y_pred = self._y[argmins]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Computes the score of the model on a given dataset.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_points, n_features)
+            The array of points to be tested.
+
+        y : ndarray of shape (n_points)
+            The actual classes of the points of X.
+
+        Returns
+        -------
+        a : float
+            The model's accuracy on the given sample.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accurates = (y_pred == y)
+        return accurates.mean()
