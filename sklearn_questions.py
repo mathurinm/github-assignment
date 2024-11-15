@@ -37,7 +37,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def __init__(self):
-        """Empty"""
+        """Empty."""
         pass
 
     def fit(self, X, y):
