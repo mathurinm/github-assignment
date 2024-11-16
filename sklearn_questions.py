@@ -29,28 +29,48 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model with the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n, n_features)
+            The input training data.
+        y : array of shape (n)
+            The target labels.
+
+        Returns
+        -------
+        self : object
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self._X_train = X
+        self._y_train = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels for new samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n, n_features)
+            The new input data.
+
+        Returns
+        -------
+        y_pred : array of shape (n)
+            Predicted labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +79,29 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self._X_train - x, axis=1)
+            closest_idx = np.argmin(distances)
+            y_pred[i] = self._y_train[closest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n, n_features)
+            The test data.
+        y : array of shape (n)
+            True labels for the test data.
+
+        Returns
+        -------
+        accuracy : float
+            Accuracay of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
