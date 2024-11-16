@@ -55,7 +55,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict using the nearest neighbor classifier.
-        
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
