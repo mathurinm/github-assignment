@@ -37,10 +37,19 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array.")
+
     i = 0
     j = 0
-
-    # TODO
+    n, p = X.shape
+    max_val = 0
+    for line in range(0, n):
+        for col in range(0, p):
+            if X[line, col] >= max_val:
+                max_val = X[line, col]
+                i = line
+                j = col
 
     return i, j
 
@@ -62,6 +71,15 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
+    pi = 0
+    if n_terms == 0:
+        return 1
+
+    product = []
+    for i in range(1, n_terms + 1):
+        product.append(4*i**2/(4*i**2-1))
+    pi = np.prod(product)
+
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    return pi*2
