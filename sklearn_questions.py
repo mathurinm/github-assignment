@@ -1,3 +1,4 @@
+
 """Assignment - making a sklearn estimator.
 The goal of this assignment is to implement by yourself a scikit-learn
 estimator for the OneNearestNeighbor and check that it is working properly.
@@ -31,6 +32,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
+
         """Fit the OneNearestNeighbor model on training data.
         Parameters
         ----------
@@ -54,6 +56,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
+
         """Predict the class labels for the provided data.
         Parameters
         ----------
@@ -77,6 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
+        
         """Return the accuracy of the model.
         Parameters
         ----------

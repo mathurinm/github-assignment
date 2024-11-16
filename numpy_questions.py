@@ -1,3 +1,4 @@
+
 """Assignment - using numpy and making a PR.
 The goals of this assignment are:
     * Use numpy in practice with two easy exercises.
@@ -17,6 +18,7 @@ import numpy as np
 
 
 def max_index(X):
+
     """Return the index of the maximum in a numpy array.
     Parameters
     ----------
@@ -46,7 +48,8 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
-    """""
+
+    """
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
