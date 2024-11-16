@@ -30,16 +30,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
-        Fit the one-nearest neighbour : Verifies the shapes and types.
-        Convert them if necessary.
-        Determines the number of classes and the number of features.
+        Fit the one-nearest neighbour.
 
         Parameters :
         -------
