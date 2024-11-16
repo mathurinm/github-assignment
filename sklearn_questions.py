@@ -29,28 +29,49 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model to the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training data with explanotory variables
+
+        y : ndarray of shape (n_samples, )
+            The true labels corresponding to the training data
+
+        Returns
+        -------
+        self : OneNearestNeighbor object
+            The OneNearestNeighbor object updated with the fitted values
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.__X = X
+        self.__y = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels for the provided data using the fitted model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data with explanatory variables.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples)
+            The predicted labels for the test data.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +80,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        delta = self.__X - np.expand_dims(X, axis=1)
+        delta_norm = np.linalg.norm(delta, axis=2)
+        indexes = np.argsort(delta_norm, axis=1)[:, 0]
+        y_pred = np.array([self.__y[i] for i in indexes])
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy score of the model on test data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data with explanatory variables.
+
+        y : ndarray of shape (n_samples)
+            The true labels corresponding to the test data.
+
+        Returns
+        -------
+        score : float
+            The accuracy score of the model
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        score = np.sum(y == y_pred)/len(y_pred)
+        return score
