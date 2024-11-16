@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -39,8 +40,18 @@ def max_index(X):
     """
     i = 0
     j = 0
+    if not isinstance(X, np.ndarray):
+        raise ValueError("The input must be a numpy array.")
+    if X.ndim != 2:
+        raise ValueError("We are expecting a 2D array as input")
 
-    # TODO
+    # Handling pylint warning of unbalanced tuple unpacking
+    result = np.unravel_index(np.argmax(X), X.shape)
+
+    if len(result) == 2:
+        i, j = result
+    else:
+        raise ValueError("Not enough values to unpack for indexes")
 
     return i, j
 
@@ -62,6 +73,13 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    if n_terms == 0:
+        return 1.0
+
+    product = 1.0
+    for n_term in range(1, n_terms + 1):
+        left = (2.0 * n_term) / (2.0 * n_term - 1)
+        right = (2.0 * n_term) / (2.0 * n_term + 1)
+        product *= left * right
+
+    return 2.0 * product
