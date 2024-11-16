@@ -41,9 +41,9 @@ def max_index(X):
         raise ValueError('X should be a numpy array')
     if X.ndim != 2:
         raise ValueError('X should be 2D')
-       
+
     max = np.argmax(X)
-   
+
     i, j = np.unravel_index(max, X.shape)
 
     return i, j
