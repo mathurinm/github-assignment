@@ -49,20 +49,19 @@ def max_index(X):
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
-    See
-    ---
+    See:
     https://en.wikipedia.org/wiki/Wallis_product
 
     Parameters
     ----------
     n_terms : int
-        Number of terms in the Wallis product. Note that `n_terms=0` will
+        Number of steps in the Wallis product. Note that `n_terms=0` will
         consider the product to be `1`.
 
     Returns
     -------
-    pi_approx : float
-        The approximation of pi using the Wallis product.
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
 
     Raises
     ------
@@ -74,9 +73,14 @@ def wallis_product(n_terms):
 
     product = 1.0
     for n in range(1, n_terms + 1):
-        left_term = (2.0 * n) / (2.0 * n - 1.0)
-        right_term = (2.0 * n) / (2.0 * n + 1.0)
-        product *= left_term * right_term
+        numerator = 2.0 * n
+        denominator = 2.0 * n - 1.0
+        product *= numerator / denominator
+        numerator = 2.0 * n
+        denominator = 2.0 * n + 1.0
+        product *= numerator / denominator
 
-    pi_approx = product * 2.0
-    return pi_approx
+    if n_terms == 0:
+        return product  # Return 1.0 when n_terms is 0
+    else:
+        return product * 2.0  # Multiply by 2 when n_terms > 0
