@@ -81,14 +81,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X_test = check_array(X_test)
         y_pred = np.full(
-            shape=len(X_test), fill_value=self.classes_[0], dtype=self.classes_.dtype
+            shape=len(X_test),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
 
-        distances = []
+        d = []
 
         for i, x_test in enumerate(X_test):
-            distances = [np.linalg.norm(x_train - x_test) for x_train in self.X_train_]
-            nearest_index = np.argmin(distances)
+            d = [np.linalg.norm(x_train - x_test) for x_train in self.X_train_]
+            nearest_index = np.argmin(d)
             y_pred[i] = self.y_train_[nearest_index]
 
         return y_pred
