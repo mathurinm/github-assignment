@@ -35,40 +35,82 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the one-nearest neighbour : Verifies that the shapes and types
+        correspond.
+        Convert them if necessary.
+        Determines the number of classes and the number of features.
 
-        And describe parameters
+        Parameters :
+
+        X : array-like of shape (n_samples, n_features)
+            The training input samples.
+
+        y : array-like of shape (n_samples,)
+            The target values (class labels).
+
+        Returns:
+
+        Self : Fitted one nearest neighbour estimator
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
-    def predict(self, X):
-        """Write docstring.
+    def predict(self, X_test):
+        """
+        Predict the class of the input sample X_test.
 
-        And describe parameters
+        Parameters:
+
+        X_test : array-like of shape (p_samples, n_features)
+        The input samples for which we want predictions.
+
+        Returns:
+
+        The prediction for the classes of the test input samples.
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X_test = check_array(X_test)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
+            shape=len(X_test), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = []
+
+        for i, x_test in enumerate(X_test):
+            distances = [np.linalg.norm(x_train - x_test)
+                         for x_train in self.X_train_]
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Score the accuracy of the one nearest neighbour estimator.
 
-        And describe parameters
+        Parameters:
+
+        X : array-like of shape (n_samples, n_features)
+        The test input samples.
+
+        y : array-like of shape (n_samples,)
+        The true labels for the test sample (class labels).
+
+        Returns the score.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        correct_pred = np.sum(y == y_pred)
+        score = correct_pred/len(y)
 
-        # XXX fix
-        return y_pred.sum()
+        return score
