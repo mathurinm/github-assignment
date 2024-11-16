@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,40 +36,110 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit OneNearestNeighbor on the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray, a list or a sparse matrix
+        y : ndarray, a list or a sparse matrix
+
+        Returns
+        ----------
+        result type: a set of 2 arrays X_train_, y_train_
+        X_train_, y_train_ is returned as our training set;
+        X_train_ is a 2D array of dimension (n_samples, n_features_in_) and
+        y is of dimension (n_samples,)
+
+        Raises
+        ------
+        ValueError
+            If X and y are not of consistent length
+            If y is of regression type
         """
+        # We do some checks:
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
+        # We store the classes (unique values of y) and number of features:
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # We save the training data for prediction:
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Do the prediction of the OneNearestNeighbor.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : a 2D array of shape (n_samples, n_features_in_), on which we will
+        test the data to classify
+
+        Returns
+        ----------
+        result type: a 1D array of dimension (n_samples,)
+            y_pred : a 1D array of shape (n_samples,) on which the data has
+            been fitted
+
+        Raises
+        ------
+        ValueError
+            If X is not of correctly fitted witht the training data
+            or not of correct shape (i.e. not of dimension
+            (n_samples, n_features_in_))
         """
+        # We do some checks:
         check_is_fitted(self)
         X = check_array(X)
+
+        # We initiate the y_pred matrix that will contain the predictions:
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
 
-        # XXX fix
+        for i, X_test in enumerate(X):
+            euclidian_dist = np.linalg.norm(self.X_train_ - X_test, axis=1)
+            nearest_index = np.argmin(euclidian_dist)
+            y_pred[i] = self.y_train_[nearest_index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """We evaluate the score of our prediction, i.e. we compare the
+        accurate vs. non-accurate prediction that we got on the test set after
+        having trained the OneNearestNeighbor on the training set.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray, a list or a sparse matrix
+        y : ndarray, a list or a sparse matrix
+
+        Returns
+        ----------
+        result type: a float as an accuracy score
+            y_pred.sum() is the sum of the mean scores obtained by compare the
+            predictions y_pred (computed on X_test with our classifier) to the
+            actual values y_test; it is a float that can be interpreted as an
+            accuracy score fraction (well predicted / total number of
+            predictions)
+
+        Raises
+        ------
+        ValueError
+            If X and y are not of consistent length
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # We create a Boolean array that highlight the correct/non-correct
+        # predictions of y_pred:
+        correct_pred = (y_pred == y).astype(int).sum()
+
+        # We compute the accuracy score:
+        accuracy_score = correct_pred / len(y)
+
+        return accuracy_score
