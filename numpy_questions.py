@@ -48,7 +48,7 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
-    """Returns the Wallis product up to the n-th term.
+    """Return the Wallis product up to the n-th term.
 
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
