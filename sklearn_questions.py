@@ -97,3 +97,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # Calculate accuracy
         accuracy = np.mean(y_pred == y)
         return accuracy
+    
