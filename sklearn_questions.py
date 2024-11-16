@@ -37,13 +37,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """
-        Fit the one-nearest neighbour : Verifies that the shapes and types
-        correspond.
+        Fit the one-nearest neighbour : Verifies the shapes and types.
         Convert them if necessary.
         Determines the number of classes and the number of features.
 
         Parameters :
-
+        -------
         X : array-like of shape (n_samples, n_features)
             The training input samples.
 
@@ -51,7 +50,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             The target values (class labels).
 
         Returns:
-
+        -------
         Self : Fitted one nearest neighbour estimator
 
         """
@@ -70,12 +69,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Predict the class of the input sample X_test.
 
         Parameters:
-
+        -------
         X_test : array-like of shape (p_samples, n_features)
         The input samples for which we want predictions.
 
         Returns:
-
+        -------
         The prediction for the classes of the test input samples.
         """
         check_is_fitted(self)
@@ -100,14 +99,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Score the accuracy of the one nearest neighbour estimator.
 
         Parameters:
-
+        -------
         X : array-like of shape (n_samples, n_features)
         The test input samples.
 
         y : array-like of shape (n_samples,)
         The true labels for the test sample (class labels).
 
-        Returns the score.
+        Returns:
+        -------
+        The accuracy score.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
