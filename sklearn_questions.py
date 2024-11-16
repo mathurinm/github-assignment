@@ -80,7 +80,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        
+
         """Return the accuracy of the model.
         Parameters
         ----------
