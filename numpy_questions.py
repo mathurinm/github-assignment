@@ -64,7 +64,7 @@ def wallis_product(n_terms):
     # 遍历每个项
     for n in range(1, n_terms + 1):
         # 计算当前项
-        terme= (4 * n * n) / (4 * n * n - 1)
+        term = (4 * n * n) / (4 * n * n - 1)
         # 更新乘积
         product *= term
     # 返回乘积的两倍，即π的近似值
