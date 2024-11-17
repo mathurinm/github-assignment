@@ -29,17 +29,19 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """X is a matrix of covariates
-        y is a matrix of outputs associated to X
+        """We fit the model.
+
+        X is a matrix of covariates.
+        y is a matrix of outputs associated to X.
         We fit the model, ie we memorize the distances
         the data points and the labels.
-        So, we are able to compute distances and make predictions
+        So, we are able to compute distances and make predictions.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -51,7 +53,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """OneNearestNeighbor gives you the prediction for a new X once the
+        """We predict a Y for a given new X.
+
+        OneNearestNeighbor gives you the prediction for a new X once the
         model is fitted.
         """
         check_is_fitted(self)
@@ -68,12 +72,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """The score of the model to measure the performance.
+        """Score of the model measures the performance.
+
         Gives you how close the predictions are from the real labels.
-
-        X: data we want to predict.
-
-        y: real labels corresponding to X.
+        X: data we want to predict. y: real labels corresponding to X.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
