@@ -45,30 +45,55 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        self._X_train = np.array(X)
+        self._y_train = np.array(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class labels for the input samples.
 
-        And describe parameters
+        Parameters:
+        - X: np.ndarray, shape (n_samples, n_features)
+            The input samples for which to predict labels.
+
+        Returns:
+        - y_pred: np.ndarray, shape (n_samples,)
+            Predicted class labels for each input sample.
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        X = check_array(X) 
+        n_samples = X.shape[0]
+        n_train_samples = self._X_train.shape[0]
 
-        # XXX fix
+        # compute the distance between each element of X and X_train
+        dist = np.linalg.norm(X[:, np.newaxis] - self._X_train, axis=2)
+
+        # Find the nearest neighboor
+        nearest_indices = np.argmin(dist, axis=1).astype(int)
+
+        y_pred = self._y_train[nearest_indices]
         return y_pred
 
-    def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
+
+    def score(self, X, y):
+        """
+        Compute the accuracy of the classifier.
+
+        Parameters:
+        - X: np.ndarray, shape (n_samples, n_features)
+            The input samples for testing.
+        - y: np.ndarray, shape (n_samples,)
+            True labels for the input samples.
+
+        Returns:
+        - result: float
+            The result of the predictions compared to the true labels.
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        y_pred = self.predict(X)
+        result = np.mean(y_pred == y)
+        return result
