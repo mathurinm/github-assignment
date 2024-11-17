@@ -28,14 +28,6 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
-
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """OneNearestNeighbor classifier.
 
@@ -43,6 +35,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     of the training sample X_k which is the closest to X_i. We measure proximity
     with the Euclidean distance.
     """
+
 
     def __init__(self):
         pass
