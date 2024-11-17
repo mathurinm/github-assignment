@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -37,20 +37,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def fit(self, X, y):
         """Write docstring.
 
-        And describe parameters
+        X : Training vectors
+        y : Target values (class labels in classification).
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
         """Write docstring.
 
-        And describe parameters
+        X : Test vectors
+        y_pred : Predicted class labels for each data sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,17 +60,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            nearest_idx = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_idx]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the model.
 
         And describe parameters
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
