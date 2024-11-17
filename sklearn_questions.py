@@ -30,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -112,9 +112,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """We evaluate the score of our prediction, i.e. we compare the
-        accurate vs. non-accurate prediction that we got on the test set after
-        having trained the OneNearestNeighbor on the training set.
+        """We evaluate the score of our prediction.
+
+        We compare the accurate vs. non-accurate prediction that we got on the
+        test set after having trained the OneNearestNeighbor on the training
+        set.
 
         Parameters
         ----------
