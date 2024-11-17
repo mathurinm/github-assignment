@@ -21,8 +21,8 @@ Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
 <<<<<<< HEAD
-Coutière	Guillaume
-De Rosen	Vassili
+Coutière	Guillaume X
+De Rosen	Vassili X
 =======
 Coutière	Guillaume X
 De Rosen	Vassili X
