@@ -20,6 +20,7 @@ import numpy as np
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
+
     Parameters
     ----------
     X : ndarray of shape (n_samples, n_features)
@@ -28,7 +29,7 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and column index of the maximum.
+        The row and columnd index of the maximum.
 
     Raises
     ------
@@ -36,6 +37,8 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
+    i = 0
+    j = 0
     if not isinstance(X, np.ndarray):
         raise ValueError("The input must be a numpy array")
     if X.ndim != 2:

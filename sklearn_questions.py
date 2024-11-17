@@ -81,7 +81,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         for i, x in enumerate(X):
-            # Compute Euclidean distances 
+            # Compute Euclidean distances
             distances = np.linalg.norm(self.X_ - x, axis=1)
             # Find the index of the nearest neighbor
             nearest_index = np.argmin(distances)
