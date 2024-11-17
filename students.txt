@@ -17,7 +17,7 @@ Bunford	Philip X
 Burman	Dev x
 Caceres	Gauthier X
 Capizzi	Simone   X
-Casalini	Sofia
+Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
 Coutière	Guillaume X
