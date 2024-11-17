@@ -6,7 +6,7 @@ Bairagi	Soumyabrata X
 Bakkass	Shaymaa X
 Barry	Ibrahim X
 Belaïdi	William X
-Benayoun	Laëtitia
+Benayoun	Laëtitia X
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
@@ -21,7 +21,7 @@ Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
 Coutière	Guillaume X
-De Rosen	Vassili
+De Rosen	Vassili X
 Della Gatta	Tommaso X
 Deng	Dixin X
 Desjuzeur	Basile X
@@ -88,4 +88,6 @@ Yu	Chenghao x
 Zana	Solal X
 Zhang	Wenxu
 Zheng	Wenlei X
+Zhang	Wenxu X
+Zheng	Wenlei
 Digua Mehdi X
