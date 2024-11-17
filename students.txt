@@ -1,12 +1,21 @@
 Last name	First name
 
 Alberge	Julie
+<<<<<<< HEAD
 Arya	Aditeya X
 Bairagi	Soumyabrata X
 Bakkass	Shaymaa X
 Barry	Ibrahim X
 Belaïdi	William X
 Benayoun	Laëtitia X
+=======
+Arya	Aditeya
+Bairagi	Soumyabrata
+Bakkass	Shaymaa
+Barry	Ibrahim
+Belaïdi	William X
+Benayoun	Laëtitia
+>>>>>>> origin/main
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
