@@ -29,46 +29,122 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    This classifier predicts the label of a sample based on the closest
+    training sample using the Euclidean distance.
+
+    Attributes
+    ----------
+    classes_ : array-like of shape (n_classes,)
+        The unique class labels.
+
+    n_features_in_ : int
+        The number of features in the training data.
+
+    X_ : array-like of shape (n_samples, n_features)
+        The training data.
+
+    y_ : array-like of shape (n_samples,)
+        The labels for the training data.
+    """
+
+    def __init__(self):
+        """
+        Initialize the OneNearestNeighbor classifier.
+
+        This method sets up the object without requiring any additional
+        parameters. It does not perform any actions during initialization.
+        """
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
+        Fit the OneNearestNeighbor classifier.
+
+        Stores the training data and labels for later use in prediction.
+
+        Parameters
+        ----------
+        X : array-like shape (n_samples, n_features)
+            Training data.
+
+        y : array-like shape (n_samples,)
+            Labels for training data.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+        """
+        # Validate the input and output arrays
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
+        # Store training data and labels
+        self.X_ = X
+        self.y_ = y
+
+        # Store unique class labels and number of features
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
+        Predict the class labels for the input samples.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data.
+
+        Returns
+        -------
+        y_pred : array-like of shape (n_samples,)
+            Predicted class labels for the test data.
+        """
+        # Ensure the model is fitted and validate the input
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
-        return y_pred
+        # Compute predictions
+        y_pred = []
+        for x in X:
+            # Compute Euclidean distances to all training samples
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+            # Find the index of the closest sample
+            nearest_index = np.argmin(distances)
+            # Predict the label of the closest sample
+            y_pred.append(self.y_[nearest_index])
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
-        X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        Compute the accuracy of the classifier.
 
-        # XXX fix
-        return y_pred.sum()
+        The accuracy is the number of correctly predicted samples
+        divided by the total number of samples.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data.
+
+        y : array-like of shape (n_samples,)
+            True labels for the test data.
+
+        Returns
+        -------
+        score : float
+            The accuracy of the classifier.
+        """
+        # Validate the input and output arrays
+        X, y = check_X_y(X, y)
+        # Predict the labels for the test data
+        y_pred = self.predict(X)
+        # Compute and return the accuracy
+        return np.mean(y_pred == y)
