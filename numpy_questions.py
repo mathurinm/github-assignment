@@ -50,7 +50,7 @@ def max_index(X):
     max_val = X[i,j]
     for row in range(X.shape[0]):
         for col in range(X.shape[1]):
-            if X[i,j] > max_val:
+            if X[row,col] > max_val:
                 max_val = X[row,col]
                 i, j = row, col
     return i, j
