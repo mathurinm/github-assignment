@@ -1,27 +1,32 @@
 Last name	First name
 
 Alberge	Julie
-Arya	Aditeya
+Arya	Aditeya X
 Bairagi	Soumyabrata X
 Bakkass	Shaymaa X
 Barry	Ibrahim X
 Belaïdi	William X
-Benayoun	Laëtitia
+Benayoun	Laëtitia X
 Bensimon	Roy
-Berdah	Adam
+Berdah	Adam X
 Bidault	Grégoire x
 Blivet	Alexandre  X
 Brochier	Felix X
 Bùi	An Bình X
-Bunford	Philip
+Bunford	Philip X
 Burman	Dev x
 Caceres	Gauthier X
-Capizzi	Simone
-Casalini	Sofia
+Capizzi	Simone   X
+Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
+<<<<<<< HEAD
 Coutière	Guillaume
 De Rosen	Vassili
+=======
+Coutière	Guillaume X
+De Rosen	Vassili X
+>>>>>>> 10682384124d0df87dbf046b59ab62d4c3d7f926
 Della Gatta	Tommaso X
 Deng	Dixin X
 Desjuzeur	Basile X
@@ -31,8 +36,8 @@ Falcon De Longevialle	Aymeric X
 Fan	Jingyi X
 Ferreira Valente Da Silva	Rafael X
 Filisetti	Paul X
-Giuliani	Alessandro
-Guenoun	Raphaël
+Giuliani	Alessandro X
+Guenoun	Raphael X
 Guillet	Nicolas X
 Haas	Pierre X
 Harasym	Martyna X
@@ -52,7 +57,7 @@ Leroy	Etienne  X
 Louis	Paul-Philip
 Malezieux	Côme X
 Mansard	Diane x
-Martins Da Silva	João
+Martins Da Silva	João X
 Massias	Mathurin
 Melkonian	Audrey X
 Milcent	Thomas X
@@ -60,7 +65,7 @@ Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
 Niddam	Samy
-Ochterbeck	Maxim Leon
+Ochterbeck	Maxim Leon X
 Opitz	Glenn X
 Parekh	Nischay Chintanbhai X
 Passet	Lydia X
@@ -73,8 +78,8 @@ Senghor	Adrien X
 Sijelmassi Idrissi	Iliass X
 Singh	Dhawal X
 Song	Siyuan X
-Soto	Victor
-Sreeraj	Nandana
+Soto	Victor X
+Sreeraj	Nandana X
 Sriram	Samyukt X
 Tessier	Simon X
 Tinelli	Léa X
@@ -85,6 +90,7 @@ Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
 Yu	Chenghao x
-Zana	Solal
-Zhang	Wenxu
+Zana	Solal X
+Zhang	Wenxu X
 Zheng	Wenlei
+Digua Mehdi X
