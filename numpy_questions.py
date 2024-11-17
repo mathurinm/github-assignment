@@ -39,23 +39,23 @@ def max_index(X):
     """
     if X is None:
         raise ValueError("Input cannot be None.")
-    
+
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array.")
-    
+
     if X.ndim != 2:
         raise ValueError("Input array must be 2D.")
-    
+
     max_i, max_j = 0, 0
     n_samples, n_features = X.shape
     value_max = X[0, 0]
-    
+
     for i in range(n_samples):
         for j in range(n_features):
             if X[i, j] > value_max:
                 value_max = X[i, j]
                 max_i, max_j = i, j
-    
+
     return max_i, max_j
 
 
@@ -79,8 +79,8 @@ def wallis_product(n_terms):
     pi = 1.0
     if n_terms == 0:
         return 1.0
-    
+
     for i in range(1, n_terms + 1):
         pi *= (4 * i ** 2) / (4 * i ** 2 - 1)
-    
+
     return 2 * pi
