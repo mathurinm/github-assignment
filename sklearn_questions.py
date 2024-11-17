@@ -108,6 +108,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def score(self, X, y):
         """
         Scores the prediction of the OneNearestNeighbor model for given data.
+
         Compares predicted classes with real classes and returns mean accuracy.
 
         Parameters
