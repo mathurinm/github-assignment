@@ -26,7 +26,6 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from scipy.spatial.distance import cdist
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -36,74 +35,73 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Fit the OneNearestNeighbor classifier.
+        """Fit the model with the training data.
 
         Parameters
         ----------
-        X : ndarray of shape (n_samples, n_features)
-            Training data.
-        y : ndarray of shape (n_samples,)
-            Target labels.
+        X : array of shape (n, n_features)
+            The input training data.
+        y : array of shape (n)
+            The target labels.
+
         Returns
         -------
         self : object
-            Fitted estimator.
-        Raises
-        ------
-        ValueError
-            If the input arrays do not match the required format or dimensions.
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        self.X_train_ = X
-        self.y_train_ = y
+        self._X_train = X
+        self._y_train = y
 
         return self
 
     def predict(self, X):
-        """Predict using the OneNearestNeighbor classifier.
+        """Predict the labels for new samples.
+
         Parameters
         ----------
-        X : ndarray of shape (n_samples, n_features)
-            Test data.
+        X : array of shape (n, n_features)
+            The new input data.
+
         Returns
         -------
-        y_pred : ndarray of shape (n_samples,)
-            Predicted class labels for each test instance.
-        Raises
-        ------
-        ValueError
-            If the input is not a numpy array or if it has incompatible
-            dimensions.
+        y_pred : array of shape (n)
+            Predicted labels.
         """
         check_is_fitted(self)
         X = check_array(X)
-        distances = cdist(X, self.X_train_, metric='euclidean')
-        nearest_indices = np.argmin(distances, axis=1)
-        y_pred = self.y_train_[nearest_indices]
+        y_pred = np.full(
+            shape=len(X), fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
+        )
+
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self._X_train - x, axis=1)
+            closest_idx = np.argmin(distances)
+            y_pred[i] = self._y_train[closest_idx]
+
         return y_pred
 
     def score(self, X, y):
-         """Return the mean accuracy on the given test data and labels.
+        """Compute the accuracy of the model.
+
         Parameters
         ----------
-        X : ndarray of shape (n_samples, n_features)
-            Test data.
-        y : ndarray of shape (n_samples,)
-            True labels for X.
+        X : array of shape (n, n_features)
+            The test data.
+        y : array of shape (n)
+            True labels for the test data.
+
         Returns
         -------
-        score : float
-            Mean accuracy of the model on the test data.
-        Raises
-        ------
-        ValueError
-            If the input arrays do not match the required format or dimensions.
+        accuracy : float
+            Accuracay of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-    return np.mean(y_pred == y)
+        return np.mean(y_pred == y)
