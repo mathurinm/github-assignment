@@ -36,7 +36,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Fit OneNearestNeighbor on the training data.
+        """We fit the OneNearestNeighbor estimator on the training data.
 
         Parameters
         ----------
@@ -45,16 +45,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         ----------
-        result type: a set of 2 arrays X_train_, y_train_
-        X_train_, y_train_ is returned as our training set;
-        X_train_ is a 2D array of dimension (n_samples, n_features_in_) and
-        y is of dimension (n_samples,)
+        self : the instance of the class on which it was called.
+            Also, attributes are created :
+            .classes_ will return the number of unique values (i.e. the
+            classes) contained in y
+            .n_features_in_ will return the number of columns (i.e. the
+            features) contained in X
+            ._X_train will return X
+            ._y_train will return y
 
         Raises
         ------
         ValueError
-            If X and y are not of consistent length
-            If y is of regression type
+            If X and y are not of consistent length or
+            if y is of regression type.
         """
         # We do some checks:
         X, y = check_X_y(X, y)
@@ -65,30 +69,29 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # We save the training data for prediction:
-        self.X_train_ = X
-        self.y_train_ = y
+        self._X_train = X
+        self._y_train = y
 
         return self
 
     def predict(self, X):
-        """Do the prediction of the OneNearestNeighbor.
+        """We do the prediction of the OneNearestNeighbor estimator.
 
         Parameters
         ----------
         X : a 2D array of shape (n_samples, n_features_in_), on which we will
-        test the data to classify
+            test the data to classify
 
         Returns
         ----------
-        result type: a 1D array of dimension (n_samples,)
-            y_pred : a 1D array of shape (n_samples,) on which the data has
-            been fitted
+        y_pred : a 1D array of shape (n_samples,) on which the data has been
+            fitted.
 
         Raises
         ------
         ValueError
-            If X is not of correctly fitted witht the training data
-            or not of correct shape (i.e. not of dimension
+            If X is not of correctly fitted with the training data or
+            if X is not of correct shape (i.e. not of dimension
             (n_samples, n_features_in_))
         """
         # We do some checks:
@@ -103,9 +106,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         for i, X_test in enumerate(X):
-            euclidian_dist = np.linalg.norm(self.X_train_ - X_test, axis=1)
+            euclidian_dist = np.linalg.norm(self._X_train - X_test, axis=1)
             nearest_index = np.argmin(euclidian_dist)
-            y_pred[i] = self.y_train_[nearest_index]
+            y_pred[i] = self._y_train[nearest_index]
         return y_pred
 
     def score(self, X, y):
@@ -120,12 +123,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         ----------
-        result type: a float as an accuracy score
-            y_pred.sum() is the sum of the mean scores obtained by compare the
-            predictions y_pred (computed on X_test with our classifier) to the
-            actual values y_test; it is a float that can be interpreted as an
-            accuracy score fraction (well predicted / total number of
-            predictions)
+        accuracy score : a float nimber computed as the ratio of correct
+            predictions over the total number of predictions that have been
+            made.
 
         Raises
         ------
