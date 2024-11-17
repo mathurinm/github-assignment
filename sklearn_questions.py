@@ -53,11 +53,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         Fits the data to the self instance.
 
-        Parameters:
-        X (np.ndarray): 2D array containing the features of the observations,
-        y (np.ndarray): 1D array containing the classes of the observations.
+        Parameters
+        ----------
+        X: np.ndarray
+            2D array containing the features of the observations,
+        y: np.ndarray
+            1D array containing the classes of the observations.
 
         Returns:
+        ----------
         self (OneNearestNeighbor): the fitted instance.
         """
         X, y = check_X_y(X, y)
@@ -74,10 +78,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Predicts the class of new observations based on the training data.
 
         Parameters:
-        X (np.ndarray): 2D array containing the features of the observations.
+        X (np.ndarray):
+            2D array containing the features of the observations.
 
         Returns:
-        y_pred (np.ndarray): 1D array containing the predicted class based on the training data.
+        y_pred (np.ndarray):
+            1D array containing the predicted class based on the training data.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -97,7 +103,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def score(self, X, y):
         """
         Scores the prediction of the OneNearestNeighbor model for given data.
-        Compares the predicted classes with the real classes and returns the mean accuracy.
+        Compares predicted classes with real classes and returns mean accuracy.
 
         Parameters:
         X (np.ndarray): 2D array containing the features of the observations,

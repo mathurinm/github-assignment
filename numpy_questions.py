@@ -47,11 +47,11 @@ def max_index(X):
         raise ValueError("Input is not a 2-dimensional array")
     n_samples, n_features = X.shape
     max_value = X.max()
-    for l in range(n_samples):
-        for m in range(n_features):
-            if X[l, m] == max_value:
-                i = l
-                j = m
+    for sample in range(n_samples):
+        for feature in range(n_features):
+            if X[sample, feature] == max_value:
+                i = sample
+                j = feature
     return i, j
 
 
@@ -74,9 +74,9 @@ def wallis_product(n_terms):
     """
     pi = 1
     if n_terms != 0:
-        for l in range(n_terms):
-            pi *= (4 * (l + 1) ** 2) / (4 * (l + 1) ** 2 - 1)
-        pi = (
-            2 * pi
-        )  # the Wallis series tends to pi/2 so we multiply the product result by 2 to get an approximation of pi
+        for term in range(n_terms):
+            pi *= (4 * (term + 1) ** 2) / (4 * (term + 1) ** 2 - 1)
+        pi = 2 * pi
+        # the Wallis series tends to pi/2
+        # so we multiply the product result by 2 to get an approximation of pi
     return pi
