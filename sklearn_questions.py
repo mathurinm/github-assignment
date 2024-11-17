@@ -29,46 +29,96 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
+    This classifier implements the 1-nearest neighbor algorithm, which predicts
+    the class of a new sample based on the class of its nearest neighbor in
+    the training set using Euclidean distance.
+
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target values.
 
-        And describe parameters
+        Returns
+        -------
+        self : object
+            Returns self.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # store the training data
+        self.X_ = X
+        self.y_ = y
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y : ndarray of shape (n_samples,)
+            The predicted classes.
         """
-        check_is_fitted(self)
+        check_is_fitted(self) 
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(f"X {X.shape[1]} features, but OneNearestNeighbor"
+                             f"is expecting {self.n_features_in_} features.")
+        
+        # Initialize predictions array
+        y_pred = np.zeros(X.shape[0], dtype=self.classes_.dtype)
+        
+        # For each sample in X
+        for i, sample in enumerate(X):
+            # Calculate distances to all training samples
+            distances = np.sqrt(np.sum((self.X_ - sample) ** 2, axis=1))
+            # Find index of nearest neighbor
+            nearest_neighbor_idx = np.argmin(distances)
+            # Predict the class of the nearest neighbor
+            y_pred[i] = self.y_[nearest_neighbor_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of self.predict(X) with respect to y.
         """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
+
+
