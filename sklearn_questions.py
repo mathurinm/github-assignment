@@ -38,7 +38,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
 
     def __init__(self):
-        """Constructor to initialise object's attribute when object created."""
+        """Initialize the OneNearestNeighbor classifier"""
         pass
 
     def fit(self, X, y):
@@ -90,7 +90,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Returns mean accuracy on given test data and labels.
+        """Return mean accuracy on the given test data and labels.
 
         Parameters
         -----------
