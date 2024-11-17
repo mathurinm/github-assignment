@@ -1,4 +1,5 @@
 """Assignment - making a sklearn estimator.
+
 The goal of this assignment is to implement by yourself a scikit-learn
 estimator for the OneNearestNeighbor and check that it is working properly.
 The nearest neighbor classifier predicts for a point X_i the target y_k of
@@ -26,12 +27,14 @@ from sklearn.metrics.pairwise import euclidean_distances
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
+
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """Write docstring.
+
         And describe parameters
         """
         X, y = check_X_y(X, y)
@@ -44,6 +47,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Write docstring.
+
         And describe parameters
         """
         check_is_fitted(self)
@@ -59,6 +63,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Write docstring.
+
         And describe parameters
         """
         X, y = check_X_y(X, y)
