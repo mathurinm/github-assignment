@@ -73,11 +73,3 @@ def wallis_product(n_terms):
         product *= (4 * i**2) / ((4 * i**2) - 1)
 
     return product * 2
-
-
-
-
-
-
-
-
