@@ -1,4 +1,11 @@
+"""
+This module contains the solutions for the exercises.
+
+It has functions to find the index of the max in an array and find pi.
+"""
+
 import numpy as np
+
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -21,13 +28,13 @@ def max_index(X):
     """
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array")
-    
+
     if X.ndim != 2:
         raise ValueError("Input array must be 2D")
 
     # Trova l'indice piatto del massimo
     flat_index = np.argmax(X)
-    
+
     # Usa divmod per ottenere riga e colonna
     i, j = divmod(flat_index, X.shape[1])
 
