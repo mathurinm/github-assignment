@@ -29,46 +29,82 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features_in)
+            The training input samples.
+        y : array of shape (n_samples,)
+            The target values (class labels).
+
+        Returns
+        -------
+        self : object
+            Returns the fitted instance.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_train = X
+        self.y_train = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
-        check_is_fitted(self)
+        Predict class labels for the given input samples.
+
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features_in)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted class labels.
+        """
+        check_is_fitted(self)  # Verify that the estimator is fitted
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
-
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train - x, axis=1)
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_train[nearest_index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Compute the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features_in)
+            The input samples.
+
+        y : array of shape (n_samples,)
+            True labels for the input samples.
+
+        Returns
+        -------
+        accuracy : float
+            The fraction of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
