@@ -91,7 +91,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Return the accuracy of the classifier on the given test data and labels
+        Return the accuracy of the classifier on the given test data and labels.
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
