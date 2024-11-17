@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,46 +30,83 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
+
+    This classifier implements the One Nearest Neighbor algorithm which predicts
+    the class of a given sample based on the class of the closest sample in the
+    training data. The proximity is measured using the Euclidean distance.
+
+    Methods:
+    fit(X, y):
+        Fits the model using the training data.
+    predict(X):
+        Predicts the class labels for the provided data.
+    score(X, y):
+        Returns the mean accuracy on the given test data and labels.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fits the data to the self instance.
 
-        And describe parameters
+        Parameters:
+        X (np.ndarray): 2D array containing the features of the observations,
+        y (np.ndarray): 1D array containing the classes of the observations.
+
+        Returns:
+        self (OneNearestNeighbor): the fitted instance.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.is_fitted_ = True
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predicts the class of new observations based on the training data.
 
-        And describe parameters
+        Parameters:
+        X (np.ndarray): 2D array containing the features of the observations.
+
+        Returns:
+        y_pred (np.ndarray): 1D array containing the predicted class based on the training data.
         """
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
+        for i, x in enumerate(X):
+            min_dist = np.inf
+            for j, x_train in enumerate(self.X_):
+                dist = np.linalg.norm(x - x_train)
+                if dist < min_dist:
+                    min_dist = dist
+                    y_pred[i] = self.y_[j]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Scores the prediction of the OneNearestNeighbor model for given data.
+        Compares the predicted classes with the real classes and returns the mean accuracy.
 
-        And describe parameters
+        Parameters:
+        X (np.ndarray): 2D array containing the features of the observations,
+        y (np.ndarray): 1D array containing the real classes of the observations.
+
+        Returns:
+        y_pred.sum() (int): the score of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
+        y_pred = (y_pred == y).astype(float) / len(y)
         return y_pred.sum()
