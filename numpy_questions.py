@@ -1,3 +1,11 @@
+"""
+This module contains functions related to numpy operations and examples.
+
+Functions:
+- max_index: Returns the index of the maximum value in a 2D numpy array.
+- wallis_product: Approximates the value of pi.
+"""
+
 import numpy as np
 
 
@@ -46,7 +54,7 @@ def wallis_product(n_terms):
     Returns
     -------
     pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
+        The approximation of order "n_terms" of pi using the Wallis product.
     """
     if n_terms == 0:
         return 1

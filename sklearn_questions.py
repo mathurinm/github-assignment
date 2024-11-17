@@ -1,3 +1,9 @@
+"""
+This module contains the implementation of KNN algorithm with k=1.
+
+Classes:
+- OneNearestNeighbor: A custom one-nearest-neighbor classifier implementation.
+"""
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.multiclass import check_classification_targets
