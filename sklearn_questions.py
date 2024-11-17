@@ -29,46 +29,87 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
 
-    def __init__(self):  # noqa: D107
+    This classifier implements a One nearest neighbor algorithm using
+    Euclidean distance. It predicts the label of a point as the label of
+    the closest training sample.
+    """
+
+    def __init__(self):
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the classifier using the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            Training samples (inpiut).
+        y : array of shape (n_samples,)
+            These target values (class labels) for the training input.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted class label for each input sample.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
-        return y_pred
+        y_pred = []
+        for x in X:
+            # Compute Euclidean distances
+            distances = np.linalg.norm(self.X_ - x, axis=1)
+            # Find the index of the closest training sample
+            nearest_index = np.argmin(distances)
+            # Append the corresponding label our predictions (y_pred)
+            y_pred.append(self.y_[nearest_index])
+
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Compute the averag accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            The test input samples.
+        y : array-like of shape (n_samples,)
+            The true labels for the test input.
+
+        Returns
+        -------
+        score : float
+            The accuracy of the classifier, defined as the proportion
+            of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
