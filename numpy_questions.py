@@ -17,19 +17,18 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
-
-def max_index(X):
+def find_max_index(input_array):
     """Return the index of the maximum in a numpy array.
 
     Parameters
     ----------
-    X : ndarray of shape (n_samples, n_features)
+    input_array : ndarray of shape (n_samples, n_features)
         The input array.
 
     Returns
     -------
-    (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+    (row_index, col_index) : tuple(int)
+        The row and column index of the maximum.
 
     Raises
     ------
@@ -37,15 +36,24 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    if not isinstance(input_array, np.ndarray) or input_array.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array")
 
-    # TODO
+    row_index = 0
+    col_index = 0
+    maximum_value = input_array[row_index, col_index]
 
-    return i, j
+    for row in range(input_array.shape[0]):
+        for col in range(input_array.shape[1]):
+            if input_array[row, col] > maximum_value:
+                maximum_value = input_array[row, col]
+                row_index = row
+                col_index = col
+
+    return row_index, col_index
 
 
-def wallis_product(n_terms):
+def compute_wallis_product(num_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
@@ -53,15 +61,21 @@ def wallis_product(n_terms):
 
     Parameters
     ----------
-    n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
+    num_terms : int
+        Number of steps in the Wallis product. Note that `num_terms=0` will
         consider the product to be `1`.
 
     Returns
     -------
-    pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
+    approx_pi : float
+        The approximation of order `num_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    if num_terms == 0:
+        return 1.0
+
+    wallis_product_value = 1.0
+    for index in range(1, num_terms + 1):
+        wallis_product_value *= (4 * index ** 2) / (4 * index ** 2 - 1)
+
+    approx_pi = 2 * wallis_product_value
+    return approx_pi

@@ -20,55 +20,101 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """
+    OneNearestNeighbor classifier.
+
+    Parameters
+    ----------
+    None
+
+    Attributes
+    ----------
+    unique_classes_ : ndarray of shape (n_classes,)
+        The class labels.
+    input_features_count_ : int
+        The number of features in the input data.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
-    def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+    def fit(self, data_features, target_values):
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        Fit the OneNearestNeighbor model according to the given training data.
 
-        # XXX fix
+        Parameters
+        ----------
+        data_features : {array-like, sparse matrix} of shape (n_samples, n_features)
+            The training input samples.
+        target_values : array-like of shape (n_samples)
+            The target values.
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+        data_features, target_values = check_X_y(data_features, target_values)
+        check_classification_targets(target_values)
+        self.unique_classes_ = np.unique(target_values)
+        self.input_features_count_ = data_features.shape[1]
+
+        self.train_features_ = data_features
+        self.train_labels_ = target_values
+
         return self
 
-    def predict(self, X):
-        """Write docstring.
+    def predict(self, input_data):
+        """
+        Predict the target for the input data.
 
-        And describe parameters
+        Parameters
+        ----------
+        input_data : {array-like, sparse matrix} of shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        predicted_labels : ndarray of shape (n_samples,)
+            The predicted target.
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+        input_data = check_array(input_data)
+        predicted_labels = np.full(
+            shape=len(input_data), fill_value=self.unique_classes_[0],
+            dtype=self.unique_classes_.dtype
         )
+        for index, data_point in enumerate(input_data):
+            distances = np.linalg.norm(self.train_features_ - data_point, axis=1)
+            closest_index = np.argmin(distances)
+            predicted_labels[index] = self.train_labels_[closest_index]
 
-        # XXX fix
-        return y_pred
+        return predicted_labels
 
-    def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+    def score(self, input_data, true_labels):
         """
-        X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        Return the accuracy of the model.
 
-        # XXX fix
-        return y_pred.sum()
+        Parameters
+        ----------
+        input_data : {array-like, sparse matrix} of shape (n_samples, n_features)
+            The input samples.
+        true_labels : array-like of shape (n_samples)
+            The target values.
+
+        Returns
+        -------
+        accuracy_score : float
+            The accuracy of the model.
+        """
+        input_data, true_labels = check_X_y(input_data, true_labels)
+        predicted_labels = self.predict(input_data)
+
+        accuracy_score = np.mean(predicted_labels == true_labels)
+        return accuracy_score
