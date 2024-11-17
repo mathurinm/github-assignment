@@ -21,7 +21,7 @@ Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
 Coutière	Guillaume X
-De Rosen	Vassili
+De Rosen	Vassili X
 Della Gatta	Tommaso X
 Deng	Dixin X
 Desjuzeur	Basile X
@@ -89,4 +89,3 @@ Zana	Solal
 Zhang	Wenxu
 Zheng	Wenlei
 Digua Mehdi X
-de Rosen Vassili X
