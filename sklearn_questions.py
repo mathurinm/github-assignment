@@ -37,7 +37,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     the class of a given sample based on the class of the closest sample in the
     training data. The proximity is measured using the Euclidean distance.
 
-    Methods:
+    Methods
+    ----------
     fit(X, y):
         Fits the model using the training data.
     predict(X):
@@ -60,9 +61,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y: np.ndarray
             1D array containing the classes of the observations.
 
-        Returns:
+        Returns
         ----------
-        self (OneNearestNeighbor): the fitted instance.
+        self: OneNearestNeighbor
+            The fitted instance.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -77,13 +80,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         Predicts the class of new observations based on the training data.
 
-        Parameters:
-        X (np.ndarray):
+        Parameters
+        ----------
+        X: np.ndarray
             2D array containing the features of the observations.
 
-        Returns:
-        y_pred (np.ndarray):
+        Returns
+        y_pred: np.ndarray
             1D array containing the predicted class based on the training data.
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -105,12 +110,18 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Scores the prediction of the OneNearestNeighbor model for given data.
         Compares predicted classes with real classes and returns mean accuracy.
 
-        Parameters:
-        X (np.ndarray): 2D array containing the features of the observations,
-        y (np.ndarray): 1D array containing the real classes of the observations.
+        Parameters
+        ----------
+        X: np.ndarray
+            2D array containing the features of the observations,
+        y: np.ndarray
+            1D array containing the real classes of the observations.
 
-        Returns:
-        y_pred.sum() (int): the score of the model.
+        Returns
+        ----------
+        y_pred.sum(): int
+            The score of the model.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
