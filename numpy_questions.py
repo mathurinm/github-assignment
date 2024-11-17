@@ -37,11 +37,23 @@ def max_index(X):
     """
     i = 0
     j = 0
+<<<<<<< Updated upstream
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array")
     if X.ndim != 2:
         raise ValueError("Input array must be 2D")
     i, j = np.unravel_index(X.argmax(), X.shape)
+=======
+
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input must be a numpy array")
+
+    if X.ndim != 2:
+        raise ValueError("Input must be a 2D numpy array")
+
+    i, j = np.unravel_index(np.argmax(X), X.shape)
+
+>>>>>>> Stashed changes
     return i, j
 
 
@@ -64,7 +76,15 @@ def wallis_product(n_terms):
         return 1
 
     n = np.arange(1, n_terms + 1)
+<<<<<<< Updated upstream
     prod_terms = (4 * n ** 2) / (4 * n ** 2 - 1)
     pi_estimated = 2 * np.prod(prod_terms)
 
     return pi_estimated
+=======
+
+    product_terms = (4 * n**2) / (4 * n**2 - 1)
+    pi_approx = 2 * np.prod(product_terms)
+
+    return pi_approx
+>>>>>>> Stashed changes

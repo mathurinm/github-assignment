@@ -39,12 +39,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
+<<<<<<< Updated upstream
         X : array-like of shape (n_samples, n_features) dataset
         y : array-like of shape (n_samples,) Target values
         Returns
         -------
         self : object
         Returns itself.
+=======
+        X : array-like of shape (n_samples, n_features) data.
+        y : array-like of shape (n_samples,)Target values.
+        Returns
+        -------
+        self : object Returns itself.
+>>>>>>> Stashed changes
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -54,6 +62,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
+<<<<<<< Updated upstream
         return self
 
     def predict(self, X):
@@ -67,6 +76,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ----------
         y_pred : array, shape (n_samples,)
         The predicted class labels.
+=======
+        self.X_ = X
+        self.y_ = y
+        return self
+
+    def predict(self, X):
+        """Predict class labels for samples in X.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features) Input samples.
+        Returns
+        ----------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted labels.
+>>>>>>> Stashed changes
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -84,6 +109,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
+<<<<<<< Updated upstream
         """
         Calculate the accuracy of the model.
 
@@ -94,6 +120,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         ----------
         Accuracy of the model
+=======
+        """Return the accuracy of the classifier.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features).
+        y : array-like of shape (n_samples,).
+        Returns
+        ----------
+        accuracy :Accuracy of the classifier on the test set.
+>>>>>>> Stashed changes
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
