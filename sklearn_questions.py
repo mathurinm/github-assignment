@@ -54,11 +54,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         self.X_ = X
         self.y_ = y
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
         return self
 
@@ -76,19 +76,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred : ndarray of shape (n_samples,)
             The predicted labels for each input sample.
         """
-        check_is_fitted(self, ["X_", "y_"])
+        # Ensure the estimator has been fitted
+        check_is_fitted(self)
         X = check_array(X)
+        y_pred = np.full(
+            shape=len(X), fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
+        )
 
-        y_pred = []
-        for x in X:
-            # Compute Euclidean distances from x to all training samples
+        # Compute predictions
+        for i, x in enumerate(X):
             distances = np.linalg.norm(self.X_ - x, axis=1)
-            # Find the index of the closest training sample
             nearest_idx = np.argmin(distances)
-            # Assign the label of the closest training sample
-            y_pred.append(self.y_[nearest_idx])
+            y_pred[i] = self.y_[nearest_idx]
 
-        return np.array(y_pred)
+        return y_pred
 
     def score(self, X, y):
         """
