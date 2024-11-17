@@ -15,8 +15,6 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
-from itertools import product
-
 import numpy as np
 
 
@@ -72,7 +70,7 @@ def wallis_product(n_terms):
 
     w_product = 1
 
-    for n in range (1, n_terms + 1):
+    for n in range(1, n_terms + 1):
         numerator = 4 * n**2
         denominator = 4 * n**2 - 1
         w_product *= numerator / denominator
