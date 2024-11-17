@@ -4,7 +4,7 @@ This README contains:
 - general useful information about working with GitHub.
 
 ## I) The assignment
-Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy, project started by Thomas Moreau and Alexandre Gramfort.
+This work is based on https://github.com/x-datascience-datacamp/datacamp-assignment-numpy, project started by Thomas Moreau and Alexandre Gramfort.
 
 ### What this assignment teaches you:
 
@@ -19,16 +19,20 @@ Forked from https://github.com/x-datascience-datacamp/datacamp-assignment-numpy,
 ### Prerequisite
   - Create a GitHub account.
   - Add **one** of the following ways to authenticate to push to your repositories:
-    - SSH: generate and add a public/private SSH key pair to GitHub. [GitHub tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
     - HTTPS: generate and save a GitHub token to connect with HTTPS: [GitHub tutorial](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+    - SSH: generate and add a public/private SSH key pair to GitHub. [GitHub tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+    (SSH may be a bit more complex)
 ### Part A: basic PR
-  - Fork the repository by clicking on the `Fork` button on the upper right corner
+  - Fork this repository by clicking on the `Fork` button on the upper right corner of this page.
   - Clone the repository of your fork with: `git clone https://github.com/YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login)
+  - Check your directory with `pwd` then access the GitHub repository folder with `cd github-assignment`
   - Check which remote (distant) repositories your local repository knows, with `git remote -v` (v for verbose)
   - Setup git to work with the original repo (mine) with `git remote add upstream https://github.com/mathurinm/github-assignment` (tell git: there's a new remote repository to track and its name is `upstream`)
-  - Check again which remote (distant) repositories your local repositories knows. You should now see 2.
+  - Check again which remote (distant) repositories your local repositories knows (with `git remote -v`). You should now see 2.
   - Create a branch called `YOURNAME` using `git switch -c YOURNAME`, where your replace `YOURNAME` by YOUR name. Git tells you that it has created a new branch and you are now on this branch.
-  - Modify the file `students.txt` by adding an X at the end of the line with your name. This should be done on your machine, using vscode for example.
+  - Check the GitHub repository where you are and on which branch with `git status`.
+  - Modify the file `students.txt` by adding an `X` at the end of the line with your name. This should be done on your machine, using vscode for example.
   - Add and commit this file using `git add THEFILEYOUWANTTOADD` and `git commit m "YOUR COMMIT MESSAGE HERE"`. Check what you are doing with `git status`.
   - Push your branch to your repository with `git push`. If you haven't done anything more, git will complain that it does not know where to push: follow the instructions that it displays. If it complains that you must login, check the Prerequisite section of this Readme.
   - Send a Pull Request of this branch to this repository (mathurinm/github-assignment; not your fork) by going to https://github.com/mathurinm/github-assignment/pulls
@@ -126,6 +130,6 @@ You should also configure your email with
         "editor.defaultFormatter": "ms-python.autopep8",
     },
     "autopep8.args": [
-        "[\"--max-line-length\", \"88\"]"
+        "--max-line-length=88"
     ],
 ```
