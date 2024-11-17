@@ -35,40 +35,85 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
+        Fit the nearest neighbor classifier from the training data.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+
+        y : array-like of shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
+        """
+        # Vérifie les données X et y
         X, y = check_X_y(X, y)
+
+        # Vérifie que ce sont bien des cibles de classification
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
+
+        # Stocke les données d’entraînement
+        self.X_train_ = X
+        self.y_train_ = y
+
+        # Stocke le nombre de caractéristiques
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        Predict the class labels for the provided data.
 
-        # XXX fix
-        return y_pred
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data.
+
+        Returns
+        -------
+        y_pred : array-like of shape (n_samples,)
+            Predicted class labels.
+        """
+        # Vérifie si le modèle a été entraîné
+        check_is_fitted(self)
+
+        # Vérifie les données d’entrée
+        X = check_array(X)
+
+        # Calculer la distance euclidienne
+        distances = np.linalg.norm(self.X_train_ - X[:, np.newaxis], axis=2)
+
+        # Trouve les indices du plus proche voisin
+        nearest_neighbor_idx = np.argmin(distances, axis=1)
+
+        # Trouve la classe correspondante
+        y_pred = self.y_train_[nearest_neighbor_idx]
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
-        X, y = check_X_y(X, y)
+        Return the accuracy of the classifier on the test data.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test data.
+
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Accuracy of self.predict(X) wrt. y.
+        """
+        # Prédire les classes pour X
         y_pred = self.predict(X)
 
-        # XXX fix
+        # Calculer l'exactitude
         return y_pred.sum()
