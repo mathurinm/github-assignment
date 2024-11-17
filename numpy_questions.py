@@ -62,6 +62,8 @@ def wallis_product(n_terms):
     pi : float
         The approximation of pi.
     """
+    if n_terms == 0:
+        return 1.0
     product = 1.0
     for k in range(1, n_terms + 1):
         numerator = 4 * k**2
