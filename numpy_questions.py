@@ -17,17 +17,18 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
-def find_max_index(input_array):
+
+def max_index(X):
     """Return the index of the maximum in a numpy array.
 
     Parameters
     ----------
-    input_array : ndarray of shape (n_samples, n_features)
+    X : ndarray of shape (n_samples, n_features)
         The input array.
 
     Returns
     -------
-    (row_index, col_index) : tuple(int)
+    (i, j) : tuple(int)
         The row and column index of the maximum.
 
     Raises
@@ -36,24 +37,24 @@ def find_max_index(input_array):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    if not isinstance(input_array, np.ndarray) or input_array.ndim != 2:
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
         raise ValueError("Input must be a 2D numpy array")
 
-    row_index = 0
-    col_index = 0
-    maximum_value = input_array[row_index, col_index]
+    i = 0
+    j = 0
+    max_value = X[i, j]
 
-    for row in range(input_array.shape[0]):
-        for col in range(input_array.shape[1]):
-            if input_array[row, col] > maximum_value:
-                maximum_value = input_array[row, col]
-                row_index = row
-                col_index = col
+    for row in range(X.shape[0]):
+        for col in range(X.shape[1]):
+            if X[row, col] > max_value:
+                max_value = X[row, col]
+                i = row
+                j = col
 
-    return row_index, col_index
+    return i, j
 
 
-def compute_wallis_product(num_terms):
+def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
@@ -61,21 +62,20 @@ def compute_wallis_product(num_terms):
 
     Parameters
     ----------
-    num_terms : int
-        Number of steps in the Wallis product. Note that `num_terms=0` will
+    n_terms : int
+        Number of steps in the Wallis product. Note that `n_terms=0` will
         consider the product to be `1`.
 
     Returns
     -------
-    approx_pi : float
-        The approximation of order `num_terms` of pi using the Wallis product.
+    pi : float
+        The approximation of order `n_terms` of pi using the Wallis product.
     """
-    if num_terms == 0:
+    if n_terms == 0:
         return 1.0
 
-    wallis_product_value = 1.0
-    for index in range(1, num_terms + 1):
-        wallis_product_value *= (4 * index ** 2) / (4 * index ** 2 - 1)
+    product = 1.0
+    for i in range(1, n_terms + 1):
+        product *= (4 * i ** 2) / (4 * i ** 2 - 1)
 
-    approx_pi = 2 * wallis_product_value
-    return approx_pi
+    return 2 * product
