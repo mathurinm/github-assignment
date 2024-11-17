@@ -36,7 +36,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     with the Euclidean distance.
     """
 
-
     def __init__(self):
         pass
 
