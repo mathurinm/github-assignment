@@ -1,90 +1,91 @@
 Last name	First name
 
 Alberge	Julie
-Arya	Aditeya
+Arya	Aditeya X
 Bairagi	Soumyabrata X
-Bakkass	Shaymaa
-Barry	Ibrahim
+Bakkass	Shaymaa X
+Barry	Ibrahim X
 Belaïdi	William X
 Benayoun	Laëtitia
 Bensimon	Roy
 Berdah	Adam
 Bidault	Grégoire x
-Blivet	Alexandre
-Brochier	Felix
-Bùi	An Bình
-Bunford	Philip
-Burman	Dev
+Blivet	Alexandre  X
+Brochier	Felix X
+Bùi	An Bình X
+Bunford	Philip X
+Burman	Dev x
 Caceres	Gauthier X
-Capizzi	Simone
-Casalini	Sofia
+Capizzi	Simone   X
+Casalini	Sofia X
 Chen	Zhipeng
 Combettes	Sylvain X
-Coutière	Guillaume
-De Rosen	Vassili
-Della Gatta	Tommaso
+Coutière	Guillaume X
+De Rosen	Vassili X
+Della Gatta	Tommaso X
 Deng	Dixin X
 Desjuzeur	Basile X
 Digua	Mehdi
-Drion	Thibaud
-Falcon De Longevialle	Aymeric
+Drion	Thibaud X
+Falcon De Longevialle	Aymeric X
 Fan	Jingyi X
-Ferreira Valente Da Silva	Rafael
-Filisetti	Paul
-Giuliani	Alessandro
-Guenoun	Raphaël
-Guillet	Nicolas
-Haas	Pierre
-Harasym	Martyna
-Hauchecorne	Lucien
-Henry-Leo	Valentin X 
-Jamai	Mamoun
+Ferreira Valente Da Silva	Rafael X
+Filisetti	Paul X
+Giuliani	Alessandro X
+Guenoun	Raphael X
+Guillet	Nicolas X
+Haas	Pierre X
+Harasym	Martyna X
+Hauchecorne	Lucien X
+Henry-Leo	Valentin X
+Jamai	Mamoun X
 Jankowska	Magdalena X
-Kire	Cedric Emmanuel
-Kozikowski	Florian
-Krstic	Vera
+Kire	Cedric Emmanuel X
+Kozikowski	Florian X
+Krstic	Vera X
 Lacombe	Paul X
 Lafarguette	Pierre X
-Laget	Rémi
-Le Guyet	Théo
-Leibovici	Louis
+Laget	Rémi X
+Le Guyet	Théo X
+Leibovici	Louis X
 Leroy	Etienne  X
 Louis	Paul-Philip
-Malezieux	Côme
+Malezieux	Côme X
 Mansard	Diane x
-Martins Da Silva	João
+Martins Da Silva	João X
 Massias	Mathurin
-Melkonian	Audrey
-Milcent	   Thomas  X
+Melkonian	Audrey X
+Milcent	Thomas X
 Moufad	Badr
 Müller	Felix X
 Naton	Augustin X
 Niddam	Samy
-Ochterbeck	Maxim Leon
+Ochterbeck	Maxim Leon X
 Opitz	Glenn X
-Parekh	Nischay Chintanbhai
-Passet	Lydia
-Péretié	Louis
-Popat	Sheetal
+Parekh	Nischay Chintanbhai X
+Passet	Lydia X
+Péretié	Louis X
+Popat	Sheetal X
 Pottier	Clément X
-Rajzman	Samuel
-Salerno	Marco
+Rajzman	Samuel X
+Salerno	Marco X
 Senghor	Adrien X
-Sijelmassi Idrissi	Iliass
-Singh	Dhawal
-Song	Siyuan
-Soto	Victor
-Sreeraj	Nandana
-Sriram	Samyukt
-Tessier	Simon
-Tinelli	Léa
+Sijelmassi Idrissi	Iliass X
+Singh	Dhawal X
+Song	Siyuan X
+Soto	Victor X
+Sreeraj	Nandana X
+Sriram	Samyukt X
+Tessier	Simon X
+Tinelli	Léa X
 Triomphe	Gustave
-Violleau	Alexandre
-Wang	Chung-Hao
-Wang	Han
+Violleau	Alexandre X
+Wang	Chung-Hao X
+Wang	Han X
 Xie	Kaixin
 Youssef	Tracy
-Yu	Chenghao
-Zana	Solal
-Zhang	Wenxu
+Yu	Chenghao x
+Zana	Solal X
+Zhang	Wenxu X
 Zheng	Wenlei
+Digua Mehdi X
