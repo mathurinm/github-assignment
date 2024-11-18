@@ -31,6 +31,7 @@ from sklearn.utils.multiclass import check_classification_targets
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     """
     OneNearestNeighbor classifier.
+
     This classifier implements the 1-nearest neighbor algorithm, which predicts
     the class of a new sample based on the class of its nearest neighbor in
     the training set using Euclidean distance.
@@ -42,6 +43,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """
+        Fit the model from data in X and y.
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
@@ -63,11 +66,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # store the training data
         self.X_ = X
         self.y_ = y
-        
+
         return self
 
     def predict(self, X):
-        """Predict class labels for samples in X.
+        """
+        Predict class labels for samples in X.
 
         Parameters
         ----------
@@ -79,16 +83,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y : ndarray of shape (n_samples,)
             The predicted classes.
         """
-        check_is_fitted(self) 
+        check_is_fitted(self)
         X = check_array(X)
 
         if X.shape[1] != self.n_features_in_:
             raise ValueError(f"X {X.shape[1]} features, but OneNearestNeighbor"
                              f"is expecting {self.n_features_in_} features.")
-        
+
         # Initialize predictions array
         y_pred = np.zeros(X.shape[0], dtype=self.classes_.dtype)
-        
+
         # For each sample in X
         for i, sample in enumerate(X):
             # Calculate distances to all training samples
@@ -114,11 +118,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         score : float
             Mean accuracy of self.predict(X) with respect to y.
-        """
 
+        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         return np.mean(y_pred == y)
-
-
