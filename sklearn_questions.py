@@ -29,7 +29,25 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """One-Nearest-Neighbor classifier using Euclidean distance.
+
+    The classifier predicts, for each input sample, the label of the single
+    closest training sample in Euclidean distance.
+
+    Attributes
+    ----------
+    classes_ : ndarray of shape (n_classes,)
+        Unique class labels seen during `fit`.
+
+    n_features_in_ : int
+        Number of features seen during `fit`.
+
+    X_ : ndarray of shape (n_samples, n_features)
+        Training data stored after fitting.
+
+    y_ : ndarray of shape (n_samples,)
+        Training labels stored after fitting.
+    """
 
     def __init__(self):  # noqa: D107
         pass
