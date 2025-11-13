@@ -24,10 +24,12 @@ def max_index(X):
     ----------
     X : ndarray of shape (n_samples, n_features)
         The input array.
+
     Returns
     -------
     (i, j) : tuple(int)
         The row and columnd index of the maximum.
+
     Raises
     ------
     ValueError
