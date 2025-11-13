@@ -25,7 +25,7 @@ Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
 El Bakouri	Samy     
-Enderwitz	Julius     
+Enderwitz	Julius   X  
 Etienne	Romain     
 Finotti	Alice     
 Fix	Julian     
