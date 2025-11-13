@@ -23,8 +23,62 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
 from sklearn.utils.multiclass import check_classification_targets
+
+# Compatibility shim for scikit-learn versions without `validate_data`
+try:  # pragma: no cover - import behavior depends on sklearn version
+    from sklearn.utils.validation import validate_data as _sk_validate_data
+except Exception:  # pragma: no cover
+    _sk_validate_data = None
+
+
+def _validate_data(estimator, X, y=None, reset=True):
+    """Validate X and optional y with sklearn or a local fallback.
+
+    - If sklearn provides `validate_data`, delegate to it.
+    - Otherwise, use `check_X_y` / `check_array` and ensure `n_features_in_`
+      is set during fit (reset=True) and enforced during predict/score
+      (reset=False) with the standard error message format expected by
+      estimator checks.
+    """
+    if _sk_validate_data is not None:
+        if y is None:
+            return _sk_validate_data(estimator, X, reset=reset)
+        return _sk_validate_data(estimator, X, y, reset=reset)
+
+    # Fallback for older scikit-learn versions
+    if y is None:
+        X_checked = check_array(X)
+        if reset:
+            estimator.n_features_in_ = X_checked.shape[1]
+        else:
+            if (
+                hasattr(estimator, "n_features_in_")
+                and X_checked.shape[1] != estimator.n_features_in_
+            ):
+                raise ValueError(
+                    f"X has {X_checked.shape[1]} features, but "
+                    f"{estimator.__class__.__name__} is expecting "
+                    f"{estimator.n_features_in_} features as input"
+                )
+        return X_checked
+    else:
+        X_checked, y_checked = check_X_y(X, y)
+        if reset:
+            estimator.n_features_in_ = X_checked.shape[1]
+        else:
+            if (
+                hasattr(estimator, "n_features_in_")
+                and X_checked.shape[1] != estimator.n_features_in_
+            ):
+                raise ValueError(
+                    f"X has {X_checked.shape[1]} features, but "
+                    f"{estimator.__class__.__name__} is expecting "
+                    f"{estimator.n_features_in_} features as input"
+                )
+        return X_checked, y_checked
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -39,6 +93,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def __init__(self):  # noqa: D107
         pass
+
+    # No custom tags to maximize cross-version compatibility
 
     def fit(self, X, y):
         """Fit the classifier on the training data.
@@ -55,7 +111,15 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y)
+        if y is None:
+            # Be tolerant for older/newer sklearn checks that may call
+            # fit(X, None) when requires_y tag is not enforced.
+            X = _validate_data(self, X, reset=True)
+            self.X_ = X
+            self.y_ = None
+            self.n_features_in_ = X.shape[1]
+            return self
+        X, y = _validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -78,7 +142,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Predicted class labels.
         """
         check_is_fitted(self)
-        X = validate_data(self, X, reset=False)
+        X = _validate_data(self, X, reset=False)
         # Compute pairwise squared Euclidean distances efficiently
         A = np.sum(self.X_ ** 2, axis=1)[None, :]  # shape (1, n_train)
         B = np.sum(X ** 2, axis=1)[:, None]        # shape (n_test, 1)
@@ -102,6 +166,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             Mean accuracy of predictions on X with respect to y.
         """
-        X, y = validate_data(self, X, y, reset=False)
+        X, y = _validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
         return float(np.mean(y_pred == y))
