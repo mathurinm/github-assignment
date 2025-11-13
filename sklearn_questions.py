@@ -40,14 +40,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Ensure that target y is of a non-regression type.
                     The above was taken from sklearn's documentation.
 
-            Fit the OneNearestNeighbor model according to the given training data.
+            Fit OneNearestNeighbor model according to the given training data.
             Parameters:
                 X : ndarray of shape (n_samples, n_features)
                     Training data.
 
                 y : ndarray of shape (n_samples,)
                     Target values.
-            
+
             Returns: Model fit on the training data.
         """
         X, y = check_X_y(X, y)
@@ -63,15 +63,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """
             Checks that the model is fitted and X is 2D.
-            By default, the input is checked to be a non-empty 2D array containing
-            only finite values.
+            By default, the input is checked to be a non-empty 2D array
+            containing only finite values.
                     The above was taken from sklearn's documentation.
 
             Perform classification on test data X.
             Parameters:
                 X : ndarray of shape (n_samples, n_features)
                     Test samples.
-                
+
             Returns:
                 y_pred : ndarray of shape (n_samples,)
                     Predicted class labels for samples in X.
@@ -84,9 +84,9 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        distances = np.linalg.norm(X[:, np.newaxis] - self.X_, axis=2)            
+        distances = np.linalg.norm(X[:, np.newaxis] - self.X_, axis=2)
         nearest_neighbor_idx = np.argmin(distances, axis=1)
-        y_pred = self.y_[nearest_neighbor_idx]        
+        y_pred = self.y_[nearest_neighbor_idx]
 
         return y_pred
 
