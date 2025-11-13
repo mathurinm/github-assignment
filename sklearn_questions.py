@@ -30,8 +30,8 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """
-    OneNearestNeighbor Classifier.
+    """OneNearestNeighbor Classifier.
+
     Estimator that implements the 1-Nearest Neighbor algorithm to predict a new
     sample's label based on the closest training sample.
 
@@ -42,6 +42,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def __init__(self):
         """
+
         Init function.
 
         Returns
@@ -53,6 +54,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def fit(self, X, y):
         """
+
         Parameters
         ----------
         X: array of shape (n_samples, n_features)
@@ -74,6 +76,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def predict(self, X):
         """
+
         Parameters
         ----------
         X: array of shape (n_samples, n_features)
@@ -101,6 +104,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def score(self, X, y):
         """
+
         Parameters
         ----------
         X: array of shape (n_samples, n_features)
