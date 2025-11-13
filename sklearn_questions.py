@@ -57,7 +57,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Predicts the target y from a feature vector thanks to a nearest neighbor model that was previously fitted.
+        """Predicts the target y from a feature vector thanks to a nearest
+        neighbor model that was previously fitted.
 
         Parameters
         ----------
@@ -84,7 +85,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Returns the score of a model by evaluating its prediction against the ground truth.
+        """Returns the score of a model by evaluating its prediction against
+        the ground truth.
 
         Parameters
         ----------
