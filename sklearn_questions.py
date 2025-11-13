@@ -81,7 +81,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Return the number of correct label predictions on the given targeted data.
+        """Return the number of correct label predictions on the given data.
 
         Parameters
         ----------
