@@ -78,7 +78,9 @@ def wallis_product(n_terms):
         raise ValueError("n_terms must be an integer")
     if n_terms < 0:
         raise ValueError("n_terms must be non-negative")
-
+    if n_terms ==0:
+        return 1.0
+    
     product = 1.0
 
     # Wallis product
