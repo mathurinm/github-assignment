@@ -7,20 +7,20 @@ Bardou	Louan
 Barge	François     
 Baumelou	Gaspard X 
 Ben Hamou	Ethan     
-Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
+Benhiba El Idrissi	Mehdi     X
+Bernal	Alix    X 
 Boukhobza	Sila     X
 Brisset	Lancelot     
 Burtin	Léo     
 Chaabouni	Kenza     
 Chauhan	Bhavesh     
-Chou	Wei-Chieh     
+Chou	Wei-Chieh X    
 Clot	Augustin     
 De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
 Despréaux	Maxime X    
 Dhoowooah	Hitaishi X
-Dias Pinto Alfonso	Martin     
+Dias Pinto Alfonso	Martin X    
 Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
@@ -28,7 +28,7 @@ El Bakouri	Samy
 Enderwitz	Julius   X  
 Etienne	Romain     
 Finotti	Alice     
-Fix	Julian     
+Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur     
@@ -46,11 +46,11 @@ Jacobacci	Giacomo
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
 Kanaan	Julien     
-Karim	Omar     
+Karim	Omar  X   
 Keum	Hae In     X    
 Khaw	Tristan    X
 Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
+Korouhanba Khuman	Laikhuram  X   
 Lassus	Gabin     
 Lau	Martin Alexander     X
 Le Bacon	Alexandre     
@@ -85,17 +85,17 @@ Soro	Nangounon Mohamed
 Storp	Anais X    
 Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
-Tejodonkeng Menkem	Luc     
+Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan     
 Trancart	Nicolas     
 Vacca	Chloe X
-Vettori	Lucca     
+Vettori	Lucca   X     
 Watzinger	Benedikt     X
 Weinberg	Tom     
-Wu	Yuhan     
+Wu	Yuhan     X
 Xin	Yuqi     
 Xiong	Licheng     X
 Yamakawa	Karin     
-Young	Olivia Rose     
+Young	Olivia Rose X    
 Zhang	Fang     
 
