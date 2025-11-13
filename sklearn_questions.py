@@ -29,46 +29,96 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """One Nearest Neighbor classifier using Euclidean distance.
+
+    This classifier assigns to each test sample the label of the
+    training point closest to it in Euclidean distance.
+
+    Methods
+    -------
+    fit(X, y) :
+        Store the training data.
+
+    predict(X) :
+        Predict class labels for samples in X.
+
+    score(X, y) :
+        Return the mean accuracy on the given test data and labels.
+    """
 
     def __init__(self):  # noqa: D107
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the classifier from the training set (X, y).
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data.
+
+        y : ndarray of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : object
+            Returns the fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
+        self.X_train_ = X
+        self.y_train_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class label for each sample in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_queries, n_features)
+            Query data.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_queries,)
+            Predicted class labels.
         """
-        check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+        check_is_fitted(self, ["X_train_", "y_train_"])
+
+        distances = np.linalg.norm(
+            X[:, np.newaxis] - self.X_train_, axis=2
         )
 
-        # XXX fix
+        nearest_indices = np.argmin(distances, axis=1)
+
+        y_pred = self.y_train_[nearest_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test data.
+
+        y : ndarray of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
