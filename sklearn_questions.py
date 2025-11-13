@@ -20,9 +20,8 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_is_fitted, validate_data
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_is_fitted, check_X_y, check_array
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -34,6 +33,36 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def __init__(self):  # noqa: D107
         pass
+
+    # ----------------- compatibility helpers -----------------
+    def _fit_validate_compat(self, X, y):
+        """Validate X,y and set n_features_in_ (new/old sklearn)."""
+        try:
+            # new sklearn exposes _validate_data on estimators
+            X, y = self._validate_data(X, y)
+        except AttributeError:
+            # old sklearn fallback
+            X, y = check_X_y(X, y)
+            self.n_features_in_ = X.shape[1]
+        return X, y
+
+    def _predict_validate_compat(self, X):
+        """Validate X at predict time; check n_features_in_ if needed."""
+        try:
+            X = self._validate_data(X, reset=False)
+        except AttributeError:
+            X = check_array(X)
+            nfi = getattr(self, "n_features_in_", None)
+            if nfi is not None and X.shape[1] != nfi:
+                msg = (
+                    f"X has {X.shape[1]} features, but "
+                    f"{self.__class__.__name__} is expecting "
+                    f"{nfi} features as input"
+                )
+                raise ValueError(msg)
+
+        return X
+    # ---------------------------------------------------------
 
     def fit(self, X, y):
         """Fit the classifier.
@@ -50,7 +79,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y)
+        X, y = self._fit_validate_compat(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.X_ = X
@@ -63,37 +92,35 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
-            Samples to classify.
 
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
-            Predicted labels.
         """
         check_is_fitted(self, attributes=["X_", "y_"])
+        X = self._predict_validate_compat(X)
 
-        X = validate_data(self, X, reset=False)
-
+        # squared distances between X (n,d) and self.X_ (m,d)
         diff = X[:, None, :] - self.X_[None, :, :]
         dist2 = (diff ** 2).sum(axis=2)
         nn_idx = np.argmin(dist2, axis=1)
         return self.y_[nn_idx]
 
     def score(self, X, y):
-        """Return the mean accuracy on the given test data and labels.
+        """Return the mean accuracy on the given test data and labels."""
+        try:
+            X, y = self._validate_data(X, y, reset=False)
+        except AttributeError:
+            X_chk, y_chk = check_X_y(X, y)
+            nfi = getattr(self, "n_features_in_", None)
+            if nfi is not None and X_chk.shape[1] != nfi:
+                msg = (
+                    f"X has {X_chk.shape[1]} features, but "
+                    f"{self.__class__.__name__} is expecting "
+                    f"{nfi} features as input"
+                )
+                raise ValueError(msg)
+            X, y = X_chk, y_chk
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Test samples.
-        y : array-like of shape (n_samples,)
-            True labels.
-
-        Returns
-        -------
-        score : float
-            Mean accuracy of predictions w.r.t. `y`.
-        """
-        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
         return float(np.mean(y_pred == y))
