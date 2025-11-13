@@ -19,9 +19,9 @@ Clot	Augustin
 De Sauvan D'Aramon	Ithier     
 Descazeaud	Lucien     
 Despréaux	Maxime     
-Dhoowooah	Hitaishi     
+Dhoowooah	Hitaishi X
 Dias Pinto Alfonso	Martin     
-Docheva	Anna     
+Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
 El Bakouri	Samy     
@@ -35,7 +35,7 @@ Gaillard	Arthur
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
-Goyal	Harshita     
+Goyal	Harshita    X  
 Guo	Zixiao     
 Halle	Gabriel     
 Hartmann	Nick     
@@ -73,7 +73,7 @@ Moufad	Badr
 Nasr	Najib     
 Odend'Hal	Charles     
 Orioli	Martino     
-Patarlageanu	Andreea     
+Patarlageanu	Andreea     X
 Perrotton	Pauline     
 Rouzou	Julia     
 Sekri	Juliette     
@@ -81,6 +81,8 @@ Seugnet	Alec
 Singh	Ayush     
 Smith	Oliver     
 Söhnchen	Vincent  X
+Smith	Oliver X     
+Söhnchen	Vincent     
 Soro	Nangounon Mohamed     
 Storp	Anais     
 Sudhir	Anirudh Karat     
