@@ -23,34 +23,49 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.validation import check_array
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """ Fit the OneNearestNeighbor model to the given training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        y : ndarray of shape (n_samples,)
+
+        Returns
+        -------
+        self : object
+            The fitted model
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """ Predict the labels for the given training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +74,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            distances = np.linalg.norm(self.X_ - X[i, :], axis=1)
+            nearest_index = distances.argmin()
+            y_pred[i] = self.y_[nearest_index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """ Return the accuracy, i.e. the number of correct label predictions
+        on the given targeted data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+        y : ndarray of shape (n_samples,)
+
+        Returns
+        -------
+        score : float
+            The number of correct predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        y_pred = (y_pred == y)
+        return y_pred.sum()/len(y_pred)
