@@ -1,3 +1,5 @@
+# git test n'importe quoi
+
 """Assignment - making a sklearn estimator.
 
 The goal of this assignment is to implement by yourself a scikit-learn
