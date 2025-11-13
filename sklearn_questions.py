@@ -30,6 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier.
+
     This classifier implements the 1-nearest neighbor algorithm, which
     classifies a new data point based on the class of its closest neighbor
     in the training set. Proximity is measured using Euclidean distance.
