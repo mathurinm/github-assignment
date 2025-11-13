@@ -93,7 +93,7 @@ Vettori	Lucca   X
 Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     X
-Xin	Yuqi     
+Xin	Yuqi X  
 Xiong	Licheng     X
 Yamakawa	Karin     
 Young	Olivia Rose X    
