@@ -48,7 +48,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         self : object
-            
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
