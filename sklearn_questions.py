@@ -26,7 +26,6 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -122,16 +121,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         check_is_fitted(self)
         X = check_array(X)
-
-        # "validate_data" validates the input data X, for example, that the
-        # number of features are the same as the number of features of
-        # the fitted model
-        X = validate_data(self,
-                          X,
-                          ensure_2d=True,
-                          dtype=None,
-                          reset=False)
-
         # uses broadcasting to compute the difference between all points of the
         # X_fitted data and the X data we want to predict
         X_diff = self.X_train_.T[:, None, :] - X.T[:, :, None]
