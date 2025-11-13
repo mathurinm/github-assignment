@@ -68,4 +68,6 @@ def wallis_product(n_terms):
     product = 1.0
     for k in range(1, n_terms + 1):
         product *= (4 * k ** 2) / (4 * k ** 2 - 1)
+    if n_terms == 0:
+        return 1.0
     return product * 2
