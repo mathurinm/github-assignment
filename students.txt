@@ -85,16 +85,17 @@ Soro	Nangounon Mohamed
 Storp	Anais X
 Sudhir	Anirudh Karat  X
 Sultan	Sacha
-Tejodonkeng Menkem	Luc
+Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan
 Trancart	Nicolas
 Vacca	Chloe X
 Vettori	Lucca
 Watzinger	Benedikt     X
 Weinberg	Tom
-Wu	Yuhan
+Wu	Yuhan     X
 Xin	Yuqi
 Xiong	Licheng     X
 Yamakawa	Karin
-Young	Olivia Rose
+Young	Olivia Rose X
 Zhang	Fang
+
