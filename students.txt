@@ -7,14 +7,14 @@ Bardou	Louan
 Barge	François
 Baumelou	Gaspard X
 Ben Hamou	Ethan
-Benhiba El Idrissi	Mehdi
+Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X
 Boukhobza	Sila     X
 Brisset	Lancelot
 Burtin	Léo
 Chaabouni	Kenza
 Chauhan	Bhavesh
-Chou	Wei-Chieh
+Chou	Wei-Chieh X
 Clot	Augustin
 De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X
@@ -85,17 +85,16 @@ Soro	Nangounon Mohamed
 Storp	Anais X
 Sudhir	Anirudh Karat  X
 Sultan	Sacha
-Tejodonkeng Menkem	Luc
+Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan
 Trancart	Nicolas
 Vacca	Chloe X
 Vettori	Lucca
 Watzinger	Benedikt     X
 Weinberg	Tom
-Wu	Yuhan
+Wu	Yuhan     X
 Xin	Yuqi
 Xiong	Licheng     X
 Yamakawa	Karin
-Young	Olivia Rose
+Young	Olivia Rose X
 Zhang	Fang
-
