@@ -24,9 +24,9 @@ from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
-from sklearn.utils.validation import validate_data
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """
@@ -40,12 +40,13 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     ----------
     No parameters are needed for this simple implementation.
     """
+
+    def __init__(self):
+        pass
+
     def fit(self, X, y):
         """
         Fit the OneNearestNeighbor classifier.
-
-        The fitting process for 1NN simply involves storing the training data,
-        as this is a non-parametric, lazy learning algorithm.
 
         Parameters
         ----------
@@ -59,11 +60,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             Returns the instance itself.
         """
-        
-        X, y = check_X_y(X, y, ensure_all_finite=True, dtype=np.float64,
-                         estimator=self)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
-
 
         self.n_features_in_ = X.shape[1]
         self.X_ = X
@@ -76,8 +74,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         Predict the class label for the provided data.
 
-        The prediction is the target value of the single nearest neighbor
-        in the training data, based on Euclidean distance.
 
         Parameters
         ----------
@@ -89,14 +85,19 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (n_samples,)
             The predicted class labels for the input samples.
         """
-
         check_is_fitted(self)
-        X = validate_data(self, X=X, ensure_all_finite=True, dtype=np.float64,
-                          reset=False)
-        diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+        X = check_array(X)
+        
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+            )
 
-        distances_sq = np.sum(diff ** 2, axis=2)
-        nearest_idx = np.argmin(distances_sq, axis=1)
+        diff = X[:, None, :] - self.X_[None, :, :]
+        distances = np.linalg.norm(diff, axis=2)
+
+        nearest_idx = np.argmin(distances, axis=1)
         y_pred = self.y_[nearest_idx]
 
         return y_pred
@@ -117,8 +118,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             Mean accuracy of self.predict(X) vs. y.
         """
-
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        y = check_array(y, ensure_2d=False, ensure_all_finite=True, dtype=None)
 
         return np.mean(y_pred == y)
