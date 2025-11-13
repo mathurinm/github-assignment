@@ -83,7 +83,7 @@ Smith	Oliver X
 Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed     
 Storp	Anais     
-Sudhir	Anirudh Karat     
+Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
 Tejodonkeng Menkem	Luc     
 Thevaraja	Akilan     
