@@ -84,7 +84,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i, x_test in enumerate(X):
             distances = np.sqrt(np.sum((self.X_ - x_test) ** 2, axis=1))
             nearest = np.argmin(distances)
-            y_pred[1] = self.y_[nearest]
+            y_pred[i] = self.y_[nearest]
         return y_pred
 
     def score(self, X, y):
