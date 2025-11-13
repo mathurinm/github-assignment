@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -28,47 +29,114 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One-Nearest-Neighbor classifier.
+
+    This classifier assigns to each test sample the label of the
+    single closest training sample, using the Euclidean distance.
+
+    Methods
+    -------
+    fit(X, y)
+        Store the training data and labels.
+    predict(X)
+        Predict class labels for the input samples X.
+    score(X, y)
+        Compute the mean accuracy on the given test data and labels.
+    """
 
     def __init__(self):  # noqa: D107
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor model from the training dataset.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
         """
-        X, y = check_X_y(X, y)
+        # _validate_data handles n_features_in_ and consistent validation
+        X, y = check_X_y(
+            X,
+            y,
+            accept_sparse=False,
+            ensure_2d=True,
+            dtype=[np.float64, np.float32, np.int64, np.int32],
+        )
         check_classification_targets(y)
+
+        self.X_train_ = X
+        self.y_train_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each sample.
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+        check_is_fitted(self, ["X_train_", "y_train_", "n_features_in_"])
+
+        # Use check_array to enforce numeric dtype and check n_features
+        X = check_array(
+            X,
+            accept_sparse=False,
+            ensure_2d=True,
+            dtype=[np.float64, np.float32, np.int64, np.int32],
         )
 
-        # XXX fix
+        # Check feature consistency
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor is "
+                f"expecting {self.n_features_in_} features as input."
+            )
+
+        # Compute Euclidean distances: shape (n_samples_test, n_samples_train)
+        distances = np.linalg.norm(
+            self.X_train_[np.newaxis, :, :] - X[:, np.newaxis, :],
+            axis=2,
+        )
+
+        nearest_idx = np.argmin(distances, axis=1)
+        y_pred = self.y_train_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
