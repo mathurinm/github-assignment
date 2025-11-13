@@ -57,12 +57,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
-        
         return self
 
     def predict(self, X):
         """
-        Predict the labels based on X (the data provided) with the NearestNeighbor Estimator.
+        Predict the labels based on X with the NearestNeighbor Estimator.
 
         Parameters
         ----------
@@ -86,12 +85,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             d = np.linalg.norm(self.X_ - X[i, :], axis=1)
             nearest_index = d.argmin()
             y_pred[i] = self.y_[nearest_index]
-        
         return y_pred
 
     def score(self, X, y):
         """
-        Score the prediction by comparing the data with the output of the predict function.
+        Score the prediction with the predict function.
 
         Parameters
         ----------
@@ -107,5 +105,4 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         y_pred = (y_pred == y)
-        
         return y_pred.sum()/len(y_pred)
