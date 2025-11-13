@@ -36,7 +36,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """
-        Train the  OneNearestNeighbor predictor.
+        Train the OneNearestNeighbor predictor.
 
         Parameters
         ----------
@@ -48,7 +48,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         self : object
-
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -72,7 +71,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
-                predictions
+            predictions
         """
         check_is_fitted(self)
         X = check_array(X)
