@@ -30,7 +30,13 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-
+    """
+    One-nearest-neighbor classifier.
+    
+    This estimator stores the training data during `fit` and predicts
+    the label of a new sample as the label of the closest training
+    sample using the Euclidean distance.
+    """
     def __init__(self):  # noqa: D107
         pass
 

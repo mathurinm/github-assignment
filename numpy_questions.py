@@ -57,6 +57,20 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
+    """
+    Compute an approximation of pi using the Wallis product.
+
+    Parameters
+    ----------
+    n_terms : int
+        Number of terms in the Wallis product. If `n_terms=0`,
+        the function returns 1.
+
+    Returns
+    -------
+    pi : float
+        Approximation of pi computed with `n_terms` terms.
+    """
     if n_terms == 0:
         return 1
 
