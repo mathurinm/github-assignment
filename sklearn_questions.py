@@ -29,14 +29,14 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
-        Fits the model to data X and y
+        Fits the model to data X and y.
 
         X : training features
         y : training targets
@@ -72,7 +72,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def score(self, X, y):
         """
-        Computes the accuracy score for evaluation
+        Compute the accuracy score for evaluation.
 
         X : estimators
         y : target
