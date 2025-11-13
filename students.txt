@@ -44,7 +44,7 @@ Hou	Litong
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     X
+Jankovic	Nina     
 Kanaan	Julien     
 Karim	Omar     
 Keum	Hae In     
