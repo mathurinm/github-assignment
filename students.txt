@@ -1,24 +1,24 @@
-Acero	Arnolfo
+Acero	Arnolfo X
 Alberge	Julie
 Andreani	François
 Balech	Ryan
-Barbier	Rémi
+Barbier	RémiX
 Bardou	Louan
 Barge	François
-Baumelou	Gaspard
+Baumelou	Gaspard X
 Ben Hamou	Ethan
 Benhiba El Idrissi	Mehdi
 Bernal	Alix
-Boukhobza	Sila
+Boukhobza	Sila     X
 Brisset	Lancelot
 Burtin	Léo
 Chaabouni	Kenza
 Chauhan	Bhavesh
 Chou	Wei-Chieh
 Clot	Augustin
-De Sauvan D'Aramon	Ithier
-Descazeaud	Lucien
-Despréaux	Maxime
+De Sauvan D'Aramon	Ithier     X
+Descazeaud	Lucien X
+Despréaux	Maxime X
 Dhoowooah	Hitaishi X
 Dias Pinto Alfonso	Martin
 Docheva	Anna  X
@@ -30,7 +30,7 @@ Etienne	Romain
 Finotti	Alice
 Fix	Julian
 Fouache D'Halloy	Martin
-Franco--Tetu	Erwan
+Franco--Tetu	Erwan  X
 Gaillard	Arthur
 Geagea	Christele
 Goossens	Guust
@@ -40,57 +40,57 @@ Guo	Zixiao
 Halle	Gabriel
 Hartmann	Nick
 Heimann	Carl
-Hou	Litong
-Hourquet	Augustin
+Hou	Litong  X
+Hourquet	Augustin  X
 Jacobacci	Giacomo
 Jacquin De Margerie	Anatole
 Jankovic	Nina
 Kanaan	Julien
 Karim	Omar
 Keum	Hae In
-Khaw	Tristan
+Khaw	Tristan    X
 Khazzaka	Chloe
 Korouhanba Khuman	Laikhuram     X
 Lassus	Gabin
-Lau	Martin Alexander
+Lau	Martin Alexander     X
 Le Bacon	Alexandre
 Lefebvre	Félix
-Levin	Nikolai
+Levin	Nikolai X
 Liard	Eléanor
 Liu	Guangyue
 Liu	Yunxian
-Lucille	Maximilien
+Lucille	Maximilien X
 Mahé	Blanche
-Martin	Justin
+Martin	Justin     X
 Massias	Mathurin
-Massoud	Alexandre
+Massoud	Alexandre.....X
 Mayette	Scott
 Melhaoui	Romaissae
 Meng	Ziqi
-Meyer	Felix
-Morais	Célia
+Meyer	Felix     X
+Morais	Célia X
 Moufad	Badr
 Nasr	Najib
 Odend'Hal	Charles
-Orioli	Martino
+Orioli	Martino     X
 Patarlageanu	Andreea     X
-Perrotton	Pauline
+Perrotton	Pauline  X
 Rouzou	Julia
 Sekri	Juliette
 Seugnet	Alec
 Singh	Ayush
 Smith	Oliver X
-Söhnchen	Vincent
+Söhnchen	Vincent  X
 Soro	Nangounon Mohamed
-Storp	Anais
-Sudhir	Anirudh Karat
+Storp	Anais X
+Sudhir	Anirudh Karat  X
 Sultan	Sacha
 Tejodonkeng Menkem	Luc
 Thevaraja	Akilan
 Trancart	Nicolas
-Vacca	Chloe
+Vacca	Chloe X
 Vettori	Lucca
-Watzinger	Benedikt
+Watzinger	Benedikt     X
 Weinberg	Tom
 Wu	Yuhan
 Xin	Yuqi
@@ -98,3 +98,4 @@ Xiong	Licheng
 Yamakawa	Karin
 Young	Olivia Rose
 Zhang	Fang
+
