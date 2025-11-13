@@ -94,7 +94,7 @@ Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     
 Xin	Yuqi     
-Xiong	Licheng     
+Xiong	Licheng     X
 Yamakawa	Karin     
 Young	Olivia Rose     
 Zhang	Fang     
