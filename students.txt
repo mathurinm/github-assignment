@@ -1,4 +1,4 @@
-Acero	Arnolfo X     
+cero	Arnolfo X     
 Alberge	Julie     
 Andreani	François     
 Balech	Ryan     
@@ -20,7 +20,7 @@ De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
 Despréaux	Maxime X    
 Dhoowooah	Hitaishi X
-Dias Pinto Alfonso	Martin     
+Dias Pinto Alfonso	Martin X    
 Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
