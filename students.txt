@@ -79,7 +79,7 @@ Rouzou	Julia X
 Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
-Rouzou	Julia     
+Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
 Singh	Ayush     
