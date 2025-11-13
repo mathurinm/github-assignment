@@ -36,7 +36,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """Fit the OneNearestNeighbor classifier
+        """Fit the OneNearestNeighbor classifier.
+
         This function stores training data X and the labels y.
 
         Parameters
