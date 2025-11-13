@@ -30,30 +30,30 @@ from sklearn.utils.validation import check_array
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Fit the classifier. This function stores training data X
+        """Fit the OneNearestNeighbor classifier. This function stores training data X
+
         and the labels y.
 
         Parameters
         ----------
-        X : Training data (n_samples, n_features)
+        X : Training data (n_samples, n_features).
 
-        Y : Target labels (n_samples)
+        Y : Target labels (n_samples).
 
         Returns
         -------
-
-        self : returns the fitted classifier
+        self : returns the fitted classifier.
 
         Raises
         ------
         ValueError
-            If X and y have different numbers of samples
+            If X and y have different numbers of samples.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -75,7 +75,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Returns
         -------
-
         y_pred : ndarray of shape (n_samples)
             The predicted classes for the n_samples.
         """
@@ -92,11 +91,10 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Return the score of the OneNearestNeighbor on a data set
+        """Return the score of the OneNearestNeighbor on a data set.
 
         Parameters
         ----------
-
         X : ndarray of shape (n_samples, n_features)
             The input array.
         y : ndarray of shape (n_samples)
@@ -104,7 +102,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Returns
         -------
-
         score : float
             The percentage of samples accurately predicted.
         """
