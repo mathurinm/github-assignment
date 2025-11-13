@@ -44,7 +44,7 @@ Hou	Litong
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     
+Jankovic	Nina     X
 Kanaan	Julien     
 Karim	Omar     
 Keum	Hae In     
@@ -71,7 +71,7 @@ Meyer	Felix
 Morais	Célia X    
 Moufad	Badr     
 Nasr	Najib     
-Odend'Hal	Charles     
+Odend'Hal	Charles     X
 Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
