@@ -85,7 +85,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-        
+
         argmin, _ = pairwise_distances_argmin_min(X, self.X_)
         y_pred = self.y_[argmin]
 
