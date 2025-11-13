@@ -5,7 +5,7 @@ The goals of this assignment are:
     * Use automated tools to validate the code (`pytest` and `flake8`)
     * Submit a Pull-Request on github to practice `git`.
 
-The two functions below are skeleton functions. The docstrings explain what
+The two functions below are skeleton functions. The docstrings explain wha
 are the inputs, the outputs and the expected error. Fill the function to
 complete the assignment. The code should be able to pass the test that we
 wrote. To run the tests, use `pytest test_numpy_questions.py` at the root of
@@ -39,7 +39,8 @@ def max_index(X):
     """
     i = 0
     j = 0
-
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        raise ValueError("X must be a 2D numpy.ndarray")
     lin_idx = np.argmax(X)
     i, j = np.unravel_index(lin_idx, X.shape)
 
@@ -50,17 +51,17 @@ def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
-    https://en.wikipedia.org/wiki/Wallis_product
+    https://en.wikipedia.org/wiki/Wallis_produc
 
     Parameters
     ----------
-    n_terms : int
+    n_terms : in
         Number of steps in the Wallis product. Note that `n_terms=0` will
         consider the product to be `1`.
 
     Returns
     -------
-    pi : float
+    pi : floa
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     # XXX : The n_terms is an int that corresponds to the number of
@@ -70,9 +71,8 @@ def wallis_product(n_terms):
         raise ValueError("n_terms must be a non-negative integer")
 
     if n_terms == 0:
-        return 2.0  # produit vide = 1 ⇒ pi ≈ 2 * 1
+        return 1.0
 
     k = np.arange(1, n_terms + 1, dtype=float)
     terms = (4 * k * k) / (4 * k * k - 1)
     return 2.0 * float(np.prod(terms, dtype=float))
-    
