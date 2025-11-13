@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-Acero	Arnolfo     
-=======
 Acero	Arnolfo X     
->>>>>>> b11caeb799f4377c9947c858b2dd19dad778920c
 Alberge	Julie     
 Andreani	François     
 Balech	Ryan     
@@ -15,7 +10,7 @@ Ben Hamou	Ethan
 Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X 
 Boukhobza	Sila     X
-Brisset	Lancelot     
+Brisset	Lancelot     X
 Burtin	Léo     
 Chaabouni	Kenza     
 Chauhan	Bhavesh     
@@ -31,12 +26,12 @@ Dreik	Gabriel
 Du	Jing     
 El Bakouri	Samy     
 Enderwitz	Julius   X  
-Etienne	Romain     
+Etienne	Romain X
 Finotti	Alice     
-Fix	Julian     
+Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
-Gaillard	Arthur     
+Gaillard	Arthur    X 
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
@@ -51,19 +46,20 @@ Jacobacci	Giacomo
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
 Kanaan	Julien     
-Karim	Omar     
-Keum	Hae In     
+Karim	Omar  X   
+Keum	Hae In     X    
 Khaw	Tristan    X
 Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
+Korouhanba Khuman	Laikhuram  X   
 Lassus	Gabin     
 Lau	Martin Alexander     X
-Le Bacon	Alexandre     
+Le Bacon	Alexandre  X   
 Lefebvre	Félix     
 Levin	Nikolai X    
 Liard	Eléanor     
-Liu	Guangyue     
-Yunxian Liu        X
+Liu	Guangyue    X 
+Liu	Yunxian     X
+Lucille	Maximilien X     
 Mahé	Blanche     
 Martin	Justin     X
 Massias	Mathurin     
@@ -74,12 +70,12 @@ Meng	Ziqi     X
 Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
-Nasr	Najib     
-Odend'Hal	Charles     X
+Nasr	Najib X
+Odend'Hal	Charles     
 Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
-Rouzou	Julia     
+Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
 Singh	Ayush     
@@ -93,11 +89,11 @@ Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan     
 Trancart	Nicolas     
 Vacca	Chloe X
-Vettori	Lucca     
+Vettori	Lucca   X     
 Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     X
-Xin	Yuqi     
+Xin	Yuqi X  
 Xiong	Licheng     X
 Yamakawa	Karin     
 Young	Olivia Rose X    
