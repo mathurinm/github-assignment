@@ -24,51 +24,101 @@ from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
+from sklearn.utils.validation import validate_data
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """
+    OneNearestNeighbor Classifier.
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    This estimator implements the 1-Nearest Neighbor classification algorithm.
+    It predicts the label of a new sample based on the label of the single
+    closest training sample (nearest neighbor) using Euclidean distance.
 
-    def __init__(self):  # noqa: D107
-        pass
-
+    Parameters
+    ----------
+    No parameters are needed for this simple implementation.
+    """
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        Fit the OneNearestNeighbor classifier.
 
-        # XXX fix
+        The fitting process for 1NN simply involves storing the training data,
+        as this is a non-parametric, lazy learning algorithm.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The training input samples.
+        y : array-like of shape (n_samples,)
+            The target values (class labels).
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
+        """
+        
+        X, y = check_X_y(X, y, ensure_all_finite=True, dtype=np.float64,
+                         estimator=self)
+        check_classification_targets(y)
+
+
+        self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
+        self.classes_ = np.unique(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        Predict the class label for the provided data.
 
-        # XXX fix
+        The prediction is the target value of the single nearest neighbor
+        in the training data, based on Euclidean distance.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The input samples to predict.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted class labels for the input samples.
+        """
+
+        check_is_fitted(self)
+        X = validate_data(self, X=X, ensure_all_finite=True, dtype=np.float64,
+                          reset=False)
+        diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+
+        distances_sq = np.sum(diff ** 2, axis=2)
+        nearest_idx = np.argmin(distances_sq, axis=1)
+        y_pred = self.y_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
         """
-        X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        Return the mean accuracy on the given test data and labels.
 
-        # XXX fix
-        return y_pred.sum()
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of self.predict(X) vs. y.
+        """
+
+        y_pred = self.predict(X)
+        y = check_array(y, ensure_2d=False, ensure_all_finite=True, dtype=None)
+
+        return np.mean(y_pred == y)
