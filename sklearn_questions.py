@@ -114,4 +114,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         
-        return float(np.mean(y_pred==y))
+        return float(np.mean(y_pred == y))
