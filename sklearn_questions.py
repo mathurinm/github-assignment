@@ -104,4 +104,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        return y_pred.sum()
+
+        accuracy = np.mean(y_pred == y)
+        return accuracy
