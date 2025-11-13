@@ -19,49 +19,31 @@ import numpy as np
 
 
 def max_index(X):
-    """Return the index of the maximum in a numpy array.
+    """Return the index of the maximum in a numpy array."""
+    # Check input type
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input must be a numpy array.")
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        The input array.
+    # Check shape
+    if X.ndim != 2:
+        raise ValueError("Input must be a 2D array.")
 
-    Returns
-    -------
-    (i, j) : tuple(int)
-        The row and columnd index of the maximum.
-
-    Raises
-    ------
-    ValueError
-        If the input is not a numpy array or
-        if the shape is not 2D.
-    """
-    i = 0
-    j = 0
-
-    # TODO
+    # Find the index of maximum
+    flat_index = np.argmax(X)
+    i, j = np.unravel_index(flat_index, X.shape)
 
     return i, j
 
 
 def wallis_product(n_terms):
-    """Implement the Wallis product to compute an approximation of pi.
+    """Implement the Wallis product to compute an approximation of pi."""
+    if n_terms == 0:
+        return 1.0  # by definition
 
-    See:
-    https://en.wikipedia.org/wiki/Wallis_product
+    product = 1.0
+    for n in range(1, n_terms + 1):
+        term = (4 * n * n) / (4 * n * n - 1)
+        product *= term
 
-    Parameters
-    ----------
-    n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
+    return 2 * product
 
-    Returns
-    -------
-    pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
-    """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
