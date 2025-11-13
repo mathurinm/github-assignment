@@ -72,7 +72,7 @@ Morais	Célia
 Moufad	Badr     
 Nasr	Najib     
 Odend'Hal	Charles     
-Orioli	Martino     
+Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline     
 Rouzou	Julia     
