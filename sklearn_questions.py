@@ -38,19 +38,47 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Write docstring.
 
         And describe parameters
+
+        Parameters
+        -----------
+        self : instance of the class (OneNearestNeighbor)
+
+        X : matrix of the features ; independent and explanatory variables
+
+        y : matrix of the explained variable
+
+        Returns
+        -------
+        self : fitted estimator
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
+        
         # XXX fix
+
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
         """Write docstring.
 
         And describe parameters
+
+        Parameters
+        ----------
+
+        self : instance of the class (OneNearestNeighbor)
+
+        X : features matrix
+
+        Returns
+        -------
+
+        y_pred : predictions for y based on inputted X
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,15 +88,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+
+        for i, X in enumerate(X):
+            #compute distance to all training samples
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            #pick smallest distance index
+            index_min = np.argmin(distances)
+            #assign the label
+            y_pred[i] = self.y_train_[index_min]
         return y_pred
 
     def score(self, X, y):
         """Write docstring.
 
         And describe parameters
+
+        Parameters
+        ----------
+
+        self : instance of the class (OneNearestNeighbor)
+
+        X : features matrix
+
+        y : explained variables matrix
+
+        Returns
+        -------
+
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
