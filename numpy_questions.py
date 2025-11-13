@@ -71,10 +71,7 @@ def wallis_product(n_terms):
     pi = 1.0
 
     for n in range(1, n_terms + 1):
-        # Use spaces around operators like ** for PEP 8 compliance
         num = 4.0 * n ** 2
         den = num - 1.0
-
-        # Corrected variable name from pi_over_2 to pi_by_2
         pi *= (num / den)
-    return pi
+    return pi*2
