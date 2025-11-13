@@ -19,7 +19,6 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
-#Modification
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,29 +28,34 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fits the model to data X and y
 
-        And describe parameters
+        X : training features
+        y : training targets
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predicts data X according to fit.
 
-        And describe parameters
+        X : estimators
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,16 +64,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            min_dist = np.argmin(distances)
+            y_pred[i] = self.y_train_[min_dist]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Computes the accuracy score for evaluation
 
-        And describe parameters
+        X : estimators
+        y : target
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
