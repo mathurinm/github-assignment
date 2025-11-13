@@ -87,7 +87,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         check_is_fitted(self)
         X = check_array(X)
-        
+
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
                 f"X has {X.shape[1]} features, but OneNearestNeighbor "
