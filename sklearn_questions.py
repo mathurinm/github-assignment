@@ -28,16 +28,28 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Implement the fitting of a nearest neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.darray of shape (number of samples, number of features)
+            The input array we want to fit on.
+
+        y : numpy.darray of shape (number of samples)
+            The target of the samples present in X.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -45,12 +57,24 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Implement the prediction of a target y according to the entry X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.darray of shape (number of samples, number of features)
+            The input array we want to predict.
+
+        Returns
+        -------
+        y : numpy.darray of shape (number of samples)
+            The prediction of the samples in X according to the
+            nearest neighbor classifier.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,15 +84,46 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                "X has {} features, but {} is expecting {} features as input"
+                .format(
+                    X.shape[1],
+                    self.__class__.__name__,
+                    self.n_features_in_,
+                )
+            )
+
+        diffs = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+        dist_sq = np.sum(diffs ** 2, axis=2)
+
+        nearest_indices = np.argmin(dist_sq, axis=1)
+
+        y_pred = self.y_[nearest_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Give the score of a prediction.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : numpy.darray of shape (number of samples, number of features)
+            The samples we test.
+
+        y : numpy.darray of shape (number of samples)
+            The true labels of the X we try to predict with the classifier.
+        Returns
+        -------
+        score : float
+            The mean accuracy of the predictor on the given data and target.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
+        y_pred = (y_pred == y).astype(float) / len(y)
+
         return y_pred.sum()
