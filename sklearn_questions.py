@@ -62,10 +62,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
-        for x_test in X:
+        for i, x_test in enumerate(X):
             distances = np.sum((self.X_ - x_test)**2, axis=1)
             closest_idx = np.argmin(distances)
-            y_pred.append(self.y_[closest_idx])
+            y_pred[i] = self.y_[closest_idx]
         return y_pred
 
     def score(self, X, y):
