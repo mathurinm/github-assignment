@@ -67,7 +67,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        y_pred=self.predict(X)
+        y_pred = self.predict(X)
         # XXX fix
         accuracy = np.mean(y_pred == y)
         return accuracy
