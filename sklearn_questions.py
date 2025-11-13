@@ -113,5 +113,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = self.predict(X)
 
         # XXX fix
-        y_pred=(y_pred==y)/len(y)
-        return y_pred.sum()
+        
+        return float(np.mean(y_pred==y))
