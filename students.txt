@@ -36,7 +36,7 @@ Geagea	Christele
 Goossens	Guust     
 Goursaud De Merlis	Ion     
 Goyal	Harshita    X  
-Guo	Zixiao     
+Guo	Zixiao     X
 Halle	Gabriel     
 Hartmann	Nick     
 Heimann	Carl     
