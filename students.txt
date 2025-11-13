@@ -70,7 +70,7 @@ Meng	Ziqi
 Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
-Nasr	Najib     
+Nasr	Najib X
 Odend'Hal	Charles     
 Orioli	Martino     X
 Patarlageanu	Andreea     X
