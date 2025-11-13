@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,28 +30,48 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """One Nearest Neighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training data.
+        y : ndarray of shape (n_samples, n_features)
+            Target for each training sample
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the OneNearestNeighbor class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted class for each sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,13 +80,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x_test in enumerate(X):
+            distances = np.sqrt(np.sum((self.X_ - x_test) ** 2, axis=1))
+            nearest_idx = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test data.
+        y : ndarray of shape (n_samples, n_features)
+            Train data.
+
+        Returns
+        -------
+        accuracy : float
+            The mean accuracy of the prediction.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
