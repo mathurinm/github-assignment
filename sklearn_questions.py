@@ -35,90 +35,78 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
 
-        And describe parameters
-
+        """
         Parameters
         -----------
         self : instance of the class (OneNearestNeighbor)
 
-        X : matrix of the features ; independent and explanatory variables
+        X : array of shape(n_samples, n_features)
+        matrix of the features; independent and explanatory variables
 
-        y : matrix of the explained variable
+        y : array of shape(n_samples,)
+        matrix of the explained variable
 
         Returns
         -------
-        self : fitted estimator
+        self : object
+        fitted estimator
 
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-        
-        # XXX fix
 
         self.X_train_ = X
         self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
-
+  
+        """
         Parameters
         ----------
 
-        self : instance of the class (OneNearestNeighbor)
-
-        X : features matrix
+        X : array of shape(n_samples, n_features)
+        matrix of the features; independent and explanatory variables
 
         Returns
         -------
 
-        y_pred : predictions for y based on inputted X
+        y_pred : array of shape(n_samples,)
+        predictions for y
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        y_pred = []
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(f"X has {X.shape[1]} features but expects {self.n_features_in_} features as input")
 
-        # XXX fix
+        for value in X:
+            distance = np.linalg.norm(self.X_train_ - value, axis=1)
+            index = np.argmin(distance)
+            y_pred.append(self.y_train_[index])
 
-        for i, X in enumerate(X):
-            #compute distance to all training samples
-            distances = np.linalg.norm(self.X_train_ - x, axis=1)
-            #pick smallest distance index
-            index_min = np.argmin(distances)
-            #assign the label
-            y_pred[i] = self.y_train_[index_min]
-        return y_pred
+        return np.array(y_pred)
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
-
-        Parameters
+        """Parameters
         ----------
 
-        self : instance of the class (OneNearestNeighbor)
+        X : array of shape(n_samples, n_features)
+        matrix of the features; independent and explanatory variables
 
-        X : features matrix
-
-        y : explained variables matrix
+        y : array of shape(n_samples,)
+        explained variable
 
         Returns
         -------
-
+        accuracy score : type float
 
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
         return np.mean(y_pred == y)
