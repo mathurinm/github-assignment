@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -40,7 +41,6 @@ def max_index(X):
     i = 0
     j = 0
 
-
     if not isinstance(X, np.ndarray):
         raise ValueError("The input must be a numpy array")
 
@@ -48,7 +48,7 @@ def max_index(X):
 
     if d != 2:
         raise ValueError("The input must be a 2D array")
-    
+
     i_flat = np.argmax(X)
 
     i, j = np.unravel_index(i_flat, X.shape)
@@ -57,34 +57,15 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
-    """Implement the Wallis product to compute an approximation of pi.
-
-    See:
-    https://en.wikipedia.org/wiki/Wallis_product
-
-    Parameters
-    ----------
-    n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
-
-    Returns
-    -------
-    pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
-    """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
 
     if n_terms == 0:
         return 1
-    
+
     tab = np.arange(1, n_terms + 1)
     n2 = tab * tab
-    n2x4 = 4*n2
-    n2x4_1 = n2x4 - 1 
-    final = n2x4/n2x4_1
+    n2x4 = 4 * n2
+    n2x4_1 = n2x4 - 1
+    final = n2x4 / n2x4_1
     prod = np.prod(final)
-    
 
-    return 2*prod
+    return 2 * prod

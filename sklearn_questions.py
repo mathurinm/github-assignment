@@ -47,9 +47,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.X_ = X
         self.y_ = y
 
-
-
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -64,15 +61,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-
         for i in range(len(X)):
             diff = self.X_ - X[i]
             dist = np.linalg.norm(diff, axis=1)
             idx = np.argmin(dist)
             y_pred[i] = self.y_[idx]
-
-
 
         return y_pred
 
