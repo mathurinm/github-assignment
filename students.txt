@@ -1,61 +1,61 @@
-Acero	Arnolfo     
+Acero	Arnolfo X     
 Alberge	Julie     
 Andreani	François     
 Balech	Ryan     
 Barbier	RémiX     
 Bardou	Louan     
 Barge	François     
-Baumelou	Gaspard     
+Baumelou	Gaspard X 
 Ben Hamou	Ethan     
-Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
+Benhiba El Idrissi	Mehdi     X
+Bernal	Alix    X 
 Boukhobza	Sila     X
 Brisset	Lancelot     
 Burtin	Léo     
 Chaabouni	Kenza     
 Chauhan	Bhavesh     
-Chou	Wei-Chieh     
+Chou	Wei-Chieh X    
 Clot	Augustin     
-De Sauvan D'Aramon	Ithier     
+De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
-Despréaux	Maxime     
+Despréaux	Maxime X    
 Dhoowooah	Hitaishi X
-Dias Pinto Alfonso	Martin     
+Dias Pinto Alfonso	Martin X    
 Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
 El Bakouri	Samy     
-Enderwitz	Julius     
+Enderwitz	Julius   X  
 Etienne	Romain     
 Finotti	Alice     
-Fix	Julian     
-Fouache D'Halloy	Martin     
+Fix	Julian     X
+Fouache D'Halloy Martin X  
+Franco--Tetu	Erwan  X 
 Gaillard	Arthur    X 
-Franco--Tetu	Erwan  X   
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
 Goyal	Harshita    X  
-Guo	Zixiao     
+Guo	Zixiao     X
 Halle	Gabriel     
 Hartmann	Nick     
-Heimann	Carl     
-Hou	Litong     
+Heimann	Carl X   
+Hou	Litong  X   
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     
+Jankovic	Nina    X 
 Kanaan	Julien     
-Karim	Omar     
-Keum	Hae In     
-Khaw	Tristan     
+Karim	Omar  X   
+Keum	Hae In     X    
+Khaw	Tristan    X
 Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
+Korouhanba Khuman	Laikhuram  X   
 Lassus	Gabin     
 Lau	Martin Alexander     X
 Le Bacon	Alexandre     
 Lefebvre	Félix     
-Levin	Nikolai     
+Levin	Nikolai X    
 Liard	Eléanor     
 Liu	Guangyue     
 Liu	Yunxian     
@@ -66,11 +66,11 @@ Massias	Mathurin
 Massoud	Alexandre.....X
 Mayette	Scott     
 Melhaoui	Romaissae     
-Meng	Ziqi     
-Meyer	Felix     
+Meng	Ziqi     X
+Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
-Nasr	Najib     
+Nasr	Najib X
 Odend'Hal	Charles     
 Orioli	Martino     X
 Patarlageanu	Andreea     X
@@ -82,19 +82,20 @@ Singh	Ayush
 Smith	Oliver X     
 Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed     
-Storp	Anais     
+Storp	Anais X    
 Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
-Tejodonkeng Menkem	Luc     
+Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan     
 Trancart	Nicolas     
-Vacca	Chloe     
-Vettori	Lucca     
+Vacca	Chloe X
+Vettori	Lucca   X     
 Watzinger	Benedikt     X
 Weinberg	Tom     
-Wu	Yuhan     
+Wu	Yuhan     X
 Xin	Yuqi     
-Xiong	Licheng     
+Xiong	Licheng     X
 Yamakawa	Karin     
-Young	Olivia Rose     
+Young	Olivia Rose X    
 Zhang	Fang     
+
