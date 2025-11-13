@@ -68,7 +68,7 @@ def wallis_product(n_terms):
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
 
-    pi_by_2 = 1.0
+    pi = 1.0
 
     for n in range(1, n_terms + 1):
         # Use spaces around operators like ** for PEP 8 compliance
@@ -76,5 +76,5 @@ def wallis_product(n_terms):
         den = num - 1.0
 
         # Corrected variable name from pi_over_2 to pi_by_2
-        pi_by_2 *= (num / den)
-    return 2.0 * pi_by_2
+        pi *= (num / den)
+    return 2.0 * pi
