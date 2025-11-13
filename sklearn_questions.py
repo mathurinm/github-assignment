@@ -26,7 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.metrics import pairwise_distances_argmin_min
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_array
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -55,8 +55,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         ValueError
             If X and y have different numbers of samples
         """
-        # X, y = check_X_y(X, y)
-        X, y = validate_data(self, X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -82,7 +81,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         check_is_fitted(self)
         X = validate_data(self, X, reset=False)
-        # X = check_array(X, ensure_min_features=self.n_features_in_)
+        X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
