@@ -29,26 +29,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
         """
-            Checks X and y for consistent length, enforces X to be 2D and y 1D.
-            Ensure that target y is of a non-regression type.
-                    The above was taken from sklearn's documentation.
+        Checks X and y for consistent length, enforces X to be 2D and y 1D.
+        Ensure that target y is of a non-regression type.
+        The above was taken from sklearn's documentation.
 
-            Fit OneNearestNeighbor model according to the given training data.
-            Parameters:
-                X : ndarray of shape (n_samples, n_features)
-                    Training data.
+        Fit OneNearestNeighbor model according to the given training data.
+        Parameters:
+        X : ndarray of shape (n_samples, n_features)
+        Training data.
 
-                y : ndarray of shape (n_samples,)
-                    Target values.
+        y : ndarray of shape (n_samples,)
+        Target values.
 
-            Returns: Model fit on the training data.
+        Returns: Model fit on the training data.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -62,19 +62,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """
-            Checks that the model is fitted and X is 2D.
-            By default, the input is checked to be a non-empty 2D array
-            containing only finite values.
-                    The above was taken from sklearn's documentation.
+        Check that the model is fitted and X is 2D.
+        By default, the input is checked to be a non-empty 2D array
+        containing only finite values.
+        The above was taken from sklearn's documentation.
 
-            Perform classification on test data X.
-            Parameters:
-                X : ndarray of shape (n_samples, n_features)
-                    Test samples.
+        Perform classification on test data X.
+        Parameters:
+        X : ndarray of shape (n_samples, n_features)
+        Test samples.
 
-            Returns:
-                y_pred : ndarray of shape (n_samples,)
-                    Predicted class labels for samples in X.
+        Returns:
+        y_pred : ndarray of shape (n_samples,)
+        Predicted class labels for samples in X.
         """
         X = check_array(X)
         check_is_fitted(self)
@@ -92,19 +92,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-            Checks that the model is fitted and X and y have consistent length.
-                    The above was taken from sklearn's documentation.
+        Check that the model is fitted and X and y have consistent length.
+        The above was taken from sklearn's documentation.
 
-            Returns the accuracy on the given test data and labels.
-            Parameters:
-                X : ndarray of shape (n_samples, n_features)
-                    Test samples.
+        Returns the accuracy on the given test data and labels.
+        Parameters:
+        X : ndarray of shape (n_samples, n_features)
+        Test samples.
 
-                y : ndarray of shape (n_samples,)
-                    True labels for X.
-            Returns:
-                score : float
-                    Accuracy of self.predict(X) wrt. y.
+        y : ndarray of shape (n_samples,)
+        True labels for X.
+
+        Returns:
+        score : float
+        Accuracy of self.predict(X) wrt. y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
