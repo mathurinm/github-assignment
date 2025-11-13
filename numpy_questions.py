@@ -68,7 +68,6 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-
     pi_half = 1.0
 
     if n_terms == 0:
