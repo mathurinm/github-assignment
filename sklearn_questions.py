@@ -42,6 +42,14 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """
 
     def __init__(self):
+        """
+        Init function.
+
+        Returns
+        -------
+        None.
+
+        """
         pass
 
     def fit(self, X, y):
@@ -73,7 +81,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     def predict(self, X):
         """
         Predict the class label for the provided data.
-
 
         Parameters
         ----------
