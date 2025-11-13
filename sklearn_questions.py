@@ -35,22 +35,41 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the One-Nearest-Neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+
+        y : array-like of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,17 +77,28 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        X_sq = np.sum(X * X, axis=1, keepdims=True)
+        Xtr_sq = np.sum(self.X_ * self.X_, axis=1, keepdims=True)
+        cross = X @ self.X_.T
+        d2 = X_sq - 2.0 * cross + Xtr_sq.T
+        nn_idx = np.argmin(d2, axis=1)
+        y_pred = self.y_[nn_idx]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels.
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions on X compared to y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return float(np.mean(y_pred == y))
