@@ -3,14 +3,14 @@ Acero	Arnolfo
 Alberge	Julie     
 Andreani	François     
 Balech	Ryan     
-Barbier	Rémi     
+Barbier	RémiX     
 Bardou	Louan     
 Barge	François     
 Baumelou	Gaspard     
 Ben Hamou	Ethan     
 Benhiba El Idrissi	Mehdi     
 Bernal	Alix     
-Boukhobza	Sila     
+Boukhobza	Sila     X
 Brisset	Lancelot     
 Burtin	Léo     
 Chaabouni	Kenza     
@@ -18,7 +18,7 @@ Chauhan	Bhavesh
 Chou	Wei-Chieh     
 Clot	Augustin     
 De Sauvan D'Aramon	Ithier     
-Descazeaud	Lucien     
+Descazeaud	Lucien X   
 Despréaux	Maxime     
 Dhoowooah	Hitaishi X
 Dias Pinto Alfonso	Martin     
@@ -31,7 +31,7 @@ Etienne	Romain
 Finotti	Alice     
 Fix	Julian     
 Fouache D'Halloy	Martin     
-Franco--Tetu	Erwan     
+Franco--Tetu	Erwan  X 
 Gaillard	Arthur     
 Geagea	Christele     
 Goossens	Guust     
@@ -42,7 +42,7 @@ Halle	Gabriel
 Hartmann	Nick     
 Heimann	Carl     
 Hou	Litong     
-Hourquet	Augustin     
+Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
 Jankovic	Nina     
@@ -53,45 +53,43 @@ Khaw	Tristan
 Khazzaka	Chloe     
 Korouhanba Khuman	Laikhuram     
 Lassus	Gabin     
-Lau	Martin Alexander     
+Lau	Martin Alexander     X
 Le Bacon	Alexandre     
 Lefebvre	Félix     
 Levin	Nikolai     
 Liard	Eléanor     
 Liu	Guangyue     
-Liu	Yunxian X    
-Lucille	Maximilien     
+Yunxian Liu        X
 Mahé	Blanche     
-Martin	Justin     
+Martin	Justin     X
 Massias	Mathurin     
-Massoud	Alexandre     
+Massoud	Alexandre.....X
 Mayette	Scott     
 Melhaoui	Romaissae     
-Meng	Ziqi     
-Meyer	Felix     
-Morais	Célia     
+Meng	Ziqi    Meyer	Felix     
+Morais	Célia X    
 Moufad	Badr     
 Nasr	Najib     
 Odend'Hal	Charles     
-Orioli	Martino     
+Orioli	Martino     X
 Patarlageanu	Andreea     X
-Perrotton	Pauline     
+Perrotton	Pauline  X   
 Rouzou	Julia     
 Sekri	Juliette     
 Seugnet	Alec     
 Singh	Ayush     
 Smith	Oliver X     
-Söhnchen	Vincent     
+Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed     
 Storp	Anais     
-Sudhir	Anirudh Karat     
+Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
 Tejodonkeng Menkem	Luc     
 Thevaraja	Akilan     
 Trancart	Nicolas     
 Vacca	Chloe     
 Vettori	Lucca     
-Watzinger	Benedikt     
+Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     
 Xin	Yuqi     
