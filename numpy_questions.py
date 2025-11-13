@@ -65,15 +65,15 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-
     if n_terms == 0:
         pi = 1.0
 
     else:
-        pi = 1.0
+        pi_temp = 1.0
         for n in range(1, n_terms + 1):
             num = 4.0 * n ** 2
             den = num - 1.0
-            pi *= (num / den)
+            pi_temp *= (num / den)
+    pi = 2*pi_temp
 
-    return pi*2
+    return pi
