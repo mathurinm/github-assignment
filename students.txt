@@ -74,7 +74,7 @@ Nasr	Najib
 Odend'Hal	Charles     
 Orioli	Martino     
 Patarlageanu	Andreea     X
-Perrotton	Pauline     
+Perrotton	Pauline  X   
 Rouzou	Julia     
 Sekri	Juliette     
 Seugnet	Alec     
