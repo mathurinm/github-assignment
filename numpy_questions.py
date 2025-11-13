@@ -69,11 +69,10 @@ def wallis_product(n_terms):
         pi = 1.0
 
     else:
-        pi_temp = 1.0
+        pi = 1.0
         for n in range(1, n_terms + 1):
             num = 4.0 * n ** 2
             den = num - 1.0
-            pi_temp *= (num / den)
-    pi = 2*pi_temp
+            pi *= (num / den)
 
     return pi
