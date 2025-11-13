@@ -71,7 +71,7 @@ Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
 Nasr	Najib     
-Odend'Hal	Charles     
+Odend'Hal	Charles     X
 Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
