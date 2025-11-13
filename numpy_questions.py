@@ -77,4 +77,4 @@ def wallis_product(n_terms):
 
         # Corrected variable name from pi_over_2 to pi_by_2
         pi *= (num / den)
-    return 2.0 * pi
+    return pi
