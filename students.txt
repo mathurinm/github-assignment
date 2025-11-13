@@ -35,7 +35,7 @@ Gaillard	Arthur
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
-Goyal	Harshita     
+Goyal	Harshita    X  
 Guo	Zixiao     
 Halle	Gabriel     
 Hartmann	Nick     
