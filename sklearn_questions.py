@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,15 +30,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: ndarray of shape (n_samples, n_features)
+            Training data.
+
+        y: ndarray of shape (n_samples, n_features)
+            Target for each training samples.
+
+        Returns
+        ----------
+        self: object
+            Fitted estimator
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -48,9 +60,17 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the OneNearestNeighbor class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: ndarray of shape (n_samples, n_features)
+            Test data.
+
+        Returns
+        ----------
+        y_pred: ndnarray of shape (n_samples)
+            Predicted output.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -63,9 +83,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Comptute the accuracy of the OneNearestNeighbor class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: ndarray of shape (n_samples, n_features)
+            Test data.
+
+        y: ndarray of shape (n_samples, n_features)
+            Train data.
+
+        Returns
+        ----------
+        y_pred.sum(): float
+            Mean accuracy of prediction.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
