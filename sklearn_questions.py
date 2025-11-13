@@ -66,7 +66,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             distances = np.sum((self.X_ - x_test)**2, axis=1)
             closest_idx = np.argmin(distances)
             y_pred.append(self.y_[closest_idx])
-        
         return y_pred
 
     def score(self, X, y):
@@ -76,6 +75,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         # XXX fix
         return np.mean(y_pred == y)
