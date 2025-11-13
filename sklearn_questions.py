@@ -30,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -39,14 +39,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Fit the 1-NN classifier.
 
         Parameters
-
+        ----------
         X : array-like of shape (n_samples, n_features)
         Training data
         y: array-like of shape (n_samples,)
         Target labels.
 
         Returns
-
+        ----------
         self : OneNearestNeighbor
             Fitted classifier.
         """
@@ -64,12 +64,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Predict class labels for samples in X.
 
         Parameters
-
+        ----------
         X : array-like of shape (n_samples, n_features)
             Input samples.
 
         Returns
-
+        ----------
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels.
         """
@@ -92,14 +92,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """Compute mean accuracy of the classifier.
 
         Parameters
-
+        ----------
         X: array-like of shape (n_samples, n_features)
             Test samples.
         y : array-like of shape (n_samples, )
             True labels for X
 
         Returns
-
+        ----------
         score : float
             Mean accuracy of predictions on X compared to true labels y
         """
