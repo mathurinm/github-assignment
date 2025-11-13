@@ -73,7 +73,7 @@ Moufad	Badr
 Nasr	Najib     
 Odend'Hal	Charles     
 Orioli	Martino     
-Patarlageanu	Andreea     
+Patarlageanu	Andreea     X
 Perrotton	Pauline     
 Rouzou	Julia     
 Sekri	Juliette     
