@@ -26,49 +26,162 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One-nearest-neighbor classifier using the Euclidean distance.
+
+    This estimator implements a simple 1-nearest-neighbor classifier. For each
+    input sample, the predicted label is the target of the closest training
+    sample according to the Euclidean-2 distance.
+
+    The estimator follows the scikit-learn interface and can therefore be used
+    in pipelines and with utilities such as ``check_estimator``.
+
+    Attributes
+    ----------
+    classes_ : ndarray of shape (n_classes,)
+        Class labels known to the classifier.
+
+    n_features_in_ : int
+        Number of features seen during :meth:`fit`.
+
+    X_train_ : ndarray of shape (n_samples, n_features)
+        Training data used during :meth:`fit`.
+
+    y_train_ : ndarray of shape (n_samples,)
+        Target values corresponding to ``X_train_``.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the one-nearest-neighbor classifier.
 
-        And describe parameters
+        This stores the training samples and their corresponding targets.
+        Input validation is performed and the number of features is recorded
+        in the ``n_features_in_`` attribute.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training input samples.
+
+        y : array-like of shape (n_samples,)
+            Target values corresponding to the rows of ``X``. The targets are
+            expected to be compatible with a classification task.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
+
+        Raises
+        ------
+        ValueError
+            If ``X`` and ``y`` have inconsistent shapes or if the targets are
+            not valid for a classification problem.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_train_ = X
+        self.y_train_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the given samples.
 
-        And describe parameters
+        For each sample in ``X``, the label of the closest training sample
+        (in Euclidean distance) is returned.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples for which to predict class labels. The number of
+            features must match the number of features seen during ``fit``.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each sample in ``X``.
+
+        Raises
+        ------
+        sklearn.exceptions.NotFittedError
+            If the estimator has not been fitted yet.
+
+        ValueError
+            If the number of features in ``X`` is different from the number
+            of features seen during ``fit`` or if the input cannot be
+            validated.
         """
         check_is_fitted(self)
         X = check_array(X)
+
+        # "validate_data" validates the input data X, for example, that the
+        # number of features are the same as the number of features of
+        # the fitted model
+        X = validate_data(self,
+                          X,
+                          ensure_2d=True,
+                          dtype=None,
+                          reset=False)
+
+        # uses broadcasting to compute the difference between all points of the
+        # X_fitted data and the X data we want to predict
+        X_diff = self.X_train_.T[:, None, :] - X.T[:, :, None]
+
+        # computes the linalg norm 2
+        res = np.linalg.norm(X_diff, ord=2, axis=0)
+
+        # for each column we use unravel as in the numpy_questions.py file
+        # to get the index of the point in X_train_ fit the smallest distance
+        indexes = np.unravel_index(
+            np.argmin(res, axis=1), res.shape)[1]
+
+        # init the y_pred model, specifically the predicted values for the
+        # classification by taking the closests point index
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
+            shape=len(X), fill_value=self.y_train_[indexes],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        This is the fraction of correctly classified samples, i.e. the average
+        of ``y_pred == y`` where ``y_pred`` is obtained from :meth:`predict`.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels for ``X``.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of the classifier on the provided data, in the
+            interval [0.0, 1.0].
+
+        Raises
+        ------
+        ValueError
+            If ``X`` and ``y`` have inconsistent shapes or if the input cannot
+            be validated.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # computes the accuracy
+        # number of correct predictions / all predictions
+        return (y_pred == y).sum() / len(y_pred)
