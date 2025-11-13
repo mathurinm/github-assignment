@@ -51,11 +51,11 @@ def max_index(X):
     m = X.shape[1]
     max = 0
     for k in range(n):
-        for l in range(m):
-            if X[k][l] > max:
-                max = X[k][l]
+        for p in range(m):
+            if X[k][p] > max:
+                max = X[k][p]
                 i = k
-                j = l
+                j = p
 
     return i, j
 
