@@ -27,6 +27,7 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
@@ -84,7 +85,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
                 f"X has {X.shape[1]} features, but "
-                f"OneNearestNeighbor is expecting {self.n_features_in_} features as input"
+                f"expects {self.n_features_in_} features as input"
             )
 
         y_pred = []
@@ -95,7 +96,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             y_pred.append(self.y_train_[idx])
 
         return np.array(y_pred)
-
 
     def score(self, X, y):
         """Compute accuracy score.
