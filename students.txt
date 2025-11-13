@@ -8,7 +8,7 @@ Barge	François
 Baumelou	Gaspard X 
 Ben Hamou	Ethan     
 Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
+Bernal	Alix    X 
 Boukhobza	Sila     X
 Brisset	Lancelot     
 Burtin	Léo     
@@ -25,11 +25,11 @@ Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
 El Bakouri	Samy     
-Enderwitz	Julius     
+Enderwitz	Julius   X  
 Etienne	Romain     
 Finotti	Alice     
 Fix	Julian     
-Fouache D'Halloy	Martin     
+Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur     
 Geagea	Christele     
@@ -39,12 +39,12 @@ Goyal	Harshita    X
 Guo	Zixiao     X
 Halle	Gabriel     
 Hartmann	Nick     
-Heimann	Carl     
+Heimann	Carl X   
 Hou	Litong  X   
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     
+Jankovic	Nina    X 
 Kanaan	Julien     
 Karim	Omar     
 Keum	Hae In     
@@ -66,7 +66,7 @@ Massias	Mathurin
 Massoud	Alexandre.....X
 Mayette	Scott     
 Melhaoui	Romaissae     
-Meng	Ziqi     
+Meng	Ziqi     X
 Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
@@ -87,12 +87,14 @@ Sudhir	Anirudh Karat  X
 Sultan	Sacha     
 Tejodonkeng Menkem	Luc     
 Thevaraja	Akilan    X 
+Tejodonkeng Menkem	Luc     X
+Thevaraja	Akilan     
 Trancart	Nicolas     
 Vacca	Chloe X
 Vettori	Lucca     
 Watzinger	Benedikt     X
 Weinberg	Tom     
-Wu	Yuhan     
+Wu	Yuhan     X
 Xin	Yuqi     
 Xiong	Licheng     X
 Yamakawa	Karin     
