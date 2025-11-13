@@ -90,7 +90,7 @@ Thevaraja	Akilan
 Trancart	Nicolas     
 Vacca	Chloe     
 Vettori	Lucca     
-Watzinger	Benedikt     
+Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     
 Xin	Yuqi     
