@@ -25,30 +25,30 @@ Docheva	Anna  X
 Dreik	Gabriel     
 Du	Jing     
 El Bakouri	Samy     
-Enderwitz	Julius     
+Enderwitz	Julius   X  
 Etienne	Romain     
 Finotti	Alice     
 Fix	Julian     
-Fouache D'Halloy	Martin     
+Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur     
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
 Goyal	Harshita    X  
-Guo	Zixiao     
+Guo	Zixiao     X
 Halle	Gabriel     
 Hartmann	Nick     
-Heimann	Carl     
-Hou	Litong     
+Heimann	Carl X   
+Hou	Litong  X   
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     
+Jankovic	Nina    X 
 Kanaan	Julien     
 Karim	Omar     
-Keum	Hae In     X
-Khaw	Tristan     
+Keum	Hae In     X    
+Khaw	Tristan    X
 Khazzaka	Chloe     
 Korouhanba Khuman	Laikhuram     
 Lassus	Gabin     
@@ -66,12 +66,12 @@ Massias	Mathurin
 Massoud	Alexandre.....X
 Mayette	Scott     
 Melhaoui	Romaissae     
-Meng	Ziqi     
+Meng	Ziqi     X
 Meyer	Felix     X
 Morais	Célia X    
 Moufad	Badr     
 Nasr	Najib     
-Odend'Hal	Charles     
+Odend'Hal	Charles     X
 Orioli	Martino     X
 Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
@@ -88,13 +88,14 @@ Sultan	Sacha
 Tejodonkeng Menkem	Luc     
 Thevaraja	Akilan     
 Trancart	Nicolas     
-Vacca	Chloe     
+Vacca	Chloe X
 Vettori	Lucca     
 Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     
 Xin	Yuqi     
-Xiong	Licheng     
+Xiong	Licheng     X
 Yamakawa	Karin     
 Young	Olivia Rose     
 Zhang	Fang     
+
