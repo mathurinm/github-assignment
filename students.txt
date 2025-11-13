@@ -46,7 +46,7 @@ Jacobacci	Giacomo
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
 Kanaan	Julien     
-Karim	Omar     
+Karim	Omar  X   
 Keum	Hae In     
 Khaw	Tristan    X
 Khazzaka	Chloe     
