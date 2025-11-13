@@ -19,56 +19,86 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import check_is_fitted, check_X_y, validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fits a nearest neighbor model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The features vector.
+        y : ndarray of shape (n_samples, 1)
+            The target vector.
+
+        Returns
+        -------
+        The fitted model.
         """
         X, y = check_X_y(X, y)
+        X, y = validate_data(self, X=X, y=y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the target y from a feature vector thanks to a nearest neighbor model that was previously fitted.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The feature vector from which to predict y.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples, 1)
+            The predicted value for y.
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = validate_data(self, X=X, reset=False)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = np.linalg.norm(
+            X[:, np.newaxis, :] - self.X_[np.newaxis, :, :], axis=2
+        )
+        nearest_idx = np.argmin(distances, axis=1)
+        y_pred = self.y_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Returns the score of a model by evaluating its prediction against the ground truth.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The features vector.
+        y : ndarray of shape (n_samples, 1)
+            The target vector.
+
+        Returns
+        -------
+        score : float
+            The score of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        score = np.mean(y_pred == y)
+        return score
