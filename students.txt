@@ -1,100 +1,100 @@
-Acero	Arnolfo     
-Alberge	Julie     
-Andreani	François     
-Balech	Ryan     
-Barbier	Rémi     
-Bardou	Louan     
-Barge	François     
-Baumelou	Gaspard     
-Ben Hamou	Ethan     
-Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
-Boukhobza	Sila     
-Brisset	Lancelot     
-Burtin	Léo     
-Chaabouni	Kenza     
-Chauhan	Bhavesh     
-Chou	Wei-Chieh     
-Clot	Augustin     
-De Sauvan D'Aramon	Ithier     
-Descazeaud	Lucien     
-Despréaux	Maxime     
+Acero	Arnolfo
+Alberge	Julie
+Andreani	François
+Balech	Ryan
+Barbier	Rémi
+Bardou	Louan
+Barge	François
+Baumelou	Gaspard
+Ben Hamou	Ethan
+Benhiba El Idrissi	Mehdi
+Bernal	Alix
+Boukhobza	Sila
+Brisset	Lancelot
+Burtin	Léo
+Chaabouni	Kenza
+Chauhan	Bhavesh
+Chou	Wei-Chieh
+Clot	Augustin
+De Sauvan D'Aramon	Ithier
+Descazeaud	Lucien
+Despréaux	Maxime
 Dhoowooah	Hitaishi X
-Dias Pinto Alfonso	Martin     
+Dias Pinto Alfonso	Martin
 Docheva	Anna  X
-Dreik	Gabriel     
-Du	Jing     
-El Bakouri	Samy     
-Enderwitz	Julius     
-Etienne	Romain     
-Finotti	Alice     
-Fix	Julian     
-Fouache D'Halloy	Martin     
-Franco--Tetu	Erwan     
-Gaillard	Arthur     
-Geagea	Christele     
-Goossens	Guust     
-Goursaud De Merlis	Ion     
-Goyal	Harshita    X  
-Guo	Zixiao     
-Halle	Gabriel     
-Hartmann	Nick     
-Heimann	Carl     
-Hou	Litong     
-Hourquet	Augustin     
-Jacobacci	Giacomo     
-Jacquin De Margerie	Anatole     
-Jankovic	Nina     
-Kanaan	Julien     
-Karim	Omar     
-Keum	Hae In     
-Khaw	Tristan     
-Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
-Lassus	Gabin     
-Lau	Martin Alexander     
-Le Bacon	Alexandre     
-Lefebvre	Félix     
-Levin	Nikolai     
-Liard	Eléanor     
-Liu	Guangyue     
-Liu	Yunxian     
-Lucille	Maximilien     
-Mahé	Blanche     
-Martin	Justin     
-Massias	Mathurin     
-Massoud	Alexandre     
-Mayette	Scott     
-Melhaoui	Romaissae     
-Meng	Ziqi     
-Meyer	Felix     
-Morais	Célia     
-Moufad	Badr     
-Nasr	Najib     
-Odend'Hal	Charles     
-Orioli	Martino     
+Dreik	Gabriel
+Du	Jing
+El Bakouri	Samy
+Enderwitz	Julius
+Etienne	Romain
+Finotti	Alice
+Fix	Julian
+Fouache D'Halloy	Martin
+Franco--Tetu	Erwan
+Gaillard	Arthur
+Geagea	Christele
+Goossens	Guust
+Goursaud De Merlis	Ion
+Goyal	Harshita    X
+Guo	Zixiao
+Halle	Gabriel
+Hartmann	Nick
+Heimann	Carl
+Hou	Litong
+Hourquet	Augustin
+Jacobacci	Giacomo
+Jacquin De Margerie	Anatole
+Jankovic	Nina
+Kanaan	Julien
+Karim	Omar
+Keum	Hae In
+Khaw	Tristan
+Khazzaka	Chloe
+Korouhanba Khuman	Laikhuram     X
+Lassus	Gabin
+Lau	Martin Alexander
+Le Bacon	Alexandre
+Lefebvre	Félix
+Levin	Nikolai
+Liard	Eléanor
+Liu	Guangyue
+Liu	Yunxian
+Lucille	Maximilien
+Mahé	Blanche
+Martin	Justin
+Massias	Mathurin
+Massoud	Alexandre
+Mayette	Scott
+Melhaoui	Romaissae
+Meng	Ziqi
+Meyer	Felix
+Morais	Célia
+Moufad	Badr
+Nasr	Najib
+Odend'Hal	Charles
+Orioli	Martino
 Patarlageanu	Andreea     X
-Perrotton	Pauline     
-Rouzou	Julia     
-Sekri	Juliette     
-Seugnet	Alec     
-Singh	Ayush     
-Smith	Oliver X     
-Söhnchen	Vincent     
-Soro	Nangounon Mohamed     
-Storp	Anais     
-Sudhir	Anirudh Karat     
-Sultan	Sacha     
-Tejodonkeng Menkem	Luc     
-Thevaraja	Akilan     
-Trancart	Nicolas     
-Vacca	Chloe     
-Vettori	Lucca     
-Watzinger	Benedikt     
-Weinberg	Tom     
-Wu	Yuhan     
-Xin	Yuqi     
-Xiong	Licheng     
-Yamakawa	Karin     
-Young	Olivia Rose     
-Zhang	Fang     
+Perrotton	Pauline
+Rouzou	Julia
+Sekri	Juliette
+Seugnet	Alec
+Singh	Ayush
+Smith	Oliver X
+Söhnchen	Vincent
+Soro	Nangounon Mohamed
+Storp	Anais
+Sudhir	Anirudh Karat
+Sultan	Sacha
+Tejodonkeng Menkem	Luc
+Thevaraja	Akilan
+Trancart	Nicolas
+Vacca	Chloe
+Vettori	Lucca
+Watzinger	Benedikt
+Weinberg	Tom
+Wu	Yuhan
+Xin	Yuqi
+Xiong	Licheng
+Yamakawa	Karin
+Young	Olivia Rose
+Zhang	Fang
