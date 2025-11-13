@@ -58,11 +58,7 @@ Lefebvre	Félix
 Levin	Nikolai X    
 Liard	Eléanor     
 Liu	Guangyue    X 
-<<<<<<< HEAD
 Liu	Yunxian     X
-=======
-Liu	Yunxian     
->>>>>>> upstream/main
 Lucille	Maximilien X     
 Mahé	Blanche     
 Martin	Justin     X
