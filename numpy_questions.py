@@ -68,10 +68,14 @@ def wallis_product(n_terms):
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
 
-    pi = 1.0
+    if n_terms == 0:
+        pi = 1.0
 
-    for n in range(1, n_terms + 1):
-        num = 4.0 * n ** 2
-        den = num - 1.0
-        pi *= (num / den)
+    else:
+        pi = 1.0
+        for n in range(1, n_terms + 1):
+            num = 4.0 * n ** 2
+            den = num - 1.0
+            pi *= (num / den)
+
     return pi*2
