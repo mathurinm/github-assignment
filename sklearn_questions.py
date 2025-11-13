@@ -54,7 +54,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         check_is_fitted(self)
         X = check_array(X, ensure_2d=True)
-        if X.shape[1] != self.n_features_in_:      
+        if X.shape[1] != self.n_features_in_:
             raise ValueError(
                 f'X has {X.shape[1]} features, but {self.__class__.__name__} '
                 f'is expecting {self.n_features_in_} features as input.'
