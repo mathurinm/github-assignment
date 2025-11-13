@@ -35,10 +35,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-        
-        And describe parameters
-        """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -48,10 +44,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Write docstring.
-        
-        And describe parameters
-        """
         check_is_fitted(self)
         X = check_array(X, ensure_2d=True)
         if X.shape[1] != self.n_features_in_:
@@ -59,7 +51,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
                 f'X has {X.shape[1]} features, but {self.__class__.__name__} '
                 f'is expecting {self.n_features_in_} features as input.'
             )
-
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
@@ -73,11 +64,10 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def score(self, X, y):
         """Write docstring.
-        
         And describe parameters
         """
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        y_pred=self.predict(X)
         # XXX fix
         accuracy = np.mean(y_pred == y)
         return accuracy
