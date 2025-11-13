@@ -89,7 +89,7 @@ Tejodonkeng Menkem	Luc
 Thevaraja	Akilan     
 Trancart	Nicolas     
 Vacca	Chloe     
-Vettori	Lucca     
+Vettori	Lucca   X     
 Watzinger	Benedikt     X
 Weinberg	Tom     
 Wu	Yuhan     
