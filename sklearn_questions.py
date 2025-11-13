@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -57,8 +58,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
 
         for i in range(len(X)):
@@ -79,4 +79,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         return (y_pred == y).mean()
-
