@@ -40,9 +40,7 @@ Guo	Zixiao
 Halle	Gabriel     
 Hartmann	Nick     
 Heimann	Carl     
-Hou	LitongX     
-Hourquet	Augustin     
-Hou	Litong     
+Hou	Litong  X   
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
 Jacquin De Margerie	Anatole     
