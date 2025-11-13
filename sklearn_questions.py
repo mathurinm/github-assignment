@@ -27,13 +27,13 @@ from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Fits a nearest neighbor model.
+        """Fit a nearest neighbor model.
 
         Parameters
         ----------
@@ -57,8 +57,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Predicts the target y from a feature vector thanks to a nearest
-        neighbor model that was previously fitted.
+        """Predict target from a feature vector with a nearest neighbor model.
 
         Parameters
         ----------
@@ -85,8 +84,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Returns the score of a model by evaluating its prediction against
-        the ground truth.
+        """Return the score of a model evaluating against ground truth.
 
         Parameters
         ----------
