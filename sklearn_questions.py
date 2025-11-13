@@ -35,9 +35,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Train the  OneNearestNeighbor predictor.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Train set.
+        y : array-like of shape (n_samples,)
+            Target variable.
+
+        Returns
+        -------
+        self : object
+            
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -45,12 +56,25 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the class of each sample of X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            test set.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+                predictions
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,15 +84,34 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        for i, x in enumerate(X):
+        
+            distances = np.sqrt(np.sum((self.X_train_ - x) ** 2, axis=1))
+        
+            idx_min = np.argmin(distances)
+        
+            y_pred[i] = self.y_train_[idx_min]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Evaluate the performance of the model
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            test set.
+        y : array-like of shape (n_samples,)
+            Target variable.
+
+        Returns
+        -------
+        accuracy: percentage of good predictions
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
+        y_pred=(y_pred==y)/len(y)
         return y_pred.sum()
