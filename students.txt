@@ -8,7 +8,7 @@ Barge	François
 Baumelou	Gaspard X 
 Ben Hamou	Ethan     
 Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
+Bernal	Alix    X 
 Boukhobza	Sila     X
 Brisset	Lancelot     
 Burtin	Léo     
