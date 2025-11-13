@@ -57,7 +57,7 @@ Le Bacon	Alexandre  X
 Lefebvre	Félix     
 Levin	Nikolai X    
 Liard	Eléanor     
-Liu	Guangyue     
+Liu	Guangyue    X 
 Liu	Yunxian     
 Lucille	Maximilien X     
 Mahé	Blanche     
