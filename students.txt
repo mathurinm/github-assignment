@@ -92,7 +92,7 @@ Vacca	Chloe X
 Vettori	Lucca     
 Watzinger	Benedikt     X
 Weinberg	Tom     
-Wu	Yuhan     
+Wu	Yuhan     X
 Xin	Yuqi     
 Xiong	Licheng     X
 Yamakawa	Karin     
