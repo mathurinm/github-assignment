@@ -7,7 +7,7 @@ Bardou	Louan
 Barge	François
 Baumelou	Gaspard X
 Ben Hamou	Ethan
-Benhiba El Idrissi	Mehdi
+Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X
 Boukhobza	Sila     X
 Brisset	Lancelot
