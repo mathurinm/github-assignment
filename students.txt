@@ -30,7 +30,7 @@ Etienne	Romain
 Finotti	Alice     
 Fix	Julian     
 Fouache D'Halloy	Martin     
-Franco--Tetu	Erwan     
+Franco--Tetu	Erwan  X 
 Gaillard	Arthur     
 Geagea	Christele     
 Goossens	Guust     
@@ -52,29 +52,29 @@ Khaw	Tristan
 Khazzaka	Chloe     
 Korouhanba Khuman	Laikhuram     
 Lassus	Gabin     
-Lau	Martin Alexander     
+Lau	Martin Alexander     X
 Le Bacon	Alexandre     
 Lefebvre	Félix     
 Levin	Nikolai     
 Liard	Eléanor     
 Liu	Guangyue     
 Liu	Yunxian     
-Lucille	Maximilien     
+Lucille	Maximilien X     
 Mahé	Blanche     
-Martin	Justin     
+Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
 Mayette	Scott     
 Melhaoui	Romaissae     
 Meng	Ziqi     
 Meyer	Felix     X
-Morais	Célia     
+Morais	Célia X    
 Moufad	Badr     
 Nasr	Najib     
 Odend'Hal	Charles     
-Orioli	Martino     
+Orioli	Martino     X
 Patarlageanu	Andreea     X
-Perrotton	Pauline     
+Perrotton	Pauline  X   
 Rouzou	Julia     
 Sekri	Juliette     
 Seugnet	Alec     
