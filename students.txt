@@ -39,7 +39,7 @@ Goyal	Harshita    X
 Guo	Zixiao     X
 Halle	Gabriel     
 Hartmann	Nick     
-Heimann	Carl     
+Heimann	Carl X   
 Hou	Litong  X   
 Hourquet	Augustin  X   
 Jacobacci	Giacomo     
