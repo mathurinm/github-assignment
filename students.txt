@@ -78,11 +78,9 @@ Perrotton	Pauline
 Rouzou	Julia     
 Sekri	Juliette     
 Seugnet	Alec     
-Singh	Ayush     
-Smith	Oliver     
-Söhnchen	Vincent  X
+Singh	Ayush 
 Smith	Oliver X     
-Söhnchen	Vincent     
+Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed     
 Storp	Anais     
 Sudhir	Anirudh Karat     
