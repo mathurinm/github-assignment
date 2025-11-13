@@ -28,29 +28,37 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the 1-NN classifier from the training data
 
-        And describe parameters
+        X : ndarray of shape (n_samples, n_features)
+        y : ndarray of shape (n_samples,)
+
+        Returns the fitted estimator
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the provided data
 
-        And describe parameters
+        X : ndarray of shape (n_samples, n_features)
+
+        Return :
+        y_pred : ndarray of shape (n_samples,) -> the predicted class labels
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +67,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self.X_train_ - x, axis=1)
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_index]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels
 
-        And describe parameters
+        X : ndarray of shape (n_samples, n_features)
+        y : ndarray of shape (n_samples,)
+
+        Return the score
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
