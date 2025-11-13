@@ -31,7 +31,7 @@ Finotti	Alice
 Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
-Gaillard	Arthur     
+Gaillard	Arthur    X 
 Geagea	Christele     
 Goossens	Guust     
 Goursaud De Merlis	Ion     
