@@ -86,7 +86,7 @@ Storp	Anais X
 Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
 Tejodonkeng Menkem	Luc     
-Thevaraja	Akilan     
+Thevaraja	Akilan    X 
 Trancart	Nicolas     
 Vacca	Chloe X
 Vettori	Lucca     
