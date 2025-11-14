@@ -41,7 +41,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-
         """Fit the OneNearestNeighbor classifier from the training data.
 
         Parameters
@@ -53,7 +52,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             The fitted classifier.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -63,7 +61,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-
         """Predict class labels for the input samples.
 
         Parameters
@@ -75,7 +72,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred: ndarray of shape (n_samples,),
         containing predicted class labels for each input sample.
         """
-
         check_is_fitted(self)
         X = check_array(X)
         X = self._validate_data(X, reset=False)
@@ -91,7 +87,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-
         """Compute the accuracy of the classifier.
 
         Parameters
@@ -102,7 +97,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         Returns
         accuracy: The fraction of correctly classified samples.
         """
-
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         score = np.sum(y_pred == y)
