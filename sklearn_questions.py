@@ -48,14 +48,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         self : object
             The fitted classifier.
-
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         self.X_ = X
         self.y_ = y
 
@@ -73,7 +71,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         y_pred : ndarray of shape (n_samples,)
             Array of the predicted targets.
-
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -82,7 +79,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
         for i in range(X.shape[0]):
             distances = np.linalg.norm(self.X_ - X[i, :], axis=1)
             nearest_index = np.argmin(distances)
@@ -103,12 +99,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         -------
         float
             Accuracy of classifier.
-
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
         accuracy = np.mean(y_pred == y)
 
         return accuracy
