@@ -28,47 +28,85 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One-nearest-neighbor classifier.
+
+    This estimator predicts the label of each input sample as the label of
+    the single closest training sample under the Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the classifier.
 
-        And describe parameters
+        The fitting process for OneNearestNeighbor only means storing
+        the training data, as it is a lazy learning algorithm.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target labels.
+        Returns
+        -------
+        self :
+        OneNearestNeighbor Fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+        self.n_features_in_ = X.shape[1]
+        self.classes_ = np.unique(y)
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the provided data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        check_is_fitted(self, attributes=("X_", "y_"))
+        X = self._validate_data(X, reset=False)
+        X_sq = np.sum(X ** 2, axis=1, keepdims=True)
+        Xt_sq = np.sum(self.X_ ** 2, axis=1, keepdims=True).T
+        dist_2 = X_sq + Xt_sq - 2 * (X @ self.X_.T)
+        nn_index = np.argmin(dist_2, axis=1)
+        y_pred = self.y_[nn_index]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+        Test samples.
+        y : array-like of shape (n_samples,)
+        True labels.
+
+        Returns
+        -------
+        float
+        Accuracy of ``self.predict(X)`` vs ``y``.
         """
         X, y = check_X_y(X, y)
+        y = check_array(y, ensure_2d=False)
+        if y.shape[0] != X.shape[0]:
+            raise ValueError("X and y have incompatible shapes.")
+
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return float(np.mean(y_pred == y))
