@@ -25,35 +25,38 @@ from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_array
 from sklearn.metrics import pairwise_distances_argmin_min
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Fit the classifier. This function stores training data X and the
-            labels y.
+        """Fit the OneNearestNeighbor classifier. 
+        
+        This function stores training data X and the labels y.
 
         Parameters
         ----------
-        X : Training data (n_samples, n_features)
-        y : Target labels (n_samples)
+        X : Training data (n_samples, n_features).
+
+        y : Target labels (n_samples).
 
         Returns
         -------
-        self : returns the fitted classifier
+        self : returns the fitted classifier.
 
         Raises
         ------
         ValueError
             If X and y have different numbers of samples
         """
-        X, y = validate_data(self, X, y)
+        
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -63,7 +66,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Return the predicted class for a data set in an numpy array.
+        """Returns the predicted class for a data set in an numpy array.
 
         Parameters
         ----------
@@ -77,7 +80,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
 
         check_is_fitted(self)
-        X = validate_data(self, X, reset=False)
+        X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
@@ -88,7 +91,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Return the score of the OneNearestNeighbor on a data set
+        """Returns the score of the OneNearestNeighbor on a data set.
 
         Parameters
         ----------
@@ -104,6 +107,5 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         score = np.mean(y_pred == y)
         return score
