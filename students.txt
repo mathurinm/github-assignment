@@ -76,7 +76,7 @@ Orioli	Martino
 Patarlageanu	Andreea     X
 Perrotton	Pauline     
 Rouzou	Julia     
-Sekri	Juliette     
+Sekri	Juliette  X   
 Seugnet	Alec     
 Singh	Ayush     
 Smith	Oliver X     
