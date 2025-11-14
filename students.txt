@@ -58,7 +58,7 @@ Lefebvre	Félix
 Levin	Nikolai X    
 Liard	Eléanor X     
 Liu	Guangyue    X 
-Liu	Yunxian     
+Liu	Yunxian     X
 Lucille	Maximilien X     
 Mahé	Blanche     
 Martin	Justin     X
