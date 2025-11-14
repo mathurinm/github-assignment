@@ -15,7 +15,7 @@ Burtin	Léo
 Chaabouni	Kenza     
 Chauhan	Bhavesh     
 Chou	Wei-Chieh X    
-Clot	Augustin     
+Clot	Augustin   X
 De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
 Despréaux	Maxime X    
