@@ -6,7 +6,7 @@ estimator for the OneNearestNeighbor and check that it is working properly.
 The nearest neighbor classifier predicts for a point X_i the target y_k of
 the training sample X_k which is the closest to X_i. We measure proximity with
 the Euclidean distance. The model will be evaluated with the accuracy (average
-number of samples corectly classified). You need to implement the `fit`,
+number of samples correctly classified). You need to implement the `fit`,
 `predict` and `score` methods for this class. The code you write should pass
 the test we implemented. You can run the tests by calling at the root of the
 repo `pytest test_sklearn_questions.py`.
@@ -21,9 +21,7 @@ using `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
 from sklearn.base import ClassifierMixin, BaseEstimator
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -57,8 +55,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             Fitted estimator.
         """
-        # validate_data will set n_features_in_ and perform basic checks
-        X, y = validate_data(self, X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
 
         # Store training data and targets
@@ -67,6 +64,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         # Attributes expected by scikit-learn
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         return self
 
@@ -86,14 +84,22 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels for each sample in X.
         """
-        check_is_fitted(self, attributes=["X_", "y_"])
-        # reset=False enforces consistency with n_features_in_
-        X = validate_data(self, X, reset=False)
+        check_is_fitted(self, attributes=["X_", "y_", "n_features_in_"])
+        X = check_array(X)
+
+        # Enforce consistency with the number of features seen during fit
+        n_features = X.shape[1]
+        if n_features != self.n_features_in_:
+            msg = (
+                f"X has {n_features} features, but {self.__class__.__name__} "
+                f"is expecting {self.n_features_in_} features as input"
+            )
+            raise ValueError(msg)
 
         # Compute squared Euclidean distances to all training samples:
         # diff shape: (n_samples_test, n_samples_train, n_features)
         diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
-        distances = np.sum(diff**2, axis=2)
+        distances = np.sum(diff ** 2, axis=2)
 
         # Index of nearest neighbor in the training set for each test sample
         nearest_idx = np.argmin(distances, axis=1)
