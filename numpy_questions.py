@@ -37,8 +37,16 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Not an array")
+    if X.ndim != 2:
+        raise ValueError("Wrong dimension (should be 2)")
+
     i = 0
     j = 0
+
+    max_index = np.argmax(X)
+    i, j = np.unravel_index(max_index, X.shape)
 
     # TODO
 
@@ -64,4 +72,12 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    if n_terms == 0:
+        return 1
+
+    n = np.arange(1, n_terms+1)
+    wallis_terms = (4*n**2)/(4*n**2 - 1)
+    product = np.prod(wallis_terms)
+
+    return 2*product
