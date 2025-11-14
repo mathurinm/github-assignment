@@ -81,9 +81,9 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
-                f"X has {X.shape[1]} features, but OneNearestNeighbor is expecting "
-                f"{self.n_features_in_} features as input."
-            )
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+)
 
         y_pred = np.full(
             shape=len(X),
@@ -123,3 +123,4 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         accuracy = np.mean(correct)
 
         return accuracy
+    
