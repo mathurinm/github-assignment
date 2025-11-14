@@ -55,7 +55,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         ValueError
             If X and y have different numbers of samples
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -66,7 +65,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Returns the predicted class for a data set in an numpy array.
+        """Return the predicted class for a data set in an numpy array.
 
         Parameters
         ----------
@@ -78,7 +77,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (n_samples)
             The predicted classes for the n_samples.
         """
-
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -91,7 +89,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Returns the score of the OneNearestNeighbor on a data set.
+        """Return the score of the OneNearestNeighbor on a data set.
 
         Parameters
         ----------
