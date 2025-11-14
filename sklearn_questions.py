@@ -28,47 +28,91 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier.
+
+    A minimal 1-nearest-neighbor classifier using Euclidean distance.
+    Implements the scikit-learn estimator interface (``fit``, ``predict``,
+    ``score``) and stores the training samples for nearest-neighbor queries.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the 1-nearest-neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+
+        y : array-like of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        # store class labels and training data
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = np.asarray(X)
+        self.y_train_ = np.asarray(y)
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        if X.ndim == 1:
+            X = X.reshape(1, -1)
+
+        if X.shape[1] != self.n_features_in_:
+            msg = (
+                f"X has {X.shape[1]} features, but {self.__class__.__name__} "
+                f"is expecting {self.n_features_in_} features as input"
+            )
+            raise ValueError(msg)
+
+        # compute squared Euclidean distances between X and training points
+        # shape (n_samples, n_train)
+        dists = np.sum((X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]) ** 2, axis=2)
+        nn_idx = np.argmin(dists, axis=1)
+        y_pred = self.y_train_[nn_idx]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels for `X`.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of `self.predict(X)` with respect to `y`.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
