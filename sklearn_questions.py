@@ -20,55 +20,104 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_is_fitted, validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One-nearest-neighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        This method stores the training data X and y inside the estimator
+        so that predictions can be made based on the nearest neighbor rule.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data.
+        y : ndarray of shape (n_samples,)
+            Target labels corresponding to X.
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
         """
-        X, y = check_X_y(X, y)
+        # I used validate_data to satisfy scikit-learn's estimator checks.
+        # It validates X and y and sets the n_features_in_ attribute,
+        # which is required by check_estimator() tests.
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the given samples.
 
-        And describe parameters
+        For each sample in X, this method finds the closest training sample
+        stored during ``fit`` using the Euclidean distance, and returns its
+        corresponding label.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples for which to predict class labels.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each sample in X.
         """
         check_is_fitted(self)
-        X = check_array(X)
+        # Ensure that X has the same number of features as during fit.
+        X = validate_data(self, X, reset=False)
+
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
 
-        # XXX fix
+        for idx, x_i in enumerate(X):
+            diff = self.X_ - x_i
+            distances = np.sqrt(np.sum(diff**2, axis=1))
+            nearest = np.argmin(distances)
+            y_pred[idx] = self.y_[nearest]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the classifier.
 
-        And describe parameters
+        This method compares the predicted labels for X with the true labels y
+        and returns the proportion of correctly classified samples.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test samples.
+        y : ndarray of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        accuracy : float
+            Mean accuracy of the classifier on the given test data.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        correct = y_pred == y
+        accuracy = np.mean(correct)
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy
