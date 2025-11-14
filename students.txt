@@ -91,7 +91,7 @@ Trancart	Nicolas
 Vacca	Chloe X
 Vettori	Lucca   X     
 Watzinger	Benedikt     X
-Weinberg	Tom     
+Weinberg	Tom X
 Wu	Yuhan     X
 Xin	Yuqi X  
 Xiong	Licheng     X
