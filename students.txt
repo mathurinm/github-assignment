@@ -6,7 +6,7 @@ Barbier	RémiX
 Bardou	Louan     
 Barge	François     
 Baumelou	Gaspard X 
-Ben Hamou	Ethan     
+Ben Hamou	Ethan   X 
 Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X 
 Boukhobza	Sila     X
