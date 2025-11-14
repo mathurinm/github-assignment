@@ -22,20 +22,20 @@ for the methods you code and for the class. The docstring will be checked using
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_X_y, check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
+        """Fit the OneNearestNeighbor model.
 
-        """
         Parameters
         -----------
         self : instance of the class (OneNearestNeighbor)
@@ -52,13 +52,12 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         fitted estimator
 
         """
-        # X, y = check_X_y(X, y)
-        X, y = validate_data(self, X, y, ensure_2d=True)
+        X, y = check_X_y(X, y)
 
         check_classification_targets(y)
 
         self.classes_ = np.unique(y)
-        # self.n_features_in_ = X.shape[1]
+        self.n_features_in_ = X.shape[1]
 
         self.X_train_ = X
         self.y_train_ = y
@@ -66,23 +65,21 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """
+        """Predict the class.
+
         Parameters
         ----------
-
         X : array of shape(n_samples, n_features)
         matrix of the features; independent and explanatory variables
 
         Returns
         -------
-
         y_pred : array of shape(n_samples,)
         predictions for y
         """
         check_is_fitted(self)
 
-        # X = check_array(X)
-        X = validate_data(self, X, reset=False, ensure_2d=True)
+        X = check_array(X)
 
         y_pred = []
         if X.shape[1] != self.n_features_in_:
@@ -98,9 +95,10 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return np.array(y_pred)
 
     def score(self, X, y):
-        """Parameters
-        ----------
+        """Compute accuracy score.
 
+        Parameters
+        ----------
         X : array of shape(n_samples, n_features)
         matrix of the features; independent and explanatory variables
 
@@ -113,6 +111,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         """
         check_is_fitted(self)
-        X, y = validate_data(self, X, y, ensure_2d=True, reset=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
