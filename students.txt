@@ -78,7 +78,7 @@ Perrotton	Pauline  X
 Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
-Singh	Ayush     
+Singh	Ayush  X  
 Smith	Oliver X     
 Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed     
