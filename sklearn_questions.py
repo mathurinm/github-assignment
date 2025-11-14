@@ -31,7 +31,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """One Nearest Neighbor classifier using Euclidean distance.
-    
+
     This classifier assigns to each input sample the label of its closest
     training sample,
     where closeness is measured using the Euclidean distance.
