@@ -29,8 +29,8 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """
-    One-nearest-neighbor classifier.
+    """One-nearest-neighbor classifier.
+
     This estimator predicts the label of each input sample as the label of
     the single closest training sample under the Euclidean distance.
     """
@@ -39,8 +39,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """
-        Fit the classifier.
+        """Fit the classifier.
+
         The fitting process for OneNearestNeighbor only means storing
         the training data, as it is a lazy learning algorithm.
 
@@ -65,8 +65,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """
-        Predict class labels for the provided data.
+        """Predict class labels for the provided data.
 
         Parameters
         ----------
@@ -89,8 +88,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """
-        Return accuracy on the given test data and labels.
+        """Return accuracy on the given test data and labels.
 
         Parameters
         ----------
