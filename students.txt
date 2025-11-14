@@ -42,7 +42,7 @@ Hartmann	Nick
 Heimann	Carl X   
 Hou	Litong  X   
 Hourquet	Augustin  X   
-Jacobacci	Giacomo     
+Jacobacci	Giacomo   X
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
 Kanaan	Julien     
