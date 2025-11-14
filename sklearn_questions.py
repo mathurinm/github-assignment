@@ -28,7 +28,7 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
@@ -43,8 +43,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
@@ -54,12 +54,16 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
+        X = self._validate_data(X, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        differences = (X[:, np.newaxis, :] - self.X_[np.newaxis, :, :])
+        distances = np.sqrt(np.sum(differences) ** 2, axis=2)
+        nearest_indices = np.argmin(distances, axis=1)
+        y_pred = self.y_[nearest_indices]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
@@ -69,6 +73,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        score = np.sum(y_pred == y)
+        return score / len(y)
