@@ -15,7 +15,7 @@ Burtin	Léo
 Chaabouni	Kenza     
 Chauhan	Bhavesh     
 Chou	Wei-Chieh X    
-Clot	Augustin     
+Clot	Augustin   X
 De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
 Despréaux	Maxime X    
@@ -27,7 +27,7 @@ Du	Jing
 El Bakouri	Samy     
 Enderwitz	Julius   X  
 Etienne	Romain X
-Finotti	Alice     
+Finotti	Alice  X   
 Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
@@ -51,16 +51,16 @@ Keum	Hae In     X
 Khaw	Tristan    X
 Khazzaka	Chloe     
 Korouhanba Khuman	Laikhuram  X   
-Lassus	Gabin     
+Lassus	Gabin X    
 Lau	Martin Alexander     X
 Le Bacon	Alexandre  X   
 Lefebvre	Félix     
 Levin	Nikolai X    
-Liard	Eléanor     
+Liard	Eléanor X     
 Liu	Guangyue    X 
-Liu	Yunxian     
+Liu	Yunxian     X
 Lucille	Maximilien X     
-Mahé	Blanche     
+Mahé	Blanche     X
 Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
