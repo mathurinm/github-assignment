@@ -60,7 +60,7 @@ Liard	Eléanor
 Liu	Guangyue    X 
 Liu	Yunxian     
 Lucille	Maximilien X     
-Mahé	Blanche     
+Mahé	Blanche     X
 Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
