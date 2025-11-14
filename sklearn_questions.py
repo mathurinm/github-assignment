@@ -29,15 +29,26 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """OneNearestNeighbor classifier."""
+    """One Nearest Neighbor classifier using Euclidean distance.
+
+    This classifier assigns to each input sample the label of its closest
+    training sample, where closeness is measured using the Euclidean distance."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier from the training data.
 
-        And describe parameters
+        Parameters
+        X: ndarray of shape (n_samples, n_features) containing training data.
+
+        y: ndarray of shape (n_samples,). 
+            It contains target labels corresponding to the training samples.
+
+        Returns
+        self : OneNearestNeighbor
+            The fitted classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -48,9 +59,14 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the input samples.
 
-        And describe parameters
+        Parameters
+        X: ndarray of shape (n_samples, n_features) containing input samples for which predictions are requested.
+            It must contain the same number of features as the training data.
+
+        Returns
+        y_pred: ndarray of shape (n_samples,), containing predicted class labels for each input sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -67,9 +83,15 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        X: ndarray of shape (n_samples, n_features) containing test samples.
+
+        y: array-like of shape (n_samples,) containing true labels for the test samples.
+
+        Returns
+        accuracy: The fraction of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
