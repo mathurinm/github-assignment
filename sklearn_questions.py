@@ -33,7 +33,7 @@ except ImportError:
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):
         """Initialize the OneNearestNeighbor classifier."""
