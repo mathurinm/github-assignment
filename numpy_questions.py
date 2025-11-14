@@ -72,4 +72,7 @@ def wallis_product(n_terms):
         numerator = 4 * (i ** 2)
         denominator = numerator - 1
         product *= numerator / denominator
+
+    if n_terms == 0:
+        return 1.0
     return 2 * product

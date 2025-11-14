@@ -23,12 +23,12 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
@@ -47,11 +47,13 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
+        X = validate_data(self, X, reset=True)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        self.X = X
-        self.y = y
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
@@ -65,14 +67,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         predicted labels
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = validate_data(self, X, reset=False)
         distances = np.linalg.norm(
-            self.X[None, :, :] - X[:, None, :], axis=2
+            self.X_[None, :, :] - X[:, None, :], axis=2
         )
 
         nearest_neighbour = np.argmin(distances, axis=1)
 
-        return self.y[nearest_neighbour]
+        return self.y_[nearest_neighbour]
 
     def score(self, X, y):
         """Write docstring.
