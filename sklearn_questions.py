@@ -21,7 +21,7 @@ for the methods you code and for the class. The docstring will be checked using
 """
 import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.utils.validation import check_X_y, check_is_fitted, validate_data
+from sklearn.utils.validation import check_X_y, check_is_fitted, check_array
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -49,10 +49,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             Fitted estimator.
         """
-        # I used validate_data to satisfy scikit-learn's estimator checks.
-        # It validates X and y and sets the n_features_in_ attribute,
-        # which is required by check_estimator() tests.
-        X, y = validate_data(self, X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -80,8 +77,13 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Predicted class labels for each sample in X.
         """
         check_is_fitted(self)
-        # Ensure that X has the same number of features as during fit.
-        X = validate_data(self, X, reset=False)
+        X = check_array(X)
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor is expecting "
+                f"{self.n_features_in_} features as input."
+            )
 
         y_pred = np.full(
             shape=len(X),
