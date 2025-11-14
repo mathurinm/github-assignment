@@ -26,49 +26,100 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+try:
+    from sklearn.utils.validation import validate_data
+except ImportError:
+    validate_data = None
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the 1-nearest-neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+
+        y : array-like of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        if validate_data is not None:
+            X, y = validate_data(self, X, y=y)
+        else:
+            X, y = check_X_y(X, y)
+            self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        check_classification_targets(y)
+
+        self.X_ = X
+        self.y_ = y
+
+        self.classes_ = np.unique(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+        Test samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
-        check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        check_is_fitted(self, ["X_", "y_", "classes_"])
 
-        # XXX fix
+        if validate_data is not None:
+            X = validate_data(self, X, reset=False)
+        else:
+            X = check_array(X)
+            if X.shape[1] != self.n_features_in_:
+                raise ValueError(
+                    f"X has {X.shape[1]} features, "
+                    f"but expected {self.n_features_in_}."
+                )
+
+        diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+        distances = np.linalg.norm(diff, axis=2)  # (n_test, n_train)
+
+        nn_index = np.argmin(distances, axis=1)
+
+        y_pred = self.y_[nn_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        y : array-like of shape (n_samples,)
+            True labels.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
