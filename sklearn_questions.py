@@ -92,7 +92,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         # compute squared Euclidean distances between X and training points
         # shape (n_samples, n_train)
-        dists = np.sum((X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]) ** 2, axis=2)
+        dists = np.sum((X[:, np.newaxis, :] -
+                        self.X_train_[np.newaxis, :, :]) ** 2, axis=2)
         nn_idx = np.argmin(dists, axis=1)
         y_pred = self.y_train_[nn_idx]
         return y_pred

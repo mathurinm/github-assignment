@@ -45,7 +45,7 @@ def max_index(X):
 
     flat_index = int(np.argmax(X))
     return tuple(int(x) for x in np.unravel_index(flat_index, X.shape))
-    
+
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
