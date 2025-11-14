@@ -36,8 +36,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """Fit the OneNearestNeighbor classifier. 
-        
+        """Fit the OneNearestNeighbor classifier.
+
         This function stores training data X and the labels y.
 
         Parameters
@@ -55,7 +55,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         ValueError
             If X and y have different numbers of samples
         """
-        
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
