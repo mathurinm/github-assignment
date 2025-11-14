@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -60,7 +60,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             dtype=self.classes_.dtype
         )
         differences = (X[:, np.newaxis, :] - self.X_[np.newaxis, :, :])
-        distances = np.sqrt(np.sum(differences) ** 2, axis=2)
+        distances = np.sqrt(np.sum(differences ** 2, axis=2))
         nearest_indices = np.argmin(distances, axis=1)
         y_pred = self.y_[nearest_indices]
 
