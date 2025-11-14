@@ -26,7 +26,6 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -42,8 +41,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     def fit(self, X, y):
         """
         Fit the classifier.
-        The fitting process for OneNearestNeighbor only means storing the training data,
-        as it is a lazy learning algorithm.
+        The fitting process for OneNearestNeighbor only means storing
+        the training data, as it is a lazy learning algorithm.
 
         Parameters
         ----------
@@ -80,8 +79,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Predicted class labels.
         """
         check_is_fitted(self, attributes=("X_", "y_"))
-        X = validate_data(
-            self, X, reset=False, dtype=np.float64, ensure_all_finite=True)
+        X = self._validate_data(X, reset=False)
         X_sq = np.sum(X ** 2, axis=1, keepdims=True)
         Xt_sq = np.sum(self.X_ ** 2, axis=1, keepdims=True).T
         dist_2 = X_sq + Xt_sq - 2 * (X @ self.X_.T)
@@ -106,11 +104,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         float
         Accuracy of ``self.predict(X)`` vs ``y``.
         """
-        check_is_fitted(self, attributes=("X_", "y_"))
-        X = validate_data(
-            self, X, reset=False, dtype=np.float64, ensure_all_finite=True)
+        X, y = check_X_y(X, y)
         y = check_array(y, ensure_2d=False)
-
         if y.shape[0] != X.shape[0]:
             raise ValueError("X and y have incompatible shapes.")
 
