@@ -45,7 +45,7 @@ Hourquet	Augustin  X
 Jacobacci	Giacomo   X
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
-Kanaan	Julien     
+Kanaan	Julien    X
 Karim	Omar  X   
 Keum	Hae In     X    
 Khaw	Tristan    X
