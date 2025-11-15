@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -39,12 +40,30 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+        """Fit the model on the training data.
+
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            These are the training samples. These are the points the model will
+            use later to find the nearest neighbor.
+
+        y : array of shape (n_samples,)
+            These are the labels for each training sample in X. This is what we
+            want to predict when we see new data.
+
+        Returns
+        -------
+        self
+            The model itself, following the sklearn convention.
+        """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         return self
 
     def predict(self, X):
@@ -52,14 +71,29 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+        """Predict labels for the input samples.
+
+        Parameters
+        ----------
+        X : array of shape (n_samples, n_features)
+            These are the data points we want to classify. They must have the
+            same number of features as the training data.
+
+
+        Returns
+        -------
+        y_pred : array of shape (n_samples,)
+            These are the predicted labels. For each sample, we look at the
+            closest point in the training set and use its label.
+
+        """
+
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        distances = np.linalg.norm(self.X_[None, :, :] - X[:, None, :], axis=2)
+        nearest_idx = np.argmin(distances, axis=1)
+        y_pred = self.y_[nearest_idx]
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
@@ -67,8 +101,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+        """Compute the accuracy of the model.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            The samples used to test the model.
+
+        y : array-like of shape (n_samples,)
+            The true labels, so we can compare them with what we predicted.
+
+        Returns
+        -------
+        score : float
+            The accuracy of the predictions, between 0 and 1.
+        """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
