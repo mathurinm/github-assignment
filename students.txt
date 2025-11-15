@@ -38,7 +38,7 @@ Goursaud De Merlis	Ion    X
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
-Hartmann	Nick     
+Hartmann	Nick  X  
 Heimann	Carl X   
 Hou	Litong  X   
 Hourquet	Augustin  X   
