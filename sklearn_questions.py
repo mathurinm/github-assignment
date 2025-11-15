@@ -48,7 +48,12 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y, ensure_2d=True, dtype="numeric")
+        X, y = validate_data(
+            self,
+            X,
+            y,
+            ensure_2d=True,
+            dtype="numeric")
 
         check_classification_targets(y)
 
