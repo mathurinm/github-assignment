@@ -24,7 +24,8 @@ from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -47,7 +48,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self: object
 
         """
-        X, y = validate_data(self, X, y, dtype=float)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -67,7 +68,15 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred: array with shape (n_samples, ) of predicted labels
         """
         check_is_fitted(self)
-        X = validate_data(self, X, dtype=float, reset=False)
+        X = check_array(X)
+
+        # Required by sklearn's check_estimator
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"was fitted with {self.n_features_in_} features."
+            )
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
@@ -96,7 +105,14 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         -------
         accuracy: float, fraction of correct predictions.
         """
-        X, y = validate_data(self, X, y, dtype=float, reset=False)
-        y_pred = self.predict(X)
+        X, y = check_X_y(X, y)
 
+        # Same feature check for consistency
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"was fitted with {self.n_features_in_} features."
+            )
+
+        y_pred = self.predict(X)
         return np.mean(y_pred == y)
