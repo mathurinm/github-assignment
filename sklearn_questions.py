@@ -75,7 +75,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
                 "X has {} features, but {} is expecting {} features as input"
-                .format(X.shape[1], self.__class__.__name__, self.n_features_in_)
+                .format(
+                    X.shape[1], self.__class__.__name__, self.n_features_in_)
             )
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
