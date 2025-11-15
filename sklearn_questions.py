@@ -67,7 +67,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """
         Le but de la méthode predict est de prédire les étiquettes pour les
-        échantillons de test X en utilisant les données d'entraînement qui 
+        échantillons de test X en utilisant les données d'entraînement qui
         ont précédemment été stockées dans l'estimateur lors de l'appel à fit.
 
         Parameters
@@ -93,7 +93,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i in range(X.shape[0]):
             x_test = X[i, :]
 
-            # Calcul de la distance euclidienne entre x_test et tous les points 
+            # Calcul de la distance euclidienne entre x_test et tous les points
             # d'entraînement (self.X_)
 
             distances = np.sum((self.X_train_ - x_test)**2, axis=1)
@@ -108,7 +108,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """
-        Retourne l'exactitude moyenne (accuracy) des prédictions sur X par rapport à y.
+        Retourne l'exactitude moyenne (accuracy) des prédictions sur X
+        par rapport à y.
 
         Parameters
         ----------

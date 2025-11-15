@@ -39,21 +39,20 @@ def max_index(X: np.ndarray) -> tuple:
     """
     # 1. Contrôle du type d'entrée (Doit être un np.ndarray)
     if not isinstance(X, np.ndarray):
-        raise ValueError(f"L'entrée doit être un np.ndarray, mais le type {type(X)} a été reçu.")
-        
+        raise ValueError(f"L'entrée doit être un np.ndarray, mais le type
+                         {type(X)} a été reçu.")
+
     # 2. Contrôle des dimensions (Doit être 2D)
     if X.ndim != 2:
-        raise ValueError(f"Le tableau doit être 2D pour cette fonction (il a {X.ndim} dimensions).")
+        raise ValueError(f"Le tableau doit être 2D pour cette fonction (il a
+                         {X.ndim} dimensions).")
     # 3. Recherche de l'indice du maximum
     for i in range(X.shape[0]):
         for j in range(X.shape[1]):
             if X[i, j] == np.max(X):
                 return (i, j)
-    # La fonction retourne la première occurrence du maximum en parcourant les lignes puis les colonnnes.
-            
-
-
-
+    # La fonction retourne la première occurrence du maximum en parcourant les
+    # lignes puis les colonnnes.
 
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
@@ -73,23 +72,26 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if not isinstance(n_terms, int):
-        raise ValueError(f"Le paramètre doit être un entier,  (il est du type {type(n_terms)}).")
+        raise ValueError(f"Le paramètre doit être un entier,  (il est du type
+                         {type(n_terms)}).")
     if n_terms < 1:
         return 0.0
-        
+
     product = 1.0
-    
+
     # Itère de k=1 à n_terms (inclus)
     for k in range(1, n_terms + 1):
         # Calcule le numérateur (2k) et les dénominateurs (2k-1, 2k+1)
-        # On utilise des flottants (2.0 * k) pour garantir une division flottante
+        # On utilise des flottants (2.0 * k) pour garantir une division
+        # flottante
         numerator = 2.0 * k
         denominator1 = numerator - 1.0
         denominator2 = numerator + 1.0
-        
+
         # Le terme d'ordre k est (2k / (2k - 1)) * (2k / (2k + 1))
         term = (numerator / denominator1) * (numerator / denominator2)
-        
+
         product *= term
-        
-    return product * 2.0  # Le produit final est multiplié par 2 pour obtenir l'approximation de pi vu que l'intégrale donne pi/2.
+    # Le produit final est multiplié par 2 pour obtenir
+    # l'approximation de pi vu que l'intégrale donne pi/2.
+    return 2.0 *product
