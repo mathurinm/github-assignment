@@ -38,7 +38,7 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    
+
     if not isinstance(X, np.ndarray):
         raise ValueError("Input should be numpy array.")
     if X.ndim != 2:
@@ -75,7 +75,7 @@ def wallis_product(n_terms):
 
     if n_terms == 0:
         return pi_approx
-    
+
     for n in range(1, n_terms + 1):
         pi_approx *= (4 * n**2) / (4 * n**2 - 1)
 

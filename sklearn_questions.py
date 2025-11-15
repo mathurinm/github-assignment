@@ -49,7 +49,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        
         return self
 
     def predict(self, X):
@@ -60,7 +59,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         check_is_fitted(self)
         X = check_array(X)
-        
+
         # euclidean distances between X and self.X_
         distances = np.linalg.norm(
             self.X_[np.newaxis, :, :] - X[:, np.newaxis, :], axis=2
