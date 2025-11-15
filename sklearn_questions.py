@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,19 +36,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
+
         """Write docstring.
 
         And describe parameters
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+        self.X_ = X
+        self.y_ = y
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
-        self.X_ = X
-        self.y_ = y 
-
+        
         return self
 
     def predict(self, X):
@@ -55,29 +57,27 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        
         # euclidean distances between X and self.X_
         distances = np.linalg.norm(
-            self.X_[np.newaxis, :, :] - X[:, np.newaxis, :], axis = 2
+            self.X_[np.newaxis, :, :] - X[:, np.newaxis, :], axis=2
         )
         nearest_indices = np.argmin(distances, axis=1)
         y_pred = self.y_[nearest_indices]
+
         return y_pred
 
     def score(self, X, y):
+
         """Write docstring.
 
         And describe parameters
         """
+
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
