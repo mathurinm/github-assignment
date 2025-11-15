@@ -33,7 +33,7 @@ Fouache D'Halloy Martin X
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur    X 
 Geagea	Christele     
-Goossens	Guust     
+Goossens	Guust     X
 Goursaud De Merlis	Ion     
 Goyal	Harshita    X  
 Guo	Zixiao     X
