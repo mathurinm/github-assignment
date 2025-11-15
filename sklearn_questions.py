@@ -23,8 +23,10 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -49,9 +51,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y, ensure_2d=True)
-
-        # X, y = check_X_y(X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -75,21 +75,16 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         check_is_fitted(
             self, attributes=["X_", "y_", "classes_", "n_features_in_"]
             )
-        #  X = check_array(X)
-        X = validate_data(self, X, reset=False)
+        X = check_array(X)
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
-                "X has a different number of features than seen during fit: "
-                f"{X.shape[1]} != {self.n_features_in_}"
+                f"X has {X.shape[1]} features, but {self.__class__.__name__} "
+                f"is expecting {self.n_features_in_} features as input"
             )
 
-        # Compute squared Euclidean distances to all training points
         diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
         dists = np.sum(diff ** 2, axis=2)
-
-        # Index of the closest training sample for each query
         nn_idx = np.argmin(dists, axis=1)
-
         return self.y_[nn_idx]
 
     def score(self, X, y):
@@ -109,7 +104,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         accuracy : float
             Mean accuracy of predictions on `X` compared to `y`.
         """
-        # X, y = check_X_y(X, y)
-        X, y = validate_data(self, X, y, reset=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         return float(np.mean(y_pred == y))
