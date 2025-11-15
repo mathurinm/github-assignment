@@ -64,7 +64,7 @@ Mahé	Blanche     X
 Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
-Mayette	Scott     
+Mayette	Scott     X
 Melhaoui	Romaissae    X
 Meng	Ziqi     X
 Meyer	Felix     X
