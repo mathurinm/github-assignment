@@ -75,7 +75,7 @@ def wallis_product(n_terms):
         return 1.0
 
     n = np.arange(1, n_terms + 1, dtype=float)
-    terms =(2 * n / (2 * n -1)) * (2 * n /(2 * n +1))
+    terms = (2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1))
     product = np.prod(terms)
 
     return 2.0 * product
