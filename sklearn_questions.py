@@ -35,23 +35,53 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Le but du fit est juste de stocker les données d'entraînement.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array, shape (n_samples, n_features)
+            Les échantillons d'entraînement.
+        y : array, shape (n_samples,)
+            Les étiquettes cibles des échantillons d'entraînement.
+
+        Returns
+        -------
+        self : object
+            L'estimateur entraîné (c'est à dire contenant les données
+            d'entraînement).
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # Rajout des données d'entraînement dans l'estimateur
+        self.X_train_ = X
+        self.y_train_ = y
+
+        # Marquer l'estimateur comme "entraîné"
+        self.is_fitted_ = True
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
         """
+        Le but de la méthode predict est de prédire les étiquettes pour les
+        échantillons de test X en utilisant les données d'entraînement qui 
+        ont précédemment été stockées dans l'estimateur lors de l'appel à fit.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Les échantillons de test pour lesquels prédire les étiquettes.
+
+        Returns
+        -------
+        y_pred : ndarray, shape (n_samples,)
+            Les étiquettes de classe prédites pour chaque échantillon de test.
+        """
+
+        # Vérification que l'estimateur a bien été entraîné
         check_is_fitted(self)
         X = check_array(X)
         y_pred = np.full(
@@ -59,16 +89,40 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # Itération sur chaque échantillon de test
+        for i in range(X.shape[0]):
+            x_test = X[i, :]
+
+            # Calcul de la distance euclidienne entre x_test et tous les points 
+            # d'entraînement (self.X_)
+
+            distances = np.sum((self.X_train_ - x_test)**2, axis=1)
+
+            # Trouver l'indice du point d'entraînement le plus proche
+            closest_index = np.argmin(distances)
+
+            # L'étiquette prédite est celle du voisin le plus proche
+            y_pred[i] = self.y_train_[closest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Retourne l'exactitude moyenne (accuracy) des prédictions sur X par rapport à y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array, shape (n_samples, n_features)
+            Les échantillons de test.
+        y : array, shape (n_samples,)
+            Les étiquettes cibles vraies pour X.
+
+        Returns
+        -------
+        score : float
+            Le pourcentage d'étiquettes bien pédites.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return y_pred.sum()/y.shape[0]
