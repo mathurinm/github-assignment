@@ -83,4 +83,4 @@ def wallis_product(n_terms):
     product = np.prod(terms)  # Compute the product of all terms
 
     # Return the approximation of pi
-    return product
+    return 2.0 * product
