@@ -39,13 +39,15 @@ def max_index(X: np.ndarray) -> tuple:
     """
     # 1. Contrôle du type d'entrée (Doit être un np.ndarray)
     if not isinstance(X, np.ndarray):
-        raise ValueError(f"L'entrée doit être un np.ndarray, mais le type
-                         {type(X)} a été reçu.")
+        raise ValueError(
+            f"""L'entrée doit être un np.ndarray, mais le type
+                         {type(X)} a été reçu.""")
 
     # 2. Contrôle des dimensions (Doit être 2D)
     if X.ndim != 2:
-        raise ValueError(f"Le tableau doit être 2D pour cette fonction (il a
-                         {X.ndim} dimensions).")
+        raise ValueError(
+            f"""Le tableau doit être 2D pour cette fonction (il a
+                         {X.ndim} dimensions).""")
     # 3. Recherche de l'indice du maximum
     for i in range(X.shape[0]):
         for j in range(X.shape[1]):
