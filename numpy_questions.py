@@ -56,6 +56,7 @@ def max_index(X: np.ndarray) -> tuple:
     # La fonction retourne la première occurrence du maximum en parcourant les
     # lignes puis les colonnnes.
 
+
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
@@ -97,4 +98,4 @@ def wallis_product(n_terms):
         product *= term
     # Le produit final est multiplié par 2 pour obtenir
     # l'approximation de pi vu que l'intégrale donne pi/2.
-    return 2.0 *product
+    return 2.0 * product
