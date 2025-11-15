@@ -30,7 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -66,8 +66,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """
-        Le but de la méthode predict est de prédire les étiquettes pour les
+        """ Le but de la méthode predict est de prédire les étiquettes pour les
         échantillons de test X en utilisant les données d'entraînement qui
         ont précédemment été stockées dans l'estimateur lors de l'appel à fit.
 
@@ -81,7 +80,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred : ndarray, shape (n_samples,)
             Les étiquettes de classe prédites pour chaque échantillon de test.
         """
-
         # Vérification que l'estimateur a bien été entraîné
         check_is_fitted(self)
         X = check_array(X)
@@ -109,8 +107,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """
-        Retourne l'exactitude moyenne (accuracy) des prédictions sur X
+        """ Retourne l'exactitude moyenne (accuracy) des prédictions sur X
         par rapport à y.
 
         Parameters
