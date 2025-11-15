@@ -1,7 +1,7 @@
 Acero	Arnolfo X     
 Alberge	Julie     
 Andreani	François     X
-Balech	Ryan     
+Balech	Ryan    X 
 Barbier	RémiX     
 Bardou	Louan X  
 Barge	François     
