@@ -50,7 +50,7 @@ Karim	Omar
 Keum	Hae In     
 Khaw	Tristan    X
 Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
+Korouhanba Khuman	Laikhuram    X 
 Lassus	Gabin     
 Lau	Martin Alexander     X
 Le Bacon	Alexandre     
