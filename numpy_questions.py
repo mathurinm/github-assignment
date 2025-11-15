@@ -72,8 +72,9 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if not isinstance(n_terms, int):
-        raise ValueError(f"Le paramètre doit être un entier,  (il est du type
-                         {type(n_terms)}).")
+        raise ValueError(
+            f"""Le paramètre doit être un entier,
+            (il est du type{type(n_terms)}""")
     if n_terms < 1:
         return 0.0
 
