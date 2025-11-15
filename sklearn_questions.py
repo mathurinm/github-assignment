@@ -29,46 +29,96 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """One-Nearest-Neighbor classifier.
+
+    This classifier assigns to each sample the label of the closest
+    training point in Euclidean distance. Only a single neighbor is
+    considered.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data.
+
+        y : ndarray of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
+
+        Raises
+        ------
+        ValueError
+            If `X` and `y` have incompatible shapes or if `y`
+            is not a valid classification target.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for given samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
+
+        Raises
+        ------
+        ValueError
+            If estimator has not been fitted.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+
+        distances = np.linalg.norm(
+            X[:, np.newaxis, :] - self.X_[np.newaxis, :, :],
+            axis=2,
         )
 
-        # XXX fix
-        return y_pred
+        nearest_idx = np.argmin(distances, axis=1)
+
+        return self.y_[nearest_idx]
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test samples.
+
+        y : ndarray of shape (n_samples,)
+            True labels.
+
+        Returns
+        -------
+        score : float
+            Classification accuracy, i.e. the proportion of correct
+            predictions.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)

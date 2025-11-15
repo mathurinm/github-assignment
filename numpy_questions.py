@@ -41,7 +41,7 @@ def max_index(X):
         raise ValueError("Input must be an array")
     if X.ndim != 2:
         raise ValueError("Array must be 2D")
-    
+
     i = 0
     j = 0
 
@@ -73,9 +73,8 @@ def wallis_product(n_terms):
 
     if n_terms == 0:
         return 1
-    
-    product = 1
 
+    product = 1
 
     for n in range(1, n_terms + 1):
         t = (2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1))
@@ -84,4 +83,3 @@ def wallis_product(n_terms):
     pi = 2 * product
 
     return pi
-
