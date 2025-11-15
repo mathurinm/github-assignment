@@ -66,9 +66,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """ Le but de la méthode predict est de prédire les étiquettes pour les
-        échantillons de test X en utilisant les données d'entraînement qui
-        ont précédemment été stockées dans l'estimateur lors de l'appel à fit.
+        """Le but de la méthode predict est de prédire les étiquettes.
+
+        Pour les chantillons de test X en utilisant les données d'entraînement
+        qui ont précédemment été stockées dans l'estimateur lors de
+        l'appel à fit.
 
         Parameters
         ----------
@@ -107,8 +109,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """ Retourne l'exactitude moyenne (accuracy) des prédictions sur X
-        par rapport à y.
+        """Retourne le pourcentage d'étiquettes bien pédites (Accuracy).
 
         Parameters
         ----------
@@ -116,7 +117,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Les échantillons de test.
         y : array, shape (n_samples,)
             Les étiquettes cibles vraies pour X.
-
         Returns
         -------
         score : float
