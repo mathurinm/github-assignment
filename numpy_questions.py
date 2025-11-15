@@ -43,7 +43,6 @@ def max_index(X):
 
     if X.ndim != 2:
         raise ValueError('The input is not 2D array')
-    
     overall_max = np.max(X)
 
     for i in range(np.shape(X)[0]):
@@ -73,7 +72,6 @@ def wallis_product(n_terms):
     """
     if n_terms == 0:
         return 1
-    
     else:
         prod = 1
         for i in range(1, n_terms + 1):

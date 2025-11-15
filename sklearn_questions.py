@@ -79,7 +79,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Predicted class labels for each input sample.
         """
         check_is_fitted(self)
-        X = check_array(X)  
+        X = check_array(X)
 
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
