@@ -19,15 +19,15 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import ClassifierMixin, BaseEstimator
-from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import validate_data
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
@@ -35,7 +35,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier.
-    
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
@@ -48,15 +48,10 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self : object
             Fitted estimator.
         """
-        X, y = validate_data(
-            self,
-            X, y,
-            ensure_2d=True,
-            dtype=None
-            )
-        
+        X, y = validate_data(self, X, y, ensure_2d=True, dtype="numeric")
+
         check_classification_targets(y)
-        
+
         self.X_ = X
         self.y_ = y
 
@@ -71,29 +66,28 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
-            The samples for which we want to guess the label. They must have the 
-            same number of features as the data used during ``fit``.
+            The samples for which we want to guess the label. They must have
+            the same number of features as the data used during ``fit``.
 
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
-            The predicted labels. For each sample, the model looks for the closest
-            point in the training set and returns its label.
+            The predicted labels. For each sample, the model looks for the
+            closest point in the training set and returns its label.
         """
-
         check_is_fitted(self)
         X = validate_data(
             self,
             X,
             ensure_2d=True,
-            dtype=None,
+            dtype="numeric",
             reset=False
-        )
+            )
 
-        distance = np.linalg.norm(self.X_[None,:,:] - X[:,None,:], axis=2)
+        distance = np.linalg.norm(self.X_[None, :, :] - X[:, None, :], axis=2)
         nearest_index = np.argmin(distance, axis=1)
         y_pred = self.y_[nearest_index]
-        
+
         return y_pred
 
     def score(self, X, y):
@@ -118,8 +112,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             ensure_2d=True,
             dtype=None,
             reset=False
-        )
+            )
         y_pred = self.predict(X)
-
 
         return (y_pred == y).mean()
