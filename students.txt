@@ -13,7 +13,7 @@ Boukhobza	Sila     X
 Brisset	Lancelot     X
 Burtin	Léo     
 Chaabouni	Kenza     
-Chauhan	Bhavesh     
+Chauhan	Bhavesh  X   
 Chou	Wei-Chieh X    
 Clot	Augustin   X
 De Sauvan D'Aramon	Ithier     X
