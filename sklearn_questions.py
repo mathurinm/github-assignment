@@ -28,47 +28,105 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier.
+    
+    Implement a OneNearestNeighbor classifier to predict the label of a 
+    point X_i based of the y_j label of the its closest neighbor X_j
+
+    Attributes
+    ----------
+    X_train_ : ndarray shaped (n_samples, n_features)
+        Training data
+
+    y_train_ : ndarray shaped (n_samples,)
+        Target labels
+        
+    """
+    
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier according to the training set.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training data.
+            
+        y : ndarray of shape (n_samples,)
+            The target labels.
+
+        Returns
+        -------
+        self: OneNearestNeighbor
+            The OneNearestNeighbor classifier trained
         """
+        
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+        
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class label according to the fitted model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The data to predict the labels.
+
+        Returns
+        -------
+        y_pred: ndarray of shape (n_samples,)
+            The predicted labels for the data.
         """
+        
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
-
-        # XXX fix
+        
+        if X.shape[1] != self.n_features_in_:
+            n_features_X = X.shape[1]
+            raise ValueError(
+                f"X has {n_features_X} features, but "
+                f"{self.__class__.__name__} is expecting "
+                f"{self.n_features_in_} features as input")
+        
+        A2 = np.sum(X**2, axis=1, keepdims=True)
+        B2 = np.sum(self.X_train_**2, axis=1, keepdims=True).T
+        d2 = A2 - 2*(X @ self.X_train_.T) + B2
+        
+        nearest = np.argmin(d2, axis=1)        
+        y_pred = self.y_train_[nearest]
+        
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the test data under the fitted model
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The data to predict the labels.
+            
+        y : ndarray of shape (n_samples,)
+            The real labels
+
+        Returns
+        -------
+        score : float
+            The accuracy of the prediction.
         """
+        
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        score = np.mean(y_pred == y)
+        
+        return score
