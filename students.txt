@@ -34,7 +34,7 @@ Franco--Tetu	Erwan  X
 Gaillard	Arthur    X 
 Geagea	Christele     X
 Goossens	Guust     X
-Goursaud De Merlis	Ion     
+Goursaud De Merlis	Ion    X 
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
