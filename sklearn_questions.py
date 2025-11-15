@@ -43,7 +43,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Training data.
         y : ndarray of shape (n_samples,)
             Target labels corresponding to X.
-            
+
         Returns
         -------
         self : object
@@ -59,7 +59,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def predict(self, X):
         """Predict class labels for the given samples.
-        
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
@@ -82,14 +82,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def score(self, X, y):
         """Compute the accuracy of the classifier.
-        
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             Test samples.
         y : ndarray of shape (n_samples,)
             True labels for X.
-        
+
         Returns
         -------
         score : float
