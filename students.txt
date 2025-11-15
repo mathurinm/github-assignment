@@ -32,7 +32,7 @@ Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur    X 
-Geagea	Christele     
+Geagea	Christele     X
 Goossens	Guust     X
 Goursaud De Merlis	Ion     
 Goyal	Harshita    X  
