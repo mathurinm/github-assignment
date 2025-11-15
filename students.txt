@@ -34,7 +34,7 @@ Franco--Tetu	Erwan  X
 Gaillard	Arthur    X 
 Geagea	Christele     
 Goossens	Guust     
-Goursaud De Merlis	Ion     
+Goursaud De Merlis	Ion   X  
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
@@ -98,5 +98,4 @@ Xiong	Licheng     X
 Yamakawa	Karin     
 Young	Olivia Rose X    
 Zhang	Fang     X
-Goursaud de Merlis Ion X
 
