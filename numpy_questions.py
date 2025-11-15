@@ -76,7 +76,7 @@ def wallis_product(n_terms):
 
     if n_terms == 0:
         # Wallis product with 0 terms is defined as 1
-        return 1.0 
+        return 1.0
 
     n = np.arange(1, n_terms + 1)  # Create an array from 1 to n_terms
     terms = (2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1))
