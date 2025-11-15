@@ -78,7 +78,7 @@ def wallis_product(n_terms):
             f"""Le paramètre doit être un entier,
             (il est du type{type(n_terms)}""")
     if n_terms < 1:
-        return 0.0
+        return 1.0
 
     product = 1.0
 

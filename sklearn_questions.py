@@ -16,7 +16,8 @@ enforced with `flake8`. You can check that there is no flake8 errors by
 calling `flake8` at the root of the repo.
 
 Finally, you need to write docstring similar to the one in `numpy_questions`
-for the methods you code and for the class. The docstring will be checked using
+for the methods you code and for the class. The docstring will be checked
+using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
@@ -93,7 +94,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         for i in range(X.shape[0]):
             x_test = X[i, :]
 
-            # Calcul de la distance euclidienne entre x_test et tous les points
+            # Calcul de la distance euclidienne entre x_test et tous
+            # les points
             # d'entraînement (self.X_)
 
             distances = np.sum((self.X_train_ - x_test)**2, axis=1)
@@ -126,4 +128,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        return y_pred.sum()/y.shape[0]
+        return np.mean(y_pred == y)
