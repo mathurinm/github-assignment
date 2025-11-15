@@ -84,7 +84,7 @@ Söhnchen	Vincent  X
 Soro	Nangounon Mohamed   X  
 Storp	Anais X    
 Sudhir	Anirudh Karat  X   
-Sultan	Sacha     
+Sultan	Sacha    X    
 Tejodonkeng Menkem	Luc     X
 Thevaraja	Akilan     X
 Trancart	Nicolas     
