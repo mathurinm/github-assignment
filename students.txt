@@ -1,12 +1,12 @@
 Acero	Arnolfo X     
 Alberge	Julie     
-Andreani	François     
+Andreani	François     X
 Balech	Ryan     
 Barbier	RémiX     
-Bardou	Louan     
+Bardou	Louan X  
 Barge	François     
 Baumelou	Gaspard X 
-Ben Hamou	Ethan     
+Ben Hamou	Ethan   X 
 Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X 
 Boukhobza	Sila     X
@@ -33,8 +33,10 @@ Fouache D'Halloy Martin X
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur    X 
 Geagea	Christele     
-Goossens	Guust     
+Goossens	Guust    X 
 Goursaud De Merlis	Ion   X  
+Goossens	Guust     X
+Goursaud De Merlis	Ion    X 
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
@@ -65,7 +67,7 @@ Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
 Mayette	Scott     
-Melhaoui	Romaissae     
+Melhaoui	Romaissae    X
 Meng	Ziqi     X
 Meyer	Felix     X
 Morais	Célia X    
@@ -78,15 +80,15 @@ Perrotton	Pauline  X
 Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
-Singh	Ayush     
+Singh	Ayush  X
 Smith	Oliver X     
 Söhnchen	Vincent  X 
-Soro	Nangounon Mohamed     
+Soro	Nangounon Mohamed   X  
 Storp	Anais X    
 Sudhir	Anirudh Karat  X   
 Sultan	Sacha     
 Tejodonkeng Menkem	Luc     X
-Thevaraja	Akilan     
+Thevaraja	Akilan     X
 Trancart	Nicolas     
 Vacca	Chloe X
 Vettori	Lucca   X     
