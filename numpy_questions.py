@@ -66,7 +66,7 @@ def wallis_product(n_terms):
         raise ValueError("n_terms must be a non-negative integer")
     if n_terms == 0:
         return 1.
-    pi = 2.  # Commence avec 2, pas 1
+    pi = 2.
     for i in range(1, n_terms + 1):
         pi *= (4 * i**2) / (4 * i**2 - 1)
     return pi

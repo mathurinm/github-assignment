@@ -61,7 +61,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Parameters
         ----------
-        X : Same as before
+        X : array-like of shape (n_samples, n_features)
             Test samples.
 
         Returns
@@ -86,9 +86,9 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Parameters
         ----------
-        X : Same as before
+        X : array-like of shape (n_samples, n_features)
             Test samples.
-        y : Same as before
+        y : array-like of shape (n_samples,)
             True labels for X.
 
         Returns
