@@ -48,8 +48,9 @@ def max_index(X):
     if X.ndim != 2:
         raise ValueError("Input array is not 2D")  # Check for 2D shape
 
-    i, j = np.unravel_index(np.argmax(X), X.shape)  # Find indices of maximum value
-    
+    # Find indices of maximum value
+    i, j = np.unravel_index(np.argmax(X), X.shape)
+
     return i, j
 
 
@@ -74,12 +75,12 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
 
     if n_terms == 0:
-        # Wallis product with 0 terms is defined as 1, so pi approximation is 2
-        return 2.0  
+        # Wallis product with 0 terms is defined as 1
+        return 1.0  
 
     n = np.arange(1, n_terms + 1)  # Create an array from 1 to n_terms
     terms = (2 * n / (2 * n - 1)) * (2 * n / (2 * n + 1))
     product = np.prod(terms)  # Compute the product of all terms
 
-    return 2.0 * product  # Return the approximation of pi
-
+    # Return the approximation of pi
+    return product
