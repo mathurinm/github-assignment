@@ -71,12 +71,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Class labels for each data sample.
         """
         check_is_fitted(self)
-        X = check_array(X)
-        # Vérifier que le nombre de features correspond
+        X = check_array(X, ensure_2d=True)
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
-                f"X has {X.shape[1]} features, but OneNearestNeighbor "
-                f"is expecting {self.n_features_in_} features."
+                "X has {} features, but {} is expecting {} features as input"
+                .format(X.shape[1], self.__class__.__name__, self.n_features_in_)
             )
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
