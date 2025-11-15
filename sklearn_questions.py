@@ -39,7 +39,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
-        
         X : ndarray of shape (n_samples, n_features)
             Training data.
         y : ndarray of shape (n_samples,)
