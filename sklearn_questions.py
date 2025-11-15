@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,46 +30,85 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
-        pass
+        pass  # no parameters
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input array.
+
+        y : ndarray of shape (n_samples,)
+            True labels of X.
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
         """
-        X, y = check_X_y(X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
+        X, y = check_X_y(X, y)  # check format X and y
+        check_classification_targets(y)  # check y has classification labels
+        self.classes_ = np.unique(y)  # stocking in order y values
+        self.n_features_in_ = X.shape[1]  # nber columns of X
 
-        # XXX fix
+        # storing the training data
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels of input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input array whose labels need to be predicted.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
-        check_is_fitted(self)
-        X = check_array(X)
+        check_is_fitted(self)  # check fit() was called before
+        X = check_array(X)  # check format of X
+        # create an empty table to fill it with predictions
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            dist = np.linalg.norm(self.X_ - X[i], axis=1)  # Euclidian distance
+            nearest_index = np.argmin(dist)  # index smallest distance
+            y_pred[i] = self.y_[nearest_index]  # label of closest
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute accuracy score of OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test samples.
+
+        y : ndarray of shape (n_samples,)
+            True labels of test samples (X).
+
+        Returns
+        -------
+        score : float
+            Classification accuracy score.
         """
+        self._check_n_features(X, reset=False)  # check nber features match X
         X, y = check_X_y(X, y)
-        y_pred = self.predict(X)
+        y_pred = self.predict(X)  # make prediction of labels
+        y_pred = (y_pred == y).astype(int)/len(y)  # compare prediction to true
 
-        # XXX fix
         return y_pred.sum()
