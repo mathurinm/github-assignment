@@ -29,8 +29,9 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
-
+    """
+    OneNearestNeighbor classifier.
+    """
     def __init__(self):  # noqa: D107
         pass
 
@@ -50,7 +51,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             Returns the instance itself.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
