@@ -44,7 +44,7 @@ def max_index(X):
         raise ValueError("the input is not a numpy array")
     if (X.ndim != 2):
         raise ValueError("the shape is not 2D")
-    
+
     i, j = np.unravel_index(np.argmax(X), X.shape)
 
     return i, j
@@ -68,9 +68,9 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     wallis = 1
-    if(n_terms == 0):
+    if (n_terms == 0):
         return wallis
     else:
         for i in range(1, n_terms+1):
-            wallis *= (2*i/(2*i - 1))*(2*i/(2*i+1))    
+            wallis *= (2*i/(2*i - 1)) * (2*i/(2*i+1))
     return 2*wallis

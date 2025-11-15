@@ -30,8 +30,8 @@ from sklearn.utils.multiclass import check_classification_targets
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier.
-    
-    Implement a OneNearestNeighbor classifier to predict the label of a 
+
+    Implement a OneNearestNeighbor classifier to predict the label of a
     point X_i based of the y_j label of the its closest neighbor X_j
 
     Attributes
@@ -41,9 +41,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     y_train_ : ndarray shaped (n_samples,)
         Target labels
-        
+
     """
-    
 
     def __init__(self):  # noqa: D107
         pass
@@ -55,7 +54,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         ----------
         X : ndarray of shape (n_samples, n_features)
             The training data.
-            
+
         y : ndarray of shape (n_samples,)
             The target labels.
 
@@ -64,7 +63,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self: OneNearestNeighbor
             The OneNearestNeighbor classifier trained
         """
-        
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -72,7 +70,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         self.X_train_ = X
         self.y_train_ = y
-        
+
         return self
 
     def predict(self, X):
@@ -88,34 +86,32 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred: ndarray of shape (n_samples,)
             The predicted labels for the data.
         """
-        
         check_is_fitted(self)
         X = check_array(X)
-        
+
         if X.shape[1] != self.n_features_in_:
-            n_features_X = X.shape[1]
             raise ValueError(
-                f"X has {n_features_X} features, but "
+                f"X has {X.shape[1]} features, but "
                 f"{self.__class__.__name__} is expecting "
                 f"{self.n_features_in_} features as input")
-        
+
         A2 = np.sum(X**2, axis=1, keepdims=True)
         B2 = np.sum(self.X_train_**2, axis=1, keepdims=True).T
         d2 = A2 - 2*(X @ self.X_train_.T) + B2
-        
-        nearest = np.argmin(d2, axis=1)        
+
+        nearest = np.argmin(d2, axis=1)
         y_pred = self.y_train_[nearest]
-        
+
         return y_pred
 
     def score(self, X, y):
-        """Return the accuracy of the test data under the fitted model
+        """Return the accuracy of the test data under the fitted model.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             The data to predict the labels.
-            
+
         y : ndarray of shape (n_samples,)
             The real labels
 
@@ -124,9 +120,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             The accuracy of the prediction.
         """
-        
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         score = np.mean(y_pred == y)
-        
+
         return score
