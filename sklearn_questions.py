@@ -22,53 +22,81 @@ for the methods you code and for the class. The docstring will be checked using
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model based on X and y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: array (n_samples, n_features). Training data.
+
+        y: array (n_samples). Target data.
+
+        Returns
+        -------
+        self: object
+
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, dtype=float)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels for each x based on Euclidean distance.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: array of test samples
+
+        Returns
+        -------
+        y_pred: array with shape (n_samples, ) of predicted labels
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = validate_data(self, X, dtype=float, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # Compute distances
+        for i, x_test in enumerate(X):
+            distances = np.linalg.norm(self.X_ - x_test, axis=1)
+            idx = np.argmin(distances)
+            y_pred[i] = self.y_[idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: array (n_samples, n_features). Training data.
+
+        y: array (n_samples). Target data.
+
+        y_pred: array with shape (n_samples, ) of predicted labels
+
+        Returns
+        -------
+        accuracy: float, fraction of correct predictions.
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, dtype=float, reset=False)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
