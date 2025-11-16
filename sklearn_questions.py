@@ -35,9 +35,20 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier on training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        self : defines the instance of the class OneNearestNeighbor we are 
+        working on
+        X : ndarray of the training data, 
+        with shape (n_observations, p_features)
+        y : 1-darray of the labels associated with each dimension of X, 
+        with shape (n_observations)
+
+        Returns
+        -------
+        self : maintains the instance
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -45,12 +56,23 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y # store X and y as data the model has "learned", 
+                    # ensure we have trained on X and y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict y label for input data X using the OneNearestNeighbor rule
 
-        And describe parameters
+        Parameters
+        -------
+        self : still maintain the instance of the class
+        X : ndarray of test data, with shape (n_observations, p_features)
+
+        Returns
+        -------
+        y_pred : 1-darray of labels predicted for the test data X, 
+        with shape (n_observations,)
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -60,15 +82,33 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         )
 
         # XXX fix
+        idx = 0
+        for x in X:
+            euclidean_distances = np.sqrt(np.sum((self.X_ - x) ** 2, axis=1))
+            NN_index = np.argmin(euclidean_distances)
+            NN = self.y_[NN_index]
+            y_pred[idx] = NN
+            idx += 1
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Score the model performance by evaluating 
+        the proportion of y_pred that were accurate predictions.
 
-        And describe parameters
+        Parameters
+        -------
+        X : ndarray of test data, with shape (n_observations, p_features)
+        y : 1d-array of the true labels associated with test samples X, 
+        with shape (n_observations,)
+
+        Returns
+        -------
+        a score : float in [0,1] 
+        reflecting the proportion of accurate predictions
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        #return y_pred.sum()
+        return sum(y_pred == y)/len(y)
