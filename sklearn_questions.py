@@ -6,7 +6,7 @@ estimator for the OneNearestNeighbor and check that it is working properly.
 The nearest neighbor classifier predicts for a point X_i the target y_k of
 the training sample X_k which is the closest to X_i. We measure proximity with
 the Euclidean distance. The model will be evaluated with the accuracy (average
-number of samples corectly classified). You need to implement the `fit`,
+number of samples correctly classified). You need to implement the `fit`,
 `predict` and `score` methods for this class. The code you write should pass
 the test we implemented. You can run the tests by calling at the root of the
 repo `pytest test_sklearn_questions.py`.
@@ -20,11 +20,9 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -40,23 +38,23 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier.
 
-        Store the training data to use for predictions.
-
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Training data.
+            Training input samples.
         y : ndarray of shape (n_samples,)
-            Target values (class labels).
+            Target labels associated with each training sample.
 
         Returns
         -------
-        self : object
-            Returns self.
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
-        X, y = validate_data(self, X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         # Store training data
         self.X_ = X
@@ -65,61 +63,55 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Predict class labels for samples in X.
-
-        For each sample, find the nearest neighbor in the training set
-        and return its class label.
+        """Predict class labels for given samples.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Samples to predict.
+            Samples for which to predict labels.
 
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
-            Predicted class labels.
+            Predicted class label for each sample.
         """
         check_is_fitted(self)
-        X = validate_data(self, X, reset=False)
+        X = check_array(X)
 
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        # Check number of features against what was seen in fit
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but {self.__class__.__name__} "
+                f"is expecting {self.n_features_in_} features as input"
+            )
 
-        # For each test sample, find the nearest training sample
-        for i, x_test in enumerate(X):
-            # Compute Euclidean distances to all training samples
-            distances = np.sqrt(np.sum((self.X_ - x_test) ** 2, axis=1))
-            # Find the index of the nearest neighbor
-            nearest_idx = np.argmin(distances)
-            # Predict the class of the nearest neighbor
-            y_pred[i] = self.y_[nearest_idx]
+        # Compute squared Euclidean distances to all training samples
+        diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+        distances = np.sum(diff ** 2, axis=2)
+
+        # Index of nearest neighbor for each sample
+        nearest_idx = np.argmin(distances, axis=1)
+
+        # Predicted labels
+        y_pred = self.y_[nearest_idx]
 
         return y_pred
 
     def score(self, X, y):
-        """Calculate the accuracy score.
-
-        Compute the mean accuracy of predictions on the given test data.
+        """Compute accuracy of the classifier.
 
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             Test samples.
         y : ndarray of shape (n_samples,)
-            True labels for X.
+            True target labels.
 
         Returns
         -------
         score : float
-            Mean accuracy of predictions.
+            Accuracy of predictions: fraction of correctly classified samples.
         """
-        X, y = validate_data(self, X, y, reset=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # Calculate accuracy: proportion of correct predictions
-        accuracy = np.mean(y_pred == y)
-
-        return accuracy
+        return float(np.mean(y_pred == y))
