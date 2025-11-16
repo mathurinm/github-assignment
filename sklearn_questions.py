@@ -35,22 +35,44 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Store training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array of samples.
+
+        y : ndarray of shape (n_samples,).
+            The input array of targets.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
+
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self._X_train = X
+        self._y_train = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the target y_k of the training sample X_k which
+            is the closest to X_i
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array of test samples.
 
-        And describe parameters
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The output array of predictions.
+
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +81,31 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x in enumerate(X):
+            distances = np.linalg.norm(self._X_train - x, axis=1)
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self._y_train[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Computes accuracy score of predictions.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array of test samples.
+
+        y : ndarray of shape (n_samples,).
+            The input array of targets.
+
+        Returns
+        -------
+        accuracy : float
+            Fraction of correctly classified samples.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        accuracy = (y_pred == y).mean()
+        return accuracy
