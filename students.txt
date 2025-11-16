@@ -13,7 +13,7 @@ Boukhobza	Sila     X
 Brisset	Lancelot     X
 Burtin	Léo     
 Chaabouni	Kenza     
-Chauhan	Bhavesh     
+Chauhan	Bhavesh  X   
 Chou	Wei-Chieh X    
 Clot	Augustin   X
 De Sauvan D'Aramon	Ithier     X
@@ -38,7 +38,7 @@ Goursaud De Merlis	Ion    X
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
-Hartmann	Nick     
+Hartmann	Nick  X  
 Heimann	Carl X   
 Hou	Litong  X   
 Hourquet	Augustin  X   
