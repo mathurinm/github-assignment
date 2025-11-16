@@ -40,16 +40,16 @@ def max_index(X):
     # Check if input is a numpy array
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array")
-    
+
     # Check if array is 2D
     if X.ndim != 2:
         raise ValueError("Input must be a 2D array")
-    
+
     # Find the index of the maximum value
     # np.argmax returns the flattened index, so we use unravel_index
     flat_index = np.argmax(X)
     i, j = np.unravel_index(flat_index, X.shape)
-    
+
     return int(i), int(j)
 
 
@@ -76,9 +76,9 @@ def wallis_product(n_terms):
         return 1.0
 
     product = 1.0
-    
+
     for n in range(1, n_terms + 1):
         product *= (4 * n**2) / (4 * n**2 - 1)
-    
+
     # Multiply by 2 to get pi
     return 2 * product
