@@ -35,22 +35,43 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data.
+
+        y : ndarray of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : object
+            Returns the instance itself.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
-
+    
     def predict(self, X):
-        """Write docstring.
+        """Classifies the samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -58,17 +79,34 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        
 
-        # XXX fix
+        for i, x in enumerate(X):
+            neighbour = np.argmin(np.sqrt(((self.X_ - x) ** 2).sum(axis=1)))
+            y_pred[i] = self.y_[neighbour]
+
         return y_pred
 
-    def score(self, X, y):
-        """Write docstring.
 
-        And describe parameters
+
+    def score(self, X, y):
+        """Computes the accuracy of the classifier.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test samples.
+
+        y : ndarray of shape (n_samples,)
+            True labels.
+
+        Returns
+        -------
+        score : float
+            The accuracy of predictions w.r.t. the true labels.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.sum(y_pred == y)/len(y)
+
