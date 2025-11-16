@@ -20,13 +20,37 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
+
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
+
 from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
-from sklearn.utils.validation import check_array
+
+# Try importing validate_data from newer sklearn
+try:
+    from sklearn.utils.validation import validate_data
+except ImportError:
+    # Fallback validate_data for older sklearn versions (used on CI)
+    def validate_data(estimator, X, y=None, **kwargs):
+        """Fallback implementation of validate_data
+        for older sklearn versions."""
+        if y is not None:
+            X, y = check_X_y(X, y, **kwargs)
+            estimator.n_features_in_ = X.shape[1]
+            return X, y
+        else:
+            X_checked = check_array(X, **kwargs)
+            if kwargs.get("reset") is False:
+                if X_checked.shape[1] != estimator.n_features_in_:
+                    raise ValueError(
+                        f"X has {X_checked.shape[1]} features, but "
+                        f"{estimator.__class__.__name__} was fitted with "
+                        f"{estimator.n_features_in_} features."
+                    )
+            return X_checked
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
