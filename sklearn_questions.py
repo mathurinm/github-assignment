@@ -61,8 +61,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predict the target y_k of the training sample X_k which
-            is the closest to X_i
+        """Predict the targets of training samples.
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
@@ -89,7 +89,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Computes accuracy score of predictions.
+        """Compute accuracy score of predictions.
 
         Parameters
         ----------
