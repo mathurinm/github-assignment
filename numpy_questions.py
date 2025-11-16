@@ -64,7 +64,6 @@ def wallis_product(n_terms):
     """
     if n_terms == 0:
         return 1.0
-    
     product = 1.0
 
     for k in range(1, n_terms + 1):
