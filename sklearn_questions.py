@@ -26,49 +26,57 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier."""
+        X, y = validate_data(
+            self, X, y,
+            dtype="numeric",
+            ensure_2d=True
+        )
 
-        And describe parameters
-        """
-        X, y = check_X_y(X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # Store training data
+        self.X_ = X
+        self.y_ = y
+
+        # Unique classes
+        self.classes_ = np.unique(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
-        """
+        """Predict class labels using 1-nearest neighbor."""
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+
+        X = validate_data(
+            self, X,
+            dtype="numeric",
+            ensure_2d=True,
+            reset=False
         )
 
-        # XXX fix
+        n_test = X.shape[0]
+        y_pred = np.empty(n_test, dtype=self.y_.dtype)
+
+        for i in range(n_test):
+            distances = np.sum((self.X_ - X[i]) ** 2, axis=1)
+            nn_index = np.argmin(distances)
+            y_pred[i] = self.y_[nn_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
-
-        And describe parameters
-        """
+        """Return mean accuracy."""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
