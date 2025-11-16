@@ -29,46 +29,99 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """One-nearest-neighbor classifier.
+
+    This classifier predicts the label of a sample using the label of the
+    closest training sample according to the Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
+        # Pas d'hyperparamètres pour ce modèle
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training data.
+        y : array-like of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
+        # Vérifications standard scikit-learn
         X, y = check_X_y(X, y)
         check_classification_targets(y)
+
+        # Attributs nécessaires pour scikit-learn
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # On mémorise les données d'entraînement
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the given test data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels for each sample in X.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        # Vérifier que le nombre de features correspond
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError("Number of features of X does not match training")
+
+        n_samples_test = X.shape[0]
+        y_pred = np.empty(n_samples_test, dtype=self.y_.dtype)
+
+        # Pour chaque point de test, on cherche le point d'entraînement
+        # le plus proche (distance euclidienne) et on copie son label.
+        for i in range(n_samples_test):
+            # différences entre x_i et tous les X_ de train
+            diffs = self.X_ - X[i]
+            # distances euclidiennes (norme L2)
+            dists = np.linalg.norm(diffs, axis=1)
+            # index du plus proche voisin
+            nearest_index = np.argmin(dists)
+            y_pred[i] = self.y_[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions on X compared to y.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        # proportion de bonnes prédictions
+        return np.mean(y_pred == y)
+
