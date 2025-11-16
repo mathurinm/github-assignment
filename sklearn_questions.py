@@ -24,8 +24,8 @@ from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import (
     check_X_y,
+    check_array,
     check_is_fitted,
-    validate_data,
 )
 from sklearn.utils.multiclass import check_classification_targets
 
@@ -39,82 +39,51 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """
 
     def __init__(self):  # noqa: D107
-        # No hyper-parameters for this simple estimator.
         pass
 
     def fit(self, X, y):
-        """Fit the OneNearestNeighbor classifier.
-
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Training data.
-        y : array-like of shape (n_samples,)
-            Target labels.
-
-        Returns
-        -------
-        self : OneNearestNeighbor
-            Fitted estimator.
-        """
-        # This sets n_features_in_ and handles validation in a
-        # sklearn-compatible way.
-        X, y = validate_data(self, X, y, accept_sparse=False)
+        """Fit the OneNearestNeighbor classifier."""
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
 
         self.classes_ = np.unique(y)
         self.X_ = X
         self.y_ = y
 
+        # Required for sklearn compatibility
+        self.n_features_in_ = X.shape[1]
+
         return self
 
     def predict(self, X):
-        """Predict class labels for samples in X.
-
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Input samples for which to predict class labels.
-
-        Returns
-        -------
-        y_pred : ndarray of shape (n_samples,)
-            Predicted class labels.
-        """
+        """Predict class labels for samples in X."""
         check_is_fitted(self)
 
-        # Use reset=False so sklearn checks consistency with n_features_in_
-        X = validate_data(self, X, reset=False)
+        X = check_array(X)
 
-        # Compute pairwise Euclidean distances between X and training data
+        # Manually enforce n_features_in_ check (older sklearn versions do not)
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but {type(self).__name__} "
+                f"is expecting {self.n_features_in_} features as input"
+            )
+
+        # Compute Euclidean distances
         diff = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
         distances = np.linalg.norm(diff, axis=2)
-
-        # For each sample in X, find index of nearest neighbor in training data
         nearest_idx = np.argmin(distances, axis=1)
 
-        # Predict the label of the nearest neighbor
-        y_pred = self.y_[nearest_idx]
-
-        return y_pred
+        return self.y_[nearest_idx]
 
     def score(self, X, y):
-        """Return the mean accuracy on the given test data and labels.
+        """Return the mean accuracy on the given test data and labels."""
+        X = check_array(X)
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Test samples.
-        y : array-like of shape (n_samples,)
-            True labels for X.
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but {type(self).__name__} "
+                f"is expecting {self.n_features_in_} features as input"
+            )
 
-        Returns
-        -------
-        score : float
-            Mean accuracy of the predictions on X with respect to y.
-        """
-        # We still validate (X, y) as a proper supervised dataset.
-        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         return float(np.mean(y_pred == y))
