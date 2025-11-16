@@ -78,11 +78,7 @@ Perrotton	Pauline  X
 Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
-<<<<<<< HEAD
-Singh	Ayush  X  
-=======
 Singh	Ayush  X
->>>>>>> upstream/main
 Smith	Oliver X     
 Söhnchen	Vincent  X 
 Soro	Nangounon Mohamed   X  
