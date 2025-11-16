@@ -53,6 +53,7 @@ def max_index(X):
             if X[row, col] > value_max:
                 value_max = X[row, col]
                 i, j = row, col
+
     return i, j
 
 
@@ -74,6 +75,7 @@ def wallis_product(n_terms):
         The approximation of order `n_terms` of pi using the Wallis product.
     """
     if n_terms == 0:
+
         return 1.0
 
     prod = 1.0
