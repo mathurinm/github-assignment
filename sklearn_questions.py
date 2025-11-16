@@ -35,8 +35,27 @@ try:
 except ImportError:
     # Fallback validate_data for older sklearn versions (used on CI)
     def validate_data(estimator, X, y=None, **kwargs):
-        """Fallback implementation of validate_data
-        for older sklearn versions."""
+        """
+        Fallback implementation of validate_data for older sklearn versions.
+
+        Parameters
+        ----------
+        estimator : estimator instance
+            The estimator calling this function.
+        X : array-like
+            Input data.
+        y : array-like, optional
+            Target values.
+        kwargs : dict
+            Additional arguments, such as dtype or ensure_2d.
+
+        Returns
+        -------
+        X : ndarray
+            Validated input data.
+        y : ndarray, optional
+            Validated target values when provided.
+        """
         if y is not None:
             X, y = check_X_y(X, y, **kwargs)
             estimator.n_features_in_ = X.shape[1]
