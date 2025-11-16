@@ -46,7 +46,7 @@ def max_index(X):
     if X.ndim != 2:
         raise ValueError
 
-    max = X[i,j]
+    max = X[i, j]
     for index_row in range(X.shape[0]):
         for index_col in range(X.shape[1]):
             if X[index_row, index_col] > max:
@@ -78,7 +78,7 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     if n_terms == 0:
         return 1
-    
+
     pi_over_2 = 1
     for n in range(1, n_terms+1):
         pi_over_2 *= (4*(n**2))/(4*(n**2)-1)

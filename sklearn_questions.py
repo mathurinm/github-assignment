@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -39,11 +39,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Parameters
         ----------
-        self : defines the instance of the class OneNearestNeighbor we are 
+        self : defines the instance of the class OneNearestNeighbor we are
         working on
-        X : ndarray of the training data, 
+        X : ndarray of the training data,
         with shape (n_observations, p_features)
-        y : 1-darray of the labels associated with each dimension of X, 
+        y : 1-darray of the labels associated with each dimension of X,
         with shape (n_observations)
 
         Returns
@@ -57,12 +57,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         self.X_ = X
-        self.y_ = y # store X and y as data the model has "learned", 
-                    # ensure we have trained on X and y
+        self.y_ = y #  store X and y as "learned" data,
+        #  ensure we have trained on X and y
         return self
 
     def predict(self, X):
-        """Predict y label for input data X using the OneNearestNeighbor rule
+        """Predict y label for input data X using the OneNearestNeighbor rule.
 
         Parameters
         -------
@@ -71,7 +71,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        y_pred : 1-darray of labels predicted for the test data X, 
+        y_pred : 1-darray of labels predicted for the test data X,
         with shape (n_observations,)
         """
         check_is_fitted(self)
@@ -92,23 +92,21 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Score the model performance by evaluating 
-        the proportion of y_pred that were accurate predictions.
+        """Score model performance by evaluating proportion of accurate y_pred.
 
         Parameters
         -------
         X : ndarray of test data, with shape (n_observations, p_features)
-        y : 1d-array of the true labels associated with test samples X, 
+        y : 1d-array of the true labels associated with test samples X,
         with shape (n_observations,)
 
         Returns
         -------
-        a score : float in [0,1] 
+        a score : float in [0,1]
         reflecting the proportion of accurate predictions
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        #return y_pred.sum()
         return sum(y_pred == y)/len(y)
