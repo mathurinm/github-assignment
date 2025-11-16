@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_array
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -36,11 +37,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def fit(self, X, y):
         """Fit the OneNearestNeighbor classifier."""
-        X, y = validate_data(
-            self, X, y,
-            dtype="numeric",
-            ensure_2d=True
-        )
+        # Validate input (numeric only)
+        X, y = check_X_y(X, y, dtype="numeric")
 
         check_classification_targets(y)
 
@@ -48,8 +46,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self.X_ = X
         self.y_ = y
 
-        # Unique classes
+        # Required sklearn attribute
         self.classes_ = np.unique(y)
+
+        # Required for compatibility with predict
+        self.n_features_in_ = X.shape[1]
 
         return self
 
@@ -57,6 +58,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """Predict class labels using 1-nearest neighbor."""
         check_is_fitted(self)
 
+        # Validate input and check feature consistency
         X = validate_data(
             self, X,
             dtype="numeric",
@@ -76,6 +78,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def score(self, X, y):
         """Return mean accuracy."""
-        X, y = check_X_y(X, y)
+        X, y = check_X_y(X, y, dtype="numeric")
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
