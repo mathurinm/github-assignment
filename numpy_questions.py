@@ -17,6 +17,7 @@ errors by calling `flake8` at the root of the repo.
 """
 import numpy as np
 
+
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -28,7 +29,7 @@ def max_index(X):
     Returns
     -------
     (i, j) : tuple(int)
-        The row and columnd index of the maximum.
+        The row and column index of the maximum.
 
     Raises
     ------
@@ -39,40 +40,22 @@ def max_index(X):
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array.")
     if X.ndim != 2:
-        raise ValueError("Input must be a 2D array with shape (n_samples, n_features).")
-    i = 0
-    j = 0
-    temp = 0
-    current_max = 0
+        raise ValueError(
+            "Input must be a 2D array with shape (n_samples, n_features)."
+        )
+
+    current_max = X[0, 0]
     max_i, max_j = 0, 0
+
     for i in range(X.shape[0]):
         for j in range(X.shape[1]):
-            temp = X[i,j]
-            if temp > current_max:
+            if X[i, j] > current_max:
                 current_max = X[i, j]
                 max_i, max_j = i, j
+
     return max_i, max_j
 
 
-
-def wallis_product(n_terms):
-    """Implement the Wallis product to compute an approximation of pi.
-
-    See:
-    https://en.wikipedia.org/wiki/Wallis_product
-
-    Parameters
-    ----------
-    n_terms : int
-        Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
-
-    Returns
-    -------
-    pi : float
-        The approximation of order `n_terms` of pi using the Wallis product.
-    """
-    
 def wallis_product(n_terms):
     """Implement the Wallis product to compute an approximation of pi.
 
@@ -94,8 +77,8 @@ def wallis_product(n_terms):
         return 1.0
 
     product = 1.0
-    for i in range(1, n_terms+1):
-        half_pi = (4*(i**2))/(4*(i**2) -1)
-        product *= half_pi
-        
-    return 2*product
+    for i in range(1, n_terms + 1):
+        term = (4 * i**2) / (4 * i**2 - 1)
+        product *= term
+
+    return 2 * product

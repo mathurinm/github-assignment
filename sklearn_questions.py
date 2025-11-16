@@ -24,12 +24,12 @@ from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
-from sklearn.utils.validation import validate_data, check_is_fitted
+from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -53,17 +53,13 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             The fitted classifier.
         """
-        X, y = validate_data(
-            self,
-            X,
-            y,
-            accept_sparse=False,
-            ensure_2d=True,
-        )
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
+
         self.X_ = X
         self.y_ = y
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         return self
 
@@ -83,16 +79,15 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels.
         """
-
         check_is_fitted(self)
+        X = check_array(X)
 
-        X = validate_data(
-            self,
-            X,
-            accept_sparse=False,
-            ensure_2d=True,
-            reset=False,
-        )
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but "
+                f"{self.__class__.__name__} is expecting "
+                f"{self.n_features_in_} features as input"
+            )
 
         n_samples = X.shape[0]
         y_pred = np.empty(n_samples, dtype=self.y_.dtype)
@@ -123,14 +118,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             Mean accuracy of predictions on X compared to y.
         """
-        X, y = validate_data(
-            self,
-            X,
-            y,
-            accept_sparse=False,
-            ensure_2d=True,
-            reset=False,
-        )
+        X, y = check_X_y(X, y)
         check_is_fitted(self)
 
         y_pred = self.predict(X)
