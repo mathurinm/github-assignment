@@ -24,7 +24,6 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
@@ -66,14 +65,14 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Return:
         ----------
-            y_pred : array, shape(n_samples,) - the predicted class for each sample
-
+            y_pred : array, shape(n_samples,) -
+              the predicted class for each sample
         """
         check_is_fitted(self)
         X = self._validate_data(X, reset=False)
 
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0], 
+            shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
