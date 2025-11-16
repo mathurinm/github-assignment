@@ -1,100 +1,107 @@
-Acero	Arnolfo     
+Acero	Arnolfo X     
 Alberge	Julie     
-Andreani	François     
-Balech	Ryan     
+Andreani	François     X
+Balech	Ryan    X 
 Barbier	RémiX     
-Bardou	Louan     
+Bardou	Louan X  
 Barge	François     
-Baumelou	Gaspard     
-Ben Hamou	Ethan     
-Benhiba El Idrissi	Mehdi     
-Bernal	Alix     
+Baumelou	Gaspard X 
+Ben Hamou	Ethan   X 
+Benhiba El Idrissi	Mehdi     X
+Bernal	Alix    X 
 Boukhobza	Sila     X
-Brisset	Lancelot     
+Brisset	Lancelot     X
 Burtin	Léo     
 Chaabouni	Kenza     
-Chauhan	Bhavesh     
-Chou	Wei-Chieh     
-Clot	Augustin     
-De Sauvan D'Aramon	Ithier     
+Chauhan	Bhavesh  X   
+Chou	Wei-Chieh X    
+Clot	Augustin   X
+De Sauvan D'Aramon	Ithier     X
 Descazeaud	Lucien X   
-Despréaux	Maxime     
+Despréaux	Maxime X    
 Dhoowooah	Hitaishi X
-Dias Pinto Alfonso	Martin     
+Dias Pinto Alfonso	Martin X    
 Docheva	Anna  X
-Dreik	Gabriel     
-Du	Jing     
+Dreik	Gabriel X  
+Du	Jing    X
 El Bakouri	Samy     
-Enderwitz	Julius     
-Etienne	Romain     
-Finotti	Alice     
-Fix	Julian     
-Fouache D'Halloy	Martin     
-Franco--Tetu	Erwan     
-Gaillard	Arthur     
-Geagea	Christele     
-Goossens	Guust     
-Goursaud De Merlis	Ion     
+Enderwitz	Julius   X  
+Etienne	Romain X
+Finotti	Alice  X   
+Fix	Julian     X
+Fouache D'Halloy Martin X  
+Franco--Tetu	Erwan  X 
+Gaillard	Arthur    X 
+Geagea	Christele     X
+Goossens	Guust     X
+Goursaud De Merlis	Ion    X 
 Goyal	Harshita    X  
-Guo	Zixiao     
+Guo	Zixiao     X
 Halle	Gabriel     
-Hartmann	Nick     
-Heimann	Carl     
-Hou	Litong     
+Hartmann	Nick  X  
+Heimann	Carl X   
+Hou	Litong  X   
 Hourquet	Augustin  X   
-Jacobacci	Giacomo     
+Jacobacci	Giacomo   X
 Jacquin De Margerie	Anatole     
-Jankovic	Nina     
-Kanaan	Julien     
-Karim	Omar     
-Keum	Hae In     
-Khaw	Tristan     
-Khazzaka	Chloe     
-Korouhanba Khuman	Laikhuram     
-Lassus	Gabin     
-Lau	Martin Alexander     
-Le Bacon	Alexandre     
+Jankovic	Nina    X 
+Kanaan	Julien    X
+Karim	Omar  X   
+Keum	Hae In     X    
+Khaw	Tristan    X
+Khazzaka	Chloe   X  
+Korouhanba Khuman	Laikhuram  X   
+Lassus	Gabin X    
+Lau	Martin Alexander     X
+Le Bacon	Alexandre  X   
 Lefebvre	Félix     
-Levin	Nikolai     
-Liard	Eléanor     
-Liu	Guangyue     
-Liu	Yunxian     
-Lucille	Maximilien     
-Mahé	Blanche     
-Martin	Justin     
+Levin	Nikolai X    
+Liard	Eléanor X     
+Liu	Guangyue    X 
+Liu	Yunxian     X
+Lucille	Maximilien X     
+Mahé	Blanche     X
+Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
-Mayette	Scott     
-Melhaoui	Romaissae     
-Meng	Ziqi     
-Meyer	Felix     
-Morais	Célia     
+Mayette	Scott     X
+Melhaoui	Romaissae    X
+Meng	Ziqi     X
+Meyer	Felix     X
+Morais	Célia X    
 Moufad	Badr     
-Nasr	Najib     
+Nasr	Najib X
 Odend'Hal	Charles     
-Orioli	Martino     
+Orioli	Martino     X
 Patarlageanu	Andreea     X
+<<<<<<< HEAD
 Perrotton	Pauline     
 Rouzou	Julia     
 Sekri	Juliette  X   
+=======
+Perrotton	Pauline  X   
+Rouzou	Julia     X
+Sekri	Juliette     
+>>>>>>> f694f46663af9a214b7139a5eceeb18ea44db34b
 Seugnet	Alec     
-Singh	Ayush     
+Singh	Ayush  X
 Smith	Oliver X     
 Söhnchen	Vincent  X 
-Soro	Nangounon Mohamed     
-Storp	Anais     
+Soro	Nangounon Mohamed   X  
+Storp	Anais X    
 Sudhir	Anirudh Karat  X   
-Sultan	Sacha     
-Tejodonkeng Menkem	Luc     
-Thevaraja	Akilan     
+Sultan	Sacha    X    
+Tejodonkeng Menkem	Luc     X
+Thevaraja	Akilan     X
 Trancart	Nicolas     
-Vacca	Chloe     
-Vettori	Lucca     
+Vacca	Chloe X
+Vettori	Lucca   X     
 Watzinger	Benedikt     X
-Weinberg	Tom     
-Wu	Yuhan     
-Xin	Yuqi     
-Xiong	Licheng     
-Yamakawa	Karin     
-Young	Olivia Rose     
-Zhang	Fang     
+Weinberg	Tom X
+Wu	Yuhan     X
+Xin	Yuqi X  
+Xiong	Licheng     X
+Yamakawa	Karin     X
+Young	Olivia Rose X    
+Zhang	Fang     X
+
