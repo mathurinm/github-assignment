@@ -20,55 +20,98 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import validate_data, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One nearest neighbor classifier.
+
+    This estimator predicts the label of each sample using the label of
+    the closest training sample according to the Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
+        # No hyper-parameters for this simple estimator.
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training input samples.
+        y : array-like of shape (n_samples,)
+            Target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            Fitted estimator.
         """
-        X, y = check_X_y(X, y)
+        # validate_data sets n_features_in_ and does input validation
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # Store training data
+        self.X_train_ = X
+        self.y_train_ = y
+
+        # Attributes expected by scikit-learn
+        self.classes_ = np.unique(y)
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for the provided samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        # Use validate_data with reset=False so n_features_in_ is checked
+        X = validate_data(self, X, reset=False)
+
+        # Compute Euclidean distance from each test point to each train point
+        # X shape: (n_test, n_features)
+        # self.X_train_ shape: (n_train, n_features)
+        diff = X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]
+        distances = np.linalg.norm(diff, axis=2)  # (n_test, n_train)
+
+        # Index of the nearest neighbor for each test sample
+        nearest_idx = np.argmin(distances, axis=1)
+
+        # Predicted label is label of the nearest training point
+        y_pred = self.y_train_[nearest_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Test samples.
+        y : array-like of shape (n_samples,)
+            True labels for X.
+
+        Returns
+        -------
+        score : float
+            Mean accuracy of predictions on X versus y.
         """
-        X, y = check_X_y(X, y)
+        # Validate and also check n_features_in_ against what was seen in fit
+        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return float(np.mean(y_pred == y))
