@@ -74,15 +74,11 @@ Nasr	Najib X
 Odend'Hal	Charles     
 Orioli	Martino     X
 Patarlageanu	Andreea     X
-<<<<<<< HEAD
 Perrotton	Pauline     
 Rouzou	Julia     
-Sekri	Juliette  X   
-=======
+Sekri	Juliette  X
 Perrotton	Pauline  X   
-Rouzou	Julia     X
-Sekri	Juliette     
->>>>>>> f694f46663af9a214b7139a5eceeb18ea44db34b
+Rouzou	Julia     X     
 Seugnet	Alec     
 Singh	Ayush  X
 Smith	Oliver X     
@@ -104,4 +100,3 @@ Xiong	Licheng     X
 Yamakawa	Karin     X
 Young	Olivia Rose X    
 Zhang	Fang     X
-
