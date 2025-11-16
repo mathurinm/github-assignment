@@ -1,12 +1,12 @@
 Acero	Arnolfo X     
 Alberge	Julie     
-Andreani	François     
-Balech	Ryan     
+Andreani	François     X
+Balech	Ryan    X 
 Barbier	RémiX     
-Bardou	Louan     
+Bardou	Louan X  
 Barge	François     
 Baumelou	Gaspard X 
-Ben Hamou	Ethan     
+Ben Hamou	Ethan   X 
 Benhiba El Idrissi	Mehdi     X
 Bernal	Alix    X 
 Boukhobza	Sila     X
@@ -22,8 +22,8 @@ Despréaux	Maxime X
 Dhoowooah	Hitaishi X
 Dias Pinto Alfonso	Martin X    
 Docheva	Anna  X
-Dreik	Gabriel     
-Du	Jing     
+Dreik	Gabriel X  
+Du	Jing    X
 El Bakouri	Samy     
 Enderwitz	Julius   X  
 Etienne	Romain X
@@ -32,9 +32,9 @@ Fix	Julian     X
 Fouache D'Halloy Martin X  
 Franco--Tetu	Erwan  X 
 Gaillard	Arthur    X 
-Geagea	Christele     
-Goossens	Guust     
-Goursaud De Merlis	Ion     
+Geagea	Christele     X
+Goossens	Guust     X
+Goursaud De Merlis	Ion    X 
 Goyal	Harshita    X  
 Guo	Zixiao     X
 Halle	Gabriel     
@@ -45,11 +45,11 @@ Hourquet	Augustin  X
 Jacobacci	Giacomo   X
 Jacquin De Margerie	Anatole     
 Jankovic	Nina    X 
-Kanaan	Julien     
+Kanaan	Julien    X
 Karim	Omar  X   
 Keum	Hae In     X    
 Khaw	Tristan    X
-Khazzaka	Chloe     
+Khazzaka	Chloe   X  
 Korouhanba Khuman	Laikhuram  X   
 Lassus	Gabin X    
 Lau	Martin Alexander     X
@@ -64,8 +64,8 @@ Mahé	Blanche     X
 Martin	Justin     X
 Massias	Mathurin     
 Massoud	Alexandre.....X
-Mayette	Scott     
-Melhaoui	Romaissae     
+Mayette	Scott     X
+Melhaoui	Romaissae    X
 Meng	Ziqi     X
 Meyer	Felix     X
 Morais	Célia X    
@@ -78,15 +78,19 @@ Perrotton	Pauline  X
 Rouzou	Julia     X
 Sekri	Juliette     
 Seugnet	Alec     
+<<<<<<< HEAD
 Singh	Ayush  X  
+=======
+Singh	Ayush  X
+>>>>>>> upstream/main
 Smith	Oliver X     
 Söhnchen	Vincent  X 
-Soro	Nangounon Mohamed     
+Soro	Nangounon Mohamed   X  
 Storp	Anais X    
 Sudhir	Anirudh Karat  X   
-Sultan	Sacha     
+Sultan	Sacha    X    
 Tejodonkeng Menkem	Luc     X
-Thevaraja	Akilan     
+Thevaraja	Akilan     X
 Trancart	Nicolas     
 Vacca	Chloe X
 Vettori	Lucca   X     
@@ -95,7 +99,7 @@ Weinberg	Tom X
 Wu	Yuhan     X
 Xin	Yuqi X  
 Xiong	Licheng     X
-Yamakawa	Karin     
+Yamakawa	Karin     X
 Young	Olivia Rose X    
 Zhang	Fang     X
 
