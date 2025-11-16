@@ -28,47 +28,98 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """One-nearest-neighbor classifier.
+
+    This classifier predicts (for each input sample) the target value of the
+    closest training sample according to the Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
+
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """
+        Fit the OneNearestNeighbor classifier according to X, y.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data, with n_samples the number of samples and
+            n_features the number of features.
+        y : ndarray of shape (n_samples,)
+            Target data, with n_samples the number of samples
+
+        Returns
+        -------
+        self : object
+            Fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X
+        self.y_ = y
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """
+        Predict the labels based on X with the NearestNeighbor Estimator.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Data to predict, with n_samples the number of samples and
+            n_features the number of features.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted values for X.
         """
         check_is_fitted(self)
+
         X = check_array(X)
+
+        if X.shape[1] != self.n_features_in_:
+            # message must match sklearn's expected regex
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input"
+            )
+
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            d = np.linalg.norm(self.X_ - X[i, :], axis=1)
+            nearest_index = d.argmin()
+            y_pred[i] = self.y_[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """
+        Score the prediction with the predict function.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_sample, n_features)
+            Data to predict.
+        y : ndarray of shape (n_sample, )
+            Targeted data.
+        Returns
+        -------
+        score : float
+            Mean accuracy of the model on the X, y dataset.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        y_pred = (y_pred == y)
+        return y_pred.sum() / len(y_pred)
