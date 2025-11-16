@@ -47,28 +47,17 @@ except ImportError:
         y : array-like, optional
             Target values.
         kwargs : dict
-            Additional arguments, such as dtype or ensure_2d.
-
-        Returns
-        -------
-        X : ndarray
-            Validated input data.
-        y : ndarray, optional
-            Validated target values when provided.
+            Additional arguments (e.g., dtype, ensure_2d, reset).
         """
+        # Remove unsupported kwargs for check_array/check_X_y
+        kwargs.pop("reset", None)
+
         if y is not None:
             X, y = check_X_y(X, y, **kwargs)
             estimator.n_features_in_ = X.shape[1]
             return X, y
         else:
             X_checked = check_array(X, **kwargs)
-            if kwargs.get("reset") is False:
-                if X_checked.shape[1] != estimator.n_features_in_:
-                    raise ValueError(
-                        f"X has {X_checked.shape[1]} features, but "
-                        f"{estimator.__class__.__name__} was fitted with "
-                        f"{estimator.n_features_in_} features."
-                    )
             return X_checked
 
 
