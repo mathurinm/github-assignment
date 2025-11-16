@@ -77,7 +77,7 @@ Patarlageanu	Andreea     X
 Perrotton	Pauline  X   
 Rouzou	Julia     X
 Sekri	Juliette     
-Seugnet	Alec     
+Seugnet	Alec X     
 Singh	Ayush  X
 Smith	Oliver X     
 Söhnchen	Vincent  X 
