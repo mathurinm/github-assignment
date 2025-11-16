@@ -121,7 +121,5 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
         # proportion de bonnes prédictions
         return np.mean(y_pred == y)
-
