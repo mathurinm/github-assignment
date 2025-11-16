@@ -19,28 +19,36 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
-import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
-from sklearn.utils.multiclass import check_classification_targets
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+from sklearn.utils.multiclass import unique_labels
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """One nearest neighbor classifier.
+    """One-nearest-neighbor classifier.
 
-    This classifier memorizes the training data and, at prediction time,
-    assigns to each sample the label of the closest training sample in
-    Euclidean distance.
+    This classifier predicts, for each sample, the label of the closest
+    training sample, using the Euclidean distance.
+
+    Attributes
+    ----------
+    classes_ : ndarray of shape (n_classes,)
+        Class labels known to the classifier.
+
+    X_ : ndarray of shape (n_samples, n_features)
+        Training data stored after fitting.
+
+    y_ : ndarray of shape (n_samples,)
+        Target values stored after fitting.
+
+    n_features_in_ : int
+        Number of features seen during fit.
     """
 
-    def __init__(self):
-        """Initialize the one nearest neighbor classifier."""
-        pass
-
     def fit(self, X, y):
-        """Fit the one nearest neighbor classifier.
+        """Fit the one-nearest-neighbor classifier.
 
         Parameters
         ----------
@@ -48,45 +56,40 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Training data.
 
         y : array-like of shape (n_samples,)
-            Target labels.
+            Target values.
 
         Returns
         -------
         self : OneNearestNeighbor
             Fitted estimator.
         """
-        X, y = validate_data(self, X, y)
-        check_classification_targets(y)
-        self.classes_ = np.unique(y)
+        X, y = check_X_y(X, y, accept_sparse=False)
+        knn = KNeighborsClassifier(n_neighbors=1)
+        knn.fit(X, y)
+
+        self._knn = knn
+        self.classes_ = unique_labels(y)
+        self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
         return self
 
     def predict(self, X):
-        """Predict class labels for samples in X.
+        """Predict class labels for the provided data.
 
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
-            Input data.
+            Samples to classify.
 
         Returns
         -------
         y_pred : ndarray of shape (n_samples,)
-            Predicted labels.
+            Predicted class labels.
         """
-        check_is_fitted(self)
-        X = validate_data(self, X, reset=False)
-
-        y_pred = np.empty(X.shape[0], dtype=self.y_.dtype)
-
-        for i, x in enumerate(X):
-            diff = self.X_ - x
-            dist_sq = np.sum(diff ** 2, axis=1)
-            nearest_idx = np.argmin(dist_sq)
-            y_pred[i] = self.y_[nearest_idx]
-
-        return y_pred
+        check_is_fitted(self, ("_knn", "classes_", "n_features_in_"))
+        X = check_array(X, accept_sparse=False)
+        return self._knn.predict(X)
 
     def score(self, X, y):
         """Return the mean accuracy on the given test data and labels.
@@ -97,13 +100,12 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Test samples.
 
         y : array-like of shape (n_samples,)
-            True labels.
+            True labels for X.
 
         Returns
         -------
         score : float
-            Mean accuracy.
+            Mean accuracy of the predictions on the given data.
         """
-        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
-        return float(np.mean(y_pred == y))
+        return accuracy_score(y, y_pred)
