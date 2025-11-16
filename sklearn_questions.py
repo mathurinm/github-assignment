@@ -57,7 +57,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         # XXX fix
         self.X_ = X
-        self.y_ = y #  store X and y as "learned" data,
+        self.y_ = y  # store X and y as "learned" data,
         #  ensure we have trained on X and y
         return self
 
