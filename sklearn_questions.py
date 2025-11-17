@@ -78,16 +78,25 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels.
         """
-        check_is_fitted(self, ["X_", "y_"])
+        check_is_fitted(self, ["X_", "y_", "n_features_in_"])
         X = check_array(X)
 
-        # Compute distances to all training points
-        distances = np.sqrt(((self.X_[None, :, :] - X[:, None, :]) ** 2).sum(axis=2))
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                "X has {} features, but OneNearestNeighbor was fitted with "
+                "{} features.".format(X.shape[1], self.n_features_in_)
+            )
 
-        # Index of nearest neighbor
-        nn_index = np.argmin(distances, axis=1)
+        n_samples = X.shape[0]
+        y_pred = np.empty(n_samples, dtype=self.y_.dtype)
 
-        return self.y_[nn_index]
+        for i in range(n_samples):
+            # Compute Euclidean distances to all training samples
+            distances = np.linalg.norm(self.X_ - X[i], axis=1)
+            nn_index = np.argmin(distances)
+            y_pred[i] = self.y_[nn_index]
+
+        return y_pred
 
     def score(self, X, y):
         """Return accuracy of the classifier.
@@ -107,5 +116,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-        #completion
         return np.mean(y_pred == y)
