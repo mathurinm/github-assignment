@@ -12,7 +12,7 @@ Bernal	Alix    X
 Boukhobza	Sila     X
 Brisset	Lancelot     X
 Burtin	Léo     
-Chaabouni	Kenza     
+Chaabouni	Kenza   X  
 Chauhan	Bhavesh  X   
 Chou	Wei-Chieh X    
 Clot	Augustin   X
