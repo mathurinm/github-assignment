@@ -37,10 +37,17 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
 
-    # TODO
+    if not isinstance(X, np.ndarray):
+        raise ValueError("Input must be a numpy array.")
+
+    if X.ndim != 2:
+        raise ValueError("Input array's shape must be 2D.")
+
+    # find which row contains the maximum, then get its column
+    row = np.argmax(np.max(X, axis=1))
+    col = np.argmax(X[row])
+    i, j = row, col
 
     return i, j
 
@@ -64,4 +71,18 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+    
+    # n_terms cannot be negative (follows by definition)
+    if not isinstance(n_terms, int) or n_terms < 0:
+       raise ValueError("n_terms must be a non-negative integer.")
+
+    if n_terms == 0:
+       return 1.0
+
+    # k runs from 1 to n_terms
+    k = np.arange(1, n_terms + 1, dtype=float)
+
+    terms = (4 * k ** 2) / (4 * k ** 2 - 1)
+    product = np.prod(terms)
+
+    return 2 * product

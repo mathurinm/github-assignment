@@ -29,46 +29,111 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """ OneNearestNeighbor classifier predicts the label of a sample 
+    as the label of the closest training sample using Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
-
-        And describe parameters
+        
         """
+        Fit the one-nearest-neighbor classifier
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features) 
+            Training input
+        y : ndarray of shape (n_samples,)
+            Target labels
+
+        Returns
+        -------
+        self : OneNearestNeighbor fitted estimator
+        
+        Raises
+        ------
+        ValueError
+            If X and y don't have compatible shapes or if y is not suitable for
+            classification.
+
+        """
+        
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        
         """
+        Predict class labels for samples in X.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input samples
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted labels
+
+        Raises
+        ------
+        ValueError
+            If the estimator not fitted or X has incorrect shape.
+        """
+        
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        y_pred = np.full(
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
+            )
+
+        # nearest neighbor for each sample using Euclidean distances
+        dists = np.sum((X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]) ** 2, axis=2)
+
+        # closest training point
+        nn_idx = np.argmin(dists, axis=1)
+
+        # pred
+        y_pred[:] = self.y_[nn_idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        
+        """Compute the mean accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test input
+        y : ndarray of shape (n_samples,)
+            True labels test
+    
+        Returns
+        -------
+        score : float
+            Mean accuracy of the classifier on the test dataset
+    
+        Raises
+        ------
+        ValueError
+            If X and y have incompatible shapes.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+    
+        # return accuracy
+        return float(np.mean(y_pred == y))
 
-        # XXX fix
-        return y_pred.sum()
