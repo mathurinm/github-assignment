@@ -36,19 +36,19 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
     def fit(self, X, y):
         """Fit the one-nearest-neighbor classifier.
-    
+
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
             Training input.
         y : ndarray of shape (n_samples,)
             Target labels.
-    
+
         Returns
         -------
         self : OneNearestNeighbor
             Fitted estimator.
-    
+
         Raises
         ------
         ValueError
