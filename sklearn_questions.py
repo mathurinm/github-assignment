@@ -29,21 +29,18 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    """ OneNearestNeighbor classifier predicts the label of a sample 
-    as the label of the closest training sample using Euclidean distance.
-    """
+    """One-nearest-neighbor classifier using Euclidean distance."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        
-        """
-        Fit the one-nearest-neighbor classifier
+
+        """Fit the one-nearest-neighbor classifier
 
         Parameters
         ----------
-        X : ndarray of shape (n_samples, n_features) 
+        X : ndarray of shape (n_samples, n_features)
             Training input
         y : ndarray of shape (n_samples,)
             Target labels
@@ -51,15 +48,15 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         Returns
         -------
         self : OneNearestNeighbor fitted estimator
-        
+
         Raises
         ------
         ValueError
-            If X and y don't have compatible shapes or if y is not suitable for
-            classification.
+            If X and y don't have compatible shapes
+            or if y is not suitable for classification.
 
         """
-        
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
@@ -70,7 +67,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        
+
         """
         Predict class labels for samples in X.
 
@@ -89,7 +86,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ValueError
             If the estimator not fitted or X has incorrect shape.
         """
-        
+
         check_is_fitted(self)
         X = check_array(X)
 
@@ -97,10 +94,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             shape=len(X),
             fill_value=self.classes_[0],
             dtype=self.classes_.dtype
-            )
+        )
 
         # nearest neighbor for each sample using Euclidean distances
-        dists = np.sum((X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]) ** 2, axis=2)
+        dist = X[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
+        dists = np.sum(dist ** 2, axis=2)
 
         # closest training point
         nn_idx = np.argmin(dists, axis=1)
@@ -111,7 +109,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        
+
         """Compute the mean accuracy on the given test data and labels.
 
         Parameters
@@ -120,12 +118,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             Test input
         y : ndarray of shape (n_samples,)
             True labels test
-    
+
         Returns
         -------
         score : float
             Mean accuracy of the classifier on the test dataset
-    
+
         Raises
         ------
         ValueError
@@ -133,7 +131,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-    
+
         # return accuracy
         return float(np.mean(y_pred == y))
-

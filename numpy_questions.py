@@ -62,7 +62,7 @@ def wallis_product(n_terms):
     ----------
     n_terms : int
         Number of steps in the Wallis product. Note that `n_terms=0` will
-        consider the product to be `1`.
+        consider the procduct to be `1`.
 
     Returns
     -------
@@ -71,18 +71,14 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    
     # n_terms cannot be negative (follows by definition)
     if not isinstance(n_terms, int) or n_terms < 0:
-       raise ValueError("n_terms must be a non-negative integer.")
-
+        raise ValueError("n_terms must be a non-negative integer.")
     if n_terms == 0:
-       return 1.0
-
+        return 1.0
     # k runs from 1 to n_terms
     k = np.arange(1, n_terms + 1, dtype=float)
-
-    terms = (4 * k ** 2) / (4 * k ** 2 - 1)
+    terms = (4 * k**2) / (4 * k**2 - 1)
     product = np.prod(terms)
 
     return 2 * product
