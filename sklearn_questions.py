@@ -35,39 +35,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-
-        """Fit the one-nearest-neighbor classifier
-
+        """Fit the one-nearest-neighbor classifier.
+    
         Parameters
         ----------
         X : ndarray of shape (n_samples, n_features)
-            Training input
+            Training input.
         y : ndarray of shape (n_samples,)
-            Target labels
-
+            Target labels.
+    
         Returns
         -------
-        self : OneNearestNeighbor fitted estimator
-
+        self : OneNearestNeighbor
+            Fitted estimator.
+    
         Raises
         ------
         ValueError
-            If X and y don't have compatible shapes
-            or if y is not suitable for classification.
-
+            If X and y do not have compatible shapes or if y is not suitable
+            for classification.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
         self.X_ = X
         self.y_ = y
         return self
 
     def predict(self, X):
-
         """
         Predict class labels for samples in X.
 
@@ -86,7 +82,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         ValueError
             If the estimator not fitted or X has incorrect shape.
         """
-
         check_is_fitted(self)
         X = check_array(X)
 
@@ -109,7 +104,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-
         """Compute the mean accuracy on the given test data and labels.
 
         Parameters
