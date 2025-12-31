@@ -15,8 +15,8 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
-from numpy import unravel_index
 import infinity as inf
 
 
@@ -46,7 +46,7 @@ def max_index(X):
         raise ValueError("Input should be a numpy array.")
     if len(X.shape) != 2:
         raise ValueError("Input should be a 2D numpy array.")
-    
+
     (i, j) = np.unravel_index(X.argmax(), X.shape)
 
     return (i, j)
