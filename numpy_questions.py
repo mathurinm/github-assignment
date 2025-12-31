@@ -17,8 +17,6 @@ errors by calling `flake8` at the root of the repo.
 """
 
 import numpy as np
-import infinity as inf
-
 
 def max_index(X):
     """Return the index of the maximum in a numpy array.
@@ -39,8 +37,8 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = -inf
-    j = -inf
+    i = -1
+    j = -1
 
     if not isinstance(X, np.ndarray):
         raise ValueError("Input should be a numpy array.")
