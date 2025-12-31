@@ -18,6 +18,7 @@ errors by calling `flake8` at the root of the repo.
 
 import numpy as np
 
+
 def max_index(X):
     """Return the index of the maximum in a numpy array.
 
@@ -69,6 +70,9 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
+
+    if n_terms == 0:
+        return 1.0
 
     pi_half = 1
 
