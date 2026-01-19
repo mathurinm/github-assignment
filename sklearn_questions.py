@@ -31,9 +31,9 @@ from sklearn.utils.multiclass import check_classification_targets
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier.
 
-This classifier uses the 1-nearest neighbor method:
-it assigns a new data point to the same class as the closest sample
-in the training set, with closeness determined by Euclidean distance
+    This classifier uses the 1-nearest neighbor method:
+    it assigns a new data point to the same class as the closest sample
+    in the training set, with closeness determined by Euclidean distance
     """
 
     def __init__(self):  # noqa: D107
