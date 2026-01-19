@@ -46,9 +46,9 @@ def max_index(X):
     if X.ndim != 2:
         raise ValueError
     for k in range(X.shape[0]):
-        for l in range(X.shape[0]):
-            if X[i, j] < X[k, l]:
-                i, j = k, l
+        for m in range(X.shape[0]):
+            if X[i, j] < X[k, m]:
+                i, j = k, m
 
     return i, j
 
