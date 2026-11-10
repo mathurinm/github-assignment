@@ -11,7 +11,7 @@ Mattis	Berenthal
 Tiphaine	Berthou
 Arthur	Bertrand
 Noé	Besson X
-Gauthier	Boyen
+Gauthier	Boyen X
 Emilie	Castellani X
 Rubén	Castillo Fernández
 Arnaud	Cazanave
