@@ -1,70 +1,70 @@
 Megha	Agarwal
 Samira	Aldybergenova
-Giulia	Amore
+Giulia	Amore X
 Maxime	Arbey
-Francesco	Azzarello
+Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
 Niccolo	Benetti
 Omar	Benharbit
 Mattis	Berenthal
 Tiphaine	Berthou
-Arthur	Bertrand
-Noé	Besson
+Arthur	Bertrand X
+Noé	Besson X
 Gauthier	Boyen
-Emilie	Castellani
+Emilie	Castellani X
 Rubén	Castillo Fernández
 Arnaud	Cazanave
 Gaspard	Ceccato
 Masson	Chacon Cabrera
 Kéo	Chupin
-David	Cîrnici
+David	Cîrnici X
 Clément	Combe
 Pierre-Antoine	Comby
 Thomas	Croquez
 Emma	Cussenot
 Maxime	De Jong
-Blanche	Delaunay
+Blanche	Delaunay X
 Martin	Demeulenaere
 Nada	Dhem
-Abel	Dornbusch
+Abel	Dornbusch x
 Nikita	Dovban
 Joseph	Dray
 Bogdan	Duffaud
 Samy	El Quitouni El Idrissi
-Mohamed	Elgamil
+Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux X
-Hayden	Gatlin
+Hayden	Gatlin X
 Yonas	Grossard-Amin
 Quiterie	Guignard
 Thomas	Hammer
 Vittoria	Hu
-Margaux	Jacobelli
+Margaux	Jacobelli X
 Ajay	Jampana
 Martin	Jomier
-Hugo	Keothavong
+Hugo	Keothavong X
 Eliza	Kimball
-Szymon	Konieczny
+Szymon	Konieczny	X
 Cyprien	Kutek
 Guillaume	Leopold
 Léonard	Levy
-Lucas	Lonegro Gurfinkel
+Lucas	Lonegro Gurfinkel X
 Elisa	Marlow
 Mathurin	Massias
-Martin	Michaut
+Martin	Michaut X
 Jana	Naaman
 Rita	Najeddine
 Abdelilah	Nossair
-Brendan	O'Sullivan
+Brendan	O'Sullivan X
 Joseph	Paillard
-Louis	Petitdidier
-Victor	Piana
-Ben	Poppe
+Louis	PetitdidierX
+Victor	Piana X
+Ben	Poppe X 
 Delphine	Provost
 Jakub	Radon
-Riccardo	Rinaudo
+Riccardo	Rinaudo X
 Laslo	Rose
-Ilan	Rousseau
+Ilan	Rousseau X
 Maria	Saber
 Matteo	Sainton
 Stefanie	Samaha
@@ -74,18 +74,18 @@ Shreyas	Sridharan
 Rithika	Susan Abraham
 Alessandro	Tavolato
 Francesco	Tavolato
-Lise	Teyssier
+Lise	Teyssier X
 Luigi	Tintinaglia
-Anna	Troppina
-Camille	Valenciennes
-Maurice	Van Den Boogaerde
-Hugo	Vandenbussche
+Maurice	Van Den Boogaerde X
+Anna	Troppina X
+Camille	ValenciennesX
+Hugo	Vandenbussche  X
 Charlotte	Vedrines
-Simon	Vital
-Luc	Walter
-Carl	Weber
+Simon	Vital X
+Luc	Walter X
+Carl	Weber X
 Ke-Ching	Wei
-Eric	Xu
+Eric	Xu X
 Hao	Ying
 Ossama	Zaroual
 Xinle	Zhang
