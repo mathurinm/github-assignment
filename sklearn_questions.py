@@ -25,7 +25,6 @@ from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -45,7 +44,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         y = ndarray of shape (n_samples,)
         The training target, input array.
-        
+ 
         Returns
         -------
         self : OneNearestNeighbor
@@ -101,14 +100,14 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         ----------
         X = ndarray of shape (n_samples, n_features)
         The training sample, input array.
-        
+
         y = ndarray of shape (n_samples,)
         The training target, input array.
 
         Returns
         -------
         score : float
-        The fraction of the samples correctly classified 
+        The fraction of the samples correctly classified
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
