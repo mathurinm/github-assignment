@@ -62,7 +62,7 @@ Victor	Piana X
 Ben	Poppe
 Delphine	Provost
 Jakub	Radon
-Riccardo	Rinaudo
+Riccardo	Rinaudo X
 Laslo	Rose
 Ilan	Rousseau X
 Maria	Saber
