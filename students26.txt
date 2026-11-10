@@ -44,7 +44,7 @@ Ajay	Jampana
 Martin	Jomier
 Hugo	Keothavong
 Eliza	Kimball
-Szymon	Konieczny
+Szymon	Konieczny	X
 Cyprien	Kutek
 Guillaume	Leopold
 Léonard	Levy
