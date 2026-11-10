@@ -90,7 +90,7 @@ Hao	Ying
 Ossama	Zaroual
 Xinle	Zhang X
 Yihan	Zhang X
-Xiaoyu	Zhao
+Xiaoyu	Zhao X
 Xiao	Zhou   X
 Yilin	Zhou
 Jia	Zhu X
