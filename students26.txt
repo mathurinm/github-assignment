@@ -35,7 +35,7 @@ Samy	El Quitouni El Idrissi
 Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux
 Hayden	Gatlin X
-Yonas	Grossard-Amin
+Yonas	Grossard-Amin X
 Quiterie	Guignard
 Thomas	Hammer
 Vittoria	Hu
