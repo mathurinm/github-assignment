@@ -46,7 +46,7 @@ def max_index(X):
         raise ValueError("Only 2D arrays are allowed")
     elif X.size == 0:
         raise ValueError("Only non-empty arrays are allowed")
-    
+
     i, j = np.unravel_index(X.argmax(), X.shape)
     i, j = int(i), int(j)
 
@@ -77,5 +77,5 @@ def wallis_product(n_terms):
 
     squares = 4 * np.arange(1, n_terms+1) ** 2
     prod = np.prod(squares / (squares - 1))
-    
+
     return prod * 2
