@@ -83,7 +83,7 @@ Hugo	Vandenbussche  X
 Charlotte	Vedrines
 Simon	Vital X
 Luc	Walter X
-Carl	Weber
+Carl	Weber X
 Ke-Ching	Wei
 Eric	Xu X
 Hao	Ying
