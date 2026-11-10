@@ -49,7 +49,7 @@ Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
 Lucas	Lonegro Gurfinkel X
-Elisa	Marlow
+Elisa	Marlow X
 Mathurin	Massias
 Martin	Michaut X
 Jana	Naaman
