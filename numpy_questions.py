@@ -73,7 +73,6 @@ def wallis_product(n_terms):
     k = np.arange(1, n_terms + 1)
     product = np.prod((4 * k**2) / (4 * k**2 - 1))
     pi_approximation = 2 * product
-    
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
     return pi_approximation
