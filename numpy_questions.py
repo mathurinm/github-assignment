@@ -71,3 +71,5 @@ def wallis_product(n_terms):
     k = np.arange(1, n_terms + 1)
     product = np.prod(4 * k**2 / (4 * k**2 - 1))
     return 2 * product
+
+
