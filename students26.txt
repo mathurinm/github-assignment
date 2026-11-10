@@ -1,11 +1,7 @@
 Megha	Agarwal
 Samira	Aldybergenova
 Giulia	Amore X
-<<<<<<< HEAD
 Maxime	Arbey X
-=======
-Maxime	Arbey
->>>>>>> a84223bdfbdc33dff11ee3d260e38a24291e4d6e
 Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
