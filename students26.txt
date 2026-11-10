@@ -62,7 +62,7 @@ Victor	Piana
 Ben	Poppe
 Delphine	Provost
 Jakub	Radon
-Riccardo	Rinaudo
+Riccardo	Rinaudo X
 Laslo	Rose
 Ilan	Rousseau
 Maria	Saber
