@@ -28,29 +28,48 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Store the training samples and their class labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training samples.
+        y : ndarray of shape (n_samples,)
+            Class labels for the training samples.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_ = X.copy()
+        self.y_ = y.copy()
 
-        # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class of each sample using its nearest neighbor.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +78,35 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input"
+            )
+
+        for i, sample in enumerate(X):
+            distances = np.sum((self.X_ - sample) ** 2, axis=1)
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_[nearest_index]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the classification accuracy on the given samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Samples to classify.
+        y : ndarray of shape (n_samples,)
+            True class labels.
+
+        Returns
+        -------
+        score : float
+            Fraction of samples classified correctly.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
