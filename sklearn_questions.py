@@ -113,3 +113,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         return np.mean(y_pred == y)
 
+
