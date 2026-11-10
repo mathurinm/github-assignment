@@ -48,7 +48,7 @@ Szymon	Konieczny	X
 Cyprien	Kutek
 Guillaume	Leopold
 Léonard	Levy
-Lucas	Lonegro Gurfinkel
+Lucas	Lonegro Gurfinkel X
 Elisa	Marlow
 Mathurin	Massias
 Martin	Michaut
