@@ -22,10 +22,9 @@ for the methods you code and for the class. The docstring will be checked using
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import validate_data
-from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
@@ -108,7 +107,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
         Mean accuracy of the classifier.
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
 
         return np.mean(y_pred == y)
