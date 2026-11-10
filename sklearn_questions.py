@@ -35,7 +35,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        
+
         """Fit the nearest neighbor classifier.
 
         Parameters
@@ -47,7 +47,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         Returns
         -------
-        self : OneNearestNeighbor 
+        self : OneNearestNeighbor
         Fitted classifier.
         """
 
@@ -82,14 +82,14 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
                 f"OneNearestNeighbor is expecting "
                 f"{self.n_features_in_} features as input"
             )
-    
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
         distances = np.sqrt(((X[:, np.newaxis, :] -
-              self.X_train_[np.newaxis, :, :]) ** 2).sum(axis=2))
+            self.X_train_[np.newaxis, :, :]) ** 2).sum(axis=2))
 
         nearest_indices = np.argmin(distances, axis=1)
 
