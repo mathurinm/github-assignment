@@ -29,15 +29,11 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-<<<<<<< HEAD
     """OneNearestNeighbor classifier.
 
     Predicts for each sample the label of the closest training sample,
     using the Euclidean distance.
     """
-=======
-    "OneNearestNeighbor classifier."
->>>>>>> b2d89059424004be5fd3b7f1d02a049f9ce720dc
 
     def __init__(self):  # noqa: D107
         pass
