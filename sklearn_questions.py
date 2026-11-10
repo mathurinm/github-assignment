@@ -1,3 +1,13 @@
+"""One-nearest-neighbor classifier."""
+
+import numpy as np
+from sklearn.base import BaseEstimator
+from sklearn.base import ClassifierMixin
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
+from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.multiclass import check_classification_targets
+
 """Assignment - making a sklearn estimator.
 
 The goal of this assignment is to implement by yourself a scikit-learn
@@ -19,16 +29,6 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
-
-"""One-nearest-neighbor classifier."""
-
-import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):  # noqa: D300
@@ -69,8 +69,9 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):  # noqa: D300
                 f"is expecting {self.n_features_in_} features as input."
             )
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
         for i in range(len(y_pred)):
             distances = np.linalg.norm(self.X_ - X[i], axis=1)

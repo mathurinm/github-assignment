@@ -37,6 +37,8 @@ def max_index(X):
     ValueError
         If the input is not a numpy array or
         if the shape is not 2D.
+    Method : checking for the errors, then converting the indices of the max
+            into a tuple ready to be returned
     """
     if not isinstance(X, np.ndarray):
         raise ValueError("X must be a numpy array")
@@ -46,10 +48,6 @@ def max_index(X):
     i, j = np.unravel_index(np.argmax(X), X.shape)
 
     return i, j
-
-
-"""Method : checking for the errors, then converting the indices of the max 
-into a tuple ready to be returned"""
 
 
 def wallis_product(n_terms):
