@@ -27,12 +27,14 @@ from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
+
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier.
-    
+
     Predict for each sample the target of the closest training sample,
     using the Euclidean distance.
     """
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -80,12 +82,12 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
                 f"X has {X.shape[1]} features, but OneNearestNeighbor "
                 f"is expecting {self.n_features_in_} features as input."
             )
-        
+
         dists = np.sum(
             (X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]) ** 2,
             axis=2,
         )
-        nearest = np.argmin(dists, axis=1) 
+        nearest = np.argmin(dists, axis=1)
         y_pred = self.y_train_[nearest]
         return y_pred
 
@@ -98,7 +100,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             The test samples
         y : ndarray of shape (n_samples,)
             The true labels
-        
+
         Returns
         -------
         score : float
