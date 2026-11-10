@@ -14,11 +14,11 @@ Noé	Besson X
 Gauthier	Boyen
 Emilie	Castellani X
 Rubén	Castillo Fernández
-Arnaud	Cazanave
+Arnaud	Cazanave X
 Gaspard	Ceccato
 Masson	Chacon Cabrera
 Kéo	Chupin
-David	Cîrnici
+David	Cîrnici X
 Clément	Combe
 Pierre-Antoine	Comby
 Thomas	Croquez
@@ -45,13 +45,13 @@ Martin	Jomier
 Hugo	Keothavong X
 Eliza	Kimball
 Szymon	Konieczny	X
-Cyprien	Kutek
+Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
 Lucas	Lonegro Gurfinkel X
 Elisa	Marlow
 Mathurin	Massias
-Martin	Michaut
+Martin	Michaut X
 Jana	Naaman
 Rita	Najeddine
 Abdelilah	Nossair
@@ -83,7 +83,7 @@ Hugo	Vandenbussche  X
 Charlotte	Vedrines
 Simon	Vital X
 Luc	Walter X
-Carl	Weber
+Carl	Weber X
 Ke-Ching	Wei
 Eric	Xu X
 Hao	Ying
