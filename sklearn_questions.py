@@ -25,7 +25,6 @@ from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -50,12 +49,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             the fitted estimator
         """
-        X, y = self.validate_data(X, y, accept_sparse=False)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
         self.X_fit_ = X
         self.y_fit_ = y
         return self
@@ -74,14 +72,20 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             The predicted class labels
         """
         check_is_fitted(self)
-        X = self.validate_data(X, reset=False)
+        X = check_array(X)
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+            )
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
-        distances = np.linalg.norm(self.X_fit_[:, np.newaxis, :] - X, axis=2)
+        distances = np.linalg.norm(
+            X[:, np.newaxis, :] - self.X_fit_[np.newaxis, :, :], axis=2
+        )
         nearestneighbor = np.argmin(distances, axis=1)
         y_pred = self.y_fit_[nearestneighbor]
         return y_pred
@@ -101,8 +105,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             Mean accuracy of predictions of X with respect to y
         """
-        X, y = self.validate_data(X, y, accept_sparse=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
         return np.mean(y_pred == y)
