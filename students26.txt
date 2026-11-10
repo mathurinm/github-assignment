@@ -18,7 +18,7 @@ Arnaud	Cazanave
 Gaspard	Ceccato
 Masson	Chacon Cabrera
 Kéo	Chupin
-David	Cîrnici
+David	Cîrnici X
 Clément	Combe
 Pierre-Antoine	Comby
 Thomas	Croquez
