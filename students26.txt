@@ -45,7 +45,7 @@ Martin	Jomier
 Hugo	Keothavong X
 Eliza	Kimball
 Szymon	Konieczny	X
-Cyprien	Kutek
+Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
 Lucas	Lonegro Gurfinkel X
