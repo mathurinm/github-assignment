@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -49,11 +50,13 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             The fitted classifier.
         """
+        # Check that X and y have compatible shapes and valid values.
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
+        # Store the data
         self.X_ = X
         self.y_ = y
 
@@ -74,19 +77,24 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """
         check_is_fitted(self)
         X = check_array(X)
-        if X.shape[1] != self.n_features_in_:
-            raise ValueError(
-                f"X has {X.shape[1]} features, but OneNearestNeighbor "
 
-                f"is expecting {self.n_features_in_} features as input"
-            )
+        # Check that the data has the same features:
+        # Reads n_features_in_ back from the estimator
+        # And compares it with the number of columns in the new X
+        X = validate_data(self, X, reset=False)
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
         for i, sample in enumerate(X):
+            # Subtract this sample from every training observation
             differences = self.X_ - sample
+
+            # Find one distance per training observation
             distances = np.sqrt(np.sum(differences ** 2, axis=1))
+
+            # Select the nearest observation and copy its label
             min_index = np.argmin(distances)
             y_pred[i] = self.y_[min_index]
 
@@ -110,5 +118,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
+        # Calculate how accurate the predictions are
+        # In proportion to the observed classes
         accuracy = sum(y_pred == y) / len(y)
         return accuracy
