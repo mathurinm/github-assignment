@@ -42,7 +42,7 @@ Vittoria	Hu
 Margaux	Jacobelli
 Ajay	Jampana
 Martin	Jomier
-Hugo	Keothavong
+Hugo	Keothavong X
 Eliza	Kimball
 Szymon	Konieczny	X
 Cyprien	Kutek
