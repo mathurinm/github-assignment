@@ -71,12 +71,7 @@ def wallis_product(n_terms):
 
     if n_terms == 0:
         return 1.
-    
     k_array = np.arange(1, n_terms+1)
     fractions_array = (4*(k_array**2))/(4*(k_array**2)-1)
     pi = 2 * np.prod(fractions_array)
     return pi
-
-
-
-
