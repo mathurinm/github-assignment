@@ -107,7 +107,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
         Mean accuracy of the classifier.
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
 
         return np.mean(y_pred == y)
