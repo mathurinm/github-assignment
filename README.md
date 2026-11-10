@@ -37,7 +37,7 @@ This work is based on https://github.com/x-datascience-datacamp/datacamp-assignm
   - Push your branch to your repository with `git push`. If you haven't done anything more, git will complain that it does not know where to push: follow the instructions that it displays. If it complains that you must login, check the Prerequisite section of this Readme.
   - Send a Pull Request of this branch to this repository (mathurinm/github-assignment; not your fork) by going to https://github.com/mathurinm/github-assignment/pulls
   - If GitHub says that there is a conflict (it cannot merge the branch because you modified lines that were modified by someone else at the same time), solve them locally by pulling `upstream main` into your branch (see below how to pull `upstream main`)
-  - Ping me on Slack so that I merge the PR. This will allow the test suite (Continuous Integration) to be run on the second part of the assignment. Otherwise, CI is not run on PRs from people who have never contributed to the repo before.
+  - If (and only if) I take too much time to merge the PR, ping me on Slack so that do so. This will allow the test suite (Continuous Integration) to be run on the second part of the assignment. Otherwise, CI is not run on PRs from people who have never contributed to the repo before.
   - **Once your PR has been merged**: Switch back to your `main` branch with `git switch main`.
   - Delete the branch you used to do the PR (you no longer need it) with `git branch -D YOURBRANCHNAME`
   - Synchronize your local main branch with the main branch of the fork with: `git pull upstream main` (from which remote repo to pull, and which branch)
