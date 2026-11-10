@@ -23,52 +23,86 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the classifier using the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like
+           Training data
+        y : array-like
+           Training labels
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+           The fitted classifier
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict labels using the nearest training neighbor.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like
+            Data to classify
+
+        Returns
+        -------
+        y_pred : ndarray
+            Predicted labels
         """
         check_is_fitted(self)
-        X = check_array(X)
+
+        X = validate_data(self, X, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
-
-        # XXX fix
+        for i in range(len(X)):
+            dist = np.linalg.norm(X[i] - self.X_train_, axis=1)
+            idx_min = np.argmin(dist)
+            y_pred[i] = self.y_train_[idx_min]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the classification accuracy.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like
+            Data to classify
+        y : array-like
+            True labels
+
+        Returns
+        -------
+        accuracy : float
+        Proportion of correctly classified samples
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
