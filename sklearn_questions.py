@@ -59,7 +59,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        """Predicts the class of the given X, from the class of the Nearest Neighbor in the training set
+        """Predicts the class of the given X,
+        from the class of the Nearest Neighbor in the training set
 
         Variables:
         X -> features table from which we want to predict the class
@@ -87,7 +88,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         return y_pred
 
     def score(self, X, y):
-        """Calculates the accuracy (i.e. proportion of right answers) of the model on the given data X and labels y
+        """Calculates the accuracy (i.e. proportion of right answers)
+        of the model given data X and labels y
 
         Variables:
         X -> features table from which we want to predict the class
