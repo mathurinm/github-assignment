@@ -107,19 +107,22 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         # le faire si possible avec le broadcasting
 
         # la distance avec le broadcasting mais que pour le premier point
-        d1 = np.sqrt(np.sum((self.X_train_ - X[0]) ** 2, axis=1))
+        np.sqrt(np.sum((self.X_train_ - X[0]) ** 2, axis=1))
 
-        # On veut un tableau (n_test,n_train,p) le p est le même car on a le même nombre de features
-        # avec ça, on a un tableau ou la distance au carré entre le point i et j est à la case (i,j)
-        # J'ai enlevé le sqrt puisque que pour les comparaisons ça n'est pas utile
+        # On veut un tableau (n_test,n_train,p) le p est le même car on a le
+        # même nombre de features
+
+        # On a un tableau ou la distance au carré entre le point i et j est
+        # à la case (i,j)
+        # J'ai enlevé le sqrt puisque que pas utile pour les comparaisons
         distances = np.sum(
             (self.X_train_[None, :, :] - X[:, None, :]) ** 2, axis=2
         )
 
-        # Maintenant on veut trouver pour chaque ligne le point avec la plus petite distance
-        closest_points = np.argmin(
-            distances, axis=1
-        )  # normalement ça nous retourne pour chaque ligne l'indice de la plus petite distance
+        # Maintenant on veut trouver pour chaque ligne le point
+        # avec la plus petite distance
+        closest_points = np.argmin(distances, axis=1)
+        # Ça retourne pour chaque ligne l'indice de la plus petite distance
         y_pred = self.y_train_[
             closest_points
         ]  # et ça ça doit être les classes de ces points.
