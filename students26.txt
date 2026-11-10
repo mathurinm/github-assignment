@@ -19,7 +19,7 @@ Gaspard	Ceccato X
 Masson	Chacon Cabrera
 Kéo	Chupin
 David	Cîrnici X
-Clément	Combe
+Clément	Combe X
 Pierre-Antoine	Comby
 Thomas	Croquez
 Emma	Cussenot
