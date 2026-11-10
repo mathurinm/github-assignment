@@ -30,7 +30,7 @@ Nada	Dhem
 Abel	Dornbusch x
 Nikita	Dovban
 Joseph	Dray
-Bogdan	Duffaud X test
+Bogdan	Duffaud X
 Samy	El Quitouni El Idrissi
 Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux
