@@ -88,8 +88,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        distances = np.sqrt(((X[:, np.newaxis, :] -
-            self.X_train_[np.newaxis, :, :]) ** 2).sum(axis=2))
+        distances = np.sqrt(((X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]) ** 2).sum(axis=2))
 
         nearest_indices = np.argmin(distances, axis=1)
 
