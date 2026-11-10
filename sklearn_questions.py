@@ -22,9 +22,10 @@ for the methods you code and for the class. The docstring will be checked using
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
+from sklearn.utils.validation import check_X_y
+from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -48,9 +49,10 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             The fitted estimator.
         """
-        X, y = validate_data(self, X, y)
+        X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
         self.X_train_ = X
         self.y_train_ = y
         return self
@@ -68,12 +70,19 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (p_samples, )
             The predicted class of each sample of X.
         """
-        X = validate_data(self, X, reset=False)
         check_is_fitted(self)
+        X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but "
+                f"{self.__class__.__name__} is expecting "
+                f"{self.n_features_in_} features as input"
+            )
 
         diff = X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]
         dist = np.linalg.norm(diff, axis=2)
@@ -97,7 +106,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             The fraction of samples accurately classified.
         """
-        X = validate_data(self, X, reset=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         y_pred = y_pred == y
