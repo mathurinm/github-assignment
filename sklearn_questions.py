@@ -51,7 +51,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         The fitted classifier.
         """
         X, y = validate_data(self, X, y, reset=True)
-        X, y = check_X_y(X, y)
+        # X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
