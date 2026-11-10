@@ -79,7 +79,7 @@ Luigi	Tintinaglia
 Anna	Troppina
 Camille	Valenciennes
 Maurice	Van Den Boogaerde
-Hugo	Vandenbussche
+Hugo	Vandenbussche  X
 Charlotte	Vedrines
 Simon	Vital
 Luc	Walter
