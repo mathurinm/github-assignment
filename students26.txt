@@ -1,12 +1,12 @@
 Megha	Agarwal
 Samira	Aldybergenova
 Giulia	Amore X
-Maxime	Arbey
+Maxime	Arbey X
 Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
 Niccolo	Benetti
-Omar	Benharbit
+Omar	Benharbit  X
 Mattis	Berenthal
 Tiphaine	Berthou
 Arthur	Bertrand X
@@ -30,12 +30,12 @@ Nada	Dhem
 Abel	Dornbusch x
 Nikita	Dovban
 Joseph	Dray
-Bogdan	Duffaud
+Bogdan	Duffaud X
 Samy	El Quitouni El Idrissi
 Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux X
 Hayden	Gatlin X
-Yonas	Grossard-Amin
+Yonas	Grossard-Amin X
 Quiterie	Guignard
 Thomas	Hammer
 Vittoria	Hu
@@ -88,7 +88,7 @@ Ke-Ching	Wei
 Eric	Xu X
 Hao	Ying
 Ossama	Zaroual
-Xinle	Zhang
+Xinle	Zhang X
 Yihan	Zhang X
 Xiaoyu	Zhao
 Xiao	Zhou   X
