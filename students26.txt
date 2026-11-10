@@ -6,7 +6,7 @@ Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
 Niccolo	Benetti
-Omar	Benharbit
+Omar	Benharbit  X
 Mattis	Berenthal
 Tiphaine	Berthou
 Arthur	Bertrand X
