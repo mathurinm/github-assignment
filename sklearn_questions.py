@@ -28,7 +28,7 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier.
 
     Predict the label of each sample as the label of the closest training
@@ -113,5 +113,3 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         return np.mean(y_pred == y)
     
-
-
