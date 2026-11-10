@@ -46,7 +46,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         self.X_train_ = X
         self.y_train_ = y
-        
         return self
 
     def predict(self, X):
@@ -57,24 +56,24 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         if X.shape[1] != self.n_features_in_:
-            raise ValueError("The given dataset does not match the number of features the model was fitted on")
+            raise ValueError("Dataset does not match the number"
+                             "of features the model it was fitted on")
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        for i in range(len(X)) :
+        for i in range(len(X)):
             min_dist = None
             index_min = None
             x = X[i]
             for j in range(len(self.X_train_)):
                 x_train = self.X_train_[j]
                 dist = np.linalg.norm(x - x_train)
-                if min_dist is None or dist < min_dist :
+                if min_dist is None or dist < min_dist:
                     min_dist = dist
                     index_min = j
-            y_pred[i]=self.y_train_[index_min]
-                
+            y_pred[i] = self.y_train_[index_min]
         return y_pred
 
     def score(self, X, y):
