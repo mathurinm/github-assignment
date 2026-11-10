@@ -28,7 +28,7 @@ from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """OneNearestNeighbor classifier."""
+    "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
