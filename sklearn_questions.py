@@ -27,10 +27,11 @@ from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):
         pass
+        """Initialize the OneNearestNeighbor classifier."""
 
     def fit(self, X, y):
         """Store the training samples and their labels.
@@ -59,7 +60,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def predict(self, X):
         """Predict labels using the nearest training sample.
-
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
