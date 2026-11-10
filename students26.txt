@@ -1,70 +1,70 @@
 Megha	Agarwal
 Samira	Aldybergenova
-Giulia	Amore
-Maxime	Arbey
-Francesco	Azzarello
+Giulia	Amore X
+Maxime	Arbey X
+Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
 Niccolo	Benetti
-Omar	Benharbit
+Omar	Benharbit  X
 Mattis	Berenthal
-Tiphaine	Berthou
-Arthur	Bertrand
-Noé	Besson
-Gauthier	Boyen
-Emilie	Castellani
-Rubén	Castillo Fernández
-Arnaud	Cazanave
-Gaspard	Ceccato
+Tiphaine	Berthou X
+Arthur	Bertrand X
+Noé	Besson X
+Gauthier	Boyen X
+Emilie	Castellani X
+Rubén	Castillo Fernández X
+Arnaud	Cazanave X
+Gaspard	Ceccato X
 Masson	Chacon Cabrera
 Kéo	Chupin
-David	Cîrnici
-Clément	Combe
+David	Cîrnici X
+Clément	Combe X
 Pierre-Antoine	Comby
 Thomas	Croquez
 Emma	Cussenot
 Maxime	De Jong
-Blanche	Delaunay
+Blanche	Delaunay X
 Martin	Demeulenaere
 Nada	Dhem
-Abel	Dornbusch
+Abel	Dornbusch x
 Nikita	Dovban
 Joseph	Dray
-Bogdan	Duffaud
+Bogdan	Duffaud X
 Samy	El Quitouni El Idrissi
-Mohamed	Elgamil
-Kim-Louis	Frotier De Bagneux
-Hayden	Gatlin
-Yonas	Grossard-Amin
+Mohamed	Elgamil X
+Kim-Louis	Frotier De Bagneux X
+Hayden	Gatlin X
+Yonas	Grossard-Amin X
 Quiterie	Guignard
 Thomas	Hammer
-Vittoria	Hu
-Margaux	Jacobelli
+Vittoria	Hu X
+Margaux	Jacobelli X
 Ajay	Jampana
 Martin	Jomier
-Hugo	Keothavong
+Hugo	Keothavong X
 Eliza	Kimball
 Szymon	Konieczny	X
-Cyprien	Kutek
+Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
-Lucas	Lonegro Gurfinkel
-Elisa	Marlow
+Lucas	Lonegro Gurfinkel X
+Elisa	Marlow X
 Mathurin	Massias
-Martin	Michaut
+Martin	Michaut X
 Jana	Naaman
 Rita	Najeddine
-Abdelilah	Nossair
-Brendan	O'Sullivan
+Abdelilah	Nossair X
+Brendan	O'Sullivan X
 Joseph	Paillard
-Louis	Petitdidier
-Victor	Piana
-Ben	Poppe
-Delphine	Provost
+Louis	PetitdidierX
+Victor	Piana X
+Ben	Poppe X 
+Delphine	Provost X 
 Jakub	Radon
-Riccardo	Rinaudo
-Laslo	Rose
-Ilan	Rousseau
+Riccardo	Rinaudo X
+Laslo	Rose X
+Ilan	Rousseau X
 Maria	Saber
 Matteo	Sainton
 Stefanie	Samaha
@@ -72,25 +72,25 @@ Irene	Santesteban Frances
 Nathan	Serfaty
 Shreyas	Sridharan
 Rithika	Susan Abraham
-Alessandro	Tavolato
-Francesco	Tavolato
-Lise	Teyssier
+Alessandro	Tavolato X
+Francesco	Tavolato X
+Lise	Teyssier X
 Luigi	Tintinaglia
-Anna	Troppina
-Camille	Valenciennes
-Maurice	Van Den Boogaerde
-Hugo	Vandenbussche
-Charlotte	Vedrines
-Simon	Vital
-Luc	Walter
-Carl	Weber
+Maurice	Van Den Boogaerde X
+Anna	Troppina X
+Camille	ValenciennesX
+Hugo	Vandenbussche  X
+Charlotte	Vedrines X
+Simon	Vital X
+Luc	Walter X
+Carl	Weber X
 Ke-Ching	Wei
-Eric	Xu
+Eric	Xu X
 Hao	Ying
 Ossama	Zaroual
-Xinle	Zhang
-Yihan	Zhang
-Xiaoyu	Zhao
-Xiao	Zhou
+Xinle	Zhang X
+Yihan	Zhang X
+Xiaoyu	Zhao X
+Xiao	Zhou   X
 Yilin	Zhou
-Jia	Zhu
+Jia	Zhu X
