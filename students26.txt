@@ -85,7 +85,7 @@ Simon	Vital X
 Luc	Walter X
 Carl	Weber
 Ke-Ching	Wei
-Eric	Xu
+Eric	Xu X
 Hao	Ying
 Ossama	Zaroual
 Xinle	Zhang
