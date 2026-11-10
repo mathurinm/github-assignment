@@ -35,22 +35,41 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """ Fit the OneNearestNeighbor model from the training dataset.
 
-        And describe parameters
+    Parameters
+    ----------
+    X : ndarray of shape (n_samples, n_features)
+        contains the X features of the training set
+    y : ndarray of shape (n_samples,)
+        contains the target values of each line
+
+    Returns
+    -------
+    self : OneNearestNeighbor
+        The fitted estimator
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the value of y for the X sample.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input samples.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted value of y for the X sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +78,30 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i, x_i in enumerate(X):
+            distance = np.linalg.norm(self.X_ - x_i, axis=1)
+            min_distance_ind = np.argmin(distance)
+            y_pred[i] = self.y_[min_distance_ind]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Give a score to our model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Contains the X features of the test set.
+
+        y : ndarray of shape (n_samples,)
+            Contains the target value we want to reach.
+
+        Returns
+        -------
+        score : float
+            Score of the model.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return float(np.mean(y_pred == y))
