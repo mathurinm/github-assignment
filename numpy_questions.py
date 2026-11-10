@@ -81,6 +81,6 @@ def wallis_product(n_terms):
     product = 1
     for i in range(1, n_terms + 1):
         four_n_squared = 4 * i * i
-        product *= four_n_squared / (four_n_squared -1 )
+        product *= four_n_squared / (four_n_squared - 1)
 
     return 2 * product

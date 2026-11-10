@@ -44,7 +44,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         y = ndarray of shape (n_samples,)
         The training target, input array.
- 
+
         Returns
         -------
         self : OneNearestNeighbor
