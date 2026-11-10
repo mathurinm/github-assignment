@@ -64,8 +64,8 @@ def wallis_product(n_terms):
     """
     i = np.arrange(1, n_terms + 1)
 
-    W = np.prod((4 * i ** 2) / (4 * i ** 2 - 1))
+    pi = np.prod((4 * i ** 2) / (4 * i ** 2 - 1))
 
-    pi = 2 * W
+    pi = 2 * pi
 
     return pi
