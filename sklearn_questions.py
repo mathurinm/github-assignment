@@ -50,7 +50,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : object
             the fitted estimator
         """
-        X, y = check_X_y(X, y)
+        X, y = self.validate_data(X, y, accept_sparse=False)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
@@ -70,11 +70,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Returns
         --------
-        y_pred : ndarray of shape(n_samples,)
+        y_pred : ndarray of shape (n_samples,)
             The predicted class labels
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = self.validate_data(X, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
@@ -91,9 +91,9 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         Parameters
         ----------
-        X : ndarray (n_samples, n_features)
+        X : ndarray of shape (n_samples, n_features)
             Test sample
-        y : ndarray (n_samples,)
+        y : ndarray of shape (n_samples,)
             True labels of X
 
         Returns
@@ -101,7 +101,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         score : float
             Mean accuracy of predictions of X with respect to y
         """
-        X, y = check_X_y(X, y)
+        X, y = self.validate_data(X, y, accept_sparse=False)
         y_pred = self.predict(X)
 
         # XXX fix
