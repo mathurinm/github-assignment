@@ -19,56 +19,96 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import (
+    check_is_fitted,
+    validate_data,
+)
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
+        """Initialize the OneNearestNeighbor classifier."""
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Training data, where `n_samples` is the number of samples
+            and `n_features` is the number of features.
+        y : ndarray of shape (n_samples,)
+            Class labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
+
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, reset=False)
+        check_classification_targets(y)
+        self.classes_ = np.unique(y)
+
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict class labels for samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input data to make predictions for.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class label for each sample.
+
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        X = validate_data(self, X, reset=False)
+
+        diff = X[:, None, :] - self.X_[None, :, :]
+
+        dist_matrix = np.sum(diff**2, axis=2)
+        closest_indices = np.argmin(dist_matrix, axis=1)
+
+        y_pred = self.y_[closest_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute accuracy on the test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Test samples.
+        y : ndarray of shape (n_samples,)
+            True labels for `X`.
+
+        Returns
+        -------
+        score : float
+            Accuracy of `self.predict(X)` relative to `y`.
+
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y, reset=False)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
