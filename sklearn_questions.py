@@ -25,6 +25,7 @@ from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
@@ -69,14 +70,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             The classes predicted for each sample
         """
         check_is_fitted(self)
-        X = check_array(X)
 
-        if X.shape[1] != self.n_features_in_:
-            raise ValueError(
-                f"X has {X.shape[1]} features, but "
-                f"{self.__class__.__name__} is expecting "
-                f"{self.n_features_in_} features as input"
-            )
+        X = check_array(X)
+        X = validate_data(self, X, reset=False)
+        # reset = False: reads n_features_in_ from the estimator
+        # and comapres it with the number of features in the new X
 
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
