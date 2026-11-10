@@ -50,7 +50,7 @@ def max_index(X):
 
     index_array = np.where(X == np.max(X))
 
-    result = tuple (x[0].item() for x in index_array)
+    result = tuple(x[0].item() for x in index_array)
 
     return result
 
@@ -74,7 +74,7 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    
+
     pi = 1
     n = 1
 
@@ -82,12 +82,10 @@ def wallis_product(n_terms):
 
         return pi
 
-    while n <= n_terms :
-    
+    while n <= n_terms:
+
         pi = pi * (4*n**2 / (4*n**2-1))
 
         n += 1
 
     return 2*pi
-
-
