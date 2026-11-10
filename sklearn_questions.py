@@ -26,6 +26,7 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
@@ -49,6 +50,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     self : OneNearestNeighbor
         The fitted classifier.
         """
+        X, y = validate_data(self, X, y, reset=True)
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
