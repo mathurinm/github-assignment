@@ -8,7 +8,7 @@ Clément	Bayle
 Niccolo	Benetti
 Omar	Benharbit  X
 Mattis	Berenthal
-Tiphaine	Berthou
+Tiphaine	Berthou X
 Arthur	Bertrand X
 Noé	Besson X
 Gauthier	Boyen X
