@@ -20,6 +20,8 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 
+"""One-nearest-neighbor classifier."""
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -29,13 +31,13 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):  # noqa: D300
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
         pass
 
-    def fit(self, X, y):
+    def fit(self, X, y):  # noqa: D205, D400, D401
         """Here self corresponds to the particular
         instance of the OneNearestNeighbor.
         X is the observations with their features
@@ -50,7 +52,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self.y_ = y
         return self
 
-    def predict(self, X):
+    def predict(self, X):  # noqa: D205, D400, D401
         """We first raise an error
         if X doesn't have the right dimensions.
 
@@ -67,14 +69,16 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
                 f"is expecting {self.n_features_in_} features as input."
             )
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0],
+            dtype=self.classes_.dtype
         )
         for i in range(len(y_pred)):
-            y_pred[i] = self.y_[np.argmin(np.linalg.norm(self.X_ - X[i], axis=1))]
+            distances = np.linalg.norm(self.X_ - X[i], axis=1)
+            y_pred[i] = self.y_[np.argmin(distances)]
         return y_pred
 
-    def score(self, X, y):
-        """Here we compute the accuracy by comparing the prediction with the actual y"""
+    def score(self, X, y):  # noqa: D400, D401
+        """Here we compute the accuracy by comparing the prediction with the actual y"""  # noqa: E501
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         accuracy = np.mean(y_pred == y)
