@@ -23,6 +23,7 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import validate_data
+from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
@@ -107,7 +108,7 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         score : float
         Mean accuracy of the classifier.
         """
-        X, y = validate_data(self, X, y, reset=False)
+        X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         return np.mean(y_pred == y)
