@@ -1,25 +1,25 @@
 Megha	Agarwal
 Samira	Aldybergenova
 Giulia	Amore X
-Maxime	Arbey
+Maxime	Arbey X
 Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
 Niccolo	Benetti
-Omar	Benharbit
+Omar	Benharbit  X
 Mattis	Berenthal
-Tiphaine	Berthou
+Tiphaine	Berthou X
 Arthur	Bertrand X
 Noé	Besson X
 Gauthier	Boyen X
 Emilie	Castellani X
-Rubén	Castillo Fernández
+Rubén	Castillo Fernández X
 Arnaud	Cazanave X
-Gaspard	Ceccato
+Gaspard	Ceccato X
 Masson	Chacon Cabrera
 Kéo	Chupin
 David	Cîrnici X
-Clément	Combe
+Clément	Combe X
 Pierre-Antoine	Comby
 Thomas	Croquez
 Emma	Cussenot
@@ -30,15 +30,15 @@ Nada	Dhem
 Abel	Dornbusch x
 Nikita	Dovban
 Joseph	Dray
-Bogdan	Duffaud
+Bogdan	Duffaud X
 Samy	El Quitouni El Idrissi
 Mohamed	Elgamil X
-Kim-Louis	Frotier De Bagneux
+Kim-Louis	Frotier De Bagneux X
 Hayden	Gatlin X
-Yonas	Grossard-Amin
+Yonas	Grossard-Amin X
 Quiterie	Guignard
 Thomas	Hammer
-Vittoria	Hu
+Vittoria	Hu X
 Margaux	Jacobelli X
 Ajay	Jampana
 Martin	Jomier
@@ -49,7 +49,7 @@ Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
 Lucas	Lonegro Gurfinkel X
-Elisa	Marlow
+Elisa	Marlow X
 Mathurin	Massias
 Martin	Michaut X
 Jana	Naaman
@@ -60,10 +60,10 @@ Joseph	Paillard
 Louis	PetitdidierX
 Victor	Piana X
 Ben	Poppe X 
-Delphine	Provost
+Delphine	Provost X 
 Jakub	Radon
 Riccardo	Rinaudo X
-Laslo	Rose
+Laslo	Rose X
 Ilan	Rousseau X
 Maria	Saber
 Matteo	Sainton
@@ -72,15 +72,15 @@ Irene	Santesteban Frances
 Nathan	Serfaty
 Shreyas	Sridharan
 Rithika	Susan Abraham
-Alessandro	Tavolato
-Francesco	Tavolato
+Alessandro	Tavolato X
+Francesco	Tavolato X
 Lise	Teyssier X
 Luigi	Tintinaglia
 Maurice	Van Den Boogaerde X
 Anna	Troppina X
 Camille	ValenciennesX
 Hugo	Vandenbussche  X
-Charlotte	Vedrines
+Charlotte	Vedrines X
 Simon	Vital X
 Luc	Walter X
 Carl	Weber X
@@ -88,9 +88,9 @@ Ke-Ching	Wei
 Eric	Xu X
 Hao	Ying
 Ossama	Zaroual
-Xinle	Zhang
-Yihan	Zhang
-Xiaoyu	Zhao
+Xinle	Zhang X
+Yihan	Zhang X
+Xiaoyu	Zhao X
 Xiao	Zhou   X
 Yilin	Zhou
-Jia	Zhu
+Jia	Zhu X
