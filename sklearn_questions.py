@@ -27,7 +27,6 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
-from sklearn.utils.validation import validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
