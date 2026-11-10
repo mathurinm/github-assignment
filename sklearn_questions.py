@@ -26,49 +26,92 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Prepare the data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : ndarray of shape (n_features,)
+            The label array.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
+
         """
+        # reset = True: it writes n_features_in_ onto the estimator
+        X, y = validate_data(self, X, y, reset=True)
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the samples' one nearest neighbour.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_features,)
+            The predicted nearest neighbour for each sample.
         """
         check_is_fitted(self)
+
+        # reset = False: reads n_features_in_ back from the estimator
+        # and compares it with the number of columns in the new X
+        X = validate_data(self, X, reset=False)
+
         X = check_array(X)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(X.shape[0]):
+            distances = np.sqrt(np.sum((self.X_train_ - X[i, :])**2, axis=1))
+            y_pred[i] = self.y_train_[np.argmin(distances)]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate the accuracy of the predictions.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : ndarray of shape (n_features,)
+            The label array.
+
+        Returns
+        -------
+        accuracy : float
+            The ratio of correctly predicted samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+
+        return accuracy
