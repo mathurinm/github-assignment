@@ -63,7 +63,7 @@ Ben	Poppe X
 Delphine	Provost
 Jakub	Radon
 Riccardo	Rinaudo X
-Laslo	Rose
+Laslo	Rose X
 Ilan	Rousseau X
 Maria	Saber
 Matteo	Sainton
