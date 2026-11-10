@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -52,7 +53,6 @@ into a tuple ready to be returned"""
 
 
 def wallis_product(n_terms):
-
     """Implement the Wallis product to compute an approximation of pi.
 
     See:
@@ -74,9 +74,9 @@ def wallis_product(n_terms):
     else:
         pi = 1
         for n in range(1, n_terms + 1):
-            pi = pi * (2*n)**2 / ((2*n - 1)*(2*n + 1))
+            pi = pi * (2 * n) ** 2 / ((2 * n - 1) * (2 * n + 1))
 
-    return pi*2
+    return pi * 2
 
 
 """Method : 'for' loop in order to compute the desired product"""

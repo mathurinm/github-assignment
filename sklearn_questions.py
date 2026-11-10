@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,7 +36,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """Here self corresponds to the particular 
+        """Here self corresponds to the particular
         instance of the OneNearestNeighbor.
         X is the observations with their features
         y is the class of the observations
@@ -48,34 +49,32 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self.X_ = X
         self.y_ = y
         return self
-    
+
     def predict(self, X):
-        """We first raise an error 
+        """We first raise an error
         if X doesn't have the right dimensions.
-        
-        Then we compute the euclidean distance of 
+
+        Then we compute the euclidean distance of
         every observation to a given observation,
-        take the indice of the minimal one and 
+        take the indice of the minimal one and
         assign the class therefore predict to the indice of y_pred.
         """
         check_is_fitted(self)
         X = check_array(X)
         if X.shape[1] != self.n_features_in_:
             raise ValueError(
-        f"X has {X.shape[1]} features, but OneNearestNeighbor "
-        f"is expecting {self.n_features_in_} features as input."
-    )
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+            )
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
         )
         for i in range(len(y_pred)):
-            y_pred[i] = self.y_[np.argmin(np.linalg.norm(self.X_ - X[i], axis = 1))] 
+            y_pred[i] = self.y_[np.argmin(np.linalg.norm(self.X_ - X[i], axis=1))]
         return y_pred
 
     def score(self, X, y):
-        """Here we compute the accuracy by comparing the prediction with the actual y
-        """
+        """Here we compute the accuracy by comparing the prediction with the actual y"""
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
         accuracy = np.mean(y_pred == y)
