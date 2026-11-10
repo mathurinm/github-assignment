@@ -37,8 +37,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         pass
 
     def fit(self, X, y):
-        """Fit the model
-        But for KNN (Here 1NN) there is no fit to do.
+        """Fit the model. But for KNN (Here 1NN) there is no real fit to do.
 
         Parameters
         ----------
@@ -52,7 +51,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         -------
         self
         """
-
         X, y = validate_data(self, X, y)
 
         X, y = check_X_y(X, y)
@@ -66,7 +64,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Returns the class predicted
+        """Return the class predicted.
 
         Parameters
         ----------
@@ -130,7 +128,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y):
-        """Returns the score
+        """Return the score.
 
         Parameters
         ----------
