@@ -60,7 +60,7 @@ Joseph	Paillard
 Louis	PetitdidierX
 Victor	Piana X
 Ben	Poppe X 
-Delphine	Provost
+Delphine	Provost X 
 Jakub	Radon
 Riccardo	Rinaudo X
 Laslo	Rose X
