@@ -78,6 +78,3 @@ def wallis_product(n_terms):
 
     pi_approx = prod * 2
     return pi_approx
-    
-
-    
