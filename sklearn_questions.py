@@ -28,8 +28,8 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -43,6 +43,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_train_ = X
+        self.y_train_ = y
 
         # XXX fix
         return self
@@ -54,10 +56,22 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor is "
+                f"expecting {self.n_features_in_} features as input."
+            )
+
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+
+        for i, sample in enumerate(X):
+            distances = np.sum((self.X_train_ - sample) ** 2, axis=1)
+            nearest_index = np.argmin(distances)
+            y_pred[i] = self.y_train_[nearest_index]
 
         # XXX fix
         return y_pred
@@ -71,4 +85,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
