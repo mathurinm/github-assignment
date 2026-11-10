@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -26,49 +27,123 @@ from sklearn.utils.validation import check_X_y
 from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import validate_data
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the model
+        But for KNN (Here 1NN) there is no fit to do.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+                The input array.
+
+        y : ndarray of shape (n_samples,)
+                The output array.
+
+        Returns
+        -------
+        self
         """
+
+        X, y = validate_data(self, X, y)
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
+        self.X_train_ = X
+        self.y_train_ = y
 
         # XXX fix
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Returns the class predicted
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+                    The output array.
+
+        Raises
+        ------
+        ValueError
+            if the shape is not 2D.
         """
         check_is_fitted(self)
+        X = validate_data(self, X, reset=False)
+
+        if len(X.shape) != 2:
+            raise ValueError
+
         X = check_array(X)
+        # if self.n_features_in_ != X.shape[1]:
+        #     raise ValueError
+
         y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+            shape=len(X),
+            fill_value=self.classes_[0],
+            dtype=self.classes_.dtype,
         )
 
-        # XXX fix
+        # pour chaque ligne (point) de X
+        #   calculer la distance entre le point et tous les autres points.
+        #   garder le point avec la plus petit distance
+        #   retourner sa classe
+
+        # le faire si possible avec le broadcasting
+
+        # la distance avec le broadcasting mais que pour le premier point
+        d1 = np.sqrt(np.sum((self.X_train_ - X[0]) ** 2, axis=1))
+
+        # On veut un tableau (n_test,n_train,p) le p est le même car on a le même nombre de features
+        # avec ça, on a un tableau ou la distance au carré entre le point i et j est à la case (i,j)
+        # J'ai enlevé le sqrt puisque que pour les comparaisons ça n'est pas utile
+        distances = np.sum(
+            (self.X_train_[None, :, :] - X[:, None, :]) ** 2, axis=2
+        )
+
+        # Maintenant on veut trouver pour chaque ligne le point avec la plus petite distance
+        closest_points = np.argmin(
+            distances, axis=1
+        )  # normalement ça nous retourne pour chaque ligne l'indice de la plus petite distance
+        y_pred = self.y_train_[
+            closest_points
+        ]  # et ça ça doit être les classes de ces points.
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Returns the score
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The input array.
+        y : ndarray of shape (n_samples,)
+            The output array.
+
+        Returns
+        -------
+        score : float,
+            the accuracy of the model between 0 and 1.
+
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        score = np.sum(y_pred == y) / len(y)
 
-        # XXX fix
-        return y_pred.sum()
+        return score
