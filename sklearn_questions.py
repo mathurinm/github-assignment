@@ -21,86 +21,90 @@ for the methods you code and for the class. The docstring will be checked using
 """
 
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
-from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
-from sklearn.utils.validation import check_is_fitted
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
-    def __init__(self):  # noqa: D107
+    def __init__(self):
         pass
 
     def fit(self, X, y):
-        """Memorizes the examples in X and their classes in y
+        """Store the training samples and their labels.
 
-        Variables:
-        X -> features of the training data
-        y -> classes of the training data
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training samples.
+        y : array-like of shape (n_samples,)
+            Class labels.
 
-        Returns:
-        self-> fitted One-Nearest-Neighbor model
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier.
         """
-
         X, y = check_X_y(X, y)
         check_classification_targets(y)
-        self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
         self.X_train_ = X.copy()
         self.y_train_ = y.copy()
-
-        # XXX fix
+        self.classes_ = np.unique(y)
+        self.n_features_in_ = X.shape[1]
 
         return self
 
     def predict(self, X):
-        """Predicts the class of the given X,
-        from the class of the Nearest Neighbor in the training set
+        """Predict labels using the nearest training sample.
 
-        Variables:
-        X -> features table from which we want to predict the class
-        self -> fitted model
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Samples to classify.
 
-        Returns:
-        y_pred -> the predicted classes for X
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            Predicted class labels.
         """
-        check_is_fitted(self, ["X_train_", "y_train_"])
+
+        check_is_fitted(self, ["X_train_", "y_train_", "n_features_in_"])
         X = check_array(X)
 
         if X.shape[1] != self.n_features_in_:
-            raise ValueError
+            raise ValueError(
+                f"X has {X.shape[1]} features, but "
+                f"{self.__class__.__name__} is expecting "
+                f"{self.n_features_in_} features as input."
+            )
 
-        y_pred = np.empty(len(X), dtype=self.y_train_.dtype)
+        y_pred = np.empty(X.shape[0], dtype=self.y_train_.dtype)
 
         for i, x in enumerate(X):
             distances = np.sum((self.X_train_ - x) ** 2, axis=1)
             nearest_index = np.argmin(distances)
-
             y_pred[i] = self.y_train_[nearest_index]
 
         return y_pred
-        # XXX fix
-        return y_pred
 
     def score(self, X, y):
-        """Calculates the accuracy (i.e. proportion of right answers)
-        of the model given data X and labels y
+        """Return the mean accuracy on the given data.
 
-        Variables:
-        X -> features table from which we want to predict the class
-        y -> true classes of the data in X
-        self -> fitted model
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Samples to score.
+        y : array-like of shape (n_samples,)
+            True class labels.
 
-        Returns:
-        accuracy -> the accuracy of the model on the given data X and labels y
+        Returns
+        -------
+        score : float
+            The mean accuracy.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
         return np.mean(y_pred == y)
