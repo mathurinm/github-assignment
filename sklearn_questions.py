@@ -29,7 +29,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
@@ -37,17 +37,17 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     def fit(self, X, y):
         """Return the fitted classifier based on training data.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        The training data.
-    y :  ndarray of shape (n_samples,)
-        The target labels.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training data.
+        y : ndarray of shape (n_samples,)
+            The target labels.
 
-    Returns
-    -------
-    self : OneNearestNeighbor
-        The fitted classifier.
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -60,17 +60,17 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return self
 
     def predict(self, X):
-        """Predict labels using nearest training sample.
+        """Predict labels using the nearest training sample.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        The samples to classify.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify.
 
-    Returns
-    -------
-    y_pred : ndarray of shape (n_samples,)
-        The predicted labels for input sample.
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted labels for input sample.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -95,17 +95,17 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     def score(self, X, y):
         """Measure accuracy of predictions.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        The samples to evaluate.
-    y : ndarray of shape (n_samples,)
-        The correct labels.
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to evaluate.
+        y : ndarray of shape (n_samples,)
+            The correct labels.
 
-    Returns
-    -------
-    accuracy : float
-        The proportion of correctly classified samples.
+        Returns
+        -------
+        accuracy : float
+            The proportion of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
