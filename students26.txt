@@ -57,7 +57,7 @@ Rita	Najeddine
 Abdelilah	Nossair
 Brendan	O'Sullivan
 Joseph	Paillard
-Louis	Petitdidier
+Louis	PetitdidierX
 Victor	Piana
 Ben	Poppe
 Delphine	Provost
