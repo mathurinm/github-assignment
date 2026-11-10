@@ -17,7 +17,6 @@ calling `flake8` at the root of the repo.
 
 Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
-`pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
 from sklearn.base import BaseEstimator
@@ -28,47 +27,76 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the classifier by storing the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training data.
+        y : ndarray of shape (n_samples,)
+            The training labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the label of each sample with its nearest neighbor.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted labels.
         """
         check_is_fitted(self)
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor is "
+                f"expecting {self.n_features_in_} features as input"
+            )
+        distances = np.linalg.norm(
+            X[:, np.newaxis, :] - self.X_[np.newaxis, :, :], axis=2
         )
-
-        # XXX fix
-        return y_pred
+        nearest = np.argmin(distances, axis=1)
+        return self.y_[nearest]
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify.
+        y : ndarray of shape (n_samples,)
+            The true labels.
+
+        Returns
+        -------
+        score : float
+            The fraction of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
