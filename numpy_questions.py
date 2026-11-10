@@ -45,7 +45,7 @@ def max_index(X):
 
     i_max = 0
     j_max = 0
-    max_value = 0
+    max_value = -np.inf
     n_samples = len(X)
     n_features = len(X[0])
     for i in range(n_samples):

@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -28,7 +29,7 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     "OneNearestNeighbor classifier."
 
     def __init__(self):  # noqa: D107
@@ -43,23 +44,38 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
         """Write docstring.
 
+
         And describe parameters
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
-        # XXX fix
+        X = check_array(X)
+
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but {self.__class__.__name__} "
+                f"is expecting {self.n_features_in_} features as input."
+            )
+
+        y_pred = np.full(
+            shape=len(X), fill_value=self.classes_[0], dtype=self.classes_.dtype
+        )
+        for i, x_i in enumerate(X):
+            min_d = np.inf
+            j_min = np.inf
+            for j, x_j in enumerate(self.X_):
+                d = np.linalg.norm(x_i - x_j)
+                if d < min_d:
+                    min_d = d
+                    j_min = j
+            y_pred[i] = self.y_[j_min]
         return y_pred
 
     def score(self, X, y):
@@ -67,8 +83,12 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
 
         And describe parameters
         """
+        n = len(y)
+        accuracy = 0
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
+        for i in range(n):
+            if y_pred[i] == y[i]:
+                accuracy += 1
 
-        # XXX fix
-        return y_pred.sum()
+        return accuracy / n
