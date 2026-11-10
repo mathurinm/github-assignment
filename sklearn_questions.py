@@ -27,13 +27,12 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-
         """Fit the nearest neighbor classifier.
 
         Parameters
@@ -48,7 +47,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         self : OneNearestNeighbor
         Fitted classifier.
         """
-
         X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
