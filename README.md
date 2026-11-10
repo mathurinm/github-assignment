@@ -25,7 +25,7 @@ This work is based on https://github.com/x-datascience-datacamp/datacamp-assignm
     (SSH may be a bit more complex)
 ### Part A: basic PR
   - Fork this repository by clicking on the `Fork` button on the upper right corner of this page.
-  - Clone the repository of your fork with: `git clone https://github.com/YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login)
+  - Clone the repository of your fork with: `git clone https://github.com/YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login). If you had set up SSH key earlier, use `git clone git@github.com:YOURLOGIN/github-assignment`.
   - Check your directory with `pwd` then access the GitHub repository folder with `cd github-assignment`
   - Check which remote (distant) repositories your local repository knows, with `git remote -v` (v for verbose)
   - Setup git to work with the original repo (mine) with `git remote add upstream https://github.com/mathurinm/github-assignment` (tell git: there's a new remote repository to track and its name is `upstream`)
