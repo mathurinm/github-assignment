@@ -30,15 +30,46 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier.
+
+    Predict for each sample the target of the closest training sample,
+    using the Euclidean distance.
+
+    Attributes
+    ----------
+    classes_ : ndarray of shape (n_classes,)
+        The unique class labels seen during `fit`.
+    n_features_in_ : int
+        The number of features seen during `fit`.
+    X_ : ndarray of shape (n_samples, n_features)
+        The training samples stored during `fit`.
+    y_ : ndarray of shape (n_samples,)
+        The training targets stored during `fit`.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the OneNearestNeighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training samples.
+        y : ndarray of shape (n_samples,)
+            The target labels of the training samples.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier.
+
+        Raises
+        ------
+        ValueError
+            If `X` and `y` have inconsistent lengths, or if `y` is not a
+            valid classification target.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -46,12 +77,30 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self.n_features_in_ = X.shape[1]
 
         # XXX fix
+        self.X_ = X
+        self.y_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for the provided samples.
 
-        And describe parameters
+        Each sample is assigned the target of its nearest training sample
+        in Euclidean distance.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_queries, n_features)
+            The samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_queries,)
+            The predicted class label for each sample.
+
+        Raises
+        ------
+        NotFittedError
+            If the classifier has not been fitted yet.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -61,15 +110,31 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         )
 
         # XXX fix
+        X = validate_data(self, X, reset=False)
+        dist = X[:, None, :] - self.X_[None, :, :]
+        norm = np.linalg.norm(dist, axis=-1)
+        idx = np.argsort(norm, axis=-1)[:, 0]
+        y_pred = self.y_[idx]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy on the given test data and labels.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_queries, n_features)
+            The test samples.
+        y : ndarray of shape (n_queries,)
+            The true labels of the test samples.
+
+        Returns
+        -------
+        score : float
+            The fraction of samples correctly classified.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
