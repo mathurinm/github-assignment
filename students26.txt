@@ -38,7 +38,7 @@ Hayden	Gatlin X
 Yonas	Grossard-Amin X
 Quiterie	Guignard
 Thomas	Hammer
-Vittoria	Hu
+Vittoria	Hu X
 Margaux	Jacobelli X
 Ajay	Jampana
 Martin	Jomier
