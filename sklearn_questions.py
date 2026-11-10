@@ -20,16 +20,14 @@ for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.base import ClassifierMixin
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.metrics.pairwise import pairwise_distances
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import check_is_fitted, validate_data
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    """ OneNearestNeighbor classifier.
+    """OneNearestNeighbor classifier.
 
     Parameters
     ----------
@@ -46,6 +44,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     y_ : ndarray of shape (n_samples,)
         The target values corresponding to training samples.
     """
+
     def __init__(self):  # noqa: D107
         pass
 
@@ -70,7 +69,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
         self.X_ = X
         self.y_ = y
-        # XXX fix
+
         return self
 
     def predict(self, X):
@@ -95,7 +94,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         distances = pairwise_distances(X, self.X_, metric='euclidean')
         closest_indices = np.argmin(distances, axis=1)
         y_pred[:] = self.y_[closest_indices]
-        # XXX fix
+
         return y_pred
 
     def score(self, X, y):
@@ -116,5 +115,5 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         X, y = validate_data(self, X=X, y=y, reset=False)
         y_pred = self.predict(X)
         y_score = (y_pred == y).sum() / len(y)
-        # XXX fix
+
         return y_score
