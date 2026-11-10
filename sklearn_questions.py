@@ -30,8 +30,8 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
     """OneNearestNeighbor classifier."""
 
     def __init__(self):
-        pass
         """Initialize the OneNearestNeighbor classifier."""
+        pass
 
     def fit(self, X, y):
         """Store the training samples and their labels.
@@ -60,6 +60,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
 
     def predict(self, X):
         """Predict labels using the nearest training sample.
+
         Parameters
         ----------
         X : array-like of shape (n_samples, n_features)
@@ -70,7 +71,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         y_pred : ndarray of shape (n_samples,)
             Predicted class labels.
         """
-
         check_is_fitted(self, ["X_train_", "y_train_", "n_features_in_"])
         X = check_array(X)
 
