@@ -71,7 +71,7 @@ def wallis_product(n_terms):
     # terms in the product. For example 10000.
     if n_terms == 0:
         wallis = 1
-    else :
+    else:
         wallis = 1
         for n in range(n_terms):
             wallis *= (4 * (n+1)**2)/((4 * (n+1)**2) - 1)
