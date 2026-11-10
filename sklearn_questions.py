@@ -28,26 +28,26 @@ from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """ Fit the OneNearestNeighbor model from the training dataset.
+        """Fit the OneNearestNeighbor model from the training dataset.
 
-    Parameters
-    ----------
-    X : ndarray of shape (n_samples, n_features)
-        contains the X features of the training set
-    y : ndarray of shape (n_samples,)
-        contains the target values of each line
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            contains the X features of the training set
+        y : ndarray of shape (n_samples,)
+            contains the target values of each line
 
-    Returns
-    -------
-    self : OneNearestNeighbor
-        The fitted estimator
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
@@ -73,6 +73,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         """
         check_is_fitted(self)
         X = check_array(X)
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+            )
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
