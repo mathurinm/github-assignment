@@ -30,11 +30,7 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-<<<<<<< HEAD
     """OneNearestNeighbor classifier."""
-=======
-    "OneNearestNeighbor classifier."
->>>>>>> b2d89059424004be5fd3b7f1d02a049f9ce720dc
 
     def __init__(self):  # noqa: D107
         pass
@@ -54,12 +50,12 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         self : OneNearestNeighbor
             The fitted estimator.
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
         self.X_ = X
         self.y_ = y
+        return self
 
         return self
 
