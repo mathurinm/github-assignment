@@ -1,6 +1,6 @@
 Megha	Agarwal
 Samira	Aldybergenova
-Giulia	Amore
+Giulia	Amore X
 Maxime	Arbey
 Francesco	Azzarello   X
 Emile	Bassil
@@ -12,7 +12,7 @@ Tiphaine	Berthou
 Arthur	Bertrand
 Noé	Besson
 Gauthier	Boyen
-Emilie	Castellani
+Emilie	Castellani X
 Rubén	Castillo Fernández
 Arnaud	Cazanave
 Gaspard	Ceccato
@@ -34,7 +34,7 @@ Bogdan	Duffaud
 Samy	El Quitouni El Idrissi
 Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux
-Hayden	Gatlin
+Hayden	Gatlin X
 Yonas	Grossard-Amin
 Quiterie	Guignard
 Thomas	Hammer
@@ -57,7 +57,7 @@ Rita	Najeddine
 Abdelilah	Nossair
 Brendan	O'Sullivan
 Joseph	Paillard
-Louis	Petitdidier
+Louis	PetitdidierX
 Victor	Piana
 Ben	Poppe
 Delphine	Provost
@@ -77,12 +77,12 @@ Francesco	Tavolato
 Lise	Teyssier
 Luigi	Tintinaglia
 Anna	Troppina
-Camille	Valenciennes
+Camille	ValenciennesX
 Maurice	Van Den Boogaerde
 Hugo	Vandenbussche
 Charlotte	Vedrines
 Simon	Vital X
-Luc	Walter
+Luc	Walter X
 Carl	Weber
 Ke-Ching	Wei
 Eric	Xu
