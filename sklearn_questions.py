@@ -35,22 +35,44 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        
+        """Fit the nearest neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Training samples.
+        y : array-like of shape (n_samples,)
+            Target class labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor 
+        Fitted classifier.
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class labels for samples in X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+        Predicted class labels.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +81,32 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        distances = np.sqrt(((X[:, np.newaxis, :] -
+              self.X_train_[np.newaxis, :, :]) ** 2).sum(axis=2))
+
+        nearest_indices = np.argmin(distances, axis=1)
+
+        y_pred = self.y_train_[nearest_indices]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the mean accuracy on the given test data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+        Test samples.
+
+        y : array-like of shape (n_samples,)
+        True class labels.
+
+        Returns
+        -------
+        score : float
+        Mean accuracy of the classifier.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
         return y_pred.sum()
