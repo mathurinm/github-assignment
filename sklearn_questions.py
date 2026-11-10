@@ -38,11 +38,11 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """Fit the OneNearestNeighbor model from the training dataset.
 
         Parameters:
-            X: train features
-            y: train labels
+            X: array-like of shape (n_samples, n_features)
+            y: array-like of shape (n_samples,)
 
         Returns
-            self: the fitted instance
+            self: the fitted instance of OneNearestNeighbor
         """
         X, y = validate_data(self, X, y)
         check_classification_targets(y)
@@ -57,7 +57,10 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         """Predict the class labels for the provided data.
 
         Parameters:
-            X: features to predict
+            X: array-like of shape (n_samples, n_features)
+
+        Returns
+            y_pred: array-like of shape (n_samples,)
         """
         check_is_fitted(self)
         X = validate_data(self, X=X, reset=False)
@@ -74,10 +77,15 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         return y_pred
 
     def score(self, X, y, sample_weight=None):
-        """Write docstring.
+        """Return the mean accuracy on the given test data and labels.
 
         Parameters:
-            X:
+            X: array-like of shape (n_samples, n_features)
+            y: array-like of shape (n_samples,)
+            sample_weight: not used
+
+        Returns
+            Mean accuracy of self.predit(X)
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
