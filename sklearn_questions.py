@@ -35,22 +35,40 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the one-nearest-neighbor classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training samples.
+        y : ndarray of shape (n_samples, )
+            The training labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
-
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the class of each sample of X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (p_samples, )
+            The predicted class of each sample of X.
         """
         check_is_fitted(self)
         X = check_array(X)
@@ -59,16 +77,37 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but "
+                f"{self.__class__.__name__} is expecting "
+                f"{self.n_features_in_} features as input"
+            )
+
+        diff = X[:, np.newaxis, :] - self.X_train_[np.newaxis, :, :]
+        dist = np.linalg.norm(diff, axis=2)
+        nearest = dist.argmin(axis=1)
+        y_pred = self.y_train_[nearest]
+
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the classifier on (X,y).
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test samples.
+        y : ndarray of shape (n_samples, )
+            The test labels.
+
+        Returns
+        -------
+        score : float
+            The fraction of samples accurately classified.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        y_pred = y_pred == y
+        return y_pred.mean()
