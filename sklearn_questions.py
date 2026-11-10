@@ -77,7 +77,11 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         check_is_fitted(self)
         X = check_array(X)
         if X.shape[1] != self.n_features_in_:
-            raise ValueError
+            raise ValueError(
+                f"X has {X.shape[1]} features, but "
+                f"OneNearestNeighbor is expecting "
+                f"{self.n_features_in_} features as input"
+            )
     
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
@@ -112,4 +116,4 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        return y_pred.sum()
+        return np.mean(y_pred == y)
