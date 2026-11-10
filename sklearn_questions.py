@@ -23,52 +23,85 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the nearest neighbor classifier on the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training samples
+        y : ndarray of shape (n_samples,)
+            The target labels of the training samples
+
+        Returns
+        -------
+        self : object
+            The fitted estimator
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the labels of the input samples.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The predicted label of each sample, i.e. the label of its
+            nearest training sample
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = validate_data(self, X, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        for i in range(len(X)):
+            dist = np.sqrt(np.sum((X[i] - self.X_train_)**2, axis=1))
+            idx_min = np.argmin(dist)
+            y_pred[i] = self.y_train_[idx_min]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Return the accuracy of the classifier on the given data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test samples
+        y : ndarray of shape (n_samples,)
+            The true labels of the test samples
+
+        Returns
+        -------
+        score : float
+            The fraction of correctly classified samples
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        accur = np.mean(y_pred == y)
+        return accur
