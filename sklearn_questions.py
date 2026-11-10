@@ -23,52 +23,82 @@ import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 from sklearn.utils.validation import check_X_y
-from sklearn.utils.validation import check_array
 from sklearn.utils.validation import check_is_fitted
+from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
+    """OneNearestNeighbor classifier.
+
+    Predicts for each sample the label of the closest training sample,
+    using the Euclidean distance.
+    """
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Fit the classifier by storing the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training samples.
+        y : ndarray of shape (n_samples,)
+            The training labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier.
         """
-        X, y = check_X_y(X, y)
+        X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        # 1-NN has no real training step, we just keep the data
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict the label of each sample.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The samples to classify.
+
+        Returns
+        -------
+        y_pred : ndarray of shape (n_samples,)
+            The label of the closest training sample for each sample.
         """
         check_is_fitted(self)
-        X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
+        X = validate_data(self, X, reset=False)
 
-        # XXX fix
+        # distances between each sample and each training sample,
+        # shape (n_samples, n_train_samples)
+        dists = np.linalg.norm(X[:, np.newaxis] - self.X_train_, axis=2)
+        y_pred = self.y_train_[np.argmin(dists, axis=1)]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Compute the accuracy of the classifier.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The test samples.
+        y : ndarray of shape (n_samples,)
+            The true labels.
+
+        Returns
+        -------
+        score : float
+            The fraction of correctly classified samples.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
