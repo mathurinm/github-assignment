@@ -15,6 +15,7 @@ We also ask to respect the pep8 convention: https://pep8.org.
 This will be enforced with `flake8`. You can check that there is no flake8
 errors by calling `flake8` at the root of the repo.
 """
+
 import numpy as np
 
 
@@ -37,12 +38,12 @@ def max_index(X):
         If the input is not a numpy array or
         if the shape is not 2D.
     """
-    i = 0
-    j = 0
+    i = np.max(X)
+    j = np.argmax(X)
 
     # TODO
 
-    return i, j
+    return np.array(i, j)
 
 
 def wallis_product(n_terms):
@@ -64,4 +65,10 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
-    return 0.
+
+    my_pi = 1
+
+    for i in range(n_terms):
+        my_pi *= (4 * (i**2)) / (4 * (i**2) - 1)
+
+    return my_pi

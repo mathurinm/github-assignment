@@ -19,6 +19,7 @@ Finally, you need to write docstring similar to the one in `numpy_questions`
 for the methods you code and for the class. The docstring will be checked using
 `pydocstyle` that you can also call at the root of the repo.
 """
+
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -35,40 +36,69 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Memorizes the examples in X and their classes in y
 
-        And describe parameters
+        Variables:
+        X -> features of the training data
+        y -> classes of the training data
+
+        Returns:
+        self-> fitted One-Nearest-Neighbor model
         """
+
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
+        self.X_train_ = X.copy()
+        self.y_train_ = y.copy()
+
         # XXX fix
+
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predicts the class of the given X, from the class of the Nearest Neighbor in the training set
 
-        And describe parameters
+        Variables:
+        X -> features table from which we want to predict the class
+        self -> fitted model
+
+        Returns:
+        y_pred -> the predicted classes for X
         """
-        check_is_fitted(self)
+        check_is_fitted(self, ["X_train_", "y_train_"])
         X = check_array(X)
-        y_pred = np.full(
-            shape=len(X), fill_value=self.classes_[0],
-            dtype=self.classes_.dtype
-        )
 
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError
+
+        y_pred = np.empty(len(X), dtype=self.y_train_.dtype)
+
+        for i, x in enumerate(X):
+            distances = np.sum((self.X_train_ - x) ** 2, axis=1)
+            nearest_index = np.argmin(distances)
+
+            y_pred[i] = self.y_train_[nearest_index]
+
+        return y_pred
         # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculates the accuracy (i.e. proportion of right answers) of the model on the given data X and labels y
 
-        And describe parameters
+        Variables:
+        X -> features table from which we want to predict the class
+        y -> true classes of the data in X
+        self -> fitted model
+
+        Returns:
+        accuracy -> the accuracy of the model on the given data X and labels y
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
         # XXX fix
-        return y_pred.sum()
+        return np.mean(y_pred == y)
