@@ -87,7 +87,7 @@ Carl	Weber X
 Ke-Ching	Wei
 Eric	Xu X
 Hao	Ying
-Ossama	Zaroual
+Ossama	Zaroual X
 Xinle	Zhang X
 Yihan	Zhang X
 Xiaoyu	Zhao X
