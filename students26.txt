@@ -8,7 +8,7 @@ Clément	Bayle
 Niccolo	Benetti
 Omar	Benharbit  X
 Mattis	Berenthal
-Tiphaine	Berthou
+Tiphaine	Berthou x
 Arthur	Bertrand X
 Noé	Besson X
 Gauthier	Boyen X
@@ -49,12 +49,12 @@ Cyprien	Kutek X
 Guillaume	Leopold
 Léonard	Levy
 Lucas	Lonegro Gurfinkel X
-Elisa	Marlow
+Elisa	Marlow X
 Mathurin	Massias
 Martin	Michaut X
 Jana	Naaman
 Rita	Najeddine
-Abdelilah	Nossair
+Abdelilah	Nossair X
 Brendan	O'Sullivan X
 Joseph	Paillard
 Louis	PetitdidierX
@@ -73,7 +73,7 @@ Nathan	Serfaty
 Shreyas	Sridharan
 Rithika	Susan Abraham
 Alessandro	Tavolato X
-Francesco	Tavolato
+Francesco	Tavolato X
 Lise	Teyssier X
 Luigi	Tintinaglia
 Maurice	Van Den Boogaerde X
@@ -90,7 +90,7 @@ Hao	Ying
 Ossama	Zaroual
 Xinle	Zhang X
 Yihan	Zhang X
-Xiaoyu	Zhao
+Xiaoyu	Zhao X
 Xiao	Zhou   X
 Yilin	Zhou
 Jia	Zhu X
