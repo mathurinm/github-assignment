@@ -23,21 +23,23 @@ This work is based on https://github.com/x-datascience-datacamp/datacamp-assignm
     - SSH: generate and add a public/private SSH key pair to GitHub. [GitHub tutorial](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
     (SSH may be a bit more complex)
+  - In a terminal, run `git config pull.rebase false`
+
 ### Part A: basic PR
   - Fork this repository by clicking on the `Fork` button on the upper right corner of this page.
-  - Clone the repository of your fork with: `git clone https://github.com/YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login)
+  - Clone the repository of your fork with: `git clone git@github.com:YOURLOGIN/github-assignment` (replace YOURLOGIN with your GitHub login). If you had used HTTPS instead of SSH earlier, use instead `git clone https://github.com/YOURLOGIN/github-assignment`.
   - Check your directory with `pwd` then access the GitHub repository folder with `cd github-assignment`
   - Check which remote (distant) repositories your local repository knows, with `git remote -v` (v for verbose)
-  - Setup git to work with the original repo (mine) with `git remote add upstream https://github.com/mathurinm/github-assignment` (tell git: there's a new remote repository to track and its name is `upstream`)
+  - Setup git to work with the original repo (mine) with `git remote add upstream  git@github.com:mathurinm/github-assignment` (tell git: there's a new remote repository to track and its name is `upstream`). If you chose HTTPS, use  `git remote add upstream https://github.com/mathurinm/github-assignment`
   - Check again which remote (distant) repositories your local repositories knows (with `git remote -v`). You should now see 2.
   - Create a branch called `YOURNAME` using `git switch -c YOURNAME`, where your replace `YOURNAME` by YOUR name. Git tells you that it has created a new branch and you are now on this branch.
-  - Check the GitHub repository where you are and on which branch with `git status`.
+  - Check the GitHub repository where you are and on which branch with `git status`. You can also check all branches, with `git branch`.
   - Modify the file `students.txt` by adding an `X` at the end of the line with your name. This should be done on your machine, using vscode for example.
   - Add and commit this file using `git add THEFILEYOUWANTTOADD` and `git commit -m "YOUR COMMIT MESSAGE HERE"`. Check what you are doing with `git status`.
   - Push your branch to your repository with `git push`. If you haven't done anything more, git will complain that it does not know where to push: follow the instructions that it displays. If it complains that you must login, check the Prerequisite section of this Readme.
   - Send a Pull Request of this branch to this repository (mathurinm/github-assignment; not your fork) by going to https://github.com/mathurinm/github-assignment/pulls
-  - If GitHub says that there is a conflict (it cannot merge the branch because you modified lines that were modified by someone else at the same time), solve them locally by pulling `upstream main` into your branch (see below how to pull `upstream main`)
-  - Ping me on Slack so that I merge the PR. This will allow the test suite (Continuous Integration) to be run on the second part of the assignment. Otherwise, CI is not run on PRs from people who have never contributed to the repo before.
+  - If GitHub says that there is a conflict (it cannot merge the branch because you modified lines that were modified by someone else at the same time), solve them locally by pulling `upstream main` into your branch (see below how to pull `upstream main`), then fix the conflicting file, add the changes, commit them and push to your branch.
+  - If (and only if) I take too much time to merge the PR, ping me on Slack so that do so. This will allow the test suite (Continuous Integration) to be run on the second part of the assignment. Otherwise, CI is not run on PRs from people who have never contributed to the repo before.
   - **Once your PR has been merged**: Switch back to your `main` branch with `git switch main`.
   - Delete the branch you used to do the PR (you no longer need it) with `git branch -D YOURBRANCHNAME`
   - Synchronize your local main branch with the main branch of the fork with: `git pull upstream main` (from which remote repo to pull, and which branch)
@@ -53,7 +55,7 @@ This work is based on https://github.com/x-datascience-datacamp/datacamp-assignm
     flake8 .
     pydocstyle
   ```
-  - When the CI is green notify the professors that you are done.
+  - When the CI is green, the assignment is considered complete.
 
 
 # General information
