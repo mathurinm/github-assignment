@@ -29,47 +29,87 @@ from sklearn.utils.validation import validate_data
 from sklearn.utils.multiclass import check_classification_targets
 
 
-class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+class OneNearestNeighbor(ClassifierMixin, BaseEstimator): # specific parent comes before generic 
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """Store the inputs on self: every training point and its label/class.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D ndarray of shape (n_samples_train, n_features) 
+            The design matrix.
+        y : 1D ndarray of shape (n_samples,)
+            The target.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted classifier. 
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_ = X
+        self.y_ = y
+
         return self
 
     def predict(self, X):
-        """Write docstring.
-
-        And describe parameters
+        """Return the predicted class of the points.
+    
+        Parameters
+        ----------
+        X : 2D ndarray of shape (n_samples_test, n_features)
+            The samples to classify.
+        
+        Returns
+        -------
+        y_pred : 1D ndarray of shape (n_samples_test,) 
+            The predicted class label for each sample.  
         """
         check_is_fitted(self)
         X = check_array(X)
+        if X.shape[1] != self.n_features_in_:
+            raise ValueError(
+                f"X has {X.shape[1]} features, but OneNearestNeighbor "
+                f"is expecting {self.n_features_in_} features as input."
+            )
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
+        for i, x in enumerate(X):
+            distances = np.sum((self.X_ - x)**2, axis=1) 
+            # broadcasting method to subtract the X from every training row; 
+            # the subtracted values are then squared and summed
+            y_pred[i] = self.y_[np.argmin(distances)] 
+            # array of predictions takes the value of of the closest true y value classification to the x point
+            # note that we use argmin to retrieve the position of the smallest distance, and not the distance itself
 
-        # XXX fix
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Provide an accuracy score of the fitted model.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : 2D ndarray of shape (n_samples, n_features)
+            The samples to classify.
+        y : 1D ndarray of shape (n_samples,)
+            The true classification of each point.
+        
+        Returns
+        -------
+        accuracy : float 
+            The proportion of correctly-classified samples. 
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
-
-        # XXX fix
-        return y_pred.sum()
+        accuracy = np.mean(y_pred == y)
+        return accuracy
