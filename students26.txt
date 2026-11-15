@@ -86,7 +86,7 @@ Luc	Walter X
 Carl	Weber X
 Ke-Ching	Wei
 Eric	Xu X
-Hao	Ying
+Hao	Ying X
 Ossama	Zaroual X
 Xinle	Zhang X
 Yihan	Zhang X
