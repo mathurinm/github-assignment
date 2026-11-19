@@ -5,7 +5,7 @@ Maxime	Arbey X
 Francesco	Azzarello   X
 Emile	Bassil
 Clément	Bayle
-Niccolo	Benetti
+Niccolo	Benetti X
 Omar	Benharbit  X
 Mattis	Berenthal
 Tiphaine	Berthou X
