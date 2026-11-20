@@ -70,8 +70,11 @@ def wallis_product(n_terms):
     """
     # XXX : The n_terms is an int that corresponds to the number of
     # terms in the product. For example 10000.
+    if n_terms == 0:
+        return 1.0
+
     k = np.arange(1, n_terms+1)
 
     # calculate the wallis product
     product = np.prod((4*k**2)/((2*k-1)*(2*k+1)))
-    return product  # according to the wallis product
+    return 2*product  # according to the wallis product

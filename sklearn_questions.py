@@ -68,7 +68,7 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
             Predicted class labels.
         """
         check_is_fitted(self)
-        X = check_array(X)
+        X = validate_data(self, X, reset=False)
 
         distances = np.sqrt(
             np.sum(
