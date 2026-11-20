@@ -74,4 +74,4 @@ def wallis_product(n_terms):
 
     # calculate the wallis product
     product = np.prod((4*k**2)/((2*k-1)*(2*k+1)))
-    return 2*product  # according to the wallis product
+    return product  # according to the wallis product

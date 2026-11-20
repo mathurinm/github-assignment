@@ -48,7 +48,6 @@ class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
         X, y = validate_data(self, X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
-        self.n_features_in_ = X.shape[1]
 
         self.X_train_ = X
         self.y_train_ = y
