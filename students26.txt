@@ -43,7 +43,7 @@ Margaux	Jacobelli X
 Ajay	Jampana
 Martin	Jomier
 Hugo	Keothavong X
-Eliza	Kimball
+Eliza	Kimball X
 Szymon	Konieczny	X
 Cyprien	Kutek X
 Guillaume	Leopold
