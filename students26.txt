@@ -28,7 +28,7 @@ Blanche	Delaunay X
 Martin	Demeulenaere
 Nada	Dhem
 Abel	Dornbusch x
-Nikita	Dovban
+Nikita	Dovban X
 Joseph	Dray
 Bogdan	Duffaud X
 Samy	El Quitouni El Idrissi
