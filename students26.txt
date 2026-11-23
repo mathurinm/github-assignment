@@ -36,7 +36,7 @@ Mohamed	Elgamil X
 Kim-Louis	Frotier De Bagneux X
 Hayden	Gatlin X
 Yonas	Grossard-Amin X
-Quiterie	Guignard
+Quiterie	Guignard X 
 Thomas	Hammer
 Vittoria	Hu X
 Margaux	Jacobelli X
