@@ -7,7 +7,7 @@ Emile	Bassil
 Clément	Bayle X
 Niccolo	Benetti
 Omar	Benharbit  X
-Mattis	Berenthal
+Mattis	Berenthal X 
 Tiphaine	Berthou X
 Arthur	Bertrand X
 Noé	Besson X
