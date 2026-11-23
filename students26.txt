@@ -84,7 +84,7 @@ Charlotte	Vedrines X
 Simon	Vital X
 Luc	Walter X
 Carl	Weber X
-Ke-Ching	Wei
+Ke-Ching	Wei X 
 Eric	Xu X
 Hao	Ying X
 Ossama	Zaroual X
