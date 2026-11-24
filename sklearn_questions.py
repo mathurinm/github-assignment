@@ -30,46 +30,80 @@ from sklearn.utils.multiclass import check_classification_targets
 
 
 class OneNearestNeighbor(ClassifierMixin, BaseEstimator):
-    "OneNearestNeighbor classifier."
+    """OneNearestNeighbor classifier."""
 
     def __init__(self):  # noqa: D107
         pass
 
     def fit(self, X, y):
-        """Write docstring.
+        """To fit the classifer, we will store the training data.
 
-        And describe parameters
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            The training input samples.
+        y : ndarray of shape (n_samples,)
+            The target labels.
+
+        Returns
+        -------
+        self : OneNearestNeighbor
+            The fitted estimator.
         """
         X, y = check_X_y(X, y)
         check_classification_targets(y)
         self.classes_ = np.unique(y)
         self.n_features_in_ = X.shape[1]
 
-        # XXX fix
+        self.X_train_ = X
+        self.y_train_ = y
         return self
 
     def predict(self, X):
-        """Write docstring.
+        """Predict new y values by finding closest y value to X.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: ndarray of shape (n_samples, n_features)
+            The input array.
+
+        Return
+        ----------
+        y_pred: ndarray of shape (n_samples, )
+            labels of the nearest training sample for each input.
         """
         check_is_fitted(self)
         X = check_array(X)
+        X = validate_data(self, X, reset=False)
         y_pred = np.full(
             shape=len(X), fill_value=self.classes_[0],
             dtype=self.classes_.dtype
         )
 
-        # XXX fix
+        # for each data point in X
+        for i, x in enumerate(X):
+            # find closest value in X by calculating distance
+            # using broadcasting to avoid double for loop
+            distances = np.sqrt(np.sum((self.X_train_ - x) ** 2, axis=1))
+            y_pred[i] = self.y_train_[np.argmin(distances)]
         return y_pred
 
     def score(self, X, y):
-        """Write docstring.
+        """Calculate accuracy score based on model chosen.
 
-        And describe parameters
+        Parameters
+        ----------
+        X: ndarray of shape (n_samples, n_features)
+            The input array.
+        y: ndarray of shape (n_samples, )
+            The true y values associated with X.
+
+        Return
+        ----------
+        score: float
+            average number of samples correctly classified.
         """
         X, y = check_X_y(X, y)
         y_pred = self.predict(X)
 
-        # XXX fix
-        return y_pred.sum()
+        return np.mean(y == y_pred)
