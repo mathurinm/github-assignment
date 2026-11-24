@@ -19,6 +19,7 @@ import numpy as np
 
 
 def max_index(X):
+    """Return the index of the maximum in a 2D numpy array."""
     if not isinstance(X, np.ndarray):
         raise ValueError("Input must be a numpy array.")
     elif X.ndim != 2:
@@ -29,6 +30,7 @@ def max_index(X):
 
 
 def wallis_product(n_terms):
+    """Approximate pi using the Wallis product."""
     if n_terms == 0:
         return 1.
     else:
