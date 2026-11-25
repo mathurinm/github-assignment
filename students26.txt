@@ -1,5 +1,5 @@
 Megha	Agarwal
-Samira	Aldybergenova
+Samira	Aldybergenova X
 Giulia	Amore X
 Maxime	Arbey X
 Francesco	Azzarello   X
@@ -40,7 +40,7 @@ Quiterie	Guignard X
 Thomas	Hammer
 Vittoria	Hu X
 Margaux	Jacobelli X
-Ajay	Jampana
+Ajay	Jampana X
 Martin	Jomier
 Hugo	Keothavong X
 Eliza	Kimball X
