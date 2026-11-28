@@ -47,7 +47,7 @@ Eliza	Kimball X
 Szymon	Konieczny	X
 Cyprien	Kutek X
 Guillaume	Leopold
-Léonard	Levy
+Léonard	Levy X
 Lucas	Lonegro Gurfinkel X
 Elisa	Marlow X
 Mathurin	Massias
